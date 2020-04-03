@@ -12,12 +12,6 @@
 alias rc.d='systemctl'
 alias git-unstage='git reset'
 
-# python
-alias py3="python3"
-alias pyhost="python3 -m http.server"
-alias py2host="/usr/bin/python2 -m SimpleHTTPServer"
-alias py2="PYTHONSTARTUP="$HOME/.py2rc" /usr/bin/python2.7"
-
 function py {
     ##
     ### python wrapper for multiplexer
@@ -97,59 +91,59 @@ function readlink {
 }
 
 
-function emacs {
-    # if [[ -t 1 ]]; then
-    #     while read data; do
-    #         args+="$data"
-    #     done
-    #     echo "data: ${args[*]}"
-    #     # /usr/bin/emacs ${args[*]}
-	#     return
-    # fi
+# function emacs {
+#     # if [[ -t 1 ]]; then
+#     #     while read data; do
+#     #         args+="$data"
+#     #     done
+#     #     echo "data: ${args[*]}"
+#     #     # /usr/bin/emacs ${args[*]}
+# 	#     return
+#     # fi
 
-    ##
-    ### emacs wrapper for mulitplexing
-    if [[ $# -eq 0 ]]; then
-        /usr/bin/emacs # "emacs" is function, will cause recursion
-        return
-    fi
+#     ##
+#     ### emacs wrapper for mulitplexing
+#     if [[ $# -eq 0 ]]; then
+#         /usr/bin/emacs # "emacs" is function, will cause recursion
+#         return
+#     fi
 
-    args=($*)
-    # TIP: add '-' arguement for opening new emacs session
-    for ((i=0; i <= ${#args}; i++)); do
-        local a=${args[i]}
-        # NOTE: -c create frame; -nw: no-window
-        if [[ ${a:0:1} == '-' && $a != '-c' ]]; then
-            # TIPS: -nw will not work with setsid use '&'
-            /usr/bin/emacs ${args[*]}
-            return
-        fi
-    done
+#     args=($*)
+#     # TIP: add '-' arguement for opening new emacs session
+#     for ((i=0; i <= ${#args}; i++)); do
+#         local a=${args[i]}
+#         # NOTE: -c create frame; -nw: no-window
+#         if [[ ${a:0:1} == '-' && $a != '-c' ]]; then
+#             # TIPS: -nw will not work with setsid use '&'
+#             /usr/bin/emacs ${args[*]}
+#             return
+#         fi
+#     done
 
-    setsid emacsclient -n -a /usr/bin/emacs ${args[*]}
-}
-
-
-function nemo {
-    ##
-    ### nemo (file browser) wrapper
-    if [[ $# -eq 0 ]]; then
-        setsid /usr/bin/nemo . # "nemo" is function, will cause recursion
-    else
-        setsid /usr/bin/nemo $@
-    fi
-}
+#     setsid emacsclient -n -a /usr/bin/emacs ${args[*]}
+# }
 
 
-function nautilus {
-    ##
-    ### nemo (file browser) wrapper
-    if [[ $# -eq 0 ]]; then
-        setsid /usr/bin/nautilus . # "nemo" is function, will cause recursion
-    else
-        setsid /usr/bin/nautilus $@
-    fi
-}
+# function nemo {
+#     ##
+#     ### nemo (file browser) wrapper
+#     if [[ $# -eq 0 ]]; then
+#         setsid /usr/bin/nemo . # "nemo" is function, will cause recursion
+#     else
+#         setsid /usr/bin/nemo $@
+#     fi
+# }
+
+
+# function nautilus {
+#     ##
+#     ### nemo (file browser) wrapper
+#     if [[ $# -eq 0 ]]; then
+#         setsid /usr/bin/nautilus . # "nemo" is function, will cause recursion
+#     else
+#         setsid /usr/bin/nautilus $@
+#     fi
+# }
 
 
 function bluetooth-turn-it-on {
@@ -168,14 +162,14 @@ function dlna {
 }
 
 
-function frontmacs {
-    env HOME=/home/rho/.emacs.d/frontmacs emacs
-}
+# function frontmacs {
+#     env HOME=/home/$USER/.emacs.d/frontmacs emacs
+# }
 
 
-function doomemacs {
-    env HOME=/home/rho/.emacs.d/doom emacs
-}
+# function doomemacs {
+#     env HOME=/home/$USER/.emacs.d/doom emacs
+# }
 
 
 function ydl {

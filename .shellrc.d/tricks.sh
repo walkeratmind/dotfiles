@@ -58,7 +58,21 @@ function rm {
 function mic2speaker {
     ## loudSpeak with lots of echos
 
-    arecord -f cd - | aplay -
     # wanna save it too
     # arecord -f cd - | tee output.wav | aplay -
+    if [[ $1 == "-r" || $1 == "--record"]]; then
+        str = "rec_.${date +%a_%b_%e_%m_%Y }.wav"
+        arecord -f cd - | tee "${str}" | aplay -
+        echo -n "Saved at: " + $pwd
+    fi
+    elif [[ $1 == '-h' || $1 == "--help"]]; then
+        echo "USAGE"
+        echo "      mic2speaker: to just loud speak"
+        echo "      mic2speaker -r || mic2speaker --r: to record and speak"
+
+    fi
+    else
+        arecord -f cd - | aplay -
+    fi
+    
 }

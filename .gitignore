@@ -1,4 +1,6 @@
 
-# Remove temp file
+# ignore temp file
 *~
 */~
+# ignore vim bundle
+.vim/bundle/*
