@@ -1,0 +1,1 @@
+## Exports path here for both zsh and bash

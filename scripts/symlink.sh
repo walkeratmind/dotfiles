@@ -29,6 +29,14 @@ function linkDotfile {
   ln -s ${dotfilesDir}/${1} ${dest}
 }
 
+# function linkDotFolder {
+#   dest = "$HOME/${1}"
+#   dateStr=$(date +%Y-%m-%d-%H%M)
+
+#   echo "Creating new symlink: ${dest}"
+#   ln -s ${dotfilesDir}/${1} ${dest}
+# }
+
 linkDotfile .vimrc
 linkDotfile .tmux.conf
 linkDotfile .bashrc
@@ -38,6 +46,10 @@ linkDotfile .gitmessage
 linkDotfile .git-completion.bash
 linkDotfile .shellrc.d
 linkDotfile .shellrc
+
+linkDotfile .aliases
+linkDotfile .common_path.sh
+linkDotfile .get_cli_tools.sh
 
 # mkdir -p $dotfilesDir/.vim/bundle
 # cd $dotfilesDir/.vim/bundle

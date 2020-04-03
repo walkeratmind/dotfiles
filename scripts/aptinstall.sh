@@ -49,7 +49,6 @@ install preload
 install tlp
 
 # Image processing
-# Use snap to install this
 # install gimp
 install jpegoptim
 install optipng

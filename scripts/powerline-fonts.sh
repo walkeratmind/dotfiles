@@ -1,4 +1,6 @@
 #!/bin/bash
+
+echo "✍️ Installing Powerline fonts"
 mkdir -p ~/src/github.com/powerline/
 cd ~/src/github.com/powerline/
 rm -rf fonts

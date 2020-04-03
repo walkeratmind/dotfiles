@@ -35,7 +35,7 @@ install gnome-system-monitor
 
 #browser 
 install chromium
-install firefox
+# install firefox
 
 # install notable
 install libreoffice
