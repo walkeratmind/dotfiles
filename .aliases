@@ -33,15 +33,6 @@ alias wget='wget -c'
 #		GIT ALIASES
 # ----------------------------------
 
-copied 90% from git.plugins.zsh @ohmyzsh
-# Pretty log messages
-function _git_log_prettily(){
-  if ! [ -z $1 ]; then
-    git log --pretty=$1
-  fi
-}
-compdef _git _git_log_prettily=git-log
-
 alias gadd='git add'
 alias gaa='git add --all'
 
@@ -65,6 +56,15 @@ alias gd='git diff'
 
 alias glo='git log --oneline --decorate --color'
 alias glol='git log --graph --pretty=format:'\''%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\'' --abbrev-commit'
+
+
+alias gp='git push'
+alias gpd='git push --dry-run'
+alias gpf='git push --force-with-lease'
+alias gpf!='git push --force'
+alias gpoat='git push origin --all && git push origin --tags'
+alias gpu='git push upstream'
+alias gpv='git push -v'
 
 alias gr='git remote'
 alias gra='git remote add'
@@ -123,11 +123,11 @@ alias hist='history | grep '
 #	End of the Tricks
 # ----------------------------------
 # Detect which `ls` flavor is in use
-if ls --color > /dev/null 2>&1; then # GNU `ls`
-	colorflag="--color"
-else # OS X `ls`
-	colorflag="-G"
-fi
+# if ls --color > /dev/null 2>&1; then # GNU `ls`
+# 	colorflag="--color"
+# else # OS X `ls`
+# 	colorflag="-G"
+# fi
 
 # List all files colorized in long format
 # shellcheck disable=SC2139
@@ -144,8 +144,7 @@ alias lsd="ls -lhF ${colorflag} | grep --color=never '^d'"
 # Always use color output for `ls`
 # shellcheck disable=SC2139
 alias ls="command ls ${colorflag}"
-export LS_COLORS='no=00:fi=00:di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.bz2=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.avi=01;35:*.fli=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.ogg=01;35:*.mp3=01;35:*.wav=01;35:'
-
+# export LS_COLORS='no=00:fi=00:di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.bz2=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.avi=01;35:*.fli=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.ogg=01;35:*.mp3=01;35:*.wav=01;35:'
 
 
 # Get week number
@@ -166,14 +165,14 @@ alias flush="dscacheutil -flushcache && killall -HUP mDNSResponder"
 alias sniff="sudo ngrep -d 'en1' -t '^(GET|POST) ' 'tcp and port 80'"
 alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\\: .*|GET \\/.*\""
 
-# Canonical hex dump; some systems have this symlinked
-command -v hd > /dev/null || alias hd="hexdump -C"
+# # Canonical hex dump; some systems have this symlinked
+# command -v hd > /dev/null || alias hd="hexdump -C"
 
-# OS X has no `md5sum`, so use `md5` as a fallback
-command -v md5sum > /dev/null || alias md5sum="md5"
+# # OS X has no `md5sum`, so use `md5` as a fallback
+# command -v md5sum > /dev/null || alias md5sum="md5"
 
-# OS X has no `sha1sum`, so use `shasum` as a fallback
-command -v sha1sum > /dev/null || alias sha1sum="shasum"
+# # OS X has no `sha1sum`, so use `shasum` as a fallback
+# command -v sha1sum > /dev/null || alias sha1sum="shasum"
 
 # Trim new lines and copy to clipboard
 alias c="tr -d '\\n' | xclip -selection clipboard"
@@ -197,6 +196,7 @@ for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
 done
 
 # Kill all the tabs in Chrome to free up memory
+# Kill the Resource Hog : Giant
 # [C] explained: http://www.commandlinefu.com/commands/view/402/exclude-grep-from-your-grepped-output-of-ps-alias-included-in-description
 alias chromekill="ps ux | grep '[C]hrome Helper --type=renderer' | grep -v extension-process | tr -s ' ' | cut -d ' ' -f2 | xargs kill"
 

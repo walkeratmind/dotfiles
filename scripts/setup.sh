@@ -1,4 +1,3 @@
-
 #!/bin/bash
 
 ./symlink.sh
@@ -17,4 +16,4 @@ sudo apt upgrade -y
 source ~/.bashrc
 
 # Fun hello
-figlet "... and we're done for now!" | lolcat
+figlet "May Linux be Merciful on You ..." | lolcat --spread 2 --animate --duration 1

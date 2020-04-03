@@ -1,4 +1,4 @@
-}
+#!/bin/bash
 
 # Golang install or upgrade
 function getgolang () {
@@ -6,13 +6,13 @@ function getgolang () {
     wget -q -P tmp/ https://dl.google.com/go/go"$@".linux-amd64.tar.gz
     sudo tar -C /usr/local -xzf tmp/go"$@".linux-amd64.tar.gz
     rm -rf tmp/
-    go version
+    echo go --version
 }
 
 # Rust install or upgrade
 function getrust() {
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-    rust --version
+    echo rust --version
 }
 
 # GHCLI install or upgrade

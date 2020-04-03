@@ -39,11 +39,8 @@ install bibhasdn.django-html
 install coenraads.bracket-pair-colorizer
 install davidanson.vscode-markdownlint
 install glen-84.sass-lint
-install liviuschera.noctis
 install ms-python.python
 install ms-vscode-remote.remote-containers
 install ms-vscode.Go
-install neilding.language-liquid
 install yzhang.markdown-all-in-one
-install zxh404.vscode-proto3
 

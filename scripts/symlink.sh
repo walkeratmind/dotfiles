@@ -47,6 +47,8 @@ linkDotfile .git-completion.bash
 linkDotfile .shellrc.d
 linkDotfile .shellrc
 
+linkDotfile .zshrc
+
 linkDotfile .aliases
 linkDotfile .common_path.sh
 linkDotfile .get_cli_tools.sh

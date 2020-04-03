@@ -8,7 +8,7 @@ function install {
 
   if [ $? -ne 0 ]; then
     echo "Installing: ${1}..."
-    sudo apt install -y $1
+    sudo apt install $1
     echo "----------------------------"
   else
     echo "Already installed: ${1}"
@@ -18,6 +18,7 @@ function install {
 
 # Basics
 install awscli
+# install docker.io
 # install chromium-browser
 install curl
 install dialog
