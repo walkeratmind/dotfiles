@@ -4,3 +4,6 @@
 */~
 # ignore vim bundle
 .vim/bundle/*
+
+*.zip
+*.tar.gz
