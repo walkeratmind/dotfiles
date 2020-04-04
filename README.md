@@ -1,5 +1,9 @@
 # dotfiles 🏗️ for my Linux 💻️
 
+>NOte: This is current version of configuration which is running now.
+
+> Current OS: 🎡️ Elementary OS
+
 ## File Strucutre 📑️
 
 ```bash
@@ -45,6 +49,8 @@
 └── .zshrc
 ```
 
+------
+
 ## Setup like this
 
 >Goto `scripts` directory and Run the below command for full installation:
@@ -61,6 +67,8 @@
 
 `$ sudo bash <filename.sh>`
 
+------
+
 ## References 👇️
 
 > More Than References, kind of like mixture of all these,
@@ -70,8 +78,6 @@
 > 😋️😋️😋️
 
 > 😎️😎️😎️
-
-------
 
 [victoriadrake](https://github.com/victoriadrake/dotfiles)
 
