@@ -62,7 +62,7 @@ function mic2speaker {
     # arecord -f cd - | tee output.wav | aplay -
     # Note: Remember spaces in between [ ]
     if [[ $1 == "-r" || $1 == "--record" ]]; then
-        str = "rec_.${date +%a_%b_%e_%m_%Y }.wav"
+        str = "rec_.$(date +%a_%b_%e_%m_%Y).wav"
         arecord -f cd - | tee "${str}" | aplay -
         echo -n "Saved at: " + $pwd
     elif [[ $1 == '-h' || $1 == "--help" ]]; then
