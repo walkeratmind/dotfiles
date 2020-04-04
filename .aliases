@@ -21,8 +21,7 @@ alias dl="cd ~/Downloads"
 	# -v : Verbose output, show what's going under the hood
 alias cp='cp -Rv'
 
-alias ls='ls --color=auto -ACF'
-alias ll='ls --color=auto -alF'
+alias ls='ls -ACF'
 alias grep='grep --color=auto'
 alias mkdir='mkdir -pv'
 alias mv='mv -v'
@@ -123,11 +122,11 @@ alias hist='history | grep '
 #	End of the Tricks
 # ----------------------------------
 # Detect which `ls` flavor is in use
-# if ls --color > /dev/null 2>&1; then # GNU `ls`
-# 	colorflag="--color"
-# else # OS X `ls`
-# 	colorflag="-G"
-# fi
+if ls --color > /dev/null 2>&1; then # GNU `ls`
+	colorflag="--color"
+else # OS X `ls`
+	colorflag="-G"
+fi
 
 # List all files colorized in long format
 # shellcheck disable=SC2139
