@@ -45,6 +45,8 @@
 └── .zshrc
 ```
 
+------
+
 ## Setup like this
 
 >Goto `scripts` directory and Run the below command for full installation:
@@ -61,6 +63,8 @@
 
 `$ sudo bash <filename.sh>`
 
+------
+
 ## References 👇️
 
 > More Than References, kind of like mixture of all these,
@@ -70,8 +74,6 @@
 > 😋️😋️😋️
 
 > 😎️😎️😎️
-
-------
 
 [victoriadrake](https://github.com/victoriadrake/dotfiles)
 
