@@ -288,9 +288,6 @@ export NVM_DIR="$HOME/.nvm"
 # Aliases for bash
 source ~/.aliases
 
-# common paths for bash and zsh
-source ~/.common_path.sh
-
 # functions for getting some tools
 source ~/.get_cli_tools.sh
 
@@ -314,3 +311,5 @@ if [[ -d ~/.bashrc.d ]]; then
     done
     unset f
 fi
+
+

@@ -72,6 +72,9 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
+## calling the unified zsh/bash configs
+source ~/.shellrc
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"

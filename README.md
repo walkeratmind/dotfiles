@@ -30,6 +30,7 @@
 │   ├── snap_packages.sh
 │   └── symlink.sh
 ├── .shellrc.d
+│   ├── .common_path.sh
 │   ├── extract.sh
 │   ├── tricks.sh
 │   └── utils.sh
@@ -37,7 +38,6 @@
 ├── .aliases
 ├── .bash_profile
 ├── .bashrc
-├── .common_path.sh
 ├── .get_cli_tools.sh
 ├── .git-completion.bash
 ├── .gitconfig
@@ -47,6 +47,7 @@
 ├── .tmux.conf
 ├── .vimrc
 └── .zshrc
+
 ```
 
 ------
