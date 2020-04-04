@@ -25,6 +25,7 @@ install ruby --classic
 install kotlin --classic
 install node-red
 install octave
+install arduino
 
 # monitor tools
 # install htop

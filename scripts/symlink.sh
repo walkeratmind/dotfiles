@@ -53,6 +53,8 @@ linkDotfile .aliases
 linkDotfile .common_path.sh
 linkDotfile .get_cli_tools.sh
 
+linkDotfile .curlrc
+
 # mkdir -p $dotfilesDir/.vim/bundle
 # cd $dotfilesDir/.vim/bundle
 # git clone git://github.com/VundleVim/Vundle.vim.git
