@@ -72,6 +72,9 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
+# common path variables for both zshrc and bashrc
+source ~/.common_path.sh
+
 ## calling the unified zsh/bash configs
 source ~/.shellrc
 

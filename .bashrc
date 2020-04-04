@@ -282,6 +282,9 @@ source ~/.aliases
 # functions for getting some tools
 source ~/.get_cli_tools.sh
 
+# common path variables for both zshrc and bashrc
+source ~/.common_path.sh
+
 ## calling the unified zsh/bash configs
 source ~/.shellrc
 

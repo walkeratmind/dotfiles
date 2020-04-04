@@ -1,8 +1,7 @@
 #!/bin/bash
 
-#
 # shellrc - common rc file for {zsh, bash}
-#
+
 if [[ -d ~/.shellrc.d ]]; then
     for f in ~/.shellrc.d/*; do
         [ -f "$f" ] || continue
