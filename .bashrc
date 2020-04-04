@@ -129,7 +129,7 @@ xterm*|rxvt*)
         #     __el_SECONDPART="${__el_LAST_EXECUTED_COMMAND%% *}"
         # fi 
         # printf "%s: %s" "$__el_FIRSTPART" "$__el_SECONDPART"
-        printf "%s"$__el_FIRSTPART"
+        printf "%s" "$__el_FIRSTPART"
     }
     put_title()
     {
