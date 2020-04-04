@@ -19,4 +19,4 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-export ANDROID_HOME=~/Android/sdk
+export ANDROID_HOME=~/Android/Sdk

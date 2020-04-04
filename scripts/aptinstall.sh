@@ -51,6 +51,7 @@ install tlp
 
 # Image processing
 # install gimp
+install feh
 install jpegoptim
 install optipng
 
