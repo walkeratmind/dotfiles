@@ -12,9 +12,9 @@ alias ~="cd ~" # `cd` is probably faster to type though
 alias -- -="cd -"
 
 # Shortcuts for Direcory
-alias doc="cd ~/Documents"
+alias docs="cd ~/Documents"
 alias dl="cd ~/Downloads"
-alias pic="cd ~/Pictures"
+alias pics="cd ~/Pictures"
 
 # Aliases
 # cp -Rv means:
