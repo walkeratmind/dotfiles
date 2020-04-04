@@ -53,6 +53,8 @@ install tlp
 # install gimp
 install jpegoptim
 install optipng
+# best image viewer
+install feh
 
 # Fun stuff
 install figlet
