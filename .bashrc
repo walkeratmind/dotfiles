@@ -122,13 +122,14 @@ xterm*|rxvt*)
             return
         fi
         #trim the command to the first segment and strip sudo
-        if [[ "$__el_LAST_EXECUTED_COMMAND" == sudo* ]]; then
-            __el_SECONDPART="${__el_LAST_EXECUTED_COMMAND:5}"
-            __el_SECONDPART="${__el_SECONDPART%% *}"
-        else
-            __el_SECONDPART="${__el_LAST_EXECUTED_COMMAND%% *}"
-        fi 
-        printf "%s: %s" "$__el_FIRSTPART" "$__el_SECONDPART"
+        # if [[ "$__el_LAST_EXECUTED_COMMAND" == sudo* ]]; then
+        #     __el_SECONDPART="${__el_LAST_EXECUTED_COMMAND:5}"
+        #     __el_SECONDPART="${__el_SECONDPART%% *}"
+        # else
+        #     __el_SECONDPART="${__el_LAST_EXECUTED_COMMAND%% *}"
+        # fi 
+        # printf "%s: %s" "$__el_FIRSTPART" "$__el_SECONDPART"
+        printf "%s"$__el_FIRSTPART"
     }
     put_title()
     {
@@ -314,5 +315,3 @@ if [[ -d ~/.bashrc.d ]]; then
     done
     unset f
 fi
-
-
