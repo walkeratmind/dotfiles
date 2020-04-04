@@ -117,10 +117,10 @@ xterm*|rxvt*)
                 __el_FIRSTPART="${PWD##*/}"
             fi
         fi
-        if [[ "$__el_LAST_EXECUTED_COMMAND" == "" ]]; then
-            echo "$__el_FIRSTPART"
-            return
-        fi
+        # if [[ "$__el_LAST_EXECUTED_COMMAND" == "" ]]; then
+        #     echo "$__el_FIRSTPART"
+        #     return
+        # fi
         #trim the command to the first segment and strip sudo
         # if [[ "$__el_LAST_EXECUTED_COMMAND" == sudo* ]]; then
         #     __el_SECONDPART="${__el_LAST_EXECUTED_COMMAND:5}"
