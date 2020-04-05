@@ -32,6 +32,9 @@ install gnome-system-monitor
 
 # Network Tools
 # install nmap
+install wifi-ap
+
+install gitkraken
 
 #browser 
 install chromium
