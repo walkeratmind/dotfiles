@@ -277,14 +277,15 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# Aliases for bash
-source ~/.aliases
-
 # functions for getting some tools
 source ~/.get_cli_tools.sh
 
 # common path variables for both zshrc and bashrc
 source ~/.common_path.sh
+
+# Aliases for bash
+source ~/.aliases
+
 
 ## calling the unified zsh/bash configs
 source ~/.shellrc
@@ -315,3 +316,5 @@ if [[ -d ~/.bashrc.d ]]; then
     done
     unset f
 fi
+
+

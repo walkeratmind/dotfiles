@@ -4,6 +4,13 @@
 # Rust Path
 export PATH="$PATH: $HOME/.cargo/bin"
 
+# Manage python environments
+export VENVPATH="$HOME/development_tools/pyenv"
+function activate() {
+    source "$VENVPATH/$1/bin/activate"
+}
+
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/home/rakesh/development_tools/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
