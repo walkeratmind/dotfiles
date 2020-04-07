@@ -6,9 +6,10 @@ export PATH="$PATH: $HOME/.cargo/bin"
 
 # Manage python environments
 export VENVPATH="$HOME/development_tools/pyenv"
-function activate() {
-    source "$VENVPATH/$1/bin/activate"
-}
+
+
+# alias for project folder
+alias plab="cd $HOME/project_files"
 
 
 # >>> conda initialize >>>

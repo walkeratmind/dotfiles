@@ -28,6 +28,21 @@ function py {
     python $@
 }
 
+function activate() {
+    source "$VENVPATH/$1/bin/activate"
+}
+
+function venvlist() {
+    echo "Python Venv List:"
+    echo "-------------------"
+    for f in ${VENVPATH}/*; do
+        [ -d "$f" ] || continue
+        # echo $f # for debugging
+        echo "$f"
+    done
+    unset f
+}
+
 
 export SPARK_HOME="/usr/share/apache-spark/"
 export PYSPARK_SUBMIT_ARGS="--master local[4]"

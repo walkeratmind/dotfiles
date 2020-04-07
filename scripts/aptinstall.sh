@@ -20,8 +20,6 @@ function install {
 install awscli
 # install docker.io
 # install chromium-browser
-install curl
-install dialog
 # install file
 install ripgrep
 install git
@@ -42,6 +40,10 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 
 # install python tools
 install sqlitebrowser
+
+# install zeal for offline documentation
+# https://zealdocs.org/download.html
+install zeal
 
 
 # install for optimizing cpu usage and never worry for these two
