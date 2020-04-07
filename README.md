@@ -1,4 +1,8 @@
-# dotfiles 🏗️ for my Linux 💻️
+# dotfiles 🏗️ for Linux 💻️
+
+To be honest, I haven't written all these scripts and configs. I copied most of the parts from others whose link you can find in [references](#references-%EF%B8%8F) ⬇️.
+
+As we all know, every person have his/her own needs so, ➡️ evey person needs his/her own dotfiles (I suppose 😎️😎️😎️).
 
 >NOte: This is current version of configuration which is running now.
 
@@ -52,13 +56,13 @@
 
 ------
 
-## Setup like this
+## Setup
 
 >Goto `scripts` directory and Run the below command for full installation:
 
 `$ sudo bash setup.sh`
 
-### Partial Installation
+### Partial Setup
 
 >To setup only the bash or other configurations only, run `symlink.sh` file in your terminal.
 

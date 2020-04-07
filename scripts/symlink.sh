@@ -48,10 +48,13 @@ linkDotfile .shellrc.d
 linkDotfile .shellrc
 
 linkDotfile .zshrc
+linkDotfile .p10k.zsh
 
 linkDotfile .aliases
 linkDotfile .common_path.sh
 linkDotfile .get_cli_tools.sh
+
+linkDotfile .curlrc
 
 # mkdir -p $dotfilesDir/.vim/bundle
 # cd $dotfilesDir/.vim/bundle

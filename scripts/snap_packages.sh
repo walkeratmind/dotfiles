@@ -21,9 +21,11 @@ install postman
 install insomnia
 # install go --classic
 install node --classic
+
 install kotlin --classic
 install node-red
 install octave
+install arduino
 
 # monitor tools
 # install htop
