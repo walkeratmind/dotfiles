@@ -39,6 +39,6 @@ function hugotheme () {
 
 # Add GitLab remote to cwd git
 function glab () {
-    git remote set-url origin --add git@gitlab.com:victoriadrake/"${PWD##*/}".git
+    git remote set-url origin --add git@gitlab.com:rakesh niraula/"${PWD##*/}".git
     git remote -v
 }

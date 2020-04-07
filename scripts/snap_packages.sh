@@ -21,7 +21,7 @@ install postman
 install insomnia
 # install go --classic
 install node --classic
-install ruby --classic
+# install ruby --classic
 install kotlin --classic
 install node-red
 install octave
