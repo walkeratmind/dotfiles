@@ -37,8 +37,6 @@ install snapd
 install default-jdk
 install gparted
 install zsh
-# install zsh via curl
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # install python tools
 install sqlitebrowser
