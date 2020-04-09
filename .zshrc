@@ -80,25 +80,17 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
-# common path variables for both zshrc and bashrc
-source ~/.common_path.sh
-
-## calling the unified zsh/bash configs
-source ~/.shellrc
-
-# User configuration
-
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='vim'
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -114,3 +106,57 @@ source ~/.shellrc
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+
+# Show contents of dir after action
+function cd () {
+    builtin cd "$1"
+    ls -ACF
+}
+
+# Markdown link check in a folder, recursive
+function mlc () {
+    find $1 -name \*.md -exec markdown-link-check -p {} \;
+}
+
+# Does Vim makes developers life better?
+export EDITOR=/usr/bin/vim
+export VISUAL=io.elementary.code
+
+# Go
+export PATH=$PATH:/usr/local/bin:/usr/local/go/bin:~/.local/bin:$GOPATH/bin
+export GOPATH=~/development_tools/go
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# functions for getting some tools
+source ~/.get_cli_tools.sh
+
+# common path variables for both zshrc and bashrc
+source ~/.common_path.sh
+
+# Aliases for bash
+source ~/.aliases
+
+
+## calling the unified zsh/bash configs
+source ~/.shellrc
+
+# Bash completion
+# source ~/.git-completion.bash
+
+# Alias definitions.
+# You may want to put all your additions into a separate file like
+# ~/.bash_aliases, instead of adding them here directly.
+# See /usr/share/doc/bash-doc/examples in the bash-doc package.
+
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+# Local settings go last
+if [ -f ~/.localrc ]; then 
+  source ~/.localrc
+fi

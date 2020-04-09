@@ -22,7 +22,6 @@ Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'scrooloose/nerdtree'
-Plugin 'TomNomNom/xoria256.vim'
 Plugin 'fatih/vim-go'
 Plugin 'rust-lang/rust.vim'
 " use plugin from http://vim-scripts.org/vim/scripts.html
