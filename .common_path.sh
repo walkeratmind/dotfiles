@@ -7,6 +7,9 @@ export PATH="$PATH: $HOME/.cargo/bin"
 # Manage python environments
 export VENVPATH="$HOME/development_tools/pyenv"
 
+# Flutter Env
+export PATH="$PATH:$HOME/development_tools/flutter/bin"
+
 
 # alias for project folder
 alias plab="cd $HOME/project_files"
@@ -28,3 +31,7 @@ unset __conda_setup
 # <<< conda initialize <<<
 
 export ANDROID_HOME=~/Android/Sdk
+export PATH="$PATH:$ANDROID_HOME/platform-tools"
+
+# alias for latest nvim
+alias nvim="~/apps/nvim.appimage"
