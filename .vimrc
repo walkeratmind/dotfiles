@@ -2,6 +2,10 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
+"*****************************************************************************
+"" Vundle plugin core
+"*****************************************************************************
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -10,6 +14,10 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
+
+"*****************************************************************************
+"" Plug install packages
+"*****************************************************************************
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
@@ -21,9 +29,23 @@ Plugin 'godlygeek/tabular'
 Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'altercation/vim-colors-solarized'
+" Theme for vim
+Plugin 'morhetz/gruvbox'
+
+" Syntax checking hacks for vim
+Plugin 'scrooloose/syntastic'
+
+Plugin 'tpope/vim-surround'
+
+" ruby plugin : https://vimawesome.com/plugin/vim-ruby
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'pangloss/vim-javascript'
+
 Plugin 'scrooloose/nerdtree'
 Plugin 'fatih/vim-go'
 Plugin 'rust-lang/rust.vim'
+
+
 " use plugin from http://vim-scripts.org/vim/scripts.html
 " Plugin 'L9'
 " use Git plugin not hosted on GitHub
@@ -52,13 +74,18 @@ filetype plugin indent on    " required for vundle
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
+"*****************************************************************************
+"" Basic Setup
+"*****************************************************************************"
+
 " Display options
 set encoding=utf-8
+set fileencoding=utf-8
+set fileencodings=utf-8
 set showmode
 set showcmd
 set modeline
-set ruler
-set number
+
 "set notitle noicon
 set titlestring=%t
 " Persist color scheme in tmux
@@ -71,6 +98,36 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 let g:airline_theme='bubblegum'
+
+" Syntastic setting
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" Set theme for vim
+"syntax enable
+"set background=dark
+"let g:solarized_termcolors=16
+"colorscheme solarized
+silent! colorscheme gruvbox
+set background=dark
+let g:gruvbox_italic=1
+let g:gruvbox_termcolors=256
+colorscheme gruvbox
+
+" vim-javascript config
+let g:javascript_plugin_jsdoc = 1
+
+"Enables code folding for javascript based on our syntax file.
+augroup javascript_folding
+    au!
+    au FileType javascript setlocal foldmethod=syntax
+augroup END
 
 " Turn on syntax highlighting.
 syntax on
@@ -107,6 +164,176 @@ set history=50
 " Enable starting a new buffer without being forced to write current changes
 set hidden
 
+if exists('$SHELL')
+    set shell=$SHELL
+else
+    set shell=/bin/bash
+endif
+
+"*****************************************************************************
+"" Visual Setting
+"*****************************************************************************"
+" syntax on
+set ruler
+set number
+
+if has("gui_running")
+  if has("gui_mac") || has("gui_macvim")
+    set guifont=Menlo:h12
+    set transparency=7
+  endif
+else
+  let g:CSApprox_loaded = 1
+
+  " IndentLine
+  let g:indentLine_enabled = 1
+  let g:indentLine_concealcursor = 0
+  let g:indentLine_char = '┆'
+  let g:indentLine_faster = 1
+
+  
+  if $COLORTERM == 'gnome-terminal'
+    set term=gnome-256color
+  else
+    if $TERM == 'xterm'
+      set term=xterm-256color
+    endif
+  endif
+  
+endif
+
+if &term =~ '256color'
+  set t_ut=
+endif
+
+"*****************************************************************************
+"" Abbreviations
+"*****************************************************************************
+"" no one is really happy until you have this shortcuts
+cnoreabbrev W! w!
+cnoreabbrev Q! q!
+cnoreabbrev Qall! qall!
+cnoreabbrev Wq wq
+cnoreabbrev Wa wa
+cnoreabbrev wQ wq
+cnoreabbrev WQ wq
+cnoreabbrev W w
+cnoreabbrev Q q
+cnoreabbrev Qall qall
+
+"" NERDTree configuration
+" let g:NERDTreeChDirMode=2
+"let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__']
+let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
+let g:NERDTreeShowBookmarks=1
+let g:nerdtree_tabs_focus_on_files=1
+let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
+" let g:NERDTreeWinSize = 50
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
+nnoremap <silent> <F2> :NERDTreeFind<CR>
+nnoremap <silent> <F3> :NERDTreeToggle<CR>
+
+" grep.vim
+nnoremap <silent> <leader>f :Rgrep<CR>
+let Grep_Default_Options = '-IR'
+let Grep_Skip_Files = '*.log *.db'
+let Grep_Skip_Dirs = '.git node_modules'
+
+" terminal emulation
+nnoremap <silent> <leader>sh :terminal<CR>
+
+"*****************************************************************************
+"" Commands
+"*****************************************************************************
+" remove trailing whitespaces
+command! FixWhitespace :%s/\s\+$//e
+
+"*****************************************************************************
+"" Mappings
+"*****************************************************************************"
+
+"" Map leader to ,
+let mapleader=','
+
+"" Split
+noremap <Leader>h :<C-u>split<CR>
+noremap <Leader>v :<C-u>vsplit<CR>
+
+"" Git
+noremap <Leader>ga :Gwrite<CR>
+noremap <Leader>gc :Gcommit<CR>
+noremap <Leader>gsh :Gpush<CR>
+noremap <Leader>gll :Gpull<CR>
+noremap <Leader>gs :Gstatus<CR>
+noremap <Leader>gb :Gblame<CR>
+noremap <Leader>gd :Gvdiff<CR>
+noremap <Leader>gr :Gremove<CR>
+
+" session management
+nnoremap <leader>so :OpenSession<Space>
+nnoremap <leader>ss :SaveSession<Space>
+nnoremap <leader>sd :DeleteSession<CR>
+nnoremap <leader>sc :CloseSession<CR>
+
+"" Tabs
+nnoremap <Tab> gt
+nnoremap <S-Tab> gT
+nnoremap <silent> <S-t> :tabnew<CR>
+
+"" Set working directory
+nnoremap <leader>. :lcd %:p:h<CR>
+
+"" Opens an edit command with the path of the currently edited file filled in
+noremap <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
+
+"" Opens a tab edit command with the path of the currently edited file filled
+noremap <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
+
+"" fzf.vim
+set wildmode=list:longest,list:full
+set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
+let $FZF_DEFAULT_COMMAND =  "find * -path '*/\.*' -prune -o -path 'node_modules/**' -prune -o -path 'target/**' -prune -o -path 'dist/**' -prune -o  -type f -print -o -type l -print 2> /dev/null"
+
+" The Silver Searcher
+if executable('ag')
+  let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
+  set grepprg=ag\ --nogroup\ --nocolor
+endif
+
+" ripgrep
+if executable('rg')
+  let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
+  set grepprg=rg\ --vimgrep
+  command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
+endif
+
+cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
+nnoremap <silent> <leader>b :Buffers<CR>
+nnoremap <silent> <leader>e :FZF -m<CR>
+"Recovery commands from history through FZF
+nmap <leader>y :History:<CR>
+
+"" Buffer nav
+noremap <leader>z :bp<CR>
+noremap <leader>q :bp<CR>
+noremap <leader>x :bn<CR>
+noremap <leader>w :bn<CR>
+
+"" Close buffer
+noremap <leader>c :bd<CR>
+
+"" Clean search (highlight)
+nnoremap <silent> <leader><space> :noh<cr>
+
+"" Switching windows
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-l> <C-w>l
+noremap <C-h> <C-w>h
+
+"" Open current line on GitHub
+nnoremap <Leader>o :.Gbrowse<CR>
+
 " Direction keys for wrapped lines
 nnoremap <silent> k gk
 nnoremap <silent> j gj
@@ -126,7 +353,7 @@ let &t_EI.="\<Esc>[1 q"
 let &t_te.="\<Esc>[0 q"
 
 " Toggle line-wrap
-map <Leader>w <Esc>:set wrap!<CR>
+map <Leader>lw <Esc>:set wrap!<CR>
 
 " Open file under cursor in new tab
 map <Leader>t <Esc><C-W>gF<CR>:tabm<CR>
@@ -139,14 +366,6 @@ nmap <Leader>g :tabnew\|read !grep -Hnr '<C-R><C-W>'<CR>
 
 " Gundo toggle
 map <F5> <Esc>:GundoToggle<CR>
-
-" Direction keys for wrapped lines
-nnoremap <silent> k gk
-nnoremap <silent> j gj
-nnoremap <silent> <Up> gk
-nnoremap <silent> <Down> gj
-inoremap <silent> <Up> <Esc>gka
-inoremap <silent> <Down> <Esc>gja
 
 " Bash / emacs keys for command line
 cnoremap <C-a> <Home>
@@ -168,10 +387,20 @@ set nofoldenable
 " Open word under cursor as ctag in new tab
 map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 
+"*****************************************************************************
+"" Custom configs
+"*****************************************************************************
+
+" javascript
+
+" go
+" vim-go
+
 if $VIMENV == 'talk'
   set background=light
   let g:solarized_termcolors=256
-  colo solarized
+ " colo solarized
+  colo gruvbox
   noremap <Space> :n<CR>
   noremap <Backspace> :N<CR>
 else
@@ -179,3 +408,4 @@ else
   hi Normal ctermbg=none
   hi NonText ctermbg=none
 endif
+
