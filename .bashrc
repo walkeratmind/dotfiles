@@ -203,8 +203,8 @@ export EDITOR=/usr/bin/vim
 export VISUAL=io.elementary.code
 
 # Go
-export PATH=$PATH:/usr/local/bin:/usr/local/go/bin:~/.local/bin:$GOPATH/bin
 export GOPATH=~/development_tools/go
+export PATH=$PATH:/usr/local/bin:/usr/local/go/bin:~/.local/bin:$GOPATH/bin
 
 # Color prompt
 export TERM=xterm-256color
