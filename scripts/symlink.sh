@@ -48,7 +48,7 @@ linkDotfile .shellrc.d
 linkDotfile .shellrc
 
 linkDotfile .zshrc
-linkDotfile .p10k.zsh
+# linkDotfile .p10k.zsh
 
 linkDotfile .aliases
 linkDotfile .common_path.sh

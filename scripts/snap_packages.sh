@@ -42,8 +42,7 @@ install chromium
 # install firefox
 
 # install notable
-install libreoffice
-
+# install onlyoffice-desktopeditors
 # Social Apps
 install skype --classic
 install discord

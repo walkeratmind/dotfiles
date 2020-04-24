@@ -35,3 +35,4 @@ export PATH="$PATH:$ANDROID_HOME/platform-tools"
 
 # alias for latest nvim
 alias nvim="~/apps/nvim.appimage"
+alias joplin="~/.joplin/Joplin.AppImage"
