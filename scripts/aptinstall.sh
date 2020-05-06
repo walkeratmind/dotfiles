@@ -20,7 +20,7 @@ function install {
 install awscli
 # install docker.io
 # install chromium-browser
-# install file
+install file
 install ripgrep
 install git
 install htop
@@ -42,7 +42,7 @@ install sqlitebrowser
 
 # install zeal for offline documentation
 # https://zealdocs.org/download.html
-install zeal
+# install zeal
 
 
 # install for optimizing cpu usage and never worry for these two
