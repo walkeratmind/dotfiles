@@ -47,6 +47,16 @@ function mkpyenv {
     if [ -z "$1" ]; then
         echo "WTF, enter a valid virtualenv name..."
         echo "---------------------------------------"
+    elif [ $1 == "venv" ]; then
+        python3 -m venv venv
+        echo "venv name: venv"
+        echo "virtualenv at: $PWD/venv"
+        echo "activate 'venv' env cmd: source venv/bin/activate  "
+        echo "---------------------------------------"
+    elif [[ $1 == '-h' || $1 == "--help" ]]; then
+        echo "USAGE"
+        echo "  create virtual env in current dir: makepyenv venv"
+        echo "  create virtual env in $VENVPATH: makepyenv 'env_name'"
     else
         python3 -m venv $VENVPATH/$1
         echo "venv name: $1"
