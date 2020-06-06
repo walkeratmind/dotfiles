@@ -43,6 +43,19 @@ function venvlist() {
     unset f
 }
 
+function mkpyenv {
+    if [ -z "$1" ]; then
+        echo "WTF, enter a valid virtualenv name..."
+        echo "---------------------------------------"
+    else
+        python3 -m venv $VENVPATH/$1
+        echo "venv name: $1"
+        echo "virtualenv at: $VENVPATH/$1"
+        echo "activate '$1' env cmd: activate $1 "
+        echo "---------------------------------------"
+    fi
+
+}
 
 export SPARK_HOME="/usr/share/apache-spark/"
 export PYSPARK_SUBMIT_ARGS="--master local[4]"

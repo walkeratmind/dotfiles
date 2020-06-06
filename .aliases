@@ -84,7 +84,6 @@ alias py2host="/usr/bin/python2 -m SimpleHTTPServer"
 alias py2="PYTHONSTARTUP="$HOME/.py2rc" /usr/bin/python2.7"
 alias pip='pip3'
 alias pym='python3 manage.py'
-alias mkenv='python3 -m venv $HOME/development_tools/pyenv/env'
 alias startenv='source $HOME/development_tools/pyenv/env/bin/activate && which python3'
 alias stopenv='deactivate'
 
