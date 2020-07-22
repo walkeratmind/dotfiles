@@ -32,7 +32,6 @@ install tree
 install vim
 install httpie
 install xclip
-install snapd
 install default-jdk
 install gparted
 install zsh
@@ -61,3 +60,6 @@ install feh
 # Fun stuff
 install figlet
 install lolcat
+
+install mpv
+install vlc

@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/rakesh/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -114,7 +114,7 @@ export EDITOR=/usr/bin/vim
 export VISUAL=io.elementary.code
 
 # Go
-export GOPATH=~/development_tools/go
+export GOPATH=$HOME/development_tools/go
 export PATH=$PATH:/usr/local/bin:/usr/local/go/bin:~/.local/bin:$GOPATH/bin
 
 export NVM_DIR="$HOME/.nvm"
