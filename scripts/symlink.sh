@@ -57,6 +57,7 @@ linkDotfile .get_cli_tools.sh
 linkDotfile .curlrc
 
 linkDotfile alacritty.yml .config/alacritty
+linkDotfile starship.toml .config/
 
 # mkdir -p $dotfilesDir/.vim/bundle
 # cd $dotfilesDir/.vim/bundle
