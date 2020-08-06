@@ -6,10 +6,10 @@ cd ..
 dotfilesDir=$(pwd)
 
 function linkDotfile {
-  dest="${HOME}/${1}"
+  dest="${HOME}/${2}/${1}"
   dateStr=$(date +%Y-%m-%d-%H%M)
 
-  if [ -h ~/${1} ]; then
+  if [ -h "${dest}" ]; then
     # Existing symlink 
     echo "Removing existing symlink: ${dest}"
     rm ${dest}
@@ -48,13 +48,15 @@ linkDotfile .shellrc.d
 linkDotfile .shellrc
 
 linkDotfile .zshrc
-# linkDotfile .p10k.zsh
+linkDotfile .p10k.zsh
 
 linkDotfile .aliases
 linkDotfile .common_path.sh
 linkDotfile .get_cli_tools.sh
 
 linkDotfile .curlrc
+
+linkDotfile alacritty.yml .config/alacritty
 
 # mkdir -p $dotfilesDir/.vim/bundle
 # cd $dotfilesDir/.vim/bundle
