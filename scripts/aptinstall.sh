@@ -20,8 +20,14 @@ function install {
 install awscli
 # install docker.io
 # install chromium-browser
+
 install file
+# grep alternative
 install ripgrep
+# find alternative
+install fd-find
+# cat alternative
+install bat
 install git
 install htop
 install jq
