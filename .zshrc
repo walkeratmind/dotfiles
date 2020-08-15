@@ -75,7 +75,7 @@ ZSH_THEME="agnoster"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(alias-finder git github gitignore)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -117,7 +117,7 @@ function mlc () {
 
 # Does Vim makes developers life better?
 export EDITOR=/usr/bin/vim
-export VISUAL=io.elementary.code
+export VISUAL=gedit
 
 # Go
 export GOPATH=$HOME/development_tools/go
@@ -149,7 +149,7 @@ source ~/.shellrc
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
 # Local settings go last
-if [ -f ~/.localrc ]; then 
+if [ -f ~/.localrc ]; then
   source ~/.localrc
 fi
 
@@ -161,3 +161,4 @@ fi
 
 # for starship
 eval "$(starship init zsh)"
+

@@ -14,3 +14,12 @@ nvm install-latest-npm
 
 # Required for Hugo
 npm install -g autoprefixer postcss-cli
+
+npm install -g yarn
+# yo - yeoman
+npm install -g yo
+# Simplified option for > man
+npm install -g tldr
+npm install -g alacritty-themes
+# Check links in markdown alive (200 OK) or dead
+npm install -g markdown-link-check

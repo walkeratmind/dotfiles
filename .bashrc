@@ -3,7 +3,7 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 # We use preexec and precmd hook functions for Bash
-# If you have anything that's using the Debug Trap or PROMPT_COMMAND 
+# If you have anything that's using the Debug Trap or PROMPT_COMMAND
 # change it to use preexec or precmd
 # See also https://github.com/rcaloras/bash-preexec
 
@@ -97,7 +97,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# If this is an xterm set more declarative titles 
+# If this is an xterm set more declarative titles
 # "dir: last_cmd" and "actual_cmd" during execution
 case "$TERM" in
 xterm*|rxvt*)
@@ -118,7 +118,7 @@ xterm*|rxvt*)
         fi
 
         #  FIX TO CHANGE TITLE ONLY FOR DIRECTORY , NOT FOR OTHER COMMAND
-        
+
         # if [[ "$__el_LAST_EXECUTED_COMMAND" == "" ]]; then
         #     echo "$__el_FIRSTPART"
         #     return
@@ -130,7 +130,7 @@ xterm*|rxvt*)
         #     __el_SECONDPART="${__el_SECONDPART%% *}"
         # else
         #     __el_SECONDPART="${__el_LAST_EXECUTED_COMMAND%% *}"
-        # fi 
+        # fi
         # printf "%s: %s" "$__el_FIRSTPART" "$__el_SECONDPART"
         printf "%s" "$__el_FIRSTPART"
 
@@ -140,13 +140,13 @@ xterm*|rxvt*)
         __el_LAST_EXECUTED_COMMAND="${BASH_COMMAND}"
         printf "\033]0;%s\007" "$1"
     }
-    
+
     # Show the currently running command in the terminal title:
     # http://www.davidpashley.com/articles/xterm-titles-with-bash.html
     update_tab_command()
     {
         # catch blacklisted commands and nested escapes
-        case "$BASH_COMMAND" in 
+        case "$BASH_COMMAND" in
             *\033]0*|update_*|echo*|printf*|clear*|cd*|ls*)
             __el_LAST_EXECUTED_COMMAND=""
                 ;;
@@ -209,9 +209,9 @@ export PATH=$PATH:/usr/local/bin:/usr/local/go/bin:~/.local/bin:$GOPATH/bin
 # Color prompt
 export TERM=xterm-256color
 
-# Colours have names too. 
-# Stolen from @victoriadrake 
-#       ->who stole from @tomnomnom 
+# Colours have names too.
+# Stolen from @victoriadrake
+#       ->who stole from @tomnomnom
 #               -> who stole it from Arch wiki
 
 txtblk='\[\e[0;30m\]' # Black - Regular
@@ -266,6 +266,9 @@ gitBranch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
 }
 
+# Gitignore
+function gi() { curl -sL https://www.toptal.com/developers/gitignore/api/\$@ ;}
+
 # export PS1="${pathC}\w ${gitC}\$(gitBranch) ${pointerC}\$${normalC} "
 
 # # Use powerline-shell prompt
@@ -307,7 +310,7 @@ if [ -f ~/.bash_aliases ]; then
 fi
 
 # Local settings go last
-if [ -f ~/.localrc ]; then 
+if [ -f ~/.localrc ]; then
   source ~/.localrc
 fi
 
