@@ -18,14 +18,24 @@ function py {
 }
 
 function activate() {
-    source "$VENVPATH/$1/bin/activate"
+    if [[ -d "venv" ]]; then
+        source "venv/bin/activate"
+    elif [ $# -eq 0 ]; then
+        echo "WTF, enter a valid virtualenv name..."
+        echo "---------------------------------------"
+        echo "USAGE:"
+        echo "  activate virtual env of current dir: activate"
+        echo "  activate virtual env in $VENVPATH: activate 'env_name'"
+    else
+        source "$VENVPATH/$1/bin/activate"
+    fi
 }
 
 function venvlist() {
     echo "Python Venv List:"
     echo "-------------------"
     for f in ${VENVPATH}/*; do
-        [ -d "$f" ] || continue
+        [[ -d "$f" ]] || continue
         # echo $f # for debugging
         echo "$f"
     done
@@ -33,13 +43,13 @@ function venvlist() {
 }
 
 function mkpyenv {
-    if [ -z "$1" ]; then
+    if [[ -z "$1" ]]; then
         echo "WTF, enter a valid virtualenv name..."
         echo "---------------------------------------"
         echo "USAGE:"
         echo "  create virtual env in current dir: makepyenv venv"
         echo "  create virtual env in $VENVPATH: makepyenv 'env_name'"
-    elif [ $1 == "venv" ]; then
+    elif [[ $1 == "venv" ]]; then
         python3 -m venv venv
         echo "venv name: venv"
         echo "virtualenv at: $PWD/venv"
