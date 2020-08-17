@@ -12,6 +12,7 @@ export SYSTEMD_COLORS=1
 # using ripgrep instead of gnu grep
 # https://github.com/BurntSushi/ripgrep
 alias grep=rg
+alias cat=bat
 
 # ls
 # https://the.exa.website
