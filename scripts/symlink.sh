@@ -10,7 +10,7 @@ function linkDotfile {
   dateStr=$(date +%Y-%m-%d-%H%M)
 
   if [ -h "${dest}" ]; then
-    # Existing symlink 
+    # Existing symlink
     echo "Removing existing symlink: ${dest}"
     rm ${dest}
 
@@ -48,7 +48,6 @@ linkDotfile .shellrc.d
 linkDotfile .shellrc
 
 linkDotfile .zshrc
-linkDotfile .p10k.zsh
 
 linkDotfile .aliases
 linkDotfile .common_path.sh
