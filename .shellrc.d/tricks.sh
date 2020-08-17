@@ -7,24 +7,6 @@
 # systemctl force color
 export SYSTEMD_COLORS=1
 
-# grep
-# alias grep='grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}
-# using ripgrep instead of gnu grep
-# https://github.com/BurntSushi/ripgrep
-alias grep=rg
-alias cat=bat
-
-# ls
-# https://the.exa.website
-alias l='exa -F'
-alias ll='exa -lF'
-alias la='exa -aF'
-alias lla='exa -aFl'
-alias lg='exa -aFl --git'
-alias ltree='exa --long --tree'
-
-# df hide tmpfs
-alias df='df -h -x tmpfs '
 
 # cat as bat is less than more
 >/dev/null which bat && alias less='bat'
