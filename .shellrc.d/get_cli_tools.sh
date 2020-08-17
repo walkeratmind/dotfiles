@@ -68,6 +68,7 @@ function getghcli () {
         echo -n "Reinstall or Check for Update? (Y/n): "
         read reply
         if [[ $reply == "y" || $reply == "Y" || $reply == "" ]]; then
+            :
         else
             return
         fi

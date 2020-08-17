@@ -99,44 +99,16 @@ fi
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 
-# Show contents of dir after action
-function cd () {
-    builtin cd "$1"
-    ls -ACF
-}
+# shellrc - common rc file for {zsh, bash}
+if [[ -d ~/.shellrc.d ]]; then
+    for f in ~/.shellrc.d/*; do
+        [ -f "$f" ] || continue
+        # echo $f # for debugging
+        source "$f"
+    done
+    unset f
+fi
 
-# Markdown link check in a folder, recursive
-function mlc () {
-    find $1 -name \*.md -exec markdown-link-check -p {} \;
-}
-
-# Does Vim makes developers life better?
-export EDITOR=/usr/bin/vim
-export VISUAL=gedit
-
-# Go
-export GOPATH=$HOME/development_tools/go
-export PATH=$PATH:/usr/local/bin:/usr/local/go/bin:~/.local/bin:$GOPATH/bin
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# functions for getting some tools
-source ~/.get_cli_tools.sh
-
-# common path variables for both zshrc and bashrc
-source ~/.common_path.sh
-
-# Aliases for bash
-source ~/.aliases
-
-
-## calling the unified zsh/bash configs
-source ~/.shellrc
-
-# Bash completion
-# source ~/.git-completion.bash
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -147,6 +119,11 @@ source ~/.shellrc
 if [ -f ~/.localrc ]; then
   source ~/.localrc
 fi
+
+# Link aliases
+source ~/.aliases
+# Link Env File
+source ~/.env.sh
 
 # for starship
 eval "$(starship init zsh)"

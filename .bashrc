@@ -162,50 +162,6 @@ xterm*|rxvt*)
 esac
 
 
-#  -----------------------------------
-#       END FOR ELEMENTARY OS
-# ------------------------------------
-
-#------------------------------------------------------------
-#  COMMENT ABOVE AND UNCOMMENT BELOW SECTION FOR OTHER OS
-# -----------------------------------------------------------
-
-# # History control
-# # don't use duplicate lines or lines starting with space
-# HISTCONTROL=ignoreboth
-# HISTSIZE=1000
-# HISTFILESIZE=2000
-# # append to the history file instead of overwrite
-# shopt -s histappend
-
-# if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-#     . /etc/bash_completion
-# fi
-
-# -------------------------------------
-# UNCOMMENT ABOVE FOR OTHER OS
-# -------------------------------------
-
-
-# Show contents of dir after action
-function cd () {
-    builtin cd "$1"
-    ls -ACF
-}
-
-# Markdown link check in a folder, recursive
-function mlc () {
-    find $1 -name \*.md -exec markdown-link-check -p {} \;
-}
-
-# Does Vim makes developers life better?
-export EDITOR=/usr/bin/vim
-export VISUAL=io.elementary.code
-
-# Go
-export GOPATH=~/development_tools/go
-export PATH=$PATH:/usr/local/bin:/usr/local/go/bin:~/.local/bin:$GOPATH/bin
-
 # Color prompt
 export TERM=xterm-256color
 
@@ -269,36 +225,21 @@ gitBranch() {
 # Gitignore
 function gi() { curl -sL https://www.toptal.com/developers/gitignore/api/\$@ ;}
 
-# export PS1="${pathC}\w ${gitC}\$(gitBranch) ${pointerC}\$${normalC} "
-
-# # Use powerline-shell prompt
-# function _update_ps1() {
-#     PS1=$(powerline-shell $?)
-# }
-
-# if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
-#     PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
-# fi
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# functions for getting some tools
-source ~/.get_cli_tools.sh
 
 # common path variables for both zshrc and bashrc
-source ~/.common_path.sh
+if [[ -d ~/.shellrc.d ]]; then
+    for f in ~/.shellrc.d/*; do
+        [ -f "$f" ] || continue
+        # echo $f # for debugging
+        source "$f"
+    done
+    unset f
+fi
 
-# Aliases for bash
+# Link aliases
 source ~/.aliases
-
-
-## calling the unified zsh/bash configs
-source ~/.shellrc
-
-# Bash completion
-source ~/.git-completion.bash
+# Link Env File
+source ~/.env.sh
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
