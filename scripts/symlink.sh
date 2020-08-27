@@ -53,6 +53,8 @@ linkDotfile .env.sh
 
 linkDotfile .curlrc
 
+# set .config folder in $HOME folder like and
+# symlink the folders from .config
 
 linkDotfile alacritty .config
 linkDotfile starship.toml .config
