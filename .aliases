@@ -29,7 +29,6 @@ alias df='df -h -x tmpfs '
 # confirm before overwriting something
 alias cp="cp -i"
 alias mv='mv -i'
-alias rm='rm -i'
 
 # copy content to clipboard
 alias pbcopy='xclip -selection clipboard'
