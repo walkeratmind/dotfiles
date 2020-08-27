@@ -19,7 +19,7 @@ alias rsync="rsync --progress"
 
 
 # can't risk with rm , too dangerous
-alias rm = "trash"
+alias rm="trash"
 # function rm {
 #     # interactive rm
 #     /usr/bin/rm -v $@
