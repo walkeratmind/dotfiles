@@ -12,9 +12,11 @@ extract () {
             *.tar.bz2)  tar xjf $1    ;;
             *.tar.gz)   tar xzf $1    ;;
             *.tar.xz)   tar xf $1     ;;
+            *.tar.zst)   unzstd $1    ;;
             *.tbz2)     tar xjf $1    ;;
             *.tgz)      tar xzf $1    ;;
             *.zip)      unzip $1      ;;
+            *.deb)       ar x $1      ;;
             *)          echo "'$1' cannot be extracted via extract()" ;;
         esac
     else

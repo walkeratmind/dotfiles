@@ -45,6 +45,10 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'fatih/vim-go'
 Plugin 'rust-lang/rust.vim'
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> popos
 " use plugin from http://vim-scripts.org/vim/scripts.html
 " Plugin 'L9'
 " use Git plugin not hosted on GitHub

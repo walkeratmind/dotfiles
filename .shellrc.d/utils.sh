@@ -12,38 +12,6 @@
 alias rc.d='systemctl'
 alias git-unstage='git reset'
 
-function py {
-    ##
-    ### python wrapper for multiplexer
-    if [[ $# -eq 0 ]]; then
-        # detect virtual env
-        local VER=$(python -c "import sys; print('{v.major}.{v.minor}'.format(v=sys.version_info))")
-        export PYTHONPATH="$(dirname `which python`)/../lib/python${VER}/site-packages/"
-        echo "venv: $PYTHONPATH"
-
-        # ps -p$PPID | grep gnome-terminal > /dev/null && xterm -ls "bpython" && return
-        which bpython && bpython || python
-        return
-    fi
-    python $@
-}
-
-function activate() {
-    source "$VENVPATH/$1/bin/activate"
-}
-
-function venvlist() {
-    echo "Python Venv List:"
-    echo "-------------------"
-    for f in ${VENVPATH}/*; do
-        [ -d "$f" ] || continue
-        # echo $f # for debugging
-        echo "$f"
-    done
-    unset f
-}
-
-
 export SPARK_HOME="/usr/share/apache-spark/"
 export PYSPARK_SUBMIT_ARGS="--master local[4]"
 alias pyspark="/usr/share/apache-spark/bin/pyspark"
@@ -185,35 +153,6 @@ function dlna {
 # function doomemacs {
 #     env HOME=/home/$USER/.emacs.d/doom emacs
 # }
-
-
-function ydl {
-    local list=$(youtube-dl --list-formats $1)
-
-    echo $list | sed -n '/[0-9]x[0-9]/p'
-    echo -n "video format (default=244, skip=0): "; read video
-    if [[ "$video" == 0 ]]; then
-        video=""
-    else
-        video="${video:-244}"
-    fi
-
-    echo $list | sed -n '/audio only/p'
-    total=$(echo $list | sed -n '/audio only/p' | wc -l)
-    # TODO: check 250 is in or not
-    echo -n "audio format (default=250, skip=0): "; read audio
-    if [[ "$audio" == 0 ]]; then
-        audio=""
-    else
-        audio="${audio:-250}"
-        if [[ "$video" != "" ]]; then
-            audio="+$audio"
-        fi
-    fi
-
-    echo youtube-dl --format "${video}${audio}" $1
-    youtube-dl --format "${video}${audio}" $1
-}
 
 
 function randpass {

@@ -1,15 +1,48 @@
 #!/bin/bash
 
+
+# grep
+# alias grep='grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}
+# using ripgrep instead of gnu grep
+# https://github.com/BurntSushi/ripgrep
+alias grep=rg
+alias cat=bat
+alias time='hyperfine'
+
+# ls
+# https://the.exa.website
+alias ls='exa -al --color=always --group-directories-first' # my preferred listing
+alias l='exa -F'
+alias ll='exa -lF'
+alias la='exa -aF'
+alias lla='exa -aFl'
+alias lg='exa -aFl --git'
+# alias la='exa -a --color=always --group-directories-first'  # all files and dirs
+alias ll='exa -l --color=always --group-directories-first'  # long format
+alias lt='exa -aT --color=always --group-directories-first' # tree listing
+alias etree='exa --tree'
+
+
+# df hide tmpfs
+alias df='df -h -x tmpfs '
+
+# confirm before overwriting something
+alias cp="cp -i"
+alias mv='mv -i'
+alias rm='rm -i'
+
+# copy content to clipboard
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
 
 # Easier navigation: .., ..., ...., ....., ~ and -
 alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias .....="cd ../../../.."
+alias ...='cd ../..'
+alias .3='cd ../../..'
+alias .4='cd ../../../..'
 alias ~="cd ~" # `cd` is probably faster to type though
 alias -- -="cd -"
+
 
 # Shortcuts for Direcory
 alias docs="cd ~/Documents"
@@ -23,7 +56,6 @@ alias pics="cd ~/Pictures"
 alias cp='cp -Rv'
 
 alias ls='ls -ACF'
-alias grep='grep --color=auto'
 alias mkdir='mkdir -pv'
 alias mv='mv -v'
 # resume getting a partially-downloaded file or start from beginning if not downloaded
@@ -80,24 +112,16 @@ alias gra='git remote add'
 
 alias py3='python3'
 alias pyhost="python3 -m http.server"
-alias py2host="/usr/bin/python2 -m SimpleHTTPServer"
-alias py2="PYTHONSTARTUP="$HOME/.py2rc" /usr/bin/python2.7"
 alias pip='pip3'
 alias pym='python3 manage.py'
-alias mkenv='python3 -m venv $HOME/development_tools/pyenv/env'
-alias startenv='source $HOME/development_tools/pyenv/env/bin/activate && which python3'
 alias stopenv='deactivate'
 
 # ----------------------------------
 #	End Aliases for python
 # ----------------------------------
 
-# Use programs without a root-equivalent group
-alias docker='sudo docker'
-alias prtn='sudo protonvpn'
-
 # ----------------------------------
-#	Few Tricks copied from 
+#	Few Tricks copied from
 #	our master @rhoit
 # ----------------------------------
 
@@ -122,6 +146,7 @@ alias hist='history | grep '
 # ----------------------------------
 #	End of the Tricks
 # ----------------------------------
+
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
 	colorflag="--color"

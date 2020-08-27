@@ -17,11 +17,11 @@ function install {
 }
 
 # Basics
-install awscli
+# install awscli
 # install docker.io
 # install chromium-browser
-# install file
-install ripgrep
+
+install file
 install git
 install htop
 install jq
@@ -30,9 +30,9 @@ install openvpn
 install tmux
 install tree
 install vim
+install neovim
 install httpie
 install xclip
-install snapd
 install default-jdk
 install gparted
 install zsh
@@ -42,7 +42,7 @@ install sqlitebrowser
 
 # install zeal for offline documentation
 # https://zealdocs.org/download.html
-install zeal
+# install zeal
 
 
 # install for optimizing cpu usage and never worry for these two
@@ -61,3 +61,6 @@ install feh
 # Fun stuff
 install figlet
 install lolcat
+
+install mpv
+install vlc

@@ -6,11 +6,11 @@ cd ..
 dotfilesDir=$(pwd)
 
 function linkDotfile {
-  dest="${HOME}/${1}"
+  dest="${HOME}/${2}/${1}"
   dateStr=$(date +%Y-%m-%d-%H%M)
 
-  if [ -h ~/${1} ]; then
-    # Existing symlink 
+  if [ -h "${dest}" ]; then
+    # Existing symlink
     echo "Removing existing symlink: ${dest}"
     rm ${dest}
 
@@ -45,15 +45,18 @@ linkDotfile .gitconfig
 linkDotfile .gitmessage
 linkDotfile .git-completion.bash
 linkDotfile .shellrc.d
-linkDotfile .shellrc
 
 linkDotfile .zshrc
 
 linkDotfile .aliases
-linkDotfile .common_path.sh
-linkDotfile .get_cli_tools.sh
+linkDotfile .env.sh
 
 linkDotfile .curlrc
+
+
+linkDotfile .config/alacritty.yml .config/alacritty
+linkDotfile .config/starship.toml .config/
+linkDotfile .config/init.vim .config/nvim/init.vim
 
 # mkdir -p $dotfilesDir/.vim/bundle
 # cd $dotfilesDir/.vim/bundle
