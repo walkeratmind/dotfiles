@@ -12,42 +12,41 @@ As we all know, every person have his/her own needs so, ➡️ evey person needs
 
 ```bash
 .
+├── .bashrc.d
+│   └── .git-completion.bash
+├── .config
+│   ├── alacritty.yml
+│   ├── init.vim
+│   └── starship.toml
+├── .doom.d
+│   └── config.el
 ├── scripts
 │   ├── programs
 │   │   ├── docker.sh
-│   │   ├── exa.sh
-│   │   ├── firefox.sh
-│   │   ├── hugo.sh
-│   │   ├── keybase.sh
 │   │   ├── nvm.sh
-│   │   ├── prtn.sh
 │   │   ├── python.sh
-│   │   ├── qbittorrent.sh
-│   │   ├── sass.sh
 │   │   ├── typora.sh
 │   │   ├── vsc.sh
-│   │   └── vundle.sh
+│   │   ├── vundle.sh
+│   │   └── zsh.sh
 │   ├── aptinstall.sh
-│   ├── powerline-fonts.sh
-│   ├── powerline_shell.sh
 │   ├── setup.sh
-│   ├── snap_packages.sh
 │   └── symlink.sh
 ├── .shellrc.d
+│   ├── adb_tricks.sh
+│   ├── api.sh
 │   ├── extract.sh
+│   ├── get_cli_tools.sh
+│   ├── py_tricks.sh
 │   ├── tricks.sh
-│   └── utils.sh
-├── .vim
+│   ├── utils.sh
+│   └── ydl.sh
 ├── .aliases
 ├── .bash_profile
 ├── .bashrc
-├── .common_path.sh
-├── .get_cli_tools.sh
-├── .git-completion.bash
+├── .curlrc
+├── .env.sh
 ├── .gitconfig
-├── .gitignore
-├── README.md
-├── .shellrc
 ├── .tmux.conf
 ├── .vimrc
 └── .zshrc
