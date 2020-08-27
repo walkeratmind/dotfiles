@@ -53,8 +53,10 @@ linkDotfile .env.sh
 
 linkDotfile .curlrc
 
-linkDotfile alacritty.yml .config/alacritty
-linkDotfile starship.toml .config/
+
+linkDotfile .config/alacritty.yml .config/alacritty
+linkDotfile .config/starship.toml .config/
+linkDotfile .config/init.vim .config/nvim/init.vim
 
 # mkdir -p $dotfilesDir/.vim/bundle
 # cd $dotfilesDir/.vim/bundle

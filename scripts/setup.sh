@@ -6,8 +6,6 @@ bash ./aptinstall.sh
 # Run all programs/ install scripts
 for f in programs/*.sh; do bash "$f" -H; done
 
-# ./desktop.sh
-# ./snap_packages.sh
 
 # Get all upgrades
 sudo apt upgrade -y

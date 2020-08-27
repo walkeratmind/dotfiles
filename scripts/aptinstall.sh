@@ -30,6 +30,7 @@ install openvpn
 install tmux
 install tree
 install vim
+install neovim
 install httpie
 install xclip
 install default-jdk
