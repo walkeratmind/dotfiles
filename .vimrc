@@ -338,9 +338,6 @@ nmap <Leader>g :tabnew\|read !grep -Hnr '<C-R><C-W>'<CR>
 " Gundo toggle
 map <F5> <Esc>:GundoToggle<CR>
 
-" Bash / emacs keys for command line
-cnoremap <C-a> <Home>
-cnoremap <C-e> <End>
 
 " sort the buffer removing duplicates
 nmap <Leader>s :%!sort -u --version-sort<CR>

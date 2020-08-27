@@ -160,6 +160,7 @@ let g:session_autoload = "no"
 let g:session_autosave = "no"
 let g:session_command_aliases = 1
 
+
 "*****************************************************************************
 "" Visual Settings
 "*****************************************************************************
@@ -419,6 +420,61 @@ vnoremap K :m '<-2<CR>gv=gv
 
 "" Open current line on GitHub
 nnoremap <Leader>o :.Gbrowse<CR>
+
+"" Switching windows
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-l> <C-w>l
+noremap <C-h> <C-w>h
+
+"" Open current line on GitHub
+nnoremap <Leader>o :.Gbrowse<CR>
+
+" Direction keys for wrapped lines
+nnoremap <silent> k gk
+nnoremap <silent> j gj
+nnoremap <silent> <Up> gk
+nnoremap <silent> <Down> gj
+inoremap <silent> <Up> <Esc>gka
+inoremap <silent> <Down> <Esc>gja
+
+" Bash / emacs keys for command line
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+
+" Change the cursor at insert mode
+let &t_ti.="\<Esc>[1 q"
+let &t_SI.="\<Esc>[5 q"
+let &t_EI.="\<Esc>[1 q"
+let &t_te.="\<Esc>[0 q"
+
+" Toggle line-wrap
+map <Leader>lw <Esc>:set wrap!<CR>
+
+" Open file under cursor in new tab
+map <Leader>t <Esc><C-W>gF<CR>:tabm<CR>
+
+" Base64 decode word under cursor
+nmap <Leader>b :!echo <C-R><C-W> \| base64 -d<CR>
+
+" grep recursively for word under cursor
+nmap <Leader>g :tabnew\|read !grep -Hnr '<C-R><C-W>'<CR>
+
+" sort the buffer removing duplicates
+nmap <Leader>s :%!sort -u --version-sort<CR>
+
+" Visual prompt for command completion
+set wildmenu
+
+" Write current file with sudo perms
+"command! W w !sudo tee % > /dev/null
+command! W w
+
+" folding
+set nofoldenable
+
+" Open word under cursor as ctag in new tab
+map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 
 "*****************************************************************************
 "" Custom configs
