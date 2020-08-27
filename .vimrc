@@ -29,6 +29,7 @@ Plugin 'godlygeek/tabular'
 Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'altercation/vim-colors-solarized'
+
 " Theme for vim
 Plugin 'morhetz/gruvbox'
 
@@ -111,13 +112,11 @@ let g:syntastic_check_on_wq = 0
 
 " Set theme for vim
 "syntax enable
-"set background=dark
 "let g:solarized_termcolors=16
 "colorscheme solarized
-silent! colorscheme gruvbox
-set background=dark
-let g:gruvbox_italic=1
-let g:gruvbox_termcolors=256
+"set background=dark
+"let g:gruvbox_italic=1
+"let g:gruvbox_termcolors=256
 colorscheme gruvbox
 
 " vim-javascript config
@@ -177,34 +176,6 @@ endif
 set ruler
 set number
 
-if has("gui_running")
-  if has("gui_mac") || has("gui_macvim")
-    set guifont=Menlo:h12
-    set transparency=7
-  endif
-else
-  let g:CSApprox_loaded = 1
-
-  " IndentLine
-  let g:indentLine_enabled = 1
-  let g:indentLine_concealcursor = 0
-  let g:indentLine_char = '┆'
-  let g:indentLine_faster = 1
-
-
-  if $COLORTERM == 'gnome-terminal'
-    set term=gnome-256color
-  else
-    if $TERM == 'xterm'
-      set term=xterm-256color
-    endif
-  endif
-
-endif
-
-if &term =~ '256color'
-  set t_ut=
-endif
 
 "*****************************************************************************
 "" Abbreviations
