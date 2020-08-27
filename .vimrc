@@ -191,7 +191,7 @@ else
   let g:indentLine_char = '┆'
   let g:indentLine_faster = 1
 
-  
+
   if $COLORTERM == 'gnome-terminal'
     set term=gnome-256color
   else
@@ -199,7 +199,7 @@ else
       set term=xterm-256color
     endif
   endif
-  
+
 endif
 
 if &term =~ '256color'
