@@ -26,7 +26,7 @@ function linkDotfile {
   fi
 
   echo "Creating new symlink: ${dest}"
-  ln -s ${dotfilesDir}/${1} ${dest}
+  ln -s ${dotfilesDir}/${2}/${1} ${dest}
 }
 
 # function linkDotFolder {
@@ -54,9 +54,9 @@ linkDotfile .env.sh
 linkDotfile .curlrc
 
 
-linkDotfile .config/alacritty.yml .config/alacritty
-linkDotfile .config/starship.toml .config/
-linkDotfile .config/init.vim .config/nvim/init.vim
+linkDotfile alacritty .config
+linkDotfile starship.toml .config
+linkDotfile nvim .config
 
 # mkdir -p $dotfilesDir/.vim/bundle
 # cd $dotfilesDir/.vim/bundle
