@@ -6,7 +6,7 @@ cd ..
 dotfilesDir=$(pwd)
 
 function linkDotfile {
-  dest="${HOME}/${2}/${1}"
+  dest="${HOME}/${1}"
   dateStr=$(date +%Y-%m-%d-%H%M)
 
   if [ -h "${dest}" ]; then
@@ -26,7 +26,7 @@ function linkDotfile {
   fi
 
   echo "Creating new symlink: ${dest}"
-  ln -s ${dotfilesDir}/${2}/${1} ${dest}
+  ln -s ${dotfilesDir}/${1} ${dest}
 }
 
 # function linkDotFolder {
@@ -56,9 +56,19 @@ linkDotfile .curlrc
 # set .config folder in $HOME folder like and
 # symlink the folders from .config
 
-linkDotfile alacritty .config
-linkDotfile starship.toml .config
-linkDotfile nvim .config
+# set dotfile structure similar to
+# config file in $HOME path
+# and try to symlink file only whenever possible
+# instead of folder
+# remember nvim issue while symlinking
+
+mkdir -p $HOME/.config/alacritty
+linkDotfile .config/alacritty/alacritty.yml
+
+linkDotfile .config/starship.toml
+
+mkdir -p $HOME/.config/nvim
+linkDotfile .config/nvim/init.vim
 
 # mkdir -p $dotfilesDir/.vim/bundle
 # cd $dotfilesDir/.vim/bundle
