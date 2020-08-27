@@ -18,6 +18,8 @@ function mkcd { mkdir -p "$1" && cd "$1"; }
 alias rsync="rsync --progress"
 
 
+# can't risk with rm , too dangerous
+alias rm = "trash"
 # function rm {
 #     # interactive rm
 #     /usr/bin/rm -v $@

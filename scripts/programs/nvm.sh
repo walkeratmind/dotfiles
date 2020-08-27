@@ -25,6 +25,9 @@ npm install -g alacritty-themes
 # Check links in markdown alive (200 OK) or dead
 npm install -g markdown-link-check
 
+echo "🗑 Installing trash-cli..."
+npm install --global trash-cli
+
 echo "👓 Installing Sass"
 sudo npm install -g sass sass-lint
 
