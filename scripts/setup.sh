@@ -14,4 +14,4 @@ sudo apt upgrade -y
 source ~/.bashrc
 
 # Fun hello
-figlet "May Linux be Merciful on You ..." | lolcat --spread 2 --animate --duration 1
+figlet "May GNU/Linux Shine on You ..." | lolcat --spread 2 --animate --duration 1
