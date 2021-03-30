@@ -20,8 +20,11 @@ export PATH="$PATH: $HOME/.cargo/bin"
 export VENVPATH="$HOME/development_tools/pyenv"
 
 # Flutter Env
+export PATH="$PATH:$HOME/development_tools"
 export PATH="$PATH:$HOME/development_tools/flutter/bin"
 
+# Homebrew Setup
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 # alias for project folder
 alias plab="cd $HOME/project_files"
@@ -56,7 +59,7 @@ export PATH="$PATH:$ANDROID_HOME/platform-tools"
 # Show contents of dir after action
 function cd () {
     builtin cd "$1"
-    ls -ACF
+    ls
 }
 
 # Markdown link check in a folder, recursive

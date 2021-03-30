@@ -1,14 +1,11 @@
 #!/bin/bash
 
-# sudo add-apt-repository ppa:kubuntu-ppa/backports
-sudo apt update && sudo apt full-upgrade -y
-
 function install {
   which $1 &> /dev/null
 
   if [ $? -ne 0 ]; then
     echo "Installing: ${1}..."
-    sudo apt install $1
+    brew install $1
     echo "----------------------------"
   else
     echo "Already installed: ${1}"
@@ -21,8 +18,6 @@ function install {
 # install docker.io
 # install chromium-browser
 
-install file
-install git
 install htop
 install jq
 install nmap
@@ -32,25 +27,43 @@ install vim
 install neovim
 install httpie
 install xclip
-install default-jdk
-install gparted
 install zsh
+install youtube-dl
+install unzip
+install nnn
 
-# install python tools
-install sqlitebrowser
+install awscli
+install docker
+
+install go
+install cmake
+install maven
+
+# Rust tools
+install rust
+install starship
+install exa
+install fd
+install bat
+install ripgrep
+install procs
+install sd
+install tokei
+install hyperfine
+install gitui
+
+install nvm
+install deno
+
+# Android Tools
+install kotlin
+install scrcpy
 
 # install zeal for offline documentation
 # https://zealdocs.org/download.html
 # install zeal
 
-
-# install for optimizing cpu usage and never worry for these two
-install preload
-# install for optimizing battery life
-install tlp
-
 # Image processing
-# install gimp
 install feh
 install jpegoptim
 install optipng
@@ -58,8 +71,9 @@ install optipng
 install feh
 
 # Fun stuff
+install cowsay
 install figlet
 install lolcat
 
-install mpv
-install vlc
+
+brew install fx

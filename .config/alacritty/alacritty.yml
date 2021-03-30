@@ -5,6 +5,7 @@ window:
   padding:
     x: 6
     y: 6
+  decorations: none
 
 title: Alacritty
 
@@ -74,7 +75,7 @@ font:
     y: 1
 
 shell:
-  program: /bin/zsh
+  program: /usr/bin/zsh
   args:
     - -l
     - -c

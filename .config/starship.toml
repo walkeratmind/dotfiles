@@ -9,12 +9,6 @@ add_newline = true
 [package]
 disabled = true
 
-function blastoff(){
-    echo "🚀"
-}
-starship_precmd_user_func="blastoff"
-
-
 # Directory
 [directory]
 truncate_to_repo = true

@@ -264,3 +264,7 @@ if [[ -d ~/.bashrc.d ]]; then
     done
     unset f
 fi
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/home/codemonk/.sdkman"
+[[ -s "/home/codemonk/.sdkman/bin/sdkman-init.sh" ]] && source "/home/codemonk/.sdkman/bin/sdkman-init.sh"

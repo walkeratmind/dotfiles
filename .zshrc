@@ -126,3 +126,7 @@ source ~/.env.sh
 # for starship
 eval "$(starship init zsh)"
 
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/home/codemonk/.sdkman"
+[[ -s "/home/codemonk/.sdkman/bin/sdkman-init.sh" ]] && source "/home/codemonk/.sdkman/bin/sdkman-init.sh"
