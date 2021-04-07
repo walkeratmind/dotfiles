@@ -5,7 +5,7 @@ bash ./symlink.sh
 bash ./brewinstall.sh
 
 # Run all programs/ install scripts
-# for f in programs/*.sh; do bash "$f" -H; done
+for f in programs/*.sh; do bash "$f" -H; done
 
 
 # Get all upgrades

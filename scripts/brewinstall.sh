@@ -12,7 +12,7 @@ function install {
     echo "----------------------------"
   fi
 }
-
+curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.s
 # Basics
 # install awscli
 # install docker.io
@@ -41,7 +41,7 @@ install maven
 
 # Rust tools
 install rust
-install starship
+# install starship
 install exa
 install fd
 install bat
@@ -51,6 +51,7 @@ install sd
 install tokei
 install hyperfine
 install gitui
+install tealdeer
 
 install nvm
 install deno
@@ -70,6 +71,8 @@ install optipng
 # best image viewer
 install feh
 
+install mpv
+
 # Fun stuff
 install cowsay
 install figlet
@@ -77,3 +80,5 @@ install lolcat
 
 
 brew install fx
+brew install glow
+brew install bandwhich

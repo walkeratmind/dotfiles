@@ -8,6 +8,7 @@
 alias grep=rg
 alias cat=bat
 alias time='hyperfine'
+alias ci='code-insiders'
 
 # ls
 # https://the.exa.website

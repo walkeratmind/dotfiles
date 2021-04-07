@@ -62,4 +62,4 @@ install figlet
 install lolcat
 
 install mpv
-install vlc
+install fonts-hack-ttf
