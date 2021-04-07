@@ -12,7 +12,10 @@ function install {
     echo "----------------------------"
   fi
 }
-curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.s
+
+#install brew
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
 # Basics
 # install awscli
 # install docker.io
