@@ -121,7 +121,7 @@ fi
 # Link aliases
 source ~/.aliases
 # Link Env File
-source ~/.env.sh
+source ~/.env
 
 # for starship
 eval "$(starship init zsh)"

@@ -239,7 +239,7 @@ fi
 # Link aliases
 source ~/.aliases
 # Link Env File
-source ~/.env.sh
+source ~/.env
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
