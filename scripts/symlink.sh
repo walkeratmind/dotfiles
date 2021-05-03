@@ -49,7 +49,7 @@ linkDotfile .shellrc.d
 linkDotfile .zshrc
 
 linkDotfile .aliases
-linkDotfile .env.sh
+linkDotfile .env
 
 linkDotfile .curlrc
 
