@@ -55,6 +55,8 @@ install tokei
 install hyperfine
 install gitui
 install tealdeer
+install git-delta
+install navi
 
 install nvm
 install deno

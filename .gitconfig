@@ -6,8 +6,8 @@
 # ------------------------------------------------------------
 
 [user]
-    name = Rakesh Niraula
-    email = rakeshhniraulaa@gmail.com
+	name = rakesh
+	email = rakeshhniraulaa@gmail.com
 [color]
     diff = auto
     status = auto
@@ -24,6 +24,7 @@
     template = ~/.gitmessage
 [core]
     editor = /usr/bin/vim
+	autocrlf = input
 [push]
     followTags = true
     default = current
