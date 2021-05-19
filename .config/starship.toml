@@ -22,11 +22,6 @@ heuristic = true
 [git_branch]
 symbol = "🌱 "
 
-[git_state]
-progress_divider = " of "
-cherry_pick = "🍒 PICKING"
-
-
 [java]
 style = "bold bright-red"
 
