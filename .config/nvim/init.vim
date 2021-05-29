@@ -5,7 +5,7 @@
 "*****************************************************************************
 let vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')
 
-let g:vim_bootstrap_langs = "c,go,javascript,python,rust,scala,typescript"
+let g:vim_bootstrap_langs = "c,go,haskell,javascript,lua,php,python,ruby,rust,scala,typescript"
 let g:vim_bootstrap_editor = "nvim"				" nvim or vim
 
 if !filereadable(vimplug_exists)
@@ -571,8 +571,8 @@ let g:airline#extensions#virtualenv#enabled = 1
 
 " Syntax highlight
 " Default highlight is better than polyglot
-let g:polyglot_disabled = ['python']
-let python_highlight_all = 1
+" let g:polyglot_disabled = ['python']
+" let python_highlight_all = 1
 
 
 " rust

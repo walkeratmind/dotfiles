@@ -87,3 +87,4 @@ install lolcat
 brew install fx
 brew install glow
 brew install bandwhich
+install qrcp
