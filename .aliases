@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # grep
-# alias grep='rg --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}'
+alias grep='grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}'
 
 # using ripgrep instead of gnu grep
 # https://github.com/BurntSushi/ripgrep
@@ -13,6 +13,7 @@ alias ci='code-insiders'
 # ls
 # https://the.exa.website
 alias ls='exa --color=always --group-directories-first' # my preferred listing
+alias lsi='exa --color=always --icons --group-directories-first' # my preferred listing
 alias l='exa -F'
 alias ll='exa -lF'
 alias la='exa -aF'
@@ -155,8 +156,8 @@ alias timer='echo "Timer started. Stop with Ctrl-D." && date && time cat && date
 
 # IP addresses
 alias pubip="dig +short myip.opendns.com @resolver1.opendns.com"
-alias localip="sudo ifconfig | grep -Eo 'inet (addr:)?([0-9]*\\.){3}[0-9]*' | grep -Eo '([0-9]*\\.){3}[0-9]*' | grep -v '127.0.0.1'"
-alias ips="sudo ifconfig -a | grep -o 'inet6\\? \\(addr:\\)\\?\\s\\?\\(\\(\\([0-9]\\+\\.\\)\\{3\\}[0-9]\\+\\)\\|[a-fA-F0-9:]\\+\\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"
+alias localip="ifconfig | grep -Eo 'inet (addr:)?([0-9]*\\.){3}[0-9]*' | grep -Eo '([0-9]*\\.){3}[0-9]*' | grep -v '127.0.0.1'"
+alias ips="ifconfig -a | grep -o 'inet6\\? \\(addr:\\)\\?\\s\\?\\(\\(\\([0-9]\\+\\.\\)\\{3\\}[0-9]\\+\\)\\|[a-fA-F0-9:]\\+\\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"
 
 # Flush Directory Service cache
 alias flush="dscacheutil -flushcache && killall -HUP mDNSResponder"

@@ -1,10 +1,42 @@
 #!/bin/bash
 
+
+# adb
+# Initiate tcpip port and connect adb to device via tcp
+deviceIp="adb shell ip -f inet addr show wlan0  | grep 'inet ' | cut -d ' ' -f 6 | cut -d / -f 1"
+
+adbip() { eval "$deviceIp" }
+adbd() { adb devices }              # list connected devices
+adbk() { adb kill-server }          # kill adb server
+
+# adbip=$(adb shell ip addr show wlan0  | grep 'inet ' | cut -d ' ' -f 6 | cut -d / -f 1)
+function adbconnect {
+  PORT="5555"
+
+  ip=$(adbip)
+  if [[ $1 == "-h" || $1 == "--help" ]]; then
+      echo "WTF, enter a valid command..."
+      echo "---------------------------------------"
+      echo "USAGE:"
+      echo "adbconnect <PORT>"
+  else
+    if [ $1 ]; then
+      PORT=$1
+    fi
+    adb tcpip ${PORT}
+    # ip=$(eval $deviceIp)
+    echo "Device ip: $ip"
+    adb connect "${ip}:${PORT}"
+  fi
+
+
+}
+
 # turn on android screen to take screenshot
 #  adb exec-out screencap -p > file.png
 function adbcapture {
     #dateStr="$(date +%x_time-%k:%M:%S)"
-    dateStr="$(date +%x_%T)"
+    dateStr="$(date +%m_%d_%Y_%T)"
     dir=~/Pictures/Screenshots/android_screenshots
 
     # Check if argument provided
