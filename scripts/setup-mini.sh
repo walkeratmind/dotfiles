@@ -16,12 +16,8 @@ sudo apt install g++
 sudo apt install cmake
 
 # install rust
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+# curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 # install golang
-
-# Fun stuff
-sudo apt install figlet
-sudo apt install lolcat
 
 bash ./programs/zsh.sh
 bash ./programs/nvm.sh
@@ -35,5 +31,4 @@ bash ./programs/python.sh
 # See our bash changes
 source ~/.bashrc
 
-# Fun hello
-figlet "May Linux be Merciful on You ..." | lolcat --spread 2 --animate --duration 1
+echo "Setup complete."

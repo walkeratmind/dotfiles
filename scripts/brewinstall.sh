@@ -43,23 +43,47 @@ install cmake
 install maven
 
 # Rust tools
+
+# ------------------------------------------------------------
+#                 Built on Rust
+# ------------------------------------------------------------
+
 install rust
 # install starship
-install exa
-install fd
-install bat
-install ripgrep
-install procs
-install sd
-install tokei
-install hyperfine
-install gitui
-install tealdeer
+install exa                 # ls with more power
+install fd                  # faster than find
+install ripgrep             # grep with power
+install sd                  # find and replace, faster sed
+install bat                 # cat in a bat
+install procs               # ps
+install tokei               # generate code stats, no. of lines, comments
+install hyperfine           # benchmark your code
+install gitui               # Interactive terminal git ui
+install tealdeer            # shorter man : tldr
 install git-delta
-install navi
+install navi                # interactive cheatsheet tool for CLI
+install bandwhich           # display network stats
+install jql                 # Smart JQ, json parser
+install grex                # get regex
+install just                # improved Makefile with justfile
+install mdcat               # markdown reader for terminal
+install mdbook              # Generate book from .md
+install dog                 # dns client
+install rustscan            # Faster Nmap Scanning with Rust
+
+brew tap tgotwig/linux-dust && brew install dust    # du alternative
+
+
+install deno
+
+# ------------------------------------------------------------
+
+# Built on Golang
+install qrcp
+# install jid
+brew install glow
 
 install nvm
-install deno
 
 # Android Tools
 install kotlin
@@ -82,9 +106,3 @@ install mpv
 install cowsay
 install figlet
 install lolcat
-
-
-brew install fx
-brew install glow
-brew install bandwhich
-install qrcp

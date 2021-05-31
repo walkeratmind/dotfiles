@@ -2,7 +2,7 @@
 
 
 # install zsh via curl
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | bash)"
 
 # install powerlevel10k theme
 # https://github.com/romkatv/powerlevel10k
