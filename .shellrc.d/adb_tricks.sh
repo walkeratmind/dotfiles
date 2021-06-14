@@ -21,7 +21,7 @@ function adbconnect {
       echo "adbconnect <PORT>"
   else
     if [ $1 ]; then
-      PORT=$1
+      PORT=$10
     fi
     adb tcpip ${PORT}
     # ip=$(eval $deviceIp)

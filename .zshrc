@@ -126,6 +126,8 @@ source ~/.env
 # for starship
 eval "$(starship init zsh)"
 
+# Zoxide
+ eval "$(zoxide init zsh)"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/codemonk/.sdkman"
