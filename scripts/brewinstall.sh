@@ -82,6 +82,7 @@ install deno
 install qrcp
 # install jid
 brew install glow
+install dive        # explore each layer in docker image
 install massren         # rename multiple files using text editor
 
 install nvm
