@@ -18,10 +18,10 @@ function adbconnect {
       echo "WTF, enter a valid command..."
       echo "---------------------------------------"
       echo "USAGE:"
-      echo "adbconnect <PORT>"
+      echo "adbconnect <PORT> (OPTIONAL)"
   else
     if [ $1 ]; then
-      PORT=$10
+      PORT=$1
     fi
     adb tcpip ${PORT}
     # ip=$(eval $deviceIp)
