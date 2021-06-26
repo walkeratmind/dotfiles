@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function install {
-  which $1 &> /dev/null
+  which $1 &>/dev/null
 
   if [ $? -ne 0 ]; then
     echo "Installing: ${1}..."
@@ -50,42 +50,43 @@ install maven
 
 install rust
 # install starship
-install exa                 # ls with more power
-install fd                  # faster than find
-install ripgrep             # grep with power
-install sd                  # find and replace, faster sed
-install bat                 # cat in a bat
-install procs               # ps
-install tokei               # generate code stats, no. of lines, comments
-install hyperfine           # benchmark your code
-install gitui               # Interactive terminal git ui
-install tealdeer            # shorter man : tldr
+install exa       # ls with more power
+install fd        # faster than find
+install ripgrep   # grep with power
+install sd        # find and replace, faster sed
+install bat       # cat in a bat
+install procs     # ps
+install tokei     # generate code stats, no. of lines, comments
+install hyperfine # benchmark your code
+install gitui     # Interactive terminal git ui
+install tealdeer  # shorter man : tldr
 install git-delta
-install navi                # interactive cheatsheet tool for CLI
-install bandwhich           # display network stats
-install jql                 # Smart JQ, json parser
-install grex                # get regex
-install just                # improved Makefile with justfile
-install mdcat               # markdown reader for terminal
-install mdbook              # Generate book from .md
-install dog                 # dns client
-install rustscan            # Faster Nmap Scanning with Rust
+install navi      # interactive cheatsheet tool for CLI
+install bandwhich # display network stats
+install jql       # Smart JQ, json parser
+install grex      # get regex
+install just      # improved Makefile with justfile
+install mdcat     # markdown reader for terminal
+install mdbook    # Generate book from .md
+install dog       # dns client
+install rustscan  # Faster Nmap Scanning with Rust
 
-brew tap tgotwig/linux-dust && brew install dust    # du alternative
-
+brew tap tgotwig/linux-dust && brew install dust # du alternative
 
 install deno
 
 # ------------------------------------------------------------
 
 # Built on Golang
-install qrcp
+
+# install qrcp
 # install jid
 brew install glow
-install dive        # explore each layer in docker image
-install massren         # rename multiple files using text editor
+install dive    # explore each layer in docker image
+install massren # rename multiple files using text editor
 
 install nvm
+install yarn
 
 # Android Tools
 install kotlin
@@ -96,7 +97,6 @@ install scrcpy
 # install zeal
 
 # Image processing
-install feh
 install jpegoptim
 install optipng
 # best image viewer
