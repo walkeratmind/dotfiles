@@ -18,6 +18,10 @@ npm install -g autoprefixer postcss-cli
 npm install -g yarn
 # yo - yeoman
 npm install -g yo
+
+# jhipster for Java Hipsters and Junkies to quickly setup the projects
+npm install -g generator-jhipster
+
 # Simplified option for > man
 #npm install -g tldr
 npm install -g alacritty-themes
