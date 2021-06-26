@@ -1,5 +1,3 @@
-
-
 # youtube-dl
 alias ydl-aac="youtube-dl --embed-thumbnail --extract-audio --audio-format aac "
 alias ydl-best="youtube-dl --embed-thumbnail --extract-audio --audio-format best "
@@ -11,12 +9,12 @@ alias ydl-vorbis="youtube-dl --extract-audio --audio-format vorbis "
 alias ydl-wav="youtube-dl --extract-audio --audio-format wav "
 alias ytv-best="youtube-dl -f bestvideo+bestaudio "
 
-
 function ydl {
     local list=$(youtube-dl --list-formats $1)
 
     echo $list | sed -n '/[0-9]x[0-9]/p'
-    echo -n "video format (default=244, skip=0): "; read video
+    echo -n "video format (default=244, skip=0): "
+    read video
     if [[ "$video" == 0 ]]; then
         video=""
     else
@@ -26,7 +24,8 @@ function ydl {
     echo $list | sed -n '/audio only/p'
     total=$(echo $list | sed -n '/audio only/p' | wc -l)
     # TODO: check 320 is in or not
-    echo -n "audio format (default=320, skip=0): "; read audio
+    echo -n "audio format (default=320, skip=0): "
+    read audio
     if [[ "$audio" == 0 ]]; then
         audio=""
     else

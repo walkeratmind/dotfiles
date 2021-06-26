@@ -84,6 +84,7 @@ install deno
 brew install glow
 install dive    # explore each layer in docker image
 install massren # rename multiple files using text editor
+install shfmt      # sh for shell formatting
 
 install nvm
 install yarn

@@ -14,7 +14,7 @@ function install {
 
   if [ $? -ne 0 ]; then
     echo "Installing: ${1}..."
-    yarn global $1
+    yarn global add $1
     echo "----------------------------"
   else
     echo "Already installed: ${1}"
