@@ -266,5 +266,5 @@ if [[ -d ~/.bashrc.d ]]; then
 fi
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/home/codemonk/.sdkman"
-[[ -s "/home/codemonk/.sdkman/bin/sdkman-init.sh" ]] && source "/home/codemonk/.sdkman/bin/sdkman-init.sh"
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"

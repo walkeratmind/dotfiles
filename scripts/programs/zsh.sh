@@ -2,7 +2,8 @@
 
 
 # install zsh via curl
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | bash)"
+echo "Installing ZSH..."
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # install powerlevel10k theme
 # https://github.com/romkatv/powerlevel10k
@@ -10,4 +11,6 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 
 # install starship
 echo "🦀 Installing starship..."
-curl -fsSL https://starship.rs/install.sh | bash
+sh -c "$(curl -fsSL https://starship.rs/install.sh)"
+
+

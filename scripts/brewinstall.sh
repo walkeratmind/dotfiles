@@ -49,7 +49,6 @@ install maven
 # ------------------------------------------------------------
 
 install rust
-# install starship
 install exa       # ls with more power
 install fd        # faster than find
 install ripgrep   # grep with power
