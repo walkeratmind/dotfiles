@@ -1,13 +1,13 @@
 #!/bin/bash
 
-# echo "📦 Installing nvm"
-# export NVM_DIR="$HOME/.nvm" && (
-#   git clone https://github.com/nvm-sh/nvm.git "$NVM_DIR"
-#   cd "$NVM_DIR"
-#   git checkout `git describe --abbrev=0 --tags --match "v[0-9]*" $(git rev-list --tags --max-count=1)`
-# ) && \. "$NVM_DIR/nvm.sh"
+echo "📦 Installing nvm"
+export NVM_DIR="$HOME/.nvm" && (
+git clone https://github.com/nvm-sh/nvm.git "$NVM_DIR"
+cd "$NVM_DIR"
+git checkout `git describe --abbrev=0 --tags --match "v[0-9]*" $(git rev-list --tags --max-count=1)`
+) && \. "$NVM_DIR/nvm.sh"
 
-# source ~/.bashrc
+source ~/.bashrc
 
 function install {
   which $1 &>/dev/null
@@ -22,7 +22,7 @@ function install {
   fi
 }
 
-nvm install node
+nvm install --lts
 nvm install-latest-npm
 
 # Required for Hugo
@@ -30,7 +30,7 @@ install autoprefixer postcss-cli
 
 # npm install -g yarn     # install from brew
 # yo - yeoman
-install yo
+# install yo
 
 # jhipster for Java Hipsters and Junkies to quickly setup the projects
 install generator-jhipster
