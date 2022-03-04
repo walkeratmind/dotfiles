@@ -53,16 +53,29 @@ linkDotfile .env
 
 linkDotfile .curlrc
 
+# create symlink for all folder present in .config in ~/.config (Note: Don't symlink the .config dir as it contains other programs config too)
+for f in ./.config/*/* ; do
+	if [ -f $f ]; then
+		linkDotfile "$f";
+	fi
+done
+
+for f in ./.config/* ; do
+	if [ -f $f ]; then
+		linkDotfile "$f";
+	fi
+done
+
 # set .config folder in $HOME folder like and
 # symlink the folders from .config
 
-mkdir -p $HOME/.config/alacritty
-linkDotfile .config/alacritty/alacritty.yml
+# mkdir -p $HOME/.config/alacritty
+# linkDotfile .config/alacritty/alacritty.yml
 
-linkDotfile .config/starship.toml
+# linkDotfile .config/starship.toml
 
-mkdir -p $HOME/.config/nvim
-linkDotfile .config/nvim/init.vim
+# mkdir -p $HOME/.config/nvim
+# linkDotfile .config/nvim/init.vim
 
 # mkdir -p $dotfilesDir/.vim/bundle
 # cd $dotfilesDir/.vim/bundle
