@@ -23,7 +23,7 @@
 [commit]
     template = ~/.gitmessage
 [core]
-    editor = /usr/bin/vim
+    editor = vim
 	autocrlf = input
 [push]
     followTags = true
