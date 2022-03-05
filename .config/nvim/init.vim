@@ -61,7 +61,7 @@ Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
 
 "" Snippets
-Plug 'SirVer/ultisnips'
+" Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
 "" Color
@@ -186,7 +186,7 @@ set ruler
 set number
 
 let no_buffers_menu=1
-silent! colorscheme molokai
+silent! colorscheme gruvbox
 
 set mousemodel=popup
 set t_Co=256
@@ -239,7 +239,7 @@ if exists("*fugitive#statusline")
 endif
 
 " vim-airline
-let g:airline_theme = 'powerlineish'
+let g:airline_theme = 'bubblegum'
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#tabline#enabled = 1

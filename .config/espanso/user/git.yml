@@ -5,6 +5,10 @@ package_author: Rakesh Niraula
 parent: default
 matches:
 
+# Outputs git commit command, with cursor in the message block
+- trigger: :commit
+  replace: git commit -m "$|$"
+
 - trigger: ':gbuild'
   replace: 'git commit -m "build $|$"'
 

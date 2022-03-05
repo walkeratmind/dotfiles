@@ -101,7 +101,7 @@ alias gpv='git push -v'
 alias gr='git remote'
 alias gra='git remote add'
 
-alias git-repostat='~/.shellrc.d/.gitrundown.sh'
+alias git-repostat='~/.shellrc.d/.git-rundown.sh'
 
 # ----------------------------------
 #	END GIT ALIASES

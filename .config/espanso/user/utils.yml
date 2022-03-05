@@ -150,7 +150,7 @@ matches:
 
 # Ouputs MIT License short text
 - trigger: :mit-short
-  replace: "Licensed under MIT X11, © Alicia Sykes {{year}}: https://aliciasykes.com"
+  replace: "Licensed under MIT, © Rakesh Niraula {{year}}: https://rakeshniraula.com.np"
   vars: [{name: year, type: date, params: {format: "%Y"}}]
 
 # Outputs full MIT license text, from GitHub
@@ -164,11 +164,7 @@ matches:
 
 # Personal email notes
 - trigger: :kr
-  replace: "Kind Regards,\nAlicia\n"
-
-# Outputs git commit command, with cursor in the message block
-- trigger: :commit
-  replace: git commit -m "$|$"
+  replace: "Kind Regards,\Rakesh\n"
 
 # Fetches a funny commit message from whatthecommit.com
 - trigger: :wtc
