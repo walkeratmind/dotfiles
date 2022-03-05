@@ -101,6 +101,8 @@ alias gpv='git push -v'
 alias gr='git remote'
 alias gra='git remote add'
 
+alias git-repostat='~/.shellrc.d/.gitrundown.sh'
+
 # ----------------------------------
 #	END GIT ALIASES
 # ----------------------------------
@@ -180,10 +182,6 @@ alias c="tr -d '\\n' | xclip -selection clipboard"
 # URL-encode strings
 alias urlencode='python3 -c "import sys, urllib as ul; print(ul.quote_plus(sys.argv[1]));"'
 
-# Merge PDF files
-# Usage: `mergepdf -o output.pdf input{1,2,3}.pdf`
-alias mergepdf='/System/Library/Automator/Combine\ PDF\ Pages.action/Contents/Resources/join.py'
-
 # Intuitive map function
 # For example, to list all directories that contain a certain file:
 # find . -name .gitattributes | map dirname
@@ -201,7 +199,8 @@ done
 alias chromekill="ps ux | grep '[C]hrome Helper --type=renderer' | grep -v extension-process | tr -s ' ' | cut -d ' ' -f2 | xargs kill"
 
 # Lock the screen (when going AFK)
-alias afk="i3lock -c 000000"
+# alias afk="i3lock -c 000000"
+alias afk="gnome-screensaver-command -l"
 
 # vhosts
 alias hosts='sudo vim /etc/hosts'
