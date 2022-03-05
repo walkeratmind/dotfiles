@@ -15,6 +15,22 @@ function install_espanso() {
   fi
 }
 
+# Install modulo for forms. See here https://espanso.org/docs/install/linux/#installing-modulo
+function install_modulo() {
+	# Make sure to have the $HOME/Apps directory
+	mkdir -p $HOME/Apps
+
+	# Download the latest Modulo AppImage in the $HOME/Apps
+	wget https://github.com/federico-terzi/modulo/releases/latest/download/modulo-x86_64.AppImage -O $HOME/Apps/modulo.AppImage
+
+	# Make it executable:
+	chmod u+x $HOME/Apps/modulo.AppImage
+
+	# Create a link to make modulo available as "modulo"
+	sudo ln -s $HOME/Apps/modulo.AppImage /usr/bin/modulo
+}
+
+install_modulo
 install_espanso
 
 function install {
@@ -38,4 +54,3 @@ install dadjoke
 espanso install lorem
 
 espanso install cht
-espanso install wttr

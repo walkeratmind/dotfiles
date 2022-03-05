@@ -164,7 +164,7 @@ matches:
 
 # Personal email notes
 - trigger: :kr
-  replace: "Kind Regards,\Rakesh\n"
+  replace: "Kind Regards,\nRakesh\n"
 
 # Fetches a funny commit message from whatthecommit.com
 - trigger: :wtc
