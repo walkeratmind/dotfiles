@@ -153,15 +153,6 @@ matches:
   replace: "Licensed under MIT, © Rakesh Niraula {{year}}: https://rakeshniraula.com.np"
   vars: [{name: year, type: date, params: {format: "%Y"}}]
 
-# Outputs full MIT license text, from GitHub
-- trigger: :mit-long
-  replace: "{{output}}"
-  vars:
-  - name: output
-    type: shell
-    params:
-      cmd: "curl 'https://gist.githubusercontent.com/Lissy93/143d2ee01ccc5c052a17/raw/a8ac96cd15847a231931b561d95d2de47066fd33/LICENSE.MD'"
-
 # Personal email notes
 - trigger: :kr
   replace: "Kind Regards,\nRakesh\n"

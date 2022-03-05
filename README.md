@@ -1,5 +1,9 @@
 # dotfiles 🏗️ for Linux 💻️
 
+![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)
+![Pop! OS](https://img.shields.io/badge/Pop!_OS-48B9C7?style=for-the-badge&logo=Pop!_OS&logoColor=white)
+![Shell Script](https://img.shields.io/badge/shell_script-%23121011.svg?style=for-the-badge&logo=gnu-bash&logoColor=white)
+
 To be honest, I haven't written all these scripts and configs. I copied most of the parts from others whose link you can find in [references](#references-%EF%B8%8F) ⬇️.
 
 As we all know, every person have his/her own needs so, ➡️ evey person needs his/her own dotfiles (I suppose 😎️😎️😎️).
