@@ -225,6 +225,7 @@ gitBranch() {
 # Gitignore
 function gi() { curl -sL https://www.toptal.com/developers/gitignore/api/\$@ ;}
 
+export EDITOR='vim'
 
 # common path variables for both zshrc and bashrc
 if [[ -d ~/.shellrc.d ]]; then

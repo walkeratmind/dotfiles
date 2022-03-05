@@ -203,7 +203,7 @@ alias chromekill="ps ux | grep '[C]hrome Helper --type=renderer' | grep -v exten
 alias afk="gnome-screensaver-command -l"
 
 # vhosts
-alias hosts='sudo vim /etc/hosts'
+alias hosts='sudo nvim /etc/hosts'
 
 # copy working directory
 alias cwd='pwd | tr -d "\r\n" | xclip -selection clipboard'
