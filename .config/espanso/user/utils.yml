@@ -1,6 +1,6 @@
 # Handy utilities, for use with Espanso, the open source cross-platform text expander
 
-name: rakesh-utils
+name: basic-utils
 package_author: Rakesh Niraula
 parent: default
 matches:

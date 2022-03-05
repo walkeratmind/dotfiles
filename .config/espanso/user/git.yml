@@ -1,0 +1,33 @@
+# Espanso Text shortcuts for git commands
+
+name: git-utils
+package_author: Rakesh Niraula
+parent: default
+matches:
+
+- trigger: ':gbuild'
+  replace: 'git commit -m "build $|$"'
+
+- trigger: ':gchore'
+  replace: 'git commit -m "chore $|$"'
+
+- trigger: ':gfeat'
+  replace: 'git commit -m "feat $|$"'
+
+- trigger: ':gfix'
+  replace: 'git commit -m "fix $|$"'
+
+- trigger: ':gdoc'
+  replace: 'git commit -m "docs $|$"'
+
+- trigger: ':gref'
+  replace: 'git commit -m "refactor $|$"'
+
+- trigger: ':gperf'
+  replace: 'git commit -m "perf $|$"'
+
+- trigger: ':gstyle'
+  replace: 'git commit -m "style $|$"'
+
+- trigger: ':gtest'
+  replace: 'git commit -m "test $|$"'
