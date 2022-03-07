@@ -330,7 +330,7 @@ colors:
 #    - --login
 
 shell:
-  program: /usr/bin/zsh
+  program: nu
   args:
     - -l
     - -c

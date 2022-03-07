@@ -84,9 +84,6 @@ else
   export EDITOR='nvim'
 fi
 
-alias vi='vim'
-alias vim='nvim'
-
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
@@ -138,4 +135,4 @@ source ~/.env
 eval "$(starship init zsh)"
 
 # Zoxide
- eval "$(zoxide init zsh)"
+eval "$(zoxide init zsh)"

@@ -84,8 +84,8 @@ brew install glow
 install dive    # explore each layer in docker image
 install massren # rename multiple files using text editor
 install shfmt      # sh for shell formatting
+install fzf
 
-install nvm
 install yarn
 
 # Android Tools
@@ -102,7 +102,7 @@ install optipng
 # best image viewer
 install feh
 
-install mpv
+# install mpv
 
 # Fun stuff
 install cowsay
