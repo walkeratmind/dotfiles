@@ -53,10 +53,10 @@ install exa       # ls with more power
 install fd        # faster than find
 install ripgrep   # grep with power
 install sd        # find and replace, faster sed
-install bat       # cat in a bat
+install bat       # cat in a bat https://github.com/dalance/procs
 install procs     # ps
-install tokei     # generate code stats, no. of lines, comments
-install hyperfine # benchmark your code
+install tokei     # generate code stats, no. of lines, comments https://github.com/xampprocky/tokei
+install hyperfine # benchmark your code https://github.com/sharkdp/hyperfine
 install gitui     # Interactive terminal git ui
 install tealdeer  # shorter man : tldr
 install git-delta
