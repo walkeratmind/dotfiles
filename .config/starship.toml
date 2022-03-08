@@ -25,9 +25,3 @@ symbol = "🌱 "
 [java]
 style = "bold bright-red"
 
-[rust]
-symbol = "⚙️ "
-style = "bold bright-red"
-
-
-

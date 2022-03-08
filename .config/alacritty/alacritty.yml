@@ -117,7 +117,7 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    family: Hack
+    family: Fira Code
 
     # The `style` can be specified to pick a specific face.
     style: Regular
@@ -128,7 +128,7 @@ font:
     #
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: Hack
+    family: Fira Code
 
     # The `style` can be specified to pick a specific face.
     style: Bold
@@ -139,7 +139,7 @@ font:
     #
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: Hack
+    family: Fira Code
 
     # The `style` can be specified to pick a specific face.
     style: Italic
@@ -150,7 +150,7 @@ font:
     #
     # If the bold italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: Hack
+    family: Fira Code
 
     # The `style` can be specified to pick a specific face.
     style: Bold Italic
@@ -182,36 +182,503 @@ font:
 draw_bold_text_with_bright_colors: true
 
 
-# Colors (Tokyo Night: Storm variant)
-# Source: https://github.com/zatchheems/tokyo-night-alacritty-theme
-colors:
-  # Default colors
-  primary:
-    background: '0x24283b'
-    foreground: '0xa9b1d6'
+# ------------------------------------------------------------
+#     PLACE THEMES HERE
+#     For more themes, see here: https://github.com/eendroroy/alacritty-theme
+# ------------------------------------------------------------
 
-  # Normal colors
-  normal:
-    black:   '0x32344a'
-    red:     '0xf7768e'
-    green:   '0x9ece6a'
-    yellow:  '0xe0af68'
-    blue:    '0x7aa2f7'
-    magenta: '0xad8ee6'
-    cyan:    '0x449dab'
-    white:   '0x9699a8'
+# Colors (Solarized Dark)
 
-  # Bright colors
-  bright:
-    black:   '0x444b6a'
-    red:     '0xff7a93'
-    green:   '0xb9f27c'
-    yellow:  '0xff9e64'
-    blue:    '0x7da6ff'
-    magenta: '0xbb9af7'
-    cyan:    '0x0db9d7'
-    white:   '0xacb0d0'
+#######################################
+##      START OF COLOR SCHEMES       ##
+#######################################
+schemes:
+  ## Ayu Dark
+  AyuDark: &AyuDark
+     # Default colors
+    primary:
+      background: '0x0A0E14'
+      foreground: '0xB3B1AD'
 
+    # Normal colors
+    normal:
+      black:   '0x01060E'
+      red:     '0xEA6C73'
+      green:   '0x91B362'
+      yellow:  '0xF9AF4F'
+      blue:    '0x53BDFA'
+      magenta: '0xFAE994'
+      cyan:    '0x90E1C6'
+      white:   '0xC7C7C7'
+
+    # Bright colors
+    bright:
+      black:   '0x686868'
+      red:     '0xF07178'
+      green:   '0xC2D94C'
+      yellow:  '0xFFB454'
+      blue:    '0x59C2FF'
+      magenta: '0xFFEE99'
+      cyan:    '0x95E6CB'
+      white:   '0xFFFFFF'
+
+  # Ayu Mirage
+  AyuMirage: &AyuMirage
+    # Default colors
+    primary:
+      background: '#1f2430'
+      foreground: '#cbccc6'
+      bright_foreground: '#f28779'
+    cursor:
+      text: CellBackground
+      cursor: '#39BAE6'
+    selection:
+      text: CellForeground
+      background: '#3e4451'
+    normal:
+      black:   '#212733' #
+      red:     '#f08778' #
+      green:   '#53bf97' #
+      yellow:  '#fdcc60' #
+      blue:    '#60b8d6' #
+      magenta: '#ec7171' #
+      cyan:    '#98e6ca' #
+      white:   '#fafafa' #
+    bright:
+      black: '#686868'
+      red: '#f58c7d'
+      green: '#58c49c'
+      yellow: '#ffd165'
+      blue: '#65bddb'
+      magenta: '#f17676'
+      cyan: '#9debcf'
+      white: '#ffffff'
+
+  ### Doom One ###
+  DoomOne: &DoomOne
+    primary:
+      background: '#282c34'
+      foreground: '#bbc2cf'
+    cursor:
+      text: CellBackground
+      cursor: '#528bff'
+    selection:
+      text: CellForeground
+      background: '#3e4451'
+    normal:
+      black:   '#1c1f24'
+      red:     '#ff6c6b'
+      green:   '#98be65'
+      yellow:  '#da8548'
+      blue:    '#51afef'
+      magenta: '#c678dd'
+      cyan:    '#5699af'
+      white:   '#202328'
+    bright:
+      black:   '#5b6268'
+      red:     '#da8548'
+      green:   '#4db5bd'
+      yellow:  '#ecbe7b'
+      blue:    '#3071db'   # This is 2257a0 in Doom Emacs but I lightened it.
+      magenta: '#a9a1e1'
+      cyan:    '#46d9ff'
+      white:   '#dfdfdf'
+
+  ### Dracula ###
+  Dracula: &Dracula
+    primary:
+      background: '#282a36'
+      foreground: '#f8f8f2'
+    cursor:
+      text: CellBackground
+      cursor: CellForeground
+    vi_mode_cursor:
+      text: CellBackground
+      cursor: CellForeground
+    search:
+      matches:
+        foreground: '#44475a'
+        background: '#50fa7b'
+      focused_match:
+        foreground: '#44475a'
+        background: '#ffb86c'
+      bar:
+        background: '#282a36'
+        foreground: '#f8f8f2'
+    line_indicator:
+      foreground: None
+      background: None
+    selection:
+      text: CellForeground
+      background: '#44475a'
+    normal:
+      black:   '#000000'
+      red:     '#ff5555'
+      green:   '#50fa7b'
+      yellow:  '#f1fa8c'
+      blue:    '#bd93f9'
+      magenta: '#ff79c6'
+      cyan:    '#8be9fd'
+      white:   '#bfbfbf'
+    bright:
+      black:   '#4d4d4d'
+      red:     '#ff6e67'
+      green:   '#5af78e'
+      yellow:  '#f4f99d'
+      blue:    '#caa9fa'
+      magenta: '#ff92d0'
+      cyan:    '#9aedfe'
+      white:   '#e6e6e6'
+    dim:
+      black:   '#14151b'
+      red:     '#ff2222'
+      green:   '#1ef956'
+      yellow:  '#ebf85b'
+      blue:    '#4d5b86'
+      magenta: '#ff46b0'
+      cyan:    '#59dffc'
+      white:   '#e6e6d1'
+
+  ### Gruvbox dark ###
+  GruvboxDark: &GruvboxDark
+    # Default colors
+    primary:
+      # hard contrast: background = '0x1d2021'
+      background: '#282828'
+      # soft contrast: background = '0x32302f'
+      foreground: '#ebdbb2'
+
+    # Normal colors
+    normal:
+      black:   '#282828'
+      red:     '#cc241d'
+      green:   '#98971a'
+      yellow:  '#d79921'
+      blue:    '#458588'
+      magenta: '#b16286'
+      cyan:    '#689d6a'
+      white:   '#a89984'
+
+    # Bright colors
+    bright:
+      black:   '#928374'
+      red:     '#fb4934'
+      green:   '#b8bb26'
+      yellow:  '#fabd2f'
+      blue:    '#83a598'
+      magenta: '#d3869b'
+      cyan:    '#8ec07c'
+      white:   '#ebdbb2'
+
+  ### Monokai ###
+  MonokaiPro: &MonokaiPro
+    # Default colors
+    primary:
+      background: '#2D2A2E'
+      foreground: '#FCFCFA'
+
+    # Normal colors
+    normal:
+      black:   '#403E41'
+      red:     '#FF6188'
+      green:   '#A9DC76'
+      yellow:  '#FFD866'
+      blue:    '#FC9867'
+      magenta: '#AB9DF2'
+      cyan:    '#78DCE8'
+      white:   '#FCFCFA'
+
+    # Bright colors
+    bright:
+      black:   '#727072'
+      red:     '#FF6188'
+      green:   '#A9DC76'
+      yellow:  '#FFD866'
+      blue:    '#FC9867'
+      magenta: '#AB9DF2'
+      cyan:    '#78DCE8'
+      white:   '#FCFCFA'
+
+  ### Nord ###
+  Nord: &Nord
+    # Project:    Nord Alacritty
+    # Version:    0.1.0
+    # Repository: https://github.com/arcticicestudio/nord-alacritty
+    # License:    MIT
+    # References:
+    #   https://github.com/alacritty/alacritty
+
+    primary:
+      background: '#2e3440'
+      foreground: '#d8dee9'
+      dim_foreground: '#a5abb6'
+    cursor:
+      text: '#2e3440'
+      cursor: '#d8dee9'
+    vi_mode_cursor:
+      text: '#2e3440'
+      cursor: '#d8dee9'
+    selection:
+      text: CellForeground
+      background: '#4c566a'
+    search:
+      matches:
+        foreground: CellBackground
+        background: '#88c0d0'
+      bar:
+        background: '#434c5e'
+        foreground: '#d8dee9'
+    normal:
+      black: '#3b4252'
+      red: '#bf616a'
+      green: '#a3be8c'
+      yellow: '#ebcb8b'
+      blue: '#81a1c1'
+      magenta: '#b48ead'
+      cyan: '#88c0d0'
+      white: '#e5e9f0'
+    bright:
+      black: '#4c566a'
+      red: '#bf616a'
+      green: '#a3be8c'
+      yellow: '#ebcb8b'
+      blue: '#81a1c1'
+      magenta: '#b48ead'
+      cyan: '#8fbcbb'
+      white: '#eceff4'
+    dim:
+      black: '#373e4d'
+      red: '#94545d'
+      green: '#809575'
+      yellow: '#b29e75'
+      blue: '#68809a'
+      magenta: '#8c738c'
+      cyan: '#6d96a5'
+      white: '#aeb3bb'
+
+  ### Oceanic Next ###
+  OceanicNext: &OceanicNext
+    # Default colors
+    primary:
+      background: '#1b2b34'
+      foreground: '#d8dee9'
+
+    # Colors the cursor will use if `custom_cursor_colors` is true
+    cursor:
+      text: '#1b2b34'
+      cursor: '#ffffff'
+
+    # Normal colors
+    normal:
+      black:   '#343d46'
+      red:     '#EC5f67'
+      green:   '#99C794'
+      yellow:  '#FAC863'
+      blue:    '#6699cc'
+      magenta: '#c594c5'
+      cyan:    '#5fb3b3'
+      white:   '#d8dee9'
+
+    # Bright colors
+    bright:
+      black:   '#343d46'
+      red:     '#EC5f67'
+      green:   '#99C794'
+      yellow:  '#FAC863'
+      blue:    '#6699cc'
+      magenta: '#c594c5'
+      cyan:    '#5fb3b3'
+      white:   '#d8dee9'
+
+  ### Palenight ###
+  Palenight: &Palenight
+    # Default colors
+    primary:
+      background: '#292d3e'
+      foreground: '#d0d0d0'
+
+    # Normal colors
+    normal:
+      black:   '#292d3e'
+      red:     '#f07178'
+      green:   '#c3e88d'
+      yellow:  '#ffcb6b'
+      blue:    '#82aaff'
+      magenta: '#c792ea'
+      cyan:    '#89ddff'
+      white:   '#d0d0d0'
+
+    # Bright colors
+    bright:
+      black:   '#434758'
+      red:     '#ff8b92'
+      green:   '#ddffa7'
+      yellow:  '#ffe585'
+      blue:    '#9cc4ff'
+      magenta: '#e1acff'
+      cyan:    '#a3f7ff'
+      white:   '#ffffff'
+
+  ### Solarized Dark ###
+  SolarizedDark: &SolarizedDark
+    # Default colors
+    primary:
+      background: '#002b36' # base03
+      foreground: '#839496' # base0
+
+    # Cursor colors
+    cursor:
+      text:   '#002b36' # base03
+      cursor: '#839496' # base0
+
+    # Normal colors
+    normal:
+      black:   '#073642' # base02
+      red:     '#dc322f' # red
+      green:   '#859900' # green
+      yellow:  '#b58900' # yellow
+      blue:    '#268bd2' # blue
+      magenta: '#d33682' # magenta
+      cyan:    '#2aa198' # cyan
+      white:   '#eee8d5' # base2
+
+    # Bright colors
+    bright:
+      black:   '#002b36' # base03
+      red:     '#cb4b16' # orange
+      green:   '#586e75' # base01
+      yellow:  '#657b83' # base00
+      blue:    '#839496' # base0
+      magenta: '#6c71c4' # violet
+      cyan:    '#93a1a1' # base1
+      white:   '#fdf6e3' # base3
+
+  ### Solarized Light ###
+  SolarizedLight: &SolarizedLight
+    # Default colors
+    primary:
+      background: '#fdf6e3' # base3
+      foreground: '#657b83' # base00
+
+    # Cursor colors
+    cursor:
+      text:   '#fdf6e3' # base3
+      cursor: '#657b83' # base00
+
+    # Normal colors
+    normal:
+      black:   '#073642' # base02
+      red:     '#dc322f' # red
+      green:   '#859900' # green
+      yellow:  '#b58900' # yellow
+      blue:    '#268bd2' # blue
+      magenta: '#d33682' # magenta
+      cyan:    '#2aa198' # cyan
+      white:   '#eee8d5' # base2
+
+    # Bright colors
+    bright:
+      black:   '#002b36' # base03
+      red:     '#cb4b16' # orange
+      green:   '#586e75' # base01
+      yellow:  '#657b83' # base00
+      blue:    '#839496' # base0
+      magenta: '#6c71c4' # violet
+      cyan:    '#93a1a1' # base1
+      white:   '#fdf6e3' # base3
+
+  ## TokyoNightStorm
+  TokyoNightStorm: &TokyoNightStrom
+    # Default colors
+    primary:
+      background: '0x24283b'
+      foreground: '0xa9b1d6'
+
+    # Normal colors
+    normal:
+      black:   '0x32344a'
+      red:     '0xf7768e'
+      green:   '0x9ece6a'
+      yellow:  '0xe0af68'
+      blue:    '0x7aa2f7'
+      magenta: '0xad8ee6'
+      cyan:    '0x449dab'
+      white:   '0x9699a8'
+
+    # Bright colors
+    bright:
+      black:   '0x444b6a'
+      red:     '0xff7a93'
+      green:   '0xb9f27c'
+      yellow:  '0xff9e64'
+      blue:    '0x7da6ff'
+      magenta: '0xbb9af7'
+      cyan:    '0x0db9d7'
+      white:   '0xacb0d0'
+
+
+  ### Tomorrow Night ###
+  TomorrowNight: &TomorrowNight
+     # Default colors
+    primary:
+      background: '#1d1f21'
+      foreground: '#c5c8c6'
+
+    # Colors the cursor will use if `custom_cursor_colors` is true
+    cursor:
+      text: '#1d1f21'
+      cursor: '#ffffff'
+
+    # Normal colors
+    normal:
+      black:   '#1d1f21'
+      red:     '#cc6666'
+      green:   '#b5bd68'
+      yellow:  '#e6c547'
+      blue:    '#81a2be'
+      magenta: '#b294bb'
+      cyan:    '#70c0ba'
+      white:   '#373b41'
+
+    # Bright colors
+    bright:
+      black:   '#666666'
+      red:     '#ff3334'
+      green:   '#9ec400'
+      yellow:  '#f0c674'
+      blue:    '#81a2be'
+      magenta: '#b77ee0'
+      cyan:    '#54ced6'
+      white:   '#282a2e'
+
+######################################################################
+## SET THEME: Choose ONE color scheme from those in the above list. ##
+## ###################################################################
+# Available themes are:
+# *AyuDark
+# *AyuMirage
+# *DoomOne
+# *Dracula
+# *GruvboxDark
+# *MonokaiPro
+# *Nord
+# *OceanicNext
+# *Palenight
+# *SolarizedLight
+# *SolarizedDark
+# *TokyoNightStorm
+# *TomorrowNight
+
+colors: *AyuMirage
+
+#######################################
+##       END OF COLOR SCHEMES        ##
+#######################################
+
+
+# ------------------------------------------------------------
+#     END THEME
+# ------------------------------------------------------------
 
   # Indexed Colors
   #
