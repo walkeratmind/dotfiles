@@ -5,7 +5,7 @@
 "*****************************************************************************
 let vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')
 
-let g:vim_bootstrap_langs = "c,go,haskell,javascript,lua,php,python,ruby,rust,scala,typescript"
+let g:vim_bootstrap_langs = "c,c++,java,kotlin,go,haskell,javascript,lua,php,python,ruby,rust,scala,typescript"
 let g:vim_bootstrap_editor = "nvim"				" nvim or vim
 
 if !filereadable(vimplug_exists)
@@ -64,8 +64,10 @@ Plug 'xolox/vim-session'
 " Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
-"" Color
+
+"" Theme
 Plug 'morhetz/gruvbox'
+Plug 'embark-theme/vim', { 'as': 'embark', 'branch': 'main' }
 
 "*****************************************************************************
 "" Custom bundles
@@ -213,8 +215,8 @@ endif
 
 
 "" Disable the blinking cursor.
-set gcr=a:blinkon0
-set scrolloff=3
+" set gcr=a:blinkon0
+" set scrolloff=3
 
 "" Status bar
 set laststatus=2
@@ -239,17 +241,29 @@ if exists("*fugitive#statusline")
 endif
 
 " vim-airline
-let g:airline_theme = 'bubblegum'
+let g:airline_theme = 'gruvbox'
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tagbar#enabled = 1
 let g:airline_skip_empty_sections = 1
 
+"" Cursor
+"" Change the cursor at insert mode
+" Reference chart of values:
+"   Ps = 0  -> blinking block.
+"   Ps = 1  -> blinking block (default).
+"   Ps = 2  -> steady block.
+"   Ps = 3  -> blinking underline.
+"   Ps = 4  -> steady underline.
+"   Ps = 5  -> blinking bar (xterm).
+"   Ps = 6  -> steady bar (xterm).
+let &t_SI = "\e[6 q"
+let &t_EI = "\e[2 q"
+
 "*****************************************************************************
 "" Abbreviations
 "*****************************************************************************
-"" no one is really happy until you have this shortcuts
 cnoreabbrev W! w!
 cnoreabbrev Q! q!
 cnoreabbrev Qall! qall!
