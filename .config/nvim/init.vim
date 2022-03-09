@@ -1,8 +1,8 @@
-" vim-bootstrap
 
-"*****************************************************************************
+"-----------------------------------------------------------------------------
 "" Vim-PLug core
-"*****************************************************************************
+"-----------------------------------------------------------------------------
+
 let vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')
 
 let g:vim_bootstrap_langs = "c,c++,java,kotlin,go,haskell,javascript,lua,php,python,ruby,rust,scala,typescript"
@@ -18,15 +18,16 @@ if !filereadable(vimplug_exists)
   silent exec "!\curl -fLo " . vimplug_exists . " --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
   let g:not_finish_vimplug = "yes"
 
-  autocmd VimEnter * PlugInstall
+  autocmd VimEnter - PlugInstall
 endif
 
 " Required:
 call plug#begin(expand('~/.config/nvim/plugged'))
 
-"*****************************************************************************
+"-----------------------------------------------------------------------------
 "" Plug install packages
-"*****************************************************************************
+"-----------------------------------------------------------------------------
+
 Plug 'scrooloose/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'tpope/vim-commentary'
@@ -69,9 +70,9 @@ Plug 'honza/vim-snippets'
 Plug 'morhetz/gruvbox'
 Plug 'embark-theme/vim', { 'as': 'embark', 'branch': 'main' }
 
-"*****************************************************************************
+"-----------------------------------------------------------------------------
 "" Custom bundles
-"*****************************************************************************
+"-----------------------------------------------------------------------------
 
 " c
 Plug 'vim-scripts/c.vim', {'for': ['c', 'cpp']}
@@ -122,8 +123,8 @@ Plug 'leafOfTree/vim-vue-plugin'
 
 
 
-"*****************************************************************************
-"*****************************************************************************
+"-----------------------------------------------------------------------------
+"-----------------------------------------------------------------------------
 
 "" Include user's extra bundle
 if filereadable(expand("~/.config/nvim/local_bundles.vim"))
@@ -136,9 +137,10 @@ call plug#end()
 filetype plugin indent on
 
 
-"*****************************************************************************
+"-----------------------------------------------------------------------------
 "" Basic Setup
-"*****************************************************************************"
+"-----------------------------------------------------------------------------"
+
 "" Encoding
 set encoding=utf-8
 set fileencoding=utf-8
@@ -150,12 +152,13 @@ set backspace=indent,eol,start
 
 "" Tabs. May be overridden by autocmd rules
 set tabstop=4
-set softtabstop=0
+set softtabstop=4
 set shiftwidth=4
 set expandtab
+set smartindent
 
 "" Map leader to ,
-let mapleader=','
+let mapleader=' ' " space as the leader here
 
 "" Enable hidden buffers
 set hidden
@@ -180,12 +183,18 @@ let g:session_autoload = "no"
 let g:session_autosave = "no"
 let g:session_command_aliases = 1
 
-"*****************************************************************************
+"-----------------------------------------------------------------------------
 "" Visual Settings
-"*****************************************************************************
+"-----------------------------------------------------------------------------
+
 syntax on
 set ruler
 set number
+
+
+" Open new split panes to right and bottom, which feels more natural
+set splitbelow
+set splitright
 
 let no_buffers_menu=1
 silent! colorscheme gruvbox
@@ -213,10 +222,11 @@ else
 endif
 
 
-
 "" Disable the blinking cursor.
-" set gcr=a:blinkon0
-" set scrolloff=3
+"" set gcr=a:blinkon0
+set scrolloff=12
+
+set relativenumber "" sets the relative line number from currnet line
 
 "" Status bar
 set laststatus=2
@@ -241,7 +251,7 @@ if exists("*fugitive#statusline")
 endif
 
 " vim-airline
-let g:airline_theme = 'gruvbox'
+let g:airline_theme = 'bubblegum'
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
@@ -261,9 +271,9 @@ let g:airline_skip_empty_sections = 1
 let &t_SI = "\e[6 q"
 let &t_EI = "\e[2 q"
 
-"*****************************************************************************
+"-----------------------------------------------------------------------------
 "" Abbreviations
-"*****************************************************************************
+"-----------------------------------------------------------------------------
 cnoreabbrev W! w!
 cnoreabbrev Q! q!
 cnoreabbrev Qall! qall!
@@ -297,15 +307,15 @@ let Grep_Skip_Dirs = '.git node_modules'
 nnoremap <silent> <leader>sh :terminal<CR>
 
 
-"*****************************************************************************
+"-----------------------------------------------------------------------------
 "" Commands
-"*****************************************************************************
+"-----------------------------------------------------------------------------
 " remove trailing whitespaces
 command! FixWhitespace :%s/\s\+$//e
 
-"*****************************************************************************
+"-----------------------------------------------------------------------------
 "" Functions
-"*****************************************************************************
+"-----------------------------------------------------------------------------
 if !exists('*s:setupWrapping')
   function s:setupWrapping()
     set wrap
@@ -314,9 +324,9 @@ if !exists('*s:setupWrapping')
   endfunction
 endif
 
-"*****************************************************************************
+"-----------------------------------------------------------------------------
 "" Autocmd Rules
-"*****************************************************************************
+"-----------------------------------------------------------------------------
 "" The PC is fast enough, do syntax highlight syncing from start unless 200 lines
 augroup vimrc-sync-fromstart
   autocmd!
@@ -344,9 +354,9 @@ augroup END
 
 set autoread
 
-"*****************************************************************************
+"-----------------------------------------------------------------------------
 "" Mappings
-"*****************************************************************************
+"-----------------------------------------------------------------------------
 
 "" Split
 noremap <Leader>h :<C-u>split<CR>
@@ -403,6 +413,7 @@ endif
 cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
 nnoremap <silent> <leader>b :Buffers<CR>
 nnoremap <silent> <leader>e :FZF -m<CR>
+nnoremap <silent> <leader>f :fd -m<CR>
 "Recovery commands from history through FZF
 nmap <leader>y :History:<CR>
 
@@ -469,9 +480,23 @@ vnoremap K :m '<-2<CR>gv=gv
 "" Open current line on GitHub
 nnoremap <Leader>o :.Gbrowse<CR>
 
-"*****************************************************************************
+" Ignore that bike racing game mode which I played as kid
+nnoremap <Left> :echoe "Use h"<CR>
+nnoremap <Right> :echoe "Use l"<CR>
+nnoremap <Up> :echoe "Use k"<CR>
+nnoremap <Down> :echoe "Use j"<CR>
+
+" Move between linting errors
+nnoremap ]r :ALENextWrap<CR>
+nnoremap [r :ALEPreviousWrap<CR>
+
+" Map Ctrl + p to open fuzzy find (FZF)
+nnoremap <c-p> :Files<cr>
+
+
+"-----------------------------------------------------------------------------
 "" Custom configs
-"*****************************************************************************
+"-----------------------------------------------------------------------------
 
 " c
 autocmd FileType c setlocal tabstop=4 shiftwidth=4 expandtab
@@ -490,6 +515,8 @@ function! s:build_go_files()
   endif
 endfunction
 
+"" Go syntax highlighting
+
 let g:go_list_type = "quickfix"
 let g:go_fmt_command = "goimports"
 let g:go_fmt_fail_silently = 1
@@ -507,7 +534,35 @@ let g:go_highlight_array_whitespace_error = 0
 let g:go_highlight_trailing_whitespace_error = 0
 let g:go_highlight_extra_types = 1
 
-autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4 softtabstop=4
+
+set autowrite
+
+let g:go_highlight_function_calls = 1
+
+" Auto formatting and importing
+let g:go_fmt_autosave = 1
+let g:go_fmt_command = "goimports"
+
+" Status line types/signatures
+let g:go_auto_type_info = 1
+
+" Run :GoBuild or :GoTestCompile based on the go file
+function! s:build_go_files()
+  let l:file = expand('%')
+  if l:file =~# '^\f\+_test\.go$'
+    call go#test#Test(0, 1)
+  elseif l:file =~# '^\f\+\.go$'
+    call go#cmd#Build(0)
+  endif
+endfunction
+
+"" Map keys for most used commands.
+"" Ex: `\b` for building, `\r` for running and `\b` for running test.
+autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
+autocmd FileType go nmap <leader>r  <Plug>(go-run)
+autocmd FileType go nmap <leader>t  <Plug>(go-test)
+
+autocmd BufNewFile,BufRead -.go setlocal noexpandtab tabstop=4 shiftwidth=4 softtabstop=4
 
 augroup completion_preview_close
   autocmd!
@@ -596,10 +651,6 @@ au FileType rust nmap gs <Plug>(rust-def-split)
 au FileType rust nmap gx <Plug>(rust-def-vertical)
 au FileType rust nmap <leader>gd <Plug>(rust-doc)
 
-
-" scala
-
-
 " typescript
 let g:yats_host_keyword = 1
 
@@ -612,17 +663,17 @@ let g:vue_disable_pre_processors=1
 let g:vim_vue_plugin_load_full_syntax = 1
 
 
-"*****************************************************************************
-"*****************************************************************************
+"-----------------------------------------------------------------------------
+"-----------------------------------------------------------------------------
 
 "" Include user's local vim config
 if filereadable(expand("~/.config/nvim/local_init.vim"))
   source ~/.config/nvim/local_init.vim
 endif
 
-"*****************************************************************************
+"-----------------------------------------------------------------------------
 "" Convenience variables
-"*****************************************************************************
+"-----------------------------------------------------------------------------
 
 " vim-airline
 if !exists('g:airline_symbols')
@@ -659,3 +710,6 @@ else
   let g:airline_symbols.readonly = ''
   let g:airline_symbols.linenr = ''
 endif
+
+"-----------------------------------------------------------------------------
+"-----------------------------------------------------------------------------
