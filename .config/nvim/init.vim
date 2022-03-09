@@ -70,6 +70,9 @@ Plug 'honza/vim-snippets'
 Plug 'morhetz/gruvbox'
 Plug 'embark-theme/vim', { 'as': 'embark', 'branch': 'main' }
 
+"" File Icons are great to have
+Plug 'ryanoasis/vim-devicons'
+
 "-----------------------------------------------------------------------------
 "" Custom bundles
 "-----------------------------------------------------------------------------
