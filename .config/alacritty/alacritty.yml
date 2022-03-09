@@ -364,6 +364,99 @@ schemes:
       cyan:    '#8ec07c'
       white:   '#ebdbb2'
 
+  laserwave: &laserwave
+    primary:
+      background: '#27212e'
+      foreground: '#e0dfe1'
+
+    cursor:
+      text: '#27212e'
+      cursor: '#40b4c4'
+
+    selection:
+      text: '#27212e'
+      background: '#74dfc4'
+
+    normal:
+      black: '#65606a'
+      red: '#b381c5'
+      green: '#b4dce7'
+      yellow: '#eb64b9'
+      blue: '#74dfc4'
+      magenta: '#b381c5'
+      cyan: '#716385'
+      white: '#e0dfe1'
+
+    bright:
+      black: '#848088'
+      red: '#C29AD1'
+      green: '#C3E3EC'
+      yellow: '#EF83C7'
+      blue: '#90E5D0'
+      magenta: '#C29AD1'
+      cyan: '#8D829D'
+      white: '#ffffff'
+
+    dim:
+      black: '#46414c'
+      red: '#976EA7'
+      green: '#98B7C2'
+      yellow: '#C4579D'
+      blue: '#65B9A6'
+      magenta: '#976EA7'
+      cyan: '#625674'
+      white: '#c1c0c3'
+
+  neonwave-dream: &neonwave
+    primary:
+      background: "#18132f"
+      foreground: "#bbc5ff"
+
+    normal:
+      black:   "#495396"
+      red:     "#f95e94"
+      green:   "#85eea7"
+      yellow:  "#d288f5"
+      blue:    "#e33df2"
+      magenta: "#fee153"
+      cyan:    "#ef2a8c"
+      white:   "#67bcf9"
+
+    bright:
+      black:   "#495396"
+      red:     "#f95e94"
+      green:   "#85eea7"
+      yellow:  "#d288f5"
+      blue:    "#e33df2"
+      magenta: "#fee153"
+      cyan:    "#ef2a8c"
+      white:   "#67bcf9"
+
+  daycula: &daycula
+    primary:
+      background: '0x1a1d45'
+      foreground: '0xd7b7bb'
+
+    normal:
+      black:   '0x1a1d45'
+      red:     '0xff4ea5'
+      green:   '0x7eb564'
+      yellow:  '0xeaad64'
+      blue:    '0x7a89ec'
+      magenta: '0xb66cdc'
+      cyan:    '0x6cac99'
+      white:   '0xd7b7bb'
+
+    bright:
+      black:   '0x323884'
+      red:     '0xff4ea5'
+      green:   '0x7eb564'
+      yellow:  '0xeaad64'
+      blue:    '0x7a89ec'
+      magenta: '0xb66cdc'
+      cyan:    '0x6cac99'
+      white:   '0xd7b7bb'
+
   ### Monokai ###
   MonokaiPro: &MonokaiPro
     # Default colors
@@ -582,7 +675,7 @@ schemes:
       white:   '#fdf6e3' # base3
 
   ## TokyoNightStorm
-  TokyoNightStorm: &TokyoNightStrom
+  TokyoNightStorm: &TokyoNightStorm
     # Default colors
     primary:
       background: '0x24283b'
@@ -654,7 +747,10 @@ schemes:
 # *DoomOne
 # *Dracula
 # *GruvboxDark
+# *laserwave
+# *daycula
 # *MonokaiPro
+# *neonwave
 # *Nord
 # *OceanicNext
 # *Palenight
@@ -663,7 +759,7 @@ schemes:
 # *TokyoNightStorm
 # *TomorrowNight
 
-colors: *AyuMirage
+colors: *daycula
 
 #######################################
 ##       END OF COLOR SCHEMES        ##
