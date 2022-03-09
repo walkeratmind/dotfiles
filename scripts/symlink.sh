@@ -83,6 +83,10 @@ linkDotfile .config/fish/config.fish
 mkdir -p $HOME/.config/nvim
 linkDotfile .config/nvim/init.vim
 
+linkDotfile .config/nvim/lua
+
+linkDotfile .config/nvim/plugin
+
 # mkdir -p $dotfilesDir/.vim/bundle
 # cd $dotfilesDir/.vim/bundle
 # git clone git://github.com/VundleVim/Vundle.vim.git

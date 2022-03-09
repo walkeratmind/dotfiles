@@ -1,12 +1,11 @@
-
-"-----------------------------------------------------------------------------
-"" Vim-PLug core
-"-----------------------------------------------------------------------------
-
 let vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')
 
 let g:vim_bootstrap_langs = "c,c++,java,kotlin,go,haskell,javascript,lua,php,python,ruby,rust,scala,typescript"
 let g:vim_bootstrap_editor = "nvim"				" nvim or vim
+
+"-----------------------------------------------------------------------------
+" Bootstraping vim-plug
+"-----------------------------------------------------------------------------
 
 if !filereadable(vimplug_exists)
   if !executable("curl")
@@ -23,10 +22,9 @@ endif
 
 " Required:
 call plug#begin(expand('~/.config/nvim/plugged'))
-
-"-----------------------------------------------------------------------------
-"" Plug install packages
-"-----------------------------------------------------------------------------
+"-------------------------------------------------------------------------------
+"---- Plug install packages
+"-------------------------------------------------------------------------------
 
 Plug 'scrooloose/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
@@ -45,58 +43,80 @@ Plug 'avelino/vim-bootstrap-updater'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-rhubarb' " required by fugitive to :Gbrowse
 
-if isdirectory('/usr/local/opt/fzf')
-  Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
-else
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
-  Plug 'junegunn/fzf.vim'
-endif
+" telescope requirements
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+
+" telescope extensions
+Plug 'AckslD/nvim-neoclip.lua'
+Plug ('nvim-telescope/telescope-fzf-native.nvim')
+" jump into repositories
+Plug 'cljoly/telescope-repo.nvim'
+" see the browser bookmarks from vim
+Plug 'dhruvmanila/telescope-bookmarks.nvim'
+
+" zoxide
+Plug 'nvim-lua/popup.nvim'
+Plug 'jvgrootveld/telescope-zoxide'
+
+
 let g:make = 'gmake'
 if exists('make')
         let g:make = 'make'
 endif
 Plug 'Shougo/vimproc.vim', {'do': g:make}
 
-"" Vim-Session
+" see RFC docs
+Plug 'mhinz/vim-rfc'
+
+" prettier
+Plug 'sbdchd/neoformat'
+
+" Debugger Plugins
+Plug 'mfussenegger/nvim-dap'
+Plug 'Pocco81/DAPInstall.nvim'
+Plug 'szw/vim-maximizer'
+
+"-- Vim-Session
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
 
-"" Snippets
+"-- Snippets
 " Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
 
-"" Theme
+"-- Theme
 Plug 'morhetz/gruvbox'
 Plug 'embark-theme/vim', { 'as': 'embark', 'branch': 'main' }
 
-"" File Icons are great to have
+"-- File Icons are great to have
 Plug 'ryanoasis/vim-devicons'
 
 "-----------------------------------------------------------------------------
-"" Custom bundles
-"-----------------------------------------------------------------------------
+"---- Custom bundles
+"-------------------------------------------------------------------------------
 
 " c
 Plug 'vim-scripts/c.vim', {'for': ['c', 'cpp']}
 Plug 'ludwig/split-manpage.vim'
 
+Plug 'tomlion/vim-solidity'
 
 " go
-"" Go Lang Bundle
+" Go Lang Bundle
 Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
-
+Plug 'darrikonn/vim-gofmt'
 
 " javascript
-"" Javascript Bundle
+" Javascript Bundle
 Plug 'jelera/vim-javascript-syntax'
 
-
 " python
-"" Python Bundle
+" Python Bundle
 Plug 'davidhalter/jedi-vim'
 Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
-
 
 " rust
 " Vim racer
@@ -105,12 +125,12 @@ Plug 'racer-rust/vim-racer'
 " Rust.vim
 Plug 'rust-lang/rust.vim'
 
-
 " scala
 if has('python')
-    " sbt-vim
+    -- sbt-vim
     Plug 'ktvoelker/sbt-vim'
 endif
+
 " vim-scala
 Plug 'derekwyatt/vim-scala'
 
@@ -124,10 +144,9 @@ Plug 'HerringtonDarkholme/yats.vim'
 Plug 'posva/vim-vue'
 Plug 'leafOfTree/vim-vue-plugin'
 
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
 
-
-"-----------------------------------------------------------------------------
-"-----------------------------------------------------------------------------
 
 "" Include user's extra bundle
 if filereadable(expand("~/.config/nvim/local_bundles.vim"))
@@ -139,6 +158,8 @@ call plug#end()
 " Required:
 filetype plugin indent on
 
+" lua require("plugins")
+lua require("config")
 
 "-----------------------------------------------------------------------------
 "" Basic Setup
@@ -148,7 +169,6 @@ filetype plugin indent on
 set encoding=utf-8
 set fileencoding=utf-8
 set fileencodings=utf-8
-
 
 "" Fix backspace indent
 set backspace=indent,eol,start
@@ -160,7 +180,7 @@ set shiftwidth=4
 set expandtab
 set smartindent
 
-"" Map leader to ,
+"" Map leader
 let mapleader=' ' " space as the leader here
 
 "" Enable hidden buffers
@@ -494,7 +514,7 @@ nnoremap ]r :ALENextWrap<CR>
 nnoremap [r :ALEPreviousWrap<CR>
 
 " Map Ctrl + p to open fuzzy find (FZF)
-nnoremap <c-p> :Files<cr>
+" nnoremap <c-p> :find_files<cr>
 
 
 "-----------------------------------------------------------------------------
