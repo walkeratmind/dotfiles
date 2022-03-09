@@ -31,12 +31,12 @@ require("telescope").setup({
       horizontal = {
         mirror = false,
         preview_cutoff = 1,
-        preview_width = 0.7,
+        preview_width = 0.5,
       },
       vertical = {
         mirror = false,
         preview_cutoff = 1,
-        preview_width = 0.7,
+        preview_width = 0.5,
       },
       flex = {
         flip_columns = 110,
