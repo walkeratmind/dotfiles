@@ -10,7 +10,6 @@ require("telescope").setup({
 		file_sorter = require("telescope.sorters").get_fzy_sorter,
 		prompt_prefix = " >",
 		color_devicons = true,
-    previewer = true,
 
 		file_previewer = require("telescope.previewers").vim_buffer_cat.new,
 		grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
@@ -22,6 +21,29 @@ require("telescope").setup({
 				["<C-q>"] = actions.send_to_qflist,
 			},
 		},
+    color_devicons = true,
+    scroll_strategy = 'cycle',
+    sorting_strategy = 'ascending',
+    layout_strategy = 'flex',
+    file_ignore_patterns = ignore_these,
+    layout_config = {
+      prompt_position = 'top',
+      horizontal = {
+        mirror = false,
+        preview_cutoff = 1,
+        preview_width = 0.7,
+      },
+      vertical = {
+        mirror = false,
+        preview_cutoff = 1,
+        preview_width = 0.7,
+      },
+      flex = {
+        flip_columns = 110,
+      },
+      height = 0.94,
+      width = 0.86,
+    },
 	},
 	extensions = {
 		fzy_native = {
