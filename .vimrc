@@ -7,7 +7,7 @@
 " Basic Configuration Stuffs
 " ------------------------------------------------------------
 
-set endcoding=utf-8
+set encoding=utf-8
 set fileencoding=utf-8
 set fileencodings=utf-8
 
@@ -64,23 +64,6 @@ augroup vimrcEx
   autocmd BufRead,BufNewFile gitconfig.local set filetype=gitconfig
   autocmd BufRead,BufNewFile tmux.conf.local set filetype=tmux
   autocmd BufRead,BufNewFile vimrc.local set filetype=vim
-augroup END
-
-" ALE linting events
-augroup ale
-  autocmd!
-
-  if g:has_async
-    autocmd VimEnter *
-      \ set updatetime=1000 |
-      \ let g:ale_lint_on_text_changed = 0
-    autocmd CursorHold * call ale#Queue(0)
-    autocmd CursorHoldI * call ale#Queue(0)
-    autocmd InsertEnter * call ale#Queue(0)
-    autocmd InsertLeave * call ale#Queue(0)
-  else
-    echoerr "The thoughtbot dotfiles require NeoVim or Vim 8"
-  endif
 augroup END
 
 " When the type of shell script is /bin/sh, assume a POSIX-compatible

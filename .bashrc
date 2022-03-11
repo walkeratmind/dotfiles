@@ -267,3 +267,5 @@ if [[ -d ~/.bashrc.d ]]; then
 fi
 
 eval "$(zoxide init zsh)"
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

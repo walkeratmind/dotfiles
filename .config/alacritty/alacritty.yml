@@ -759,7 +759,7 @@ schemes:
 # *TokyoNightStorm
 # *TomorrowNight
 
-colors: *daycula
+colors: *TokyoNightStorm
 
 #######################################
 ##       END OF COLOR SCHEMES        ##
