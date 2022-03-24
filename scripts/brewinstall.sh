@@ -108,3 +108,7 @@ install feh
 install cowsay
 install figlet
 install lolcat
+
+brew tap leoafarias/fvm
+brew install fvm
+

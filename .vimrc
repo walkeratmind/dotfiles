@@ -181,3 +181,5 @@ nnoremap <c-p> :Files<cr>
 
 
 
+set visualbell
+set noerrorbells
