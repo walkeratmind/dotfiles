@@ -43,6 +43,15 @@ Plug 'avelino/vim-bootstrap-updater'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-rhubarb' " required by fugitive to :Gbrowse
 
+Plug 'andymass/vim-matchup'
+Plug 'psliwka/vim-smoothie'
+Plug 'preservim/nerdcommenter'
+Plug 'tpope/vim-surround'
+Plug 'chr4/nginx.vim'
+Plug 'gabrielelana/vim-markdown'
+Plug 'ekalinin/Dockerfile.vim'
+
+
 " telescope requirements
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
@@ -193,6 +202,8 @@ set ignorecase
 set smartcase
 
 set fileformats=unix,dos,mac
+
+filetype plugin on
 
 if exists('$SHELL')
     set shell=$SHELL
