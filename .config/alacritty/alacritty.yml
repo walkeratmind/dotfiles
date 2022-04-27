@@ -887,11 +887,11 @@ colors: *TokyoNightStorm
 #    - --login
 
 shell:
-  program: nu
+  program: /home/linuxbrew/.linuxbrew/bin/zellij
   args:
-    - -l
-    - -c
-    - 'tmux'
+    - options
+    - --default-shell
+    - nu
 
 # Startup directory
 #

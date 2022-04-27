@@ -13,8 +13,14 @@ function install {
   fi
 }
 
-#install brew
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+#install brew if not exists
+if [ brew -ne 0 ]; then
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  echo "-----------------------------"
+else
+  echo "Already installed brew"
+  echo "-----------------------------"
+fi
 
 # Basics
 # install awscli
@@ -82,6 +88,12 @@ install deno
 # install jid
 brew install glow
 install dive    # explore each layer in docker image
+brew install ctop   # view processes for docker container
+# manage all for docker file and docker compose
+brew install jesseduffield/lazydocker/lazydocker
+
+brew install lazydocker
+
 install massren # rename multiple files using text editor
 install shfmt      # sh for shell formatting
 install fzf

@@ -72,6 +72,9 @@ linkDotfile .curlrc
 mkdir -p $HOME/.config/alacritty
 linkDotfile .config/alacritty/alacritty.yml
 
+mkdir -p $HOME/.config/zellij
+linkDotfile .config/zellij/config.yaml
+
 linkDotfile .config/starship.toml
 
 linkDotfile .config/espanso
