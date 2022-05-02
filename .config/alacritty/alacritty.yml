@@ -886,12 +886,22 @@ colors: *TokyoNightStorm
 #  args:
 #    - --login
 
-shell:
-  program: /home/linuxbrew/.linuxbrew/bin/zellij
-  args:
-    - options
-    - --default-shell
-    - nu
+### Open zellij multiplexer with nu as default shell
+# shell:
+#   program: /home/linuxbrew/.linuxbrew/bin/zellij
+#   args:
+#     - a
+#     - options
+#     - --default-shell
+#     - nu
+
+### Open tmux with zsh
+# shell:
+#   program: zsh
+#   args:
+#     - -l
+#     - -c
+#     - "tmux attach || tmux"
 
 # Startup directory
 #
