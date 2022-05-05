@@ -33,7 +33,6 @@ espanso install gitmojis
 espanso install arrows
 
 install dadjoke
-espanso install shruggie
 espanso install lorem
 
 espanso install cht
