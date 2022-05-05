@@ -1,7 +1,6 @@
 #!/bin/bash
 
 bash ./symlink.sh
-# bash ./aptinstall.sh
 bash ./brewinstall.sh
 
 # Run all programs/ install scripts
