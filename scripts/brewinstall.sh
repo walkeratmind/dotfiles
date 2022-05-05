@@ -37,6 +37,7 @@ install neovim
 install httpie
 install xclip
 install zsh
+install tmux
 install youtube-dl
 install unzip
 install nnn
