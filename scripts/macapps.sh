@@ -22,10 +22,19 @@ else
   echo "-----------------------------"
 fi
 
-
 # Install GUI Apps
+
+# Basic Apps
+install brave-browser
+install webtorrent
+install free-download-manager
+install notion
+install calibre
+
 install iterm2
 install visual-studio-code
 install alacritty
-
-install brave-browser	
+install pgadmin4
+install postman
+install insomnia
+install dbeaver-community

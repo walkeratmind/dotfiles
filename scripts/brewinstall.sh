@@ -88,12 +88,8 @@ install deno
 # install qrcp
 # install jid
 brew install glow
-install dive    # explore each layer in docker image
-brew install ctop   # view processes for docker container
-# manage all for docker file and docker compose
-brew install jesseduffield/lazydocker/lazydocker
-
-brew install lazydocker
+install brook
+install duf     # list the disk usage
 
 install massren # rename multiple files using text editor
 install shfmt      # sh for shell formatting
@@ -122,6 +118,7 @@ install cowsay
 install figlet
 install lolcat
 
+# Flutter Version Manager
 brew tap leoafarias/fvm
 brew install fvm
 
