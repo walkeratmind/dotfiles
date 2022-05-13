@@ -896,12 +896,12 @@ colors: *TokyoNightStorm
 #     - nu
 
 ### Open tmux with zsh
-# shell:
-#   program: zsh
-#   args:
-#     - -l
-#     - -c
-#     - "tmux attach || tmux"
+shell:
+  program: zsh
+  args:
+    - -l
+    - -c
+    - "tmux attach || tmux"
 
 # Startup directory
 #
