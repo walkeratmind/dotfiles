@@ -47,7 +47,6 @@ install docker
 
 install go
 install cmake
-install maven
 
 # Rust tools
 

@@ -21,10 +21,11 @@
     old = red
     new = green
 [commit]
-    template = ~/.gitmessage
+	template = ~/.gitmessage
 [core]
 	editor = vim
 	autocrlf = input
+	excludesfile = /Users/mac/.gitignore_global
 [push]
     followTags = true
     default = current
@@ -53,3 +54,9 @@
     reviewone = !vim -p +\"tabdo Gdiff $BASE\" +\"let g:gitgutter_diff_base = '$BASE'\"
 [credential]
 	helper = cache
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true

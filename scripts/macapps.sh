@@ -38,3 +38,5 @@ install pgadmin4
 install postman
 install insomnia
 install dbeaver-community
+install hiddenbar
+install flameshot
