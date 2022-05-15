@@ -40,3 +40,5 @@ install insomnia
 install dbeaver-community
 install hiddenbar
 install flameshot
+install blender
+install godot
