@@ -26,6 +26,10 @@ fi
 
 # Basic Apps
 install brave-browser
+
+install alfred
+install fig
+
 install webtorrent
 install free-download-manager
 install notion
