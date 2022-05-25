@@ -42,3 +42,4 @@ install hiddenbar
 install flameshot
 install blender
 install godot
+
