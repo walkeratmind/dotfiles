@@ -34,6 +34,7 @@ install webtorrent
 install free-download-manager
 install notion
 install calibre
+install skim
 
 install iterm2
 install visual-studio-code
