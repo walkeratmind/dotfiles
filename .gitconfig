@@ -6,7 +6,7 @@
 # ------------------------------------------------------------
 
 [user]
-	name = rakesh
+	name = Rakesh
 	email = rakeshhniraulaa@gmail.com
 [color]
     diff = auto
@@ -25,7 +25,7 @@
 [core]
 	editor = vim
 	autocrlf = input
-	excludesfile = /Users/mac/.gitignore_global
+	excludesfile = /Users/rakesh/.gitignore_global
 [push]
     followTags = true
     default = current

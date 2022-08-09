@@ -48,3 +48,6 @@ install flameshot
 install blender
 install godot
 
+install itsycal
+install stats
+install sublime-text
