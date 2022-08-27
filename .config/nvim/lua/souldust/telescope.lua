@@ -5,10 +5,16 @@ local action_state = require("telescope.actions.state")
 local conf = require("telescope.config").values
 local actions = require("telescope.actions")
 
+local function telescope_buffer_dir()
+  return vim.fn.expand('%:p:h')
+end
+
+local fb_actions = require "telescope".extensions.file_browser.actions
+
 require("telescope").setup({
 	defaults = {
-		file_sorter = require("telescope.sorters").get_fzy_sorter,
-		prompt_prefix = " >",
+		file_sorter = require("telescope.sorters").get_fzf_sorters,
+		-- prompt_prefix = " >",
 		color_devicons = true,
 
 		file_previewer = require("telescope.previewers").vim_buffer_cat.new,
@@ -21,7 +27,6 @@ require("telescope").setup({
 				["<C-q>"] = actions.send_to_qflist,
 			},
 		},
-    color_devicons = true,
     scroll_strategy = 'cycle',
     sorting_strategy = 'ascending',
     layout_strategy = 'flex',
@@ -46,19 +51,45 @@ require("telescope").setup({
     },
 	},
 	extensions = {
+    file_browser = {
+      theme = "dropdown",
+      -- disables netrw and use telescope-file-browser in its place
+      hijack_netrw = true,
+      mappings = {
+        -- your custom insert mode mappings
+        ["i"] = {
+          ["<C-w>"] = function() vim.cmd('normal vbd') end,
+        },
+        ["n"] = {
+          -- your custom normal mode mappings
+          ["N"] = fb_actions.create,
+          ["h"] = fb_actions.goto_parent_dir,
+          ["/"] = function()
+            vim.cmd('startinsert')
+          end
+        },
+      },
+    },
 		fzy_native = {
 			override_generic_sorter = false,
 			override_file_sorter = true,
 		},
+    fzf = {
+      fuzzy = true,                    -- false will only do exact matching
+      override_generic_sorter = true,  -- override the generic sorter
+      override_file_sorter = true,     -- override the file sorter
+      case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+                                       -- the default case_mode is "smart_case"
+    },
 	},
 })
 
 require('telescope').load_extension('fzf')
-require('telescope').load_extension('zoxide')
-require('telescope').load_extension('neoclip')
+-- require('telescope').load_extension('zoxide')
+-- require('telescope').load_extension('neoclip')
 -- require('telescope').load_extension('gh')
-require('telescope').load_extension('bookmarks')
 require('telescope').load_extension('repo')
+require('telescope').load_extension("file_browser")
 
 local M = {}
 
@@ -78,47 +109,6 @@ M.search_dotfiles = function()
 		hidden = true,
 	})
 end
-
-local function set_background(content)
-	vim.fn.system("dconf write /org/mate/desktop/background/picture-filename \"'" .. content .. "'\"")
-end
-
-local function select_background(prompt_bufnr, map)
-	local function set_the_background(close)
-		local content = require("telescope.actions.state").get_selected_entry(prompt_bufnr)
-		set_background(content.cwd .. "/" .. content.value)
-		if close then
-			require("telescope.actions").close(prompt_bufnr)
-		end
-	end
-
-	map("i", "<C-p>", function()
-		set_the_background()
-	end)
-
-	map("i", "<CR>", function()
-		set_the_background(true)
-	end)
-end
-
-local function image_selector(prompt, cwd)
-	return function()
-		require("telescope.builtin").find_files({
-			prompt_title = prompt,
-			cwd = cwd,
-
-			attach_mappings = function(prompt_bufnr, map)
-				select_background(prompt_bufnr, map)
-
-				-- Please continue mapping (attaching additional key maps):
-				-- Ctrl+n/p to move up and down the list.
-				return true
-			end,
-		})
-	end
-end
-
-M.anime_selector = image_selector("< Anime Bobs > ", "~/personal/bg")
 
 local function refactor(prompt_bufnr)
 	local content = require("telescope.actions.state").get_selected_entry(prompt_bufnr)
@@ -149,4 +139,17 @@ M.git_branches = function()
 			return true
 		end,
 	})
+end
+
+M.file_explore = function()
+  require('telescope').extensions.file_browser.file_browser({
+    path = "%:p:h",
+    cwd = telescope_buffer_dir(),
+    respect_gitignore = false,
+    hidden = true,
+    grouped = true,
+    previewer = false,
+    initial_mode = "normal",
+    layout_config = { height = 40 }
+  })
 end

@@ -87,8 +87,9 @@ mkdir -p $HOME/.config/nvim
 linkDotfile .config/nvim/init.vim
 
 linkDotfile .config/nvim/lua
-
+linkDotfile .config/nvim/after
 linkDotfile .config/nvim/plugin
+linkDotfile .config/nvim/init.lua
 
 # mkdir -p $dotfilesDir/.vim/bundle
 # cd $dotfilesDir/.vim/bundle
