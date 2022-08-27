@@ -121,3 +121,6 @@ install lolcat
 brew tap leoafarias/fvm
 brew install fvm
 
+brew install tree-sitter
+brew install ccls
+brew install gopls
