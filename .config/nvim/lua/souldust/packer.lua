@@ -7,13 +7,12 @@ return require("packer").startup(function()
   use("nvim-lua/plenary.nvim")
   use("nvim-lua/popup.nvim")
 
-  use("nvim-telescope/telescope.nvim")
-  -- telescope extensions
-  use 'cljoly/telescope-repo.nvim'
   use {
     'nvim-telescope/telescope.nvim',
     requires = { {'nvim-lua/plenary.nvim'} }
-  }
+  }  -- telescope extensions
+  use 'cljoly/telescope-repo.nvim'
+
   -- file browser within telescope
   use { "nvim-telescope/telescope-file-browser.nvim" }
   use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
@@ -23,8 +22,15 @@ return require("packer").startup(function()
   use("hrsh7th/cmp-nvim-lsp")
   use("hrsh7th/cmp-buffer")
   use("hrsh7th/nvim-cmp")
+
+  -- Lua
+  use {
+    "folke/trouble.nvim",
+    requires = "kyazdani42/nvim-web-devicons"
+  }
   -- tabnine for autocompletion
   use {'tzachar/cmp-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-cmp'}
+  use("ray-x/lsp_signature.nvim")
 
   use("onsails/lspkind-nvim")
   use("glepnir/lspsaga.nvim")
@@ -69,4 +75,8 @@ return require("packer").startup(function()
     "folke/todo-comments.nvim",
     requires = "nvim-lua/plenary.nvim"
   }
+
+  -- language specific
+  use 'ray-x/go.nvim'
+  use 'ray-x/guihua.lua' -- recommanded if need floating window support
 end)

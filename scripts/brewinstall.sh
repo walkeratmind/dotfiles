@@ -124,3 +124,4 @@ brew install fvm
 brew install tree-sitter
 brew install ccls
 brew install gopls
+brew install rust_analyzer

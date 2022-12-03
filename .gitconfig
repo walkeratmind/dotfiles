@@ -6,8 +6,8 @@
 # ------------------------------------------------------------
 
 [user]
-	name = Rakesh
-	email = rakeshhniraulaa@gmail.com
+	name = Dipendra
+	email = dipendra@3pltotal.com
 [color]
     diff = auto
     status = auto
@@ -60,3 +60,5 @@
 [mergetool "sourcetree"]
 	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
+[init]
+	defaultBranch = main

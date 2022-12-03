@@ -901,8 +901,16 @@ shell:
   args:
     - -l
     - -c
-    - "tmux attach || tmux"
+    - "tmux attach || tmux new -s main"
 
+# shell:
+#   program: tmux
+#   args:
+#     - new-session
+#     - -A
+#     - -D
+#     - -s
+#     - main
 # Startup directory
 #
 # Directory the shell is started in. If this is unset, or `None`, the working
