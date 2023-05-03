@@ -6,8 +6,11 @@
 # ------------------------------------------------------------
 
 [user]
-	name = Dipendra
-	email = dipendra@3pltotal.com
+	name = Rakesh 
+	email = rakeshhniraulaa@gmail.com
+
+[includeIf "gitdir:~/project_lab/swivt"]
+    path = ~/project_lab/swivt/.gitconfig
 [color]
     diff = auto
     status = auto
