@@ -43,11 +43,16 @@ install pgadmin4
 install postman
 install insomnia
 install dbeaver-community
-install hiddenbar
+# install hiddenbar
 install flameshot
 install blender
 install godot
 
 install itsycal
 install stats
-install sublime-text
+# install sublime-text
+
+# tiling window manager: https://github.com/koekeishiya/yabai
+brew install koekeishiya/formulae/yabai
+# hotkeys for macos (required for yabai to set shortcuts): https://github.com/koekeishiya/skhd
+brew install koekeishiya/formulae/skhd

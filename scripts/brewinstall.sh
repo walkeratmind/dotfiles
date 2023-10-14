@@ -23,8 +23,6 @@ else
 fi
 
 # Basics
-# install awscli
-# install docker.io
 # install chromium-browser
 
 install htop
@@ -35,10 +33,9 @@ install tree
 install vim
 install neovim
 install httpie
-install xclip
 install zsh
 install tmux
-install youtube-dl
+install yt-dlp
 install unzip
 install nnn
 
@@ -47,6 +44,8 @@ install docker
 
 install go
 install cmake
+
+install nushell
 
 # Rust tools
 
@@ -66,15 +65,15 @@ install hyperfine # benchmark your code https://github.com/sharkdp/hyperfine
 install gitui     # Interactive terminal git ui
 install tealdeer  # shorter man : tldr
 install git-delta
-install navi      # interactive cheatsheet tool for CLI
-install bandwhich # display network stats
-install jql       # Smart JQ, json parser
-install grex      # get regex
-install just      # improved Makefile with justfile
-install mdcat     # markdown reader for terminal
-install mdbook    # Generate book from .md
-install dog       # dns client
-install rustscan  # Faster Nmap Scanning with Rust
+install navi     # interactive cheatsheet tool for CLI
+install sniffnet # display network stats
+install jql      # Smart JQ, json parser
+install grex     # get regex
+install just     # improved Makefile with justfile
+install mdcat    # markdown reader for terminal
+install mdbook   # Generate book from .md
+install dog      # dns client
+install rustscan # Faster Nmap Scanning with Rust
 
 brew tap tgotwig/linux-dust && brew install dust # du alternative
 
@@ -84,14 +83,14 @@ install deno
 
 # Built on Golang
 
-# install qrcp
+install qrcp
 # install jid
 brew install glow
 install brook
-install duf     # list the disk usage
+install duf # list the disk usage
 
 install massren # rename multiple files using text editor
-install shfmt      # sh for shell formatting
+install shfmt   # sh for shell formatting
 install fzf
 
 install yarn
@@ -125,4 +124,5 @@ brew install tree-sitter
 brew install ccls
 brew install gopls
 brew install rust_analyzer
-install croc
+# install croc
+# install ffsend

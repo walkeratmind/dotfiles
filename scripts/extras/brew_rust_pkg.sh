@@ -1,10 +1,9 @@
-
 function install {
-  which $1 &> /dev/null
+  which $1 &>/dev/null
 
   if [ $? -ne 0 ]; then
     echo "Installing: ${1} ${2}"
-        brew install $1 $2
+    brew install $1 $2
     echo "---------------------------"
   else
     echo "Already installed: ${1}"
@@ -12,28 +11,27 @@ function install {
   fi
 }
 
-
 # Check here https://github.com/matu3ba/awesome-cli-rust/
 
 # https://github.com/bvaisvil/zenith
-cargo install --features nvidia --git https://github.com/bvaisvil/zenith.git
+cargo install --git https://github.com/bvaisvil/zenith.git
 
 install ytop
 install bottom
 install procs
 
 install watchexec # execute command when file changes https://github.com/watchexec/watchexec
-install xsv # csv on terminal https://github.com/BurntSushi/xsv
+install xsv       # csv on terminal https://github.com/BurntSushi/xsv
 
 # Get Latest from the source
-# install nushell # https://github.com/nushell/nushell
+install nushell # https://github.com/nushell/nushell
 
 install fnm # nodejs verison manager (replace nvm) https://github.com/Schniz/fnm
 
-install skim # fuzzy file finder  https://github.com/lotabout/skim
+install skim           # fuzzy file finder  https://github.com/lotabout/skim
 cargo install kondo-ui # clears node_modules and other libs https://github.com/tbillington/kondo
 
-install zola # static site generator https://github.com/getzola/zola
+install zola  # static site generator https://github.com/getzola/zola
 install broot # navigate files faster from terminal https://github.com/Canop/broot
 
 install websocat # https://github.com/vi/websocat
@@ -50,10 +48,10 @@ install git-interactive-rebase-tool # https://github.com/MitMaro/git-interactive
 
 install pastel # color https://github.com/sharkdp/pastel
 
-install orf/brew/gping # ping with graph https://github.com/orf/gping
+install gping # ping with graph https://github.com/orf/gping
 
-install topgrade # upgrade anything https://github.com/r-darwish/topgrade
+# install topgrade # upgrade anything https://github.com/r-darwish/topgrade
 
 install hexyl # command line hex viewer for files https://github.com/sharkdp/hexyl
 
-install volta # js tools manager https://github.com/volta-cli/volta
+# install volta # js tools manager https://github.com/volta-cli/volta

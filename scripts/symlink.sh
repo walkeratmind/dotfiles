@@ -29,14 +29,6 @@ function linkDotfile {
   ln -s ${dotfilesDir}/${1} ${dest}
 }
 
-# function linkDotFolder {
-#   dest = "$HOME/${1}"
-#   dateStr=$(date +%Y-%m-%d-%H%M)
-
-#   echo "Creating new symlink: ${dest}"
-#   ln -s ${dotfilesDir}/${1} ${dest}
-# }
-
 linkDotfile .vimrc
 linkDotfile .tmux.conf
 linkDotfile .bashrc
@@ -90,6 +82,11 @@ linkDotfile .config/nvim/lua
 linkDotfile .config/nvim/after
 linkDotfile .config/nvim/plugin
 linkDotfile .config/nvim/init.lua
+
+mkdir -p $HOME/.config/yabai
+mkdir -p $HOME/.config/skhd
+linkDotfile .config/yabai/yabairc
+linkDotfile .config/skhd/skhdrc
 
 # mkdir -p $dotfilesDir/.vim/bundle
 # cd $dotfilesDir/.vim/bundle
