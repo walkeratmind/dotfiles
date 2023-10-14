@@ -4,7 +4,7 @@ if not status_ok then
 end
 
 treesitter_config.setup {
-  ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  ensure_installed = { "javascript", "typescript", "c", "lua", "rust", "go"},
   sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
   ignore_install = { "phpdoc", "tree-sitter-phpdoc" }, -- List of parsers to ignore installing
   autopairs = {

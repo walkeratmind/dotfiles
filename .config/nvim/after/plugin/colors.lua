@@ -1,4 +1,4 @@
-vim.g.colorscheme = "gruvbox"
+vim.g.colorscheme = "tokyonight"
 
 function ColorMyPencils()
 

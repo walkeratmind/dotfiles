@@ -101,22 +101,19 @@ fi
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-
-
 # ------------------------------------------------------------
 # 	 Common Configs between shells
 # ------------------------------------------------------------
 
 # shellrc - common rc file for {zsh, bash}
 if [[ -d ~/.shellrc.d ]]; then
-    for f in ~/.shellrc.d/*; do
-        [ -f "$f" ] || continue
-        # echo $f # for debugging
-        source "$f"
-    done
-    unset f
+  for f in ~/.shellrc.d/*; do
+    [ -f "$f" ] || continue
+    # echo $f # for debugging
+    source "$f"
+  done
+  unset f
 fi
-
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -151,3 +148,6 @@ export SDKMAN_DIR="$HOME/.sdkman"
 # Fig post block. Keep at the bottom of this file.
 [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
 
+if [[ $TMUX ]]; then
+  alias clear='clear && tmux clear-history'
+fi

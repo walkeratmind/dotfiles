@@ -35,11 +35,6 @@ nnoremap("<leader>vh", function()
     require('telescope.builtin').help_tags()
 end)
 
--- TODO: Fix this immediately
-nnoremap("<leader>vwh", function()
-    require('telescope.builtin').help_tags()
-end)
-
 nnoremap("<leader>vrc", function()
     require('souldust.telescope').search_dotfiles({ hidden = true })
 end)
@@ -54,8 +49,8 @@ nnoremap("<leader>gm", function()
     require('telescope').extensions.git_worktree.create_git_worktree()
 end)
 
--- nnoremap("<leader>sf", function()
---   require('souldust.telescope').file_explore()
--- end)
+nnoremap("<leader>sf", function()
+  require('souldust.telescope').file_explore()
+end)
 
 nnoremap("<leader>fb", ":Telescope file_browser<CR>", { noremap = true })

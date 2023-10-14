@@ -28,8 +28,6 @@ return require("packer").startup(function()
     "folke/trouble.nvim",
     requires = "kyazdani42/nvim-web-devicons"
   }
-  -- tabnine for autocompletion
-  use {'tzachar/cmp-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-cmp'}
   use("ray-x/lsp_signature.nvim")
 
   use("onsails/lspkind-nvim")
@@ -47,9 +45,14 @@ return require("packer").startup(function()
   use 'MunifTanjim/prettier.nvim' -- Prettier plugin for Neovim's built-in LSP client
   use('jose-elias-alvarez/null-ls.nvim')
 
-  use("nvim-treesitter/nvim-treesitter", {
-      run = ":TSUpdate"
-  })
+  -- https://github.com/nvim-treesitter/nvim-treesitter/wiki/Installation
+  use {
+    'nvim-treesitter/nvim-treesitter',
+        run = function()
+            local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+            ts_update()
+        end,
+  }
   use("nvim-treesitter/playground")
   use("romgrk/nvim-treesitter-context")
 
@@ -79,4 +82,7 @@ return require("packer").startup(function()
   -- language specific
   use 'ray-x/go.nvim'
   use 'ray-x/guihua.lua' -- recommanded if need floating window support
+
+  -- navigate between vim and tmux smoothly
+  use 'christoomey/vim-tmux-navigator'
 end)
