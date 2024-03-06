@@ -1,25 +1,26 @@
+local telescope = require("telescope")
 local pickers = require("telescope.pickers")
 local finders = require("telescope.finders")
 local previewers = require("telescope.previewers")
 local action_state = require("telescope.actions.state")
 local conf = require("telescope.config").values
 local actions = require("telescope.actions")
+local fb_actions = require "telescope".extensions.file_browser.actions
 
 local function telescope_buffer_dir()
   return vim.fn.expand('%:p:h')
 end
 
-local fb_actions = require "telescope".extensions.file_browser.actions
 
-require("telescope").setup({
+telescope.setup({
 	defaults = {
 		file_sorter = require("telescope.sorters").get_fzf_sorters,
 		-- prompt_prefix = " >",
 		color_devicons = true,
 
-		file_previewer = require("telescope.previewers").vim_buffer_cat.new,
-		grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
-		qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
+		file_previewer = previewers.vim_buffer_cat.new,
+		grep_previewer = previewers.vim_buffer_vimgrep.new,
+		qflist_previewer = previewers.vim_buffer_qflist.new,
 
 		mappings = {
 			i = {
@@ -86,12 +87,12 @@ require("telescope").setup({
 	},
 })
 
-require('telescope').load_extension('fzf')
--- require('telescope').load_extension('zoxide')
--- require('telescope').load_extension('neoclip')
--- require('telescope').load_extension('gh')
-require('telescope').load_extension('repo')
-require('telescope').load_extension("file_browser")
+telescope.load_extension('fzf')
+-- telescope.load_extension('zoxide')
+-- telescope.load_extension('neoclip')
+-- telescope.load_extension('gh')
+telescope.load_extension('repo')
+telescope.load_extension("file_browser")
 
 local M = {}
 
@@ -144,7 +145,7 @@ M.git_branches = function()
 end
 
 M.file_explore = function()
-  require('telescope').extensions.file_browser.file_browser({
+  telescope.extensions.file_browser.file_browser({
     path = "%:p:h",
     cwd = telescope_buffer_dir(),
     respect_gitignore = false,

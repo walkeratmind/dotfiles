@@ -7,6 +7,7 @@ local nmap = Remap.nmap
 
 nnoremap("<leader>pv", ":Ex<CR>")
 nnoremap("<leader>u", ":UndotreeShow<CR>")
+nnoremap("<leader>ut", vim.cmd.UndotreeToggle)
 
 vnoremap("J", ":m '>+1<CR>gv=gv")
 vnoremap("K", ":m '<-2<CR>gv=gv")
@@ -15,10 +16,9 @@ nnoremap("Y", "yg$")
 
 -- Search mappings: These will make it so that going to the next one in a
 -- search will center on the line it's found in.
-nnoremap("n", "nzzzv")
-nnoremap("N", "Nzzzv")
+-- nnoremap("n", "nzzzv")
+-- nnoremap("N", "Nzzzv")
 
-nnoremap("J", "mzJ`z")
 nnoremap("<C-d>", "<C-d>zz")
 nnoremap("<C-u>", "<C-u>zz")
 

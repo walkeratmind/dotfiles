@@ -1,0 +1,43 @@
+clear
+ls
+clear
+ls
+cd project_lab/
+zoxide
+clear
+which zoxide
+clear
+which cd
+clear
+tmuix
+clear
+ls
+clear
+tmux
+clear
+tmux
+ls
+pwd
+clear
+ls
+tmux
+clear
+zsh
+ls
+pwed
+pwd
+clear
+ls
+cd project_lab/
+ls
+exa
+clear
+ls
+z AndroidStudioProjects/
+clea
+rclear
+clear
+exit
+brew upgrade alacritty
+zsh
+exit

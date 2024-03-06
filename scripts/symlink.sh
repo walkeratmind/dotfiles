@@ -88,6 +88,12 @@ mkdir -p $HOME/.config/skhd
 linkDotfile .config/yabai/yabairc
 linkDotfile .config/skhd/skhdrc
 
+mkdir -p $HOME/.config/zed/themes
+linkDotfile .config/zed/settings.json
+linkDotfile .config/zed/themes/nord-theme.json
+# https://karabiner-elements.pqrs.org/docs/manual/misc/configuration-file-path/
+ln -s ./config/karabiner $HOME/.config
+
 # mkdir -p $dotfilesDir/.vim/bundle
 # cd $dotfilesDir/.vim/bundle
 # git clone git://github.com/VundleVim/Vundle.vim.git

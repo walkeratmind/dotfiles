@@ -17,34 +17,6 @@ return require("packer").startup(function()
   use { "nvim-telescope/telescope-file-browser.nvim" }
   use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 
-  -- LSP
-  use("neovim/nvim-lspconfig")
-  use("hrsh7th/cmp-nvim-lsp")
-  use("hrsh7th/cmp-buffer")
-  use("hrsh7th/nvim-cmp")
-
-  -- Lua
-  use {
-    "folke/trouble.nvim",
-    requires = "kyazdani42/nvim-web-devicons"
-  }
-  use("ray-x/lsp_signature.nvim")
-
-  use("onsails/lspkind-nvim")
-  use("glepnir/lspsaga.nvim")
-  use("L3MON4D3/LuaSnip")
-  use("saadparwaiz1/cmp_luasnip")
-
-  use 'nvim-lualine/lualine.nvim' -- Statusline
-  use("simrat39/symbols-outline.nvim") -- outline the tree view for symbols
-  use("mbbill/undotree") -- show last undo in tree view
-  use 'kyazdani42/nvim-web-devicons' -- File icons
-
-
-  use("sbdchd/neoformat")
-  use 'MunifTanjim/prettier.nvim' -- Prettier plugin for Neovim's built-in LSP client
-  use('jose-elias-alvarez/null-ls.nvim')
-
   -- https://github.com/nvim-treesitter/nvim-treesitter/wiki/Installation
   use {
     'nvim-treesitter/nvim-treesitter',
@@ -55,10 +27,59 @@ return require("packer").startup(function()
   }
   use("nvim-treesitter/playground")
   use("romgrk/nvim-treesitter-context")
+  use("theprimeagen/harpoon")
+
+  use 'nvim-lualine/lualine.nvim' -- Statusline
+  use("simrat39/symbols-outline.nvim") -- outline the tree view for symbols
+  use("mbbill/undotree") -- show last undo in tree view
+  use 'kyazdani42/nvim-web-devicons' -- File icons
+  use("tpope/vim-fugitive") -- git wrapper
+
+  use("sbdchd/neoformat")
+  use 'MunifTanjim/prettier.nvim' -- Prettier plugin for Neovim's built-in LSP client
+  use('jose-elias-alvarez/null-ls.nvim')
 
   use 'windwp/nvim-autopairs'
   use 'windwp/nvim-ts-autotag'
   use 'norcalli/nvim-colorizer.lua'
+
+    -- LSP
+    use {
+      'VonHeikemen/lsp-zero.nvim',
+      branch = 'v1.x',
+      requires = {
+        -- LSP Support
+        {'neovim/nvim-lspconfig'},
+        {'williamboman/mason.nvim'},
+        {'williamboman/mason-lspconfig.nvim'},
+
+        -- Autocompletion
+        {'hrsh7th/nvim-cmp'},
+        {'hrsh7th/cmp-buffer'},
+        {'hrsh7th/cmp-path'},
+        {'saadparwaiz1/cmp_luasnip'},
+        {'hrsh7th/cmp-nvim-lsp'},
+        {'hrsh7th/cmp-nvim-lua'},
+
+        -- Snippets
+        {'L3MON4D3/LuaSnip'},
+        {'rafamadriz/friendly-snippets'},
+        {'saadparwaiz1/cmp_luasnip'},
+
+        {'glepnir/lspsaga.nvim'},
+        -- vscode like pictograms in suggestion
+        {'onsails/lspkind-nvim'},
+
+      }
+    }
+  use("ray-x/lsp_signature.nvim")
+
+
+    -- Lua
+    use {
+      "folke/trouble.nvim",
+      requires = "kyazdani42/nvim-web-devicons"
+    }
 
   -- Debugger Plugin
   use("mfussenegger/nvim-dap")

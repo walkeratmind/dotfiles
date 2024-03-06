@@ -1,41 +1,39 @@
 local Remap = require("souldust.keymap")
 local nnoremap = Remap.nnoremap
 
-nnoremap("<C-p>", function()
-  require('telescope.builtin').find_files()
+nnoremap("<leader>fc", function()
+    require('telescope.builtin').grep_string({ search = vim.fn.input("rg For > ")})
 end)
 
-nnoremap("<leader>ps", function()
-    require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ")})
-end)
-nnoremap("<Leader>pf", function()
+nnoremap("<Leader>ff", function()
     require('telescope.builtin').find_files()
 end)
 nnoremap("<Leader>;g", function()
     require('telescope.builtin').git_files()
 end)
 
-nnoremap("<leader>pw", function()
+nnoremap("<leader>fw", function()
     require('telescope.builtin').grep_string { search = vim.fn.expand("<cword>") }
 end)
 nnoremap("<leader>pb", function()
     require('telescope.builtin').buffers()
 end)
 
-nnoremap(';;', function()
+nnoremap('<leader>fr', function()
   require('telescope.builtin').resume()
 end)
-nnoremap(";f",  ":Telescope file_browser<CR>", { noremap = true })
+
+nnoremap("<leader>fb", ":Telescope file_browser<CR>", { noremap = true })
 
 nnoremap(";e", function()
   require('telescope.builtin').diagnostics()
 end)
 
-nnoremap("<leader>vh", function()
+nnoremap("<leader>fh", function()
     require('telescope.builtin').help_tags()
 end)
 
-nnoremap("<leader>vrc", function()
+nnoremap("<leader>fsd", function()
     require('souldust.telescope').search_dotfiles({ hidden = true })
 end)
 
@@ -53,4 +51,3 @@ nnoremap("<leader>sf", function()
   require('souldust.telescope').file_explore()
 end)
 
-nnoremap("<leader>fb", ":Telescope file_browser<CR>", { noremap = true })

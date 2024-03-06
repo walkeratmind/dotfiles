@@ -10,18 +10,18 @@ alias grep='grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}'
 alias ci='code-insiders'
 
 # ls
-# https://the.exa.website
-alias ls='exa --color=always --group-directories-first' # my preferred listing
-alias lsi='exa --color=always --icons --group-directories-first' # my preferred listing
-alias l='exa -F'
-alias ll='exa -lF'
-alias la='exa -aF'
-alias lla='exa -aFl'
-alias lg='exa -aFl --git'
-# alias la='exa -a --color=always --group-directories-first'  # all files and dirs
-alias ll='exa -l --color=always --group-directories-first'  # long format
-alias lt='exa -aT --color=always --group-directories-first --git-ignore' # tree listing
-alias llt='exa -TL 1 --color=always --group-directories-first --git-ignore' # tree listing
+# https://the.eza.website
+alias ls='eza --color=always --group-directories-first' # my preferred listing
+alias lsi='eza --color=always --icons --group-directories-first' # my preferred listing
+alias l='eza -F'
+alias ll='eza -lF'
+alias la='eza -aF'
+alias lla='eza -aFl'
+alias lg='eza -aFl --git'
+# alias la='eza -a --color=always --group-directories-first'  # all files and dirs
+alias ll='eza -l --color=always --group-directories-first'  # long format
+alias lt='eza -aT --color=always --group-directories-first --git-ignore' # tree listing
+alias llt='eza -TL 1 --color=always --group-directories-first --git-ignore' # tree listing
 
 
 ## Dust

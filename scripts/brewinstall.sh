@@ -25,7 +25,7 @@ fi
 # Basics
 # install chromium-browser
 
-install htop
+install btop   # more config than htop
 install jq
 install nmap
 install tmux
@@ -54,7 +54,7 @@ install nushell
 # ------------------------------------------------------------
 
 install rust
-install exa       # ls with more power
+install eza       # ls with more power , fork of exa as it's no longer maintained
 install fd        # faster than find
 install ripgrep   # grep with power
 install sd        # find and replace, faster sed
@@ -126,3 +126,5 @@ brew install gopls
 brew install rust_analyzer
 # install croc
 # install ffsend
+#
+install sniffnet ## pkg to monitor internet traffic

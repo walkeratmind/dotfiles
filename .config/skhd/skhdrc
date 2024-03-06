@@ -7,12 +7,12 @@ alt - h: yabai -m window --focus west
 alt - l: yabai -m window --focus east
 
 # change focus between external displays
-alt - p : yabai -m display --focus prev || yabai -m display --focus last
-alt - n : yabai -m display --focus next || yabai -m display --focus first
+alt - p : yabai -m display --focus prev || yabai -m display --focus west
+alt - n : yabai -m display --focus next || yabai -m display --focus east
 alt - space : yabai -m display --focus recent
 
 # change focus between space
-alt - s : yabai -m space --focus prev || yabai -m space --focus last
+# alt - s : yabai -m space --focus prev || yabai -m space --focus last
 alt - g : yabai -m space --focus next || yabai -m space --focus first
 alt - r: yabai -m space --focus recent
 
@@ -30,6 +30,7 @@ alt - 7 : yabai -m display --focus 7
 # change mode
 ctrl + alt - b : yabai -m config layout bsp
 ctrl + alt - f  : yabai -m config layout float
+alt - s : yabai -m space --layout stack
 
 # rotate layout clockwise
 shift + alt - r : yabai -m space --rotate 270
@@ -61,14 +62,15 @@ shift + alt - e : yabai -m space --balance
 shift + alt - a : yabai -m window --resize left:-50:0; \
                   yabai -m window --resize right:-50:0
 
+shift + alt - d : yabai -m window --resize right:50:0; \
+                  yabai -m window -resize left:+50:0
+
 shift + alt - s : yabai -m window --resize bottom:0:50; \
                   yabai -m window --resize top:0:50
 
 shift + alt - w : yabai -m window --resize top:0:-50; \
                   yabai -m window --resize bottom:0:-50
 
-shift + alt - d : yabai -m window --resize right:50:0; \
-                  yabai -m window -resize left:50:0
 
 # Moving Windows around
 shift + alt - j : yabai -m window --swap south
@@ -83,12 +85,15 @@ ctrl + alt - h : yabai -m window --warp west
 ctrl + alt - l : yabai -m window --warp east
 
 # Move window to display left and right
-shift + alt - s : yabai -m window --display west; yabai -m display --focus west;
-shift + alt - g : yabai -m window --display east; yabai -m display --focus east;
+ctrl + cmd - h : yabai -m window --display west; yabai -m display --focus west;
+ctrl + cmd - l : yabai -m window --display east; yabai -m display --focus east;
 
-# move window to prev and next space
-shift + alt - p : yabai -m window --space prev;
-shift + alt - n : yabai -m window --space next;
+# move window to prev and next display
+shift + alt - p : yabai -m window --display west; yabai -m display --focus west;
+shift + alt - n : yabai -m window --display east; yabai -m display --focus east;
+
+# shift + alt - p : yabai -m window --space prev;
+# shift + alt - n : yabai -m window --space next;
 
 # move window to space
 
