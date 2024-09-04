@@ -1,5 +1,3 @@
-# Fig pre block. Keep at the top of this file.
-[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
 # Fig pre block. Keep Defaulat the top of this file.
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -137,8 +135,12 @@ source ~/.env
 # for starship
 eval "$(starship init zsh)"
 
-# Zoxide
-eval "$(zoxide init zsh)"
+# Fzf theme
+export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
+--color=fg:#c0caf5,bg:#1a1b26,hl:#ff9e64 \
+--color=fg+:#c0caf5,bg+:#292e42,hl+:#ff9e64 \
+--color=info:#7aa2f7,prompt:#7dcfff,pointer:#7dcfff \
+--color=marker:#9ece6a,spinner:#9ece6a,header:#9ece6a"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -153,5 +155,4 @@ fi
 eval "$(atuin init zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 
-# Fig post block. Keep at the bottom of this file.
-[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
+source /Users/rakesh/.config/broot/launcher/bash/br

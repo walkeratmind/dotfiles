@@ -260,3 +260,5 @@ let $config = {
     }
   ]
 }
+
+use '/Users/rakesh/.config/broot/launcher/nushell/br' *

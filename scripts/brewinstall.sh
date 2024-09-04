@@ -82,6 +82,7 @@ install deno
 # ------------------------------------------------------------
 
 # Built on Golang
+install golangci-lint
 
 install qrcp
 # install jid

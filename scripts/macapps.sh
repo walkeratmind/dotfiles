@@ -56,3 +56,5 @@ install stats
 brew install koekeishiya/formulae/yabai
 # hotkeys for macos (required for yabai to set shortcuts): https://github.com/koekeishiya/skhd
 brew install koekeishiya/formulae/skhd
+
+install pika

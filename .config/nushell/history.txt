@@ -41,3 +41,23 @@ exit
 brew upgrade alacritty
 zsh
 exit
+clear
+ls
+which ls
+which cd
+clear
+ls
+pwd
+clear
+ls
+pwd
+cd project_lab/
+clear
+cd dotfiles/
+clear
+ls
+nvim .
+which nvim
+clear
+zsh
+which zsh
