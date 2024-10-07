@@ -72,7 +72,7 @@ ZSH_DISABLE_COMPFIX="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(alias-finder git gitignore adb aws fd zsh-syntax-highlighting)
+plugins=(alias-finder git gitignore adb aws fd zsh-syntax-highlighting docker docker-compose aliases)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -126,6 +126,10 @@ fi
 
 # Link aliases
 source ~/.aliases
+
+# global aliases
+alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
+
 # Link Env File
 source ~/.env
 
@@ -137,16 +141,16 @@ eval "$(starship init zsh)"
 
 # Fzf theme
 export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
+-m \
 --color=fg:#c0caf5,bg:#1a1b26,hl:#ff9e64 \
 --color=fg+:#c0caf5,bg+:#292e42,hl+:#ff9e64 \
 --color=info:#7aa2f7,prompt:#7dcfff,pointer:#7dcfff \
 --color=marker:#9ece6a,spinner:#9ece6a,header:#9ece6a"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+if type rg &> /dev/null; then
+  export FZF_DEFAULT_COMMAND='rg --files'
+fi
 
 if [[ $TMUX ]]; then
   alias clear='clear && tmux clear-history'
@@ -156,3 +160,7 @@ eval "$(atuin init zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 
 source /Users/rakesh/.config/broot/launcher/bash/br
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"

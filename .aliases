@@ -214,3 +214,10 @@ alias pubkey="cat ~/.ssh/id_ed25519.pub | pbcopy| echo '=> Public key copied to 
 # Pipe my private key to my clipboard.
 alias prikey="cat ~/.ssh/id_ed25519 | pbcopy | echo '=> Private key copied to pasteboard.'"
 
+
+## color and prettify helps
+alias bathelp='bat --plain --language=help'
+help() {
+    "$@" --help 2>&1 | bathelp
+}
+

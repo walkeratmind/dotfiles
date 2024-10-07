@@ -129,3 +129,4 @@ brew install rust_analyzer
 # install ffsend
 #
 install sniffnet ## pkg to monitor internet traffic
+install ruff

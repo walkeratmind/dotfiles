@@ -6,7 +6,7 @@
 # ------------------------------------------------------------
 
 [user]
-	name = walkeratmind
+	name = Rakesh Niraula
 	email = rakeshhniraulaa@gmail.com
 
 [color]
@@ -27,9 +27,18 @@
 	editor = vim
 	autocrlf = input
 	excludesfile = /Users/rakesh/.gitignore_global
+  pager = delta
+[interactive]
+  diffFilter = detlta --color-only
 [push]
     followTags = true
     default = current
+[delta]
+    navigate = true
+[merge]
+  conflictStyle = diff3
+[diff]
+  colorMoved = default
 [alias]
     plog = log --graph --pretty=format:'%C(bold blue)%h%Creset - %C(yellow)%d%Creset %s %C(cyan dim)(%cr)%Creset %n' --abbrev-commit --branches
 		  # Adapted from https://blog.jez.io/cli-code-review/
@@ -68,3 +77,9 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[column]
+	ui = auto
+[branch]
+	sort = -committerdate
+[rerere]
+	enabled = true

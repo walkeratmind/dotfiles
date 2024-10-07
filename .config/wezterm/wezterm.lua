@@ -121,6 +121,7 @@ local config = {
   keys = {
     -- Send "CTRL-A" to the terminal when pressing CTRL-A, CTRL-A
     { key = "a", mods = "LEADER|CTRL", action = act({ SendString = "\x00" }) },
+    { key = "w", mods = "CMD", action = act.CloseCurrentTab({ confirm = false }) },
     { key = "s", mods = "CTRL|SHIFT", action = act.SendString("tmux new -Asw\r") },
     { key = "-", mods = "LEADER", action = act({ SplitVertical = { domain = "CurrentPaneDomain" } }) },
     { key = "\\", mods = "LEADER", action = act({ SplitHorizontal = { domain = "CurrentPaneDomain" } }) },

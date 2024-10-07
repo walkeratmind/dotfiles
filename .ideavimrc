@@ -1,0 +1,188 @@
+""" Map leader to space ---------------------
+let mapleader=" "
+
+""" Plugins  --------------------------------
+set surround
+set multiple-cursors
+set commentary
+set argtextobj
+set easymotion
+set sneak
+set textobj-entire
+set ReplaceWithRegister
+" set which-key
+set clipboard+=unnamed
+
+
+""" Additional Plugins ----------------------
+" Plug 'mbbill/undotree'
+" Plug 'jdhao/better-escape.vim'
+Plug 'kana/vim-textobj-entire'
+Plug 'machakann/vim-highlightedyank'
+
+""" Plugin settings -------------------------
+let g:argtextobj_pairs="[:],(:),<:>"
+let g:highlightedyank_highlight_color = "rgba(255, 165, 90, 80)"
+
+" """ Common settings -------------------------
+" set encoding=utf-8
+" set fileencoding=utf-8
+" set fileencodings=utf-8
+
+set showmode
+set so=5
+set incsearch
+set nu
+
+set number
+set scrolloff=12 " set scroll offset at the end of line
+set relativenumber "" sets relative numbering of line
+set timeout
+set timeoutlen=5000
+
+
+"" Open new split panes to right and bottom, which feels more natural
+set splitbelow
+set splitright
+
+""" Idea specific settings ------------------
+set ideajoin
+set ideastatusicon=gray
+set idearefactormode=keep
+
+""" Mappings --------------------------------
+
+"" open config and reload
+nnoremap \e :e ~/.ideavimrc<CR>
+nnoremap \r :action IdeaVim.ReloadVimRc.reload<CR>
+
+" the escape button
+nnoremap <C-c> <Esc>
+" redo
+nnoremap U <C-r>
+" comfort shortcuts
+nnoremap <C-d> yyp
+
+
+" check easymotion docs: https://github.com/easymotion/vim-easymotion
+map <leader>f <Plug>(easymotion-f)
+map <leader>F <Plug>(easymotion-s)
+map <leader>j <Plug>(easymotion-j)
+map <leader>J <Plug>(easymotion-s)
+map <leader>k <Plug>(easymotion-k)
+
+map <leader>c <Action>(RenameElement)
+
+map <C-z> <Action>(ToggleDistractionFreeMode)
+
+" close tab
+map <leader>x <Action>(CloseContent)
+
+" code information
+nnoremap <leader>d :action ShowHoverInfo<CR>
+nnoremap <leader>e :action ShowErrorDescription<CR>
+
+" code navigation
+nnoremap gi :action GotoImplementation<CR>
+
+inoremap <C-b> <ESC>^i
+inoremap <C-e> <End>
+inoremap <C-h> <Left>
+inoremap <C-l> <Right>
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+" map("i", "<C-b>", "<ESC>^i", { desc = "Move Beginning of line" })
+" map("i", "<C-e>", "<End>", { desc = "Move End of line" })
+" map("i", "<C-h>", "<Left>", { desc = "Move Left" })
+" map("i", "<C-l>", "<Right>", { desc = "Move Right" })
+" map("i", "<C-j>", "<Down>", { desc = "Move Down" })
+" map("i", "<C-k>", "<Up>", { desc = "Move Up" })
+
+" code selection
+nnoremap <S-j> :action MoveLineDown<CR>
+nnoremap <S-k> :action MoveLineUp<CR>
+
+" debugging
+nnoremap <leader>dr :action Debug<CR>
+nnoremap <leader>ds :action Stop<CR>
+nnoremap <leader>db :action ToggleLineBreakpoint<CR>
+" run
+nnoremap <leader>rc :action ContextRun<CR>
+nnoremap <leader>rx :action ChooseRunConfiguration<CR>
+nnoremap <leader>rr :action Rerun<CR>
+nnoremap <leader>rt :action RunTests<CR>
+nnoremap <leader>rs :action Stop<CR>
+
+map <leader>s <Action>(SelectInProjectView)
+map <leader>a <Action>(Annotate)
+map <leader>h <Action>(Vcs.ShowTabbedFileHistory)
+map <S-Space> <Action>(GotoNextError)
+
+map <leader>b <Action>(ToggleLineBreakpoint)
+map <leader>o <Action>(FileStructurePopup)
+
+nmap <leader>p <Action>(SearchEverywhere)
+nmap <leader>k <Action>(QuickJavaDoc)
+nmap <leader>d <Action>(ShowErrorDescription)
+nmap <leader>da <Action>(ShowIntentionActions)
+
+
+set idearefactormode=keep
+vnoremap <  >gv
+nnoremap [[ :action MethodUp<CR>
+nnoremap ]] :action MethodDown<CR>
+
+nnoremap zm :action CollapseRegion<CR>
+nnoremap zr :action ExpandRegion<CR>
+nnoremap zM :action CollapseAllRegions<CR>
+nnoremap zR :action ExpandAllRegions<CR>
+
+nnoremap <leader>/ :action CommentByLineComment<CR>
+nnoremap <leader>rp :action Refactorings.QuickListPopupAction<CR>
+map <C-s> <Action>(ReformatCode)
+
+nnoremap <leader>fo :action OptimizeImports<CR>
+nnoremap <leader>l :action RecentLocations<CR>
+nnoremap <leader>h  :action LocalHistory.ShowHistory<CR>
+nnoremap ge :action GotoNextError<CR>
+nnoremap gE :action GotoPreviousError<CR>
+
+
+"" undotree
+nnoremap <leader>tt :UndotreeToggle<CR>
+
+""" Search symbols in file or project
+nmap <leader>fs <Action>(FileStructurePopup)
+nmap <leader>ps <Action>(GotoSymbol)
+
+""" Refactoring and formatting
+vmap <leader>r <Action>(RefactoringMenu)
+
+" open terminal 
+nmap <leader>t <Action>(ActivateTerminalToolWindow) 
+
+
+" Get off my lawn
+nnoremap <Left> :echoe "Use h"<CR>
+nnoremap <Right> :echoe "Use l"<CR>
+nnoremap <Up> :echoe "Use k"<CR>
+nnoremap <Down> :echoe "Use j"<CR>
+
+""" Window management & navigation
+nmap <leader>sv <Action>(SplitVertically)
+nmap <C-h> <C-w><C-h>
+nmap <C-l> <C-w><C-l>
+"" my nvim config
+nnoremap <S-TAB> :action PreviousTab<CR>
+nnoremap <TAB> :action NextTab<CR>
+
+
+Plug 'preservim/nerdtree'
+map <c-n> :NERDTree<CR>
+":NERDTreeFocus
+":NERDTreeToggle
+map <c-n>n :NERDTreeClose<CR>
+
+set visualbell
+set noerrorbells
+

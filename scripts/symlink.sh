@@ -45,6 +45,8 @@ linkDotfile .env
 
 linkDotfile .curlrc
 
+linkDotfile .ideavimrc
+
 # create symlink for all folder present in .config in ~/.config (Note: Don't symlink the .config dir as it contains other programs config too)
 # for f in ./.config/*/* ; do
 # 	if [ -f $f ]; then

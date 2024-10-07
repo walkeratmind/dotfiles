@@ -7,10 +7,21 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "assistant": {
+    "enabled": true,
+    "default_model": {
+      "provider": "anthropic",
+      "model": "claude-3-5-sonnet-20240620"
+    },
+    "version": "2",
+    "button": true,
+    "default_width": 480,
+    "dock": "right"
+  },
   "telemetry": {
     "metrics": true
   },
-  "theme": "Nord",
+  "theme": "Catppuccin Macchiato",
   "base_keymap": "VSCode",
   "features": {
     "copilot": false
