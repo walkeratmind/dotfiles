@@ -130,3 +130,9 @@ brew install rust_analyzer
 #
 install sniffnet ## pkg to monitor internet traffic
 install ruff
+
+# bat-extras for batgrep for rg, batman for man etc.
+install bat-extras
+
+# generate color with best tool from terminal https://github.com/sharkdp/pastel
+install pastel

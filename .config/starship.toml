@@ -29,10 +29,9 @@ symbol = " "
 truncation_length = 3
 truncate_to_repo = true
 truncation_symbol = ''
+format = "[$repo_root]($repo_root_style)[/$path]($style)[$read_only]($read_only_style) "
 style = "bold yellow"
-format = "[$path]($style)[$read_only]($read_only_style) "
 repo_root_style = "bold cyan"
-repo_root_format  = '[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style) '
 read_only = " 󰌾"
 
 [directory.substitutions]

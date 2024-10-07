@@ -13,5 +13,5 @@ matches:
     replace: "sd"
 
   # docker cli commands
-  - trigger: ":dcwatch"
-    replace: "watch -n 5 docker ps"
+  - trigger: ":dcw"
+    replace: "watch -n 5 docker ps | bat -l log"
