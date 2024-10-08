@@ -72,7 +72,7 @@ ZSH_DISABLE_COMPFIX="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(alias-finder git gitignore adb aws fd zsh-syntax-highlighting docker docker-compose aliases)
+plugins=(alias-finder git gitignore aws zsh-syntax-highlighting docker docker-compose aliases)
 
 source $ZSH/oh-my-zsh.sh
 

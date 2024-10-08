@@ -70,6 +70,7 @@ mkdir -p $HOME/.config/zellij
 linkDotfile .config/zellij
 
 linkDotfile .config/starship.toml
+linkDotfile .config/.ripgreprc
 
 linkDotfile .config/espanso
 linkDotfile .config/doom

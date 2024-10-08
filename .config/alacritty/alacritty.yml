@@ -1,7 +1,7 @@
 # Configuration for Alacritty, the GPU enhanced terminal emulator.
 
 # Import additional configuration files
-#
+
 # Imports are loaded in order, skipping all missing files, with the importing
 # file being loaded last. If a field is already present in a previous import, it
 # will be replaced.
@@ -901,7 +901,7 @@ shell:
   args:
     - -l
     - -c
-    - "tmux attach || tmux new -s main"
+    - "tmux attach alacritty || tmux new -s alacritty"
 
 # shell:
 #   program: tmux
