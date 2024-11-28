@@ -63,8 +63,9 @@ linkDotfile .ideavimrc
 # set .config folder in $HOME folder like and
 # symlink the folders from .config
 
-mkdir -p $HOME/.config/alacritty
-linkDotfile .config/alacritty/alacritty.yml
+# mkdir -p $HOME/.config/alacritty
+# linkDotfile .config/alacritty/alacritty.yml
+ln -s ~/project_lab/dotfiles/.config/alacritty ~/.config/alacritty
 
 mkdir -p $HOME/.config/zellij
 linkDotfile .config/zellij

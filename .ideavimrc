@@ -3,7 +3,7 @@ let mapleader=" "
 
 """ Plugins  --------------------------------
 set surround
-set multiple-cursors
+" set multiple-cursors
 set commentary
 set argtextobj
 set easymotion
@@ -19,6 +19,13 @@ set clipboard+=unnamed
 " Plug 'jdhao/better-escape.vim'
 Plug 'kana/vim-textobj-entire'
 Plug 'machakann/vim-highlightedyank'
+Plug 'vim-scripts/argtextobj.vim'
+Plug 'tommcdo/vim-exchange'
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+
+brush
+apple
+math
 
 """ Plugin settings -------------------------
 let g:argtextobj_pairs="[:],(:),<:>"
@@ -65,10 +72,10 @@ nnoremap <C-d> yyp
 
 
 " check easymotion docs: https://github.com/easymotion/vim-easymotion
-map <leader>f <Plug>(easymotion-f)
+map <leader>f <plug>(easymotion-f)
 map <leader>F <Plug>(easymotion-s)
-map <leader>j <Plug>(easymotion-j)
-map <leader>J <Plug>(easymotion-s)
+map <leader>J <Plug>(easymotion-j)
+map <leader>j <Plug>(easymotion-s)
 map <leader>k <Plug>(easymotion-k)
 
 map <leader>c <Action>(RenameElement)
@@ -103,8 +110,8 @@ nnoremap <S-j> :action MoveLineDown<CR>
 nnoremap <S-k> :action MoveLineUp<CR>
 
 " debugging
-nnoremap <leader>dr :action Debug<CR>
-nnoremap <leader>ds :action Stop<CR>
+nnoremap <leader>ds :action Debug<CR>
+nnoremap <leader>dk :action Stop<CR>
 nnoremap <leader>db :action ToggleLineBreakpoint<CR>
 " run
 nnoremap <leader>rc :action ContextRun<CR>
@@ -178,11 +185,25 @@ nnoremap <TAB> :action NextTab<CR>
 
 
 Plug 'preservim/nerdtree'
-map <c-n> :NERDTree<CR>
+map <leader>n :NERDTree<CR>
 ":NERDTreeFocus
 ":NERDTreeToggle
 map <c-n>n :NERDTreeClose<CR>
 
-set visualbell
+" Remap multiple-cursors shortcuts to match terryma/vim-multiple-cursors
+nmap <C-n> <Plug>NextWholeOccurrence
+xmap <C-n> <Plug>NextWholeOccurrence
+nmap g<C-n> <Plug>NextOccurrence
+xmap g<C-n> <Plug>NextOccurrence
+xmap <C-x> <Plug>SkipOccurrence
+xmap <C-p> <Plug>RemoveOccurrence
+
+" Note that the default <A-n> and g<A-n> shortcuts don't work on Mac due to dead keys.
+" <A-n> is used to enter accented text e.g. ñ
+" Feel free to pick your own mappings that are not affected. I like to use <leader>
+nmap <leader><C-n> <Plug>AllWholeOccurrences
+xmap <leader><C-n> <Plug>AllWholeOccurrences
+nmap <leader>g<C-n> <Plug>AllOccurrences
+xmap <leader>g<C-n> <Plug>AllOccurrencesset visualbell
 set noerrorbells
 

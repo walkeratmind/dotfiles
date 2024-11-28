@@ -61,3 +61,9 @@ which nvim
 clear
 zsh
 which zsh
+tmux attach || tmux new -s itermlsls
+ls
+clear
+ls
+brew upgrader nushell
+exit
