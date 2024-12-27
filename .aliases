@@ -11,7 +11,7 @@ alias ci='code-insiders'
 
 # ls
 # https://the.eza.website
-alias ls='eza --color=always --group-directories-first' # my preferred listing
+alias ls='eza --color=always --group-directories-first --icons=always' # my preferred listing
 alias lsi='eza --color=always --icons --group-directories-first' # my preferred listing
 alias l='eza -F'
 alias ll='eza -lF'

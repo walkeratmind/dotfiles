@@ -66,14 +66,32 @@ linkDotfile .ideavimrc
 # mkdir -p $HOME/.config/alacritty
 # linkDotfile .config/alacritty/alacritty.yml
 ln -s ~/project_lab/dotfiles/.config/alacritty ~/.config/alacritty
+ln -s ~/project_lab/dotfiles/.config/lazygit ~/.config
 
 mkdir -p $HOME/.config/zellij
 linkDotfile .config/zellij
 
+# ln -s $XDG_CONFIG_HOME/zellij
+ln -s ~/project_lab/dotfiles/.config/aerospace ~/.config/aerospace
+
+
+ln -s ~/project_lab/dotfiles/.config/ghostty  ~/.config/ghostty
+
+
+# can't do this as it has flavors , installed with : ya pack -a yazi-rs/flavors:catppuccin-macchiato
+# ln -s ~/project_lab/dotfiles/.config/yazi  ~/.config/yazi
+
+mkdir -p $XDG_CONFIG_HOME/yazi
+linkDotfile .config/yazi/yazi.toml
+linkDotfile .config/yazi/keymap.toml
+linkDotfile .config/yazi/theme.toml
+
 linkDotfile .config/starship.toml
 linkDotfile .config/.ripgreprc
 
+mkdir -p $XDG_CONFIG_HOME/espanso
 linkDotfile .config/espanso
+
 linkDotfile .config/doom
 
 mkdir -p $HOME/.config/fish

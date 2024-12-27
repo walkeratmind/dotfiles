@@ -5,6 +5,9 @@
 # ignore vim bundle
 .vim/bundle/*
 
+
+.config/espanso/match/package/**
+
 *.zip
 *.tar.gz
 

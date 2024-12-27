@@ -17,6 +17,13 @@ ZSH_THEME="agnoster"
 # If set to an empty array, this variable will have no effect.
 # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
+
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+bindkey '^ ' autosuggest-execute
+bindkey '^l' autosuggest-accept
+bindkey '^c' autosuggest-clear
+bindkey '^n' autosuggest-toggle
+
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -81,13 +88,6 @@ source $ZSH/oh-my-zsh.sh
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
-# Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='nvim'
-else
-  export EDITOR='nvim'
-fi
-
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
@@ -134,33 +134,48 @@ alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
 source ~/.env
 
 # ------------------------------------------------------------
+
+# Preferred editor for local and remote sessions
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='nvim'
+fi
+
+
 # ------------------------------------------------------------
 
 # for starship
 eval "$(starship init zsh)"
-
-# Fzf theme
-export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
--m \
---color=fg:#c0caf5,bg:#1a1b26,hl:#ff9e64 \
---color=fg+:#c0caf5,bg+:#292e42,hl+:#ff9e64 \
---color=info:#7aa2f7,prompt:#7dcfff,pointer:#7dcfff \
---color=marker:#9ece6a,spinner:#9ece6a,header:#9ece6a"
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-if type rg &> /dev/null; then
-  export FZF_DEFAULT_COMMAND='rg --files'
-fi
 
 if [[ $TMUX ]]; then
   alias clear='clear && tmux clear-history'
 fi
 
 eval "$(atuin init zsh)"
+
+# cd God
 eval "$(zoxide init --cmd cd zsh)"
+
+
+# thefuck alias
+eval $(thefuck --alias)
+eval $(thefuck --alias fk)
 
 source /Users/rakesh/.config/broot/launcher/bash/br
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+
+# fzf key binding and fuzzy completion
+eval "$(fzf --zsh)"
+
+# cwd on selected folder in yazi
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}

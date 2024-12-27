@@ -1,4 +1,4 @@
-""" Map leader to space ---------------------
+"" Map leader to space ---------------------
 let mapleader=" "
 
 """ Plugins  --------------------------------
@@ -161,6 +161,7 @@ nnoremap <leader>tt :UndotreeToggle<CR>
 """ Search symbols in file or project
 nmap <leader>fs <Action>(FileStructurePopup)
 nmap <leader>ps <Action>(GotoSymbol)
+nmap <leader>fa :action GotoAction<CR>
 
 """ Refactoring and formatting
 vmap <leader>r <Action>(RefactoringMenu)
