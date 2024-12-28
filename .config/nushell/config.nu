@@ -1,4 +1,3 @@
-use '/Users/rakesh/.config/broot/launcher/nushell/br' *
 use '~/.cache/starship/init.nu'
 
 # atuin

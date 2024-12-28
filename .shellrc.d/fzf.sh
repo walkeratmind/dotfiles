@@ -5,12 +5,48 @@ export FZF_CTRL_T_OPTS="--preview '$show_file_or_dir_preview'"
 export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
 
 # Fzf theme
-export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
--m \
---color=fg:#c0caf5,bg:#1a1b26,hl:#ff9e64 \
---color=fg+:#c0caf5,bg+:#292e42,hl+:#ff9e64 \
---color=info:#7aa2f7,prompt:#7dcfff,pointer:#7dcfff \
---color=marker:#9ece6a,spinner:#9ece6a,header:#9ece6a"
+# export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
+# --color=fg:#c0caf5,bg:#1a1b26,hl:#ff9e64 \
+# --color=fg+:#c0caf5,bg+:#292e42,hl+:#ff9e64 \
+# --color=info:#7aa2f7,prompt:#7dcfff,pointer:#7dcfff \
+# --color=marker:#9ece6a,spinner:#9ece6a,header:#9ece6a"
+
+#--- setup fzf theme ---
+fg="#CBE0F0"
+bg="#011628"
+bg_highlight="#143652"
+purple="#B388FF"
+blue="#06BCE4"
+cyan="#2CF9ED"
+
+export FZF_DEFAULT_OPTS="--color=fg:${fg},bg:${bg},hl:${purple},fg+:${fg},bg+:${bg_highlight},hl+:${purple},info:${blue},prompt:${cyan},pointer:${cyan},marker:${cyan},spinner:${cyan},header:${cyan} \
+--preview '$show_file_or_dir_preview' \
+--multi"
+
+
+
+# https://github.com/catppuccin/fzf
+#
+# Catpuccin Machiatto
+# export FZF_DEFAULT_OPTS=" \
+# --color=bg+:#363a4f,bg:#24273a,spinner:#f4dbd6,hl:#ed8796 \
+# --color=fg:#cad3f5,header:#ed8796,info:#c6a0f6,pointer:#f4dbd6 \
+# --color=marker:#b7bdf8,fg+:#cad3f5,prompt:#c6a0f6,hl+:#ed8796 \
+# --color=selected-bg:#494d64"
+
+# Catpuccin Mocha
+# export FZF_DEFAULT_OPTS=" \
+# --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
+# --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
+# --color=marker:#b4befe,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 \
+# --color=selected-bg:#45475a
+# --preview '$show_file_or_dir_preview' \
+# --multi"
+
+
+# export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
+#   --preview '$show_file_or_dir_preview' \
+#   --multi"
 
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"

@@ -16,7 +16,6 @@ function install {
 # https://github.com/bvaisvil/zenith
 cargo install --git https://github.com/bvaisvil/zenith.git
 
-install ytop
 install bottom
 install procs
 
@@ -32,7 +31,7 @@ install skim           # fuzzy file finder  https://github.com/lotabout/skim
 cargo install kondo-ui # clears node_modules and other libs https://github.com/tbillington/kondo
 
 install zola  # static site generator https://github.com/getzola/zola
-install broot # navigate files faster from terminal https://github.com/Canop/broot
+# install broot # navigate files faster from terminal https://github.com/Canop/broot, has alt yazi
 
 install websocat # https://github.com/vi/websocat
 

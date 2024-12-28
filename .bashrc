@@ -268,5 +268,3 @@ fi
 eval "$(zoxide init zsh)"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
-source /Users/rakesh/.config/broot/launcher/bash/br

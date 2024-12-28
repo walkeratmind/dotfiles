@@ -37,7 +37,7 @@ install zsh
 install tmux
 install yt-dlp
 install unzip
-install nnn
+# install nnn     # has best alt as yazi
 
 install awscli
 install docker
@@ -115,7 +115,13 @@ install feh
 # Fun stuff
 install cowsay
 install figlet
+install toilet
 install lolcat
+brew install gti
+install fortune
+install sl
+install cmatrix   #
+install pipes-sh  # https://github.com/pipeseroni/pipes.sh?tab=readme-ov-file
 
 # Flutter Version Manager
 brew tap leoafarias/fvm

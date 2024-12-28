@@ -321,3 +321,9 @@ ls
 clear
 ls
 clear
+ls
+clear
+exit
+clear
+spotify_player
+clear

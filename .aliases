@@ -11,7 +11,7 @@ alias ci='code-insiders'
 
 # ls
 # https://the.eza.website
-alias ls='eza --color=always --group-directories-first --icons=always' # my preferred listing
+alias ls='eza --color=always --group-directories-first' # my preferred listing
 alias lsi='eza --color=always --icons --group-directories-first' # my preferred listing
 alias l='eza -F'
 alias ll='eza -lF'
@@ -85,7 +85,8 @@ alias gco='git checkout'
 alias gd='git diff'
 
 alias glo='git log --oneline --decorate --color'
-alias glol='git log --graph --pretty=format:'\''%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\'' --abbrev-commit'
+alias glol='git log --graph --pretty=tformat:'\''%Cred%h%Creset %C(bold blue)%<(20,trunc)%an%Creset %C(auto)%d%Creset %s %Cgreen(%cr)'\'' --abbrev-commit'
+# log --graph --pretty=tformat:'%Cred%h%Creset %C(bold blue)%<(20,trunc)%an%Creset %C(auto)%d%Creset %s %Cgreen(%cr) '
 
 alias gpush='git push'
 alias gpd='git push --dry-run'

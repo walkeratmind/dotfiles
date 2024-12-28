@@ -11,7 +11,7 @@ macos-titlebar-style = tabs
 gtk-tabs-location = bottom
 shell-integration = zsh
 
-background-blur-radius = 15
+background-blur-radius = 20
 background-opacity = 0.7
 
 
@@ -27,7 +27,17 @@ keybind = alt+a>v=new_split:right
 keybind = alt+a>-=new_split:down
 keybind = alt+a>x=close_window
 
-keybind = global:cmd+shift+f=toggle_quick_terminal
+keybind = super+shift+h=goto_split:left
+keybind = super+shift+j=goto_split:bottom
+keybind = super+shift+k=goto_split:top
+keybind = super+shift+l=goto_split:right
+
+keybind = super+ctrl+h=resize_split:left,10
+keybind = super+ctrl+l=resize_split:right,10
+keybind = super+ctrl+j=resize_split:down,10
+keybind = super+ctrl+k=resize_split:up,10
+
+keybind = global:super+shift+f=toggle_quick_terminal
 
 cursor-color = #ea6962
 selection-background = #404040

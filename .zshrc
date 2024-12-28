@@ -160,8 +160,6 @@ eval "$(zoxide init --cmd cd zsh)"
 eval $(thefuck --alias)
 eval $(thefuck --alias fk)
 
-source /Users/rakesh/.config/broot/launcher/bash/br
-
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
@@ -169,6 +167,9 @@ export SDKMAN_DIR="$HOME/.sdkman"
 
 # fzf key binding and fuzzy completion
 eval "$(fzf --zsh)"
+
+
+source $HOME/.config/fzf-git.sh/fzf-git.sh
 
 # cwd on selected folder in yazi
 function y() {

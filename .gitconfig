@@ -33,14 +33,13 @@
 [push]
     followTags = true
     default = current
-[delta]
-    navigate = true
 [merge]
   conflictStyle = diff3
 [diff]
   colorMoved = default
 [alias]
-    plog = log --graph --pretty=format:'%C(bold blue)%h%Creset - %C(yellow)%d%Creset %s %C(cyan dim)(%cr)%Creset %n' --abbrev-commit --branches
+    lg = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(white) - %an%C(reset) %C(bold red)' --all
+    plog = log --graph --pretty=tformat:'%Cred%h%Creset %C(bold blue)%<(20,trunc)%an%Creset %C(auto)%d%Creset %s %Cgreen(%cr) '
 		  # Adapted from https://blog.jez.io/cli-code-review/
     # List files which have changed since BASE
     # Set BASE in shell configuration or before the command
@@ -85,7 +84,10 @@
 [rerere]
   enabled = true
 
-# delta 
+# delta
+[include]
+    path = $HOME/.config/bat/themes/catppuccin.gitconfig
+
 [core]
     pager = delta
 
@@ -93,9 +95,9 @@
     diffFilter = delta --color-only
 
 [delta]
+    features = catppuccin-macchiato
     navigate = true    # use n and N to move between diff sections
     side-by-side = true
-
 
     # delta detects terminal colors automatically; set one of these to disable auto-detection
     # dark = true
