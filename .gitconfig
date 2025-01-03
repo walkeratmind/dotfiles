@@ -97,7 +97,7 @@
 [delta]
     features = catppuccin-macchiato
     navigate = true    # use n and N to move between diff sections
-    side-by-side = true
+    side-by-side = false
 
     # delta detects terminal colors automatically; set one of these to disable auto-detection
     # dark = true
