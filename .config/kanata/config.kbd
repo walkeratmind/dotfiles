@@ -13,20 +13,20 @@
 ;; Definine two aliases, one for esc/control to other for function key
 (defalias
   escctrl (tap-hold 100 100 esc lctl)
-  space (tap-hold $tap-time $hold-time spc lmet-lalt-lsft-lctl)
+  spc (tap-hold $tap-time $hold-time spc (multi lmet lalt lctl lsft))
   a (tap-hold $tap-time $hold-time a lmet)
-  s (tap-hold $tap-time $hold-time s lalt)
-  d (tap-hold $tap-time $hold-time d lsft)
+  s (tap-hold $tap-time $hold-time s lsft)
+  d (tap-hold $tap-time $hold-time d lalt)
   f (tap-hold $tap-time $hold-time f lctl)
   j (tap-hold $tap-time $hold-time j rctl)
-  k (tap-hold $tap-time $hold-time k rsft)
-  l (tap-hold $tap-time $hold-time l ralt)
+  k (tap-hold $tap-time $hold-time k ralt)
+  l (tap-hold $tap-time $hold-time l rsft)
   ; (tap-hold $tap-time $hold-time ; rmet)
 )
 
 (deflayer base
   brdn  brup  _    _    _    _   prev  pp  next  mute  vold  volu
-  @escctrl @a @s @d @f @j @k @l @; @space
+  @escctrl @a @s @d @f @j @k @l @; @spc
 )
 
 (deflayer fn

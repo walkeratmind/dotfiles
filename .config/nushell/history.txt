@@ -327,3 +327,122 @@ exit
 clear
 spotify_player
 clear
+cd project_lab/ingtech/
+cd ing-atttendance-system-api/
+clear
+ls
+clear
+ls
+clear
+ls
+clear
+cd project_lab/web_projects/
+ls
+cd nextjs_projects/issue-box/
+clear
+ls
+clear
+ls
+eza
+clear
+ls
+which ls
+clear
+ls
+clear
+ls
+clear
+ls
+clear
+ls
+ls
+clear
+which godot
+clear
+brew upgrade godot
+clear
+which difft
+clear
+which difft
+clear
+ls
+clea
+rclear
+clear
+ls
+ls | name like '%ts%'
+fuck
+clear
+proce
+procs
+ps
+clear
+procs
+clear
+fps
+clear
+fkill
+clear
+fkill
+clear
+nvim .
+clear
+ls
+clear
+pnpm install react-simple-code-editor easymde
+pnpm uninstall react-simple-code-editor easymde
+clear
+gst
+git status
+clear
+git status
+git add .
+git commit -m "feat: add new issue form page"
+clear
+npm install --save lexical @lexical/react<\n><\n>
+clear
+pnpm install --save lexical @lexical/react
+clear
+cd project_lab/ingtech/
+clear
+cd project_lab/ingtech/
+clear
+ls
+clear
+pwd
+clear
+pwd
+clear
+ls
+clea
+clear
+ls
+pwd
+clear
+cwd
+which pwd
+clear
+ls
+clear
+pwd
+ls
+clear
+ls
+clear
+ls
+clear
+ls
+clear
+ls
+clear
+ls
+clear
+brew install db-browser-for-sqlite<\n>
+clear
+plab
+cd project_lab/
+clear
+ls
+cd ingtech/
+cd ing-atttendance-system-api/
+clear

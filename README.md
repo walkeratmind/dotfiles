@@ -77,6 +77,19 @@ As we all know, every person have his/her own needs so, ➡️ evey person needs
 
 ------
 
+### Running kanata in background 
+
+Copy extras/com.rakesh.kanata.plist to your LaunchDaemon folder.
+
+sudo cp ./com.rakesh.kanata.plist /Library/LaunchDaemons/
+Once copied over, you can then load it using sudo
+
+sudo launchctl load /Library/LaunchDaemons/com.example.kanata.plist
+sudo launchctl start com.rakesh.kanata
+Now, kanata should be running whenever your macbook starts up!
+
+If you use multiple keyboards, you may want to limit this to only showing up on your MacBooks internal keyboard.
+
 ## References 👇️
 
 > More Than References, kind of like mixture of all these,

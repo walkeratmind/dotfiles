@@ -1,6 +1,28 @@
 # Appearance
 
 font-family = JetBrainsMono Nerd Font
+font-feature = calt
+
+# j
+font-feature = cv04
+# m
+font-feature = cv06
+# l
+font-feature = -cv05
+# t
+font-feature = cv02
+# y
+font-feature = cv11
+# raised bar for f and other
+font-feature = ss20
+# 0
+font-feature = zero
+# Kk
+font-feature = cv08
+
+font-feature = cv19
+font-feature = cv99
+
 font-size = 13
 cursor-style = bar
 cursor-style-blink = true
@@ -14,6 +36,19 @@ shell-integration = zsh
 background-blur-radius = 20
 background-opacity = 0.7
 
+# theme = GruvboxDarkHard
+mouse-hide-while-typing = true
+mouse-scroll-multiplier = 2
+window-padding-balance = true
+window-save-state = always
+# macos-titlebar-style=transparent
+window-colorspace = "display-p3"
+# background = 1C2021
+
+copy-on-select = clipboard
+
+# shaders
+# custom-shader = ./shaders/sparks-from-fire.glsl
 
 # disable exit popup
 confirm-close-surface = false
@@ -22,10 +57,10 @@ quit-after-last-window-closed = true
 
 # keybindings
 
-keybind = alt+a>c=new_tab
-keybind = alt+a>v=new_split:right
-keybind = alt+a>-=new_split:down
-keybind = alt+a>x=close_window
+keybind = super+s>c=new_tab
+keybind = super+s>v=new_split:right
+keybind = super+s>-=new_split:down
+keybind = super+s>x=close_window
 
 keybind = super+shift+h=goto_split:left
 keybind = super+shift+j=goto_split:bottom
@@ -39,26 +74,29 @@ keybind = super+ctrl+k=resize_split:up,10
 
 keybind = global:super+shift+f=toggle_quick_terminal
 
-cursor-color = #ea6962
-selection-background = #404040
-selection-foreground = #ebdbb2
+# clear whole line
+keybind = cmd+backspace=text:\x15
 
-palette = 0=#292929
-palette = 1=#ea6962
-palette = 2=#a9b665
-palette = 3=#d8a657
-palette = 4=#7daea3
-palette = 5=#d3869b
-palette = 6=#89b482
-palette = 7=#bdae93
-palette = 8=#595959
-palette = 9=#ea6962
-palette = 10=#a9b665
-palette = 11=#d8a657
-palette = 12=#7daea3
-palette = 13=#d3869b
-palette = 14=#89b482
-palette = 15=#a89984
+cursor-color = #ea6962
+selection-background = #e6e6fa
+selection-foreground = #ff8c00
+#
+# palette = 0=#292929
+# palette = 1=#ea6962
+# palette = 2=#a9b665
+# palette = 3=#d8a657
+# palette = 4=#7daea3
+# palette = 5=#d3869b
+# palette = 6=#89b482
+# palette = 7=#bdae93
+# palette = 8=#595959
+# palette = 9=#ea6962
+# palette = 10=#a9b665
+# palette = 11=#d8a657
+# palette = 12=#7daea3
+# palette = 13=#d3869b
+# palette = 14=#89b482
+# palette = 15=#a89984
 
 term = xterm-256color
 
