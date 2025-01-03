@@ -92,6 +92,13 @@ map(
   { desc = "telescope find files" }
 )
 
+map(
+  { "n", "v" },
+  "<leader>fb",
+  ":Telescope file_browser path=%:p:h select_buffer=true<CR>",
+  { desc = "Telescope File Browser" }
+)
+
 -- map("n", "<C-m>", "<cmd>Telescope marks<cr>", { desc = "Telescope Marks" })
 
 -- Harpoon

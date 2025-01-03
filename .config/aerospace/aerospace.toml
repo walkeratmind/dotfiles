@@ -140,6 +140,7 @@ alt-shift-t = 'move-node-to-workspace T'
 alt-shift-v = 'move-node-to-workspace V'
 
 alt-shift-f = 'fullscreen'
+alt-ctrl-f = 'layout floating tiling'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
 alt-tab = 'workspace-back-and-forth'

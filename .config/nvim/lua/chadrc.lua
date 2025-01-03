@@ -3,7 +3,7 @@
 local M = {}
 
 M.base46 = {
-  theme = "gruvchad",
+  theme = "nightfox",
   -- telescope = { style = "bordered" },
   hl_override = {
     ["@variable"] = { italic = true },
