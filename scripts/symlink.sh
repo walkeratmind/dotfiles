@@ -68,6 +68,9 @@ linkDotfile .ideavimrc
 ln -s ~/project_lab/dotfiles/.config/alacritty ~/.config/alacritty
 ln -s ~/project_lab/dotfiles/.config/lazygit ~/.config
 
+# nvim
+ ln -s ~/project_lab/dotfiles/.config/nvim  ~/.config/nvim
+
 mkdir -p $HOME/.config/zellij
 linkDotfile .config/zellij
 
