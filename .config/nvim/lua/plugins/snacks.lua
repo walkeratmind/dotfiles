@@ -12,11 +12,35 @@ return {
     },
     quickfile = { enabled = true },
     statuscolumn = { enabled = true },
-    words = { enabled = true },
+    words = { enabled = false },
     styles = {
       notification = {
         wo = { wrap = true }, -- Wrap notifications
       },
+      -- zen = {
+      --   backdrop = {
+      --     transparent = true,
+      --   },
+      --   width = 120,
+      --   wo = {
+      --     number = false,
+      --     signcolumn = "no",
+      --     cursorcolumn = false,
+      --     relativenumber = false,
+      --   },
+      -- },
+    },
+    zen = {
+      -- toggles = {
+      --   dim = true,
+      --   git_signs = false,
+      --   mini_diff_signs = false,
+      -- },
+      -- win = { style = "zen" },
+      -- show = {
+      --   statusline = false,
+      --   tabline = false,
+      -- },
     },
   },
   keys = {

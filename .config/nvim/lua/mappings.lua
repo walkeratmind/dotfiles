@@ -30,7 +30,7 @@ end, { desc = "File Format with conform" })
 map("i", "jk", "<ESC>", { desc = "Escape insert mode" })
 
 map("n", "gd", "<CMD>Lspsaga goto_definition<CR>", { desc = "Lspsaga goto definition" })
-map("n", "K", "<CMD>Lspsaga hover_doc<CR>", { desc = "Lspsaga hover" })
+map("n", "<leader>k", "<CMD>Lspsaga hover_doc<CR>", { desc = "Lspsaga hover" })
 
 -- unmap nvchad keymaps
 map("n", "<leader>h", "<Nop>")
