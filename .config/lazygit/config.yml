@@ -54,6 +54,7 @@ os:
   openLink:
     open -n "$(echo {{link}} | sed 's/%3E/>/g' | sed 's/%2F/\//g' | sed
     s/%27/\'/g )"
+  # openLink: open "$(echo "{{link}}" | sed 's/%2F/\//g')"
 
 promptToReturnFromSubprocess: false
 

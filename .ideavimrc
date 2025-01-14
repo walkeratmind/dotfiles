@@ -134,7 +134,6 @@ nmap <leader>d <Action>(ShowErrorDescription)
 nmap <leader>da <Action>(ShowIntentionActions)
 
 
-set idearefactormode=keep
 vnoremap <  >gv
 nnoremap [[ :action MethodUp<CR>
 nnoremap ]] :action MethodDown<CR>

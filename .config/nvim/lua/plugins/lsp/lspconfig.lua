@@ -117,8 +117,33 @@ return {
       lspconfig["pyright"].setup {
         capabilities = capabilities,
         on_attach = on_attach,
+        settings = {
+          pyright = {
+            -- use ruff import
+            disableOrganizeImports = true,
+          },
+          python = {
+            analysis = {
+              -- ignore all to use ruff
+              ignore = { "*" },
+            },
+          },
+        },
       }
 
+      lspconfig["ruff"].setup {
+        capabilities = capabilities,
+        on_attach = on_attach,
+        settings = {
+          configurationPreferance = "fileSystemFirst",
+          enable = true,
+          organizeImports = true,
+          fixAll = true,
+          lint = {
+            enable = true,
+          },
+        },
+      }
       -- configure lua server (with special settings)
       lspconfig["lua_ls"].setup {
         capabilities = capabilities,

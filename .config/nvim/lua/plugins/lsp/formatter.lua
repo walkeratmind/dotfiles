@@ -17,7 +17,7 @@ return {
       markdown = { "biome" },
       graphql = { "biome" },
       lua = { "stylua" },
-      python = { "ruff" },
+      python = { "ruff_fix", "ruff_format", "ruff" },
       rust = { "rustfmt" },
       go = { "gofmt" },
     },

@@ -20,6 +20,8 @@ function py {
 function activate() {
     if [[ -d "venv" ]]; then
         source "venv/bin/activate"
+    elif [[ -d ".venv" ]]; then
+        source ".venv/bin/activate"
     elif [ $# -eq 0 ]; then
         echo "WTF, enter a valid virtualenv name..."
         echo "---------------------------------------"
