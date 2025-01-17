@@ -110,7 +110,7 @@
 [delta "decorations"]
   line-numbers = true
   side-by-side = false
-  blame-format = "{author:<18} ({commit:>7}) ┊{timestamp:^16}┊ "
+  blame-format = "{commit:>7} ┊ {timestamp:^16} ┊ {author:<18} "
 
   hyperlink = true
   hyperlinks-file-link-format = "zed://file/{path}:{line}"
