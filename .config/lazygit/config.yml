@@ -93,41 +93,7 @@ customCommands:
       "I"
     context: global
     command: "git stash-keep"
-  - command: git commit -m '{{ .Form.emoji }} {{ .Form.message }}'
-    context: files
-    description: Commit changes using gitmojis
-    key: <c-v>
-    prompts:
-    - command: gitmoji -l
-      filter: ^(.*?) - (:.*?:) - (.*)$
-      key: emoji
-      labelFormat: '{{ .group_1 }} - {{ .group_3 }}'
-      title: 'Select a gitmoji:'
-      type: menuFromCommand
-      valueFormat: '{{ .group_2 }}'
-    - key: message
-      title: 'Enter a commit message:'
-      type: input
-  # gitmoji with scope
-  - command: "git commit -m '{{ if .Form.scope }}{{ .Form.scope }} {{.Form.emoji}}:{{ end }} {{ .Form.message }}'"
-    context: files
-    description: Commit changes using gitmojis
-    key: <c-c>
-    prompts:
-    - command: gitmoji -l
-      filter: ^(.*?) - (:.*?:) - (.*)$
-      key: emoji
-      labelFormat: '{{ .group_1 }} - {{ .group_3 }}'
-      title: 'Choose a gitmoji: '
-      type: menuFromCommand
-      valueFormat: '{{ .group_2 }}'
-    - key: scope
-      title: 'Enter the scope of current changes: '
-      type: input
-      value: "{{.Form.emoji}}"
-    - key: message
-      title: 'Enter the commit title: '
-      type: input
+
 keybinding:
   universal:
     edit: e
