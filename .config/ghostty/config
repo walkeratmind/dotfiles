@@ -34,7 +34,7 @@ gtk-tabs-location = bottom
 shell-integration = zsh
 
 background-blur-radius = 20
-background-opacity = 0.7
+background-opacity = 0.8
 
 # theme = GruvboxDarkHard
 mouse-hide-while-typing = true
@@ -42,7 +42,7 @@ mouse-scroll-multiplier = 2
 window-padding-balance = true
 window-save-state = always
 # macos-titlebar-style=transparent
-window-colorspace = "display-p3"
+# window-colorspace = "display-p3"
 # background = 1C2021
 
 copy-on-select = clipboard

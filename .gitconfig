@@ -24,19 +24,26 @@
 [commit]
 	template = ~/.gitmessage
 [core]
-	editor = vim
+	editor = nvim
 	autocrlf = input
 	excludesfile = /Users/rakesh/.gitignore_global
   pager = delta
 [interactive]
-  diffFilter = detlta --color-only
+  diffFilter = delta --color-only
 [push]
     followTags = true
     default = current
 [merge]
-  conflictStyle = diff3
+  conflictStyle = zdiff3
 [diff]
   colorMoved = default
+
+[merge]
+    conflictstyle = zdiff3
+
+[pull]
+	rebase = true
+
 [alias]
     lg = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(white) - %an%C(reset) %C(bold red)' --all
     plog = log --graph --pretty=tformat:'%Cred%h%Creset %C(bold blue)%<(20,trunc)%an%Creset %C(auto)%d%Creset %s %Cgreen(%cr) '
@@ -64,11 +71,10 @@
 
 [credential]
 	helper = cache
-[difftool "sourcetree"]
+[difftool "lazygit"]
 	cmd = opendiff "$LOCAL" "$REMOTE"
-	path =
-[mergetool "sourcetree"]
-	cmd = Applications/fork.app/Contents/Resources/opendiff-w.sh "$LOCAL" "$REMOTE" -ancestor "$BASE" -merge "$MERGED"
+[mergetool "lazygit"]
+	cmd = lazygit "$LOCAL" "$REMOTE" -ancestor "$BASE" -merge "$MERGED"
 	trustExitCode = true
 [init]
 	defaultBranch = main
@@ -86,27 +92,28 @@
 
 # delta
 [include]
-    path = $HOME/.config/bat/themes/catppuccin.gitconfig
-
-[core]
-    pager = delta
+  path = ~/.config/bat/themes/catppuccin.gitconfig
+  ; path = ~/delta-themes.gitconfig
 
 [interactive]
     diffFilter = delta --color-only
 
 [delta]
-    features = catppuccin-macchiato
-    navigate = true    # use n and N to move between diff sections
-    side-by-side = false
+  true-color = always
+  features = catppuccin-macchiato decorations
+  ; features = mirthful-willow
+  navigate = true    # use n and N to move between diff sections
 
-    # delta detects terminal colors automatically; set one of these to disable auto-detection
-    # dark = true
-    # light = true
+  # delta detects terminal colors automatically; set one of these to disable auto-detection
+  # dark = true
+  # light = true
+[delta "decorations"]
+  line-numbers = true
+  side-by-side = false
+  blame-format = "{author:<18} ({commit:>7}) ┊{timestamp:^16}┊ "
 
-[merge]
-    conflictstyle = diff3
+  hyperlink = true
+  hyperlinks-file-link-format = "zed://file/{path}:{line}"
+  ; hyperlinks-file-link-format = "idea://open?file={path}&line={line}"
 
-[diff]
-    colorMoved = default
-[pull]
-	rebase = true
+

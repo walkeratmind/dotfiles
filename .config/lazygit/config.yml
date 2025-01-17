@@ -2,14 +2,78 @@
 # https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md
 
 services:
-  # "gitlab.baronatechnologies.fi": "gitlab:gitlab.baronatechnologies.fi"
+"gitlab.com": "gitlab:gitlab.com"
 "github.com": "github:github.com"
 
 customCommands:
+  # When navigating the commits, select a file, and press 'f' to compare it with the git difftool against the working copy.
+  # doens't work with renamed file
+  # - key: 'f'
+  #   command: "git difftool -y {{.SelectedLocalCommit.Sha}} -- {{.SelectedCommitFile.Name}}"
+  #   context: 'commitFiles'
+  #   description: 'Compare (difftool) with local copy'
+
+
+
+  # push to a specific remote branch
+  - key: '<c-p>'
+    context: 'global'
+    loadingText: 'pushing'
+    prompts:
+      - type: 'input'
+        title: 'which branch do you want to push to?'
+    command: "git push origin {{index .PromptResponses 0}}"
+  # open existing gitlab PR in browser
+  - key: "G"
+    command: "glab mr view -w {{.SelectedLocalBranch.UpstreamBranch}}"
+    context: "localBranches"
+    description: "Go to MR in gitlab"
+    stream: true
+  # prune deleted remote branches
+  - key: "<c-d>"
+    command: "git remote prune {{.SelectedRemote.Name}}"
+    context: "remotes"
+    loadingText: "Pruning..."
+    description: "prune deleted remote branches"
+  # prune and remove branch that are no longer in remote
+  - key: "<c-D>"
+    command: |
+      git fetch -p && for branch in $(git for-each-ref --format '%(refname) %(upstream:track)' refs/heads | awk '$2 == "[gone]" {sub("refs/heads/", "", $1); print $1}'); do git branch -D $branch; done
+    context: "localBranches"
+    description: "Prune local branches no longer on its remote; (G)one."
+    loadingText: "Pruning gone..."
+  # fetch remote branch into local
+  - key: '<c-f>'
+    description: 'fetch a remote branch as a new local branch'
+    command: "git fetch {{index .SelectedRemote.Name }} {{index .PromptResponses 0}}:{{index .PromptResponses 1}}"
+    context: 'remotes'
+    prompts:
+      - type: 'input'
+        title: 'Remote Branch Name'
+        initialValue: ''
+      - type: 'input'
+        title: 'New Local Branch Name'
+        initialValue: ''
+    loadingText: 'fetching branch'
+  - key: b
+    command: git blame -- {{.SelectedFile.Name}}
+    context: files
+    description: blame file at tree
+    subprocess: yes
+  - key: b
+    command: git blame {{.SelectedSubCommit.Sha}} -- {{.SelectedCommitFile.Name}}
+    context: commitFiles
+    description: blame file at revision
+    subprocess: yes
+  - key: B
+    command: git blame -- {{.SelectedCommitFile.Name}}
+    context: commitFiles
+    description: blame file at tree
+    subprocess: yes
   - key: "-"
     context: global
     description: Show branch graph
-    command: git lg # custom git alias
+    command: git plog # custom git alias
     subprocess: true
   - key: "<c-a>"
     context: "global"
@@ -36,8 +100,8 @@ keybinding:
     prevTab: ö
     nextTab: ä
   files:
-    commitChanges: C # using the interactive commit dialog
-    commitChangesWithEditor: c # using neovim
+    commitChanges: c # using the interactive commit dialog
+    commitChangesWithEditor: C # using neovim
     toggleTreeView: f
 
 os:
@@ -45,9 +109,9 @@ os:
   # https://github.com/willothy/flatten.nvim to simplify the setup without the
   # need for external applications.
   #
-  edit: "nvim {{filename}}"
-  editAtLine: "nvim +{{line}} {{filename}}"
-  editAtLineAndWait: "nvim +{{line}} {{filename}}"
+  # edit: "nvim {{filename}}"
+  # editAtLine: "nvim +{{line}} {{filename}}"
+  # editAtLineAndWait: "nvim +{{line}} {{filename}}"
 
   # Create pull request command opens a URL with incorrect escaping #3064
   # https://github.com/jesseduffield/lazygit/issues/3064
@@ -64,10 +128,22 @@ notARepository: "quit"
 gui:
   commitHashLength: 0
   skipRewordInEditorWarning: true
-  nerdFontsVersion: "3"
   scrollHeight: 10
+  # If true, increase the height of the focused side window; creating an accordion effect.
+  expandFocusedSidePanel: true
+
+  # The weight of the expanded side panel, relative to the other panels. 2 means
+  # twice as tall as the other panels. Only relevant if `expandFocusedSidePanel` is true.
+  expandedSidePanelWeight: 2
   mainPanelSplitMode: vertical
+
+  # How the window is split when in half screen mode (i.e. after hitting '+' once).
+  # Possible values:
+  # - 'left': split the window horizontally (side panel on the left, main view on the right)
+  # - 'top': split the window vertically (side panel on top, main view below)
+  enlargedSideViewLocation: left
   showDivergenceFromBaseBranch: arrowAndNumber
+  # catpuccin macchiato pink variant
   theme:
     activeBorderColor:
       - "#f5bde6"
@@ -88,6 +164,32 @@ gui:
       - "#cad3f5"
     searchingActiveBorderColor:
       - "#eed49f"
+    authorColors:
+      '*': '#b7bdf8'
+    markedBaseCommitFgColor:
+      - "#b7bdf8"
+    markedBaseCommitBgColor:
+      - "#7dc4e4"
+  # Nerd fonts version to use.
+  # One of: '2' | '3' | empty string (default)
+  # If empty, do not show icons.
+  nerdFontsVersion: "3"
+
+  # How things are filtered when typing '/'.
+  # One of 'substring' (default) | 'fuzzy'
+  filterMode: substring
+  # Status panel view.
+  # One of 'dashboard' (default) | 'allBranchesLog'
+  statusPanelView: dashboard
+
+  # If true, jump to the Files panel after popping a stash
+  switchToFilesAfterStashPop: true
+
+  # If true, jump to the Files panel after applying a stash
+  switchToFilesAfterStashApply: true
+
+  # If true, when using the panel jump keys (default 1 through 5) and target panel is already active, go to next tab instead
+  switchTabsWithPanelJumpKeys: true
 
 git:
   parseEmoji: true
