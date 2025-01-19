@@ -10,6 +10,8 @@
 .config/espanso/match/packages/**
 .config/bat/themes
 
+history.txt
+
 *.zip
 *.tar.gz
 
