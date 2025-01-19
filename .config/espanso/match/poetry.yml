@@ -1,0 +1,46 @@
+
+matches:
+  - trigger: ">poetry:"
+    replace: "{{result}}"
+    vars:
+      - name: result
+        type: random
+        params:
+          choices: ${{quotes}}
+quotes:
+  - |
+    They fuck you up, your mum and dad.
+    They may not mean to, but they do.
+    They fill you with the faults they had
+    And add some extra, just for you. - Philip Larkin, “This Be the Verse”
+  - |
+    Two roads diverged in a wood, and I—
+    I took the one less traveled by,
+    And that has made all the difference. - Robert Frost, “The Road Not Taken”
+  - |
+    Because I could not stop for Death –
+    He kindly stopped for me –
+    The Carriage held but just Ourselves –
+    And Immortality. - Emily Dickinson, “Because I could not stop for Death – (479)”
+  - |
+    I celebrate myself, and sing myself,
+    And what I assume you shall assume,
+    For every atom belonging to me as good belongs to you. - Walt Whitman, “Song of Myself”
+  - |
+    To be, or not to be: that is the question:
+    Whether ’tis nobler in the mind to suffer
+    The slings and arrows of outrageous fortune,
+    Or to take arms against a sea of troubles,
+    And by opposing end them. To die: to sleep…” - William Shakespeare, Hamlet
+  - |
+    All the world’s a stage,
+    And all the men and women merely players:
+    They have their exits and their entrances;
+    And one man in his time plays many parts. - William Shakespeare, As You Like It
+  - |
+    Shall I compare thee to a summer’s day?
+    Thou art more lovely and more temperate:
+    Rough winds do shake the darling buds of May,
+    And summer’s lease hath all too short a date - William Shakespeare, Sonnet 18
+
+

@@ -38,3 +38,4 @@ espanso install lorem
 espanso install cht
 espanso install wttr
 espanso install basic-emojis
+espanso install english-lorem

@@ -1,0 +1,257 @@
+matches:
+  - trigger: ">nv:"
+    replace: "{{eoutput}}"
+    vars:
+      - name: eoutput
+        type: random
+        params:
+          choices:
+            - "I was benevolent and good; misery made me a fiend. Make me happy, and I shall again be virtuous. - Mary Shelley, Frankenstein: A Modern Prometheus"
+            - "It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife. - Jane Austen, Pride and Prejudice"
+            - "Happy families are all alike; every unhappy family is unhappy in its own way. - Leo Tolstoy, Anna Karenina"
+            - All we can know is that we know nothing. And that’s the height of human wisdom.” — Leo Tolstoy, War and Peace
+            - "As Gregor Samsa awoke one morning from uneasy dreams he found himself transformed in his bed into a gigantic insect. - Franz Kafka, The Metamorphosis"
+            - "I took a deep breath and listened to the old brag of my heart. I am, I am, I am. - Sylvia Plath, The Bell Jar"
+            - |
+              Maman died today. Or yesterday maybe, I don’t know. I got a telegram from the home: “Mother deceased. Funeral tomorrow. Faithfully yours.” That doesn’t mean anything. Maybe it was yesterday. - Albert Camus, The Stranger
+            - |
+              She had waited all her life for something, and it had killed her when it found her.
+              - Zora Neale Hurston, Their Eyes Were Watching God
+            - There are years that ask questions and years that answer. - Zora Neale Hurston, Their Eyes Were Watching God
+            - |
+              There is nothing like looking, if you want to find something. You certainly usually find something, if you look, but it is not always quite the something you were after.
+              - J.R.R. Tolkien, The Hobbit
+            - |
+              There is some good in this world, and it’s worth fighting for. - J.R.R. Tolkien, The Two Towers
+            - Not all those who wander are lost. - J.R.R. Tolkien, The Lord of the Rings
+            - |
+              I am not afraid of storms, for I am learning how to sail my ship. - Louisa May Alcott, Little Women
+            - |
+              It does not do to dwell on dreams and forget to live. - J.K. Rowling, Harry Potter and the Sorcerer’s Stone
+            - |
+              It is nothing to die; it is dreadful not to live. - Victor Hugo, Les Misérables
+            - The past is never dead. In fact, it’s not even past. - William Faulkner, Requiem for a Nun
+            - It was love at first sight, at last sight, at ever and ever sight. - Vladimir Nabokov, Lolita
+            - I loved her against reason, against promise, against peace, against hope, against happiness, against all discouragement that could be. - Charles Dickens, Great Expectations
+            - All animals are equal, but some animals are more equal than others. - George Orwell, Animal Farm
+            - Anyone who has ever struggled with poverty knows how extremely expensive it is to be poor. - James Baldwin, “Fifth Avenue, Uptown”
+            - Some are born great, some achieve greatness, and some have greatness thrust upon ’em. - William Shakespeare, Twelfth Night
+            - War is peace. Freedom is slavery. Ignorance is strength. - George Orwell, 1984
+            - |
+              Who controls the past controls the future. Who controls the present controls the past.
+              - George Orwell, 1984
+            - Too much sanity may be madness, and maddest of all is to see life as it is and not as it should be. - Miguel de Cervantes, Don Quixote
+            - It is a wise man’s duty to save himself for to-morrow, and not risk everything on one day. – Miguel de Cervantes, Don Quixote
+            - Whatever our souls are made of, his and mine are the same. - Emily Brontë, Wuthering Heights
+            - Many years later, as he faced the firing squad, Colonel Aureliano Buendía was to remember that distant afternoon when his father took him to discover ice. - Gabriel García Márquez, One Hundred Years of Solitude
+            - There is always something left to love. ― Gabriel García Márquez, One Hundred Years of Solitude
+            - |
+             “He allowed himself to be swayed by his conviction that human beings are not born once and for all on the day their mothers give birth to them, but that life obliges them over and over again to give birth to themselves.” ― Gabriel Garcí­a Márquez, Love in the Time of Cholera
+
+            - Love is or it ain’t. Thin love ain’t love at all. - Toni Morrison, Beloved
+            - Isn’t it nice to think that tomorrow is a new day with no mistakes in it yet? - L. M. Montgomery, Anne of Green Gables
+            - He has put a knife on the things that held us together and we have fallen apart. - Chinua Achebe, Things Fall Apart
+            - Memories, even your most precious ones, fade surprisingly quickly. But I don’t go along with that. The memories I value most, I don’t ever see them fading. - Kazuo Ishiguro, Never Let Me Go
+            - Nowadays people know the price of everything and the value of nothing. - Oscar Wilde, The Picture of Dorian Grey
+            - Time is the longest distance between two places. - Tennessee Williams, The Glass Menagerie
+            - The voice of the sea is seductive, never ceasing, whispering, clamoring, murmuring, inviting the soul to wander in abysses of solitude. — Kate Chopin, The Awakening
+            - My advice is, never do tomorrow what you can do today. Procrastination is the thief of time. — Charles Dickens, David Copperfield
+            - I can’t stand it to think my life is going so fast and I’m not really living it. ― Ernest Hemingway, The Sun Also Rises
+            - I wish, as well as everybody else, to be perfectly happy; but, like everybody else, it must be in my own way. — Jane Austen, Sense and Sensibility
+            - Each time you happen to me all over again. — Edith Wharton, The Age of Innocence
+            - How easy it was to lie to strangers, to create with strangers the versions of our lives we imagined. — Chimamanda Ngozi Adichie, Americanah
+            - Brave doesn’t mean you’re not scared. It means you go on even though you’re scared.” — Angie Thomas, The Hate U Give
+            - Love is the longing for the half of ourselves we have lost. — Milan Kundera, The Unbearable Lightness of Being
+            - |
+              All human wisdom is summed up in these two words – ‘Wait and hope.’ — Alexandre Dumas, The Count of Monte Cristo
+            - The creatures outside looked from pig to man, and from man to pig, and from pig to man again; but already it was impossible to say which was which. — George Orwell, Animal Farm
+            - Most men and women will grow up to love their servitude and will never dream of revolution.” — Aldous Huxley, Brave New World Revisited
+            - Anything worth dying for is certainly worth living for.” — Joseph Heller, Catch-22
+            - But man is not made for defeat,’ he said. ‘A man can be destroyed but not defeated.’” ― Ernest Hemingway, The Old Man and the Sea
+            - The timeless in you is aware of life’s timelessness. And knows that yesterday is but today’s memory and tomorrow is today’s dream. – The Prophet by Khalil Gibran
+            - They always say time changes things, but you actually have to change them yourself. – Andy Warhol, The Philosophy of Andy Warhol
+            - Beware; for I am fearless, and therefore powerful. – Mary Shelley, Frankenstein
+            - You can’t stay in your corner of the Forest waiting for others to come to you. You have to go to them sometimes. – A.A. Milne, Winnie-the-Pooh
+            - The mind is its own place, and in itself can make a heaven of hell, a hell of heaven.. - John Milton, Paradise Lost
+            - The thing is – fear can’t hurt you any more than a dream. – William Golding, Lord of the Flies
+            - You are a wonderful creation. You know more than you think you know, just as you know less than you want to know. – Oscar Wilde, The Picture Of Dorian Gray
+            - |
+              Learning does not make one learned: there are those who have knowledge and those who have understanding. The first requires memory and the second philosophy. – Alexandre Dumas, The Count of Monte Cristo
+  - trigger: "#nv:"
+    replace: "{{eoutput}}"
+    vars:
+      - name: eoutput
+        type: random
+        params:
+          choices:
+            - |
+              Jane, I will not trouble you with abominable details: some strong words shall express what I have to say.  I lived with that woman upstairs four years, and before that time she had tried me indeed: her character ripened and developed with frightful rapidity; her vices sprang up fast and rank: they were so strong, only cruelty could check them, and I would not use cruelty.  What a pigmy intellect she had, and what giant propensities!  How fearful were the curses those propensities entailed on me!  Bertha Mason, the true daughter of an infamous mother, dragged me through all the hideous and degrading agonies which must attend a man bound to a wife at once intemperate and unchaste.
+              - Charlotte Bronte, Jane Eyre
+            - |
+              It was the best of times, it was the worst of times, it was the age of wisdom, it was the age of foolishness, it was the epoch of belief, it was the epoch of incredulity, it was the season of Light, it was the season of Darkness, it was the spring of hope, it was the winter of despair.
+              - Charles Dickens, A Tale of Two Cities
+            - |
+              It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife. However little known the feelings or views of such a man may be on his first entering a neighbourhood, this truth is so well fixed in the minds of the surrounding families, that he is considered the rightful property of some one or other of their daughters.
+              - Jane Austen, Pride and Prejudice
+            - |
+              I wanted you to see what real courage is, instead of getting the idea that courage is a man with a gun in his hand. It’s when you know you’re licked before you begin, but you begin anyway and see it through no matter what.
+              - Harper Lee, To Kill a Mockingbird
+            - |
+              In my younger and more vulnerable years my father gave me some advice that I’ve been turning over in my mind ever since.
+              “Whenever you feel like criticizing anyone,” he told me, “just remember that all the people in this world haven’t had the advantages that you’ve had."
+              - F. Scott Fitzgerald, The Great Gatsby
+            - |
+              Call me Ishmael. Some years ago—never mind how long precisely—having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world.
+              - Herman Melville, Moby-Dick (1851)
+            - |
+              A man, after he has brushed off the dust and chips of his life, will have left only the hard, clean questions: Was it good or was it evil? Have I done well — or ill? - John Steinbeck, East of Eden
+            - |
+              There is nothing like looking, if you want to find something. You certainly usually find something, if you look, but it is not always quite the something you were after.
+              ― J.R.R. Tolkien, The Hobbit
+            - |
+              Happy families are all alike; every unhappy family is unhappy in its own way. Everything was in confusion in the Oblonskys’ house. The wife had discovered that the husband was carrying on an intrigue with a French girl, who had been a governess in their family, and she declared that she could not go on living in the same house with him.
+              - Leo Tolstoy, Anna Karenina (1877)
+            - |
+              He was an old man who fished alone in a skiff in the Gulf Stream and he had gone eighty-four days now without taking a fish. In the first forty days a boy had been with him. But after forty days without a fish the boy’s parents had told him that the old man was now definitely and finally salao, which is the worst form of unlucky, and the boy had gone at their orders in another boat which caught three good fish the first week.
+              - Ernest Hemingway, The Old Man and the Sea (1952)
+            - |
+              It was a bright cold day in April, and the clocks were striking thirteen. Winston Smith, his chin nuzzled into his breast in an effort to escape the vile wind, slipped quickly through the glass doors of Victory Mansions, though not quickly enough to prevent a swirl of gritty dust from entering along with him.
+              - George Orwell, 1984 (1949)
+            - |
+              There was no possibility of taking a walk that day. We had been wandering, indeed, in the leafless shrubbery an hour in the morning; but since dinner (Mrs. Reed, when there was no company, dined early), the cold winter wind had brought with it clouds so sombre, and a rain so penetrating, that further out-of-door exercise was now out of the question. I was glad of it, for I never liked long walks, especially on chilly afternoons. The howling wind was always dreadful to me. I was yet to learn how rough these seemingly simple changes in weather might be as an omen.
+              - Charlotte Brontë, Jane Eyre (1847)
+
+            - |
+              1801.—I have just returned from a visit to my landlord—the solitary neighbour that I shall be troubled with. This is certainly a beautiful country! In all England, I do not believe that I could have fixed on a situation so completely removed from the stir of society. A perfect misanthropist’s Heaven—and Mr. Heathcliff and I are such a suitable pair to divide the desolation between us. I wonder if it be the same to him as it is to me.
+              - Emily Brontë, Wuthering Heights (1847)
+
+            - |
+              You will rejoice to hear that no disaster has accompanied the commencement of an enterprise which you have regarded with such evil forebodings. I arrived here yesterday; and my first task is to assure my dear sister of my welfare and increasing confidence in the success of my undertaking. I am already far north of London, and as I walk the streets of Petersburgh, I feel a cold northern breeze play upon my cheeks. This breeze, which braces my nerves and fills me with delight, is felt by me most pleasantly because it is a promise of speedy success. No incidents have hitherto befallen me that are worth relating.
+              - Mary Shelley, Frankenstein (1818)
+
+            - |
+              On an exceptionally hot evening early in July a young man left the closet he rented from tenants in S. Place and walked out slowly, as though in hesitation, towards the K. bridge. He had successfully avoided meeting his landlady on the stairs. His garret under the roof of a tall five-storied house was more like a cupboard than a room. The landlady, who provided him with garret, dinners, and attendance, lived on the floor below, and every time he passed her he was overcome by a painful sensation of fear which made him scowl and feel ashamed. He was hopelessly in debt to her, and was afraid of meeting her.
+              - Fyodor Dostoevsky, Crime and Punishment (1866)
+
+            - |
+              The studio was filled with the rich odour of roses, and when the light summer wind stirred amidst the trees of the garden, there came through the open door the heavy scent of the lilac, or the more delicate perfume of the pink-flowering thorn. From the corner of the divan of Persian saddle-bags on which he was lying smoking, as was his custom, Lord Henry Wotton could just catch the gleam of the honey-sweet and honey-coloured blossoms of laburnum, whose tremulous branches seemed hardly able to bear the burden of a beauty so flamelike as theirs. The sullen murmur of the bees shouldering their way through the long unmown grass seemed to make the stillness more oppressive. The dim roar of London was like the bourdon note of a distant organ. In the centre of the room, clamped to an upright easel, stood the full-length portrait of a young man of extraordinary personal beauty.
+              - Oscar Wilde, The Picture of Dorian Gray (1890)
+
+            - |
+              Toward the end of the month of October, 1815, about an hour before sunset, a man who was traveling on foot entered the little town of D----. The few persons who, at that hour, were at their windows or their doors, regarded this traveler with a sort of uneasiness. It was difficult to encounter a more wretched-looking wayfarer. He was a man of medium stature, thickset and robust, in the prime of life. A cap with a drooping leather visor half hid his face, burned and tanned by the sun and wind.
+              - Victor Hugo, Les Misérables (1862)
+
+            - |
+              In a village of La Mancha, the name of which I have no desire to recall, there lived not long since one of those gentlemen who usually keep a lance in the lance-rack, an old buckler, a lean hack, and a greyhound for coursing. An occasional stew, beef more often than mutton, a salad on most nights, scraps on Saturdays, lentils on Fridays, and a pigeon or so extra on Sundays, consumed three-quarters of his income. The rest of it went in a doublet of fine cloth and velvet breeches and shoes to match for holidays, while on weekdays he made a brave figure in his best homespun. He had in his house a housekeeper past forty, a niece under twenty, and a lad for the field and market-place. The age of this gentleman of ours was bordering on fifty.
+              - Miguel de Cervantes, Don Quixote (1605)
+            - |
+              I don’t like work–no man does–but I like what is in the work–the chance to find yourself. Your own reality–for yourself not for others–what no other man can ever know. They can only see the mere show, and never can tell what it really means.
+              – Joseph Conrad, Heart of Darkness
+            - |
+              “You think because he doesn’t love you that you are worthless. You think that because he doesn’t want you anymore that he is right — that his judgement and opinion of you are correct. If he throws you out, then you are garbage. You think he belongs to you because you want to belong to him. Don’t. It’s a bad word, ‘belong.’ Especially when you put it with somebody you love. Love shouldn’t be like that. Did you ever see the way the clouds love a mountain? They circle all around it; sometimes you can’t even see the mountain for the clouds. But you know what? You go up top and what do you see? His head. The clouds never cover the head. His head pokes through, beacuse the clouds let him; they don’t wrap him up. They let him keep his head up high, free, with nothing to hide him or bind him. You can’t own a human being. You can’t lose what you don’t own. Suppose you did own him. Could you really love somebody who was absolutely nobody without you? You really want somebody like that? Somebody who falls apart when you walk out the door? You don’t, do you? And neither does he. You’re turning over your whole life to him. Your whole life, girl. And if it means so little to you that you can just give it away, hand it to him, then why should it mean any more to him? He can’t value you more than you value yourself.” – Toni Morrison, Song of Solomon
+            - |
+              “Lolita, light of my life, fire of my loins. My sin, my soul. Lo-lee-ta: the tip of the tongue taking a trip of three steps down the palate to tap, at three, on the teeth. Lo. Lee. Ta. She was Lo, plain Lo, in the morning, standing four feet ten in one sock. She was Lola in slacks. She was Dolly at school. She was Dolores on the dotted line. But in my arms she was always Lolita. Did she have a precursor? She did, indeed she did. In point of fact, there might have been no Lolita at all had I not loved, one summer, an initial girl-child. In a princedom by the sea. Oh when? About as many years before Lolita was born as my age was that summer. You can always count on a murderer for a fancy prose style. Ladies and gentlemen of the jury, exhibit number one is what the seraphs, the misinformed, simple, noble-winged seraphs, envied. Look at this tangle of thorns.” - Vladimir Nabokov, Lolita
+            - |
+              “We believe that we can change the things around us in accordance with our desires—we believe it because otherwise we can see no favourable outcome. We do not think of the outcome which generally comes to pass and is also favourable: we do not succeed in changing things in accordance with our desires, but gradually our desires change. The situation that we hoped to change because it was intolerable becomes unimportant to us. We have failed to surmount the obstacle, as we were absolutely determined to do, but life has taken us round it, led us beyond it, and then if we turn round to gaze into the distance of the past, we can barely see it, so imperceptible has it become.” – Marcel Proust, In Search of Lost Time
+  - trigger: ">nva:"
+    replace: "{{eoutput}}"
+    vars:
+      - name: eoutput
+        type: random
+        params:
+          choices:
+            - |
+              “Man is the only creature who refuses to be what he is.” ― Albert Camus
+            - |
+              “Au milieu de l'hiver, j'ai découvert en moi un invincible été.” (In the midst of winter, I found there was, within me, an invincible summer.) ― Albert Camus, Return to Tipasa (1954)
+            - |
+              “Like all magnificent things, it's very simple.” ― Natalie Babbitt, Tuck Everlasting
+  # philosophy
+  - trigger: ">nvp:"
+    replace: "{{eoutput}}"
+    vars:
+      - name: eoutput
+        type: random
+        params:
+          choices:
+            - |
+              “Like all magnificent things, it's very simple.” ― Natalie Babbitt, Tuck Everlasting
+            - |
+              “Madness is something rare in individuals — but in groups, parties, peoples, and ages, it is the rule.”― Friedrich Nietzsche, Beyond Good and Evil
+
+  - trigger: ">np:"
+    replace: |
+            “We believe that we can change the things around us in accordance with our desires—we believe it because otherwise we can see no favourable outcome. We do not think of the outcome which generally comes to pass and is also favourable: we do not succeed in changing things in accordance with our desires, but gradually our desires change. The situation that we hoped to change because it was intolerable becomes unimportant to us. We have failed to surmount the obstacle, as we were absolutely determined to do, but life has taken us round it, led us beyond it, and then if we turn round to gaze into the distance of the past, we can barely see it, so imperceptible has it become.” – Marcel Proust, In Search of Lost Time
+
+  - trigger: ">2nv:"
+    replace: "{{one}} \n{{two}}"
+    vars:
+      - name: one
+        type: match
+        params:
+          trigger: ">nv:"
+      - name: two
+        type: match
+        params:
+          trigger: ">nv:"
+  - trigger: ">3nv:"
+    replace: "{{two}} \n{{three}}"
+    vars:
+      - name: two
+        type: match
+        params:
+          trigger: ">2nv:"
+      - name: three
+        type: match
+        params:
+          trigger: ">nv:"
+  - trigger: ">4nv:"
+    replace: "{{three}} \n{{four}}"
+    vars:
+      - name: three
+        type: match
+        params:
+          trigger: ">2nv:"
+      - name: four
+        type: match
+        params:
+          trigger: ">2nv:"
+  - trigger: "#2nv:"
+    replace: |-
+      {{one}}
+      {{two}}
+    vars:
+      - name: one
+        type: match
+        params:
+          trigger: "#nv:"
+      - name: two
+        type: match
+        params:
+          trigger: "#nv:"
+  - trigger: "#3nv:"
+    replace: |-
+      {{two}}
+      {{three}}
+    vars:
+      - name: two
+        type: match
+        params:
+          trigger: "#2nv:"
+      - name: three
+        type: match
+        params:
+          trigger: "#nv:"
+  - trigger: "#4nv:"
+    replace: |-
+      {{one}}
+      {{three}}
+    vars:
+      - name: one
+        type: match
+        params:
+          trigger: "#nv:"
+      - name: three
+        type: match
+        params:
+          trigger: "#3nv:"

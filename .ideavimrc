@@ -7,7 +7,7 @@ set surround
 set commentary
 set argtextobj
 set easymotion
-set sneak
+" set sneak
 set textobj-entire
 set ReplaceWithRegister
 " set which-key
@@ -23,12 +23,15 @@ Plug 'vim-scripts/argtextobj.vim'
 Plug 'tommcdo/vim-exchange'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
 brush
 apple
 math
 
 """ Plugin settings -------------------------
-let g:argtextobj_pairs="[:],(:),<:>"
+let g:argtextobj_pairs="[:],(:),<:>\{:}"
 let g:highlightedyank_highlight_color = "rgba(255, 165, 90, 80)"
 
 " """ Common settings -------------------------
@@ -70,6 +73,10 @@ nnoremap U <C-r>
 " comfort shortcuts
 nnoremap <C-d> yyp
 
+" camelCaseMotion mapping for consistent keymap
+map <leader>w [w
+map <leader>b [b
+map ci<leader>w [bv]ws
 
 " check easymotion docs: https://github.com/easymotion/vim-easymotion
 map <leader>f <plug>(easymotion-f)

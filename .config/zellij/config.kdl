@@ -5,14 +5,14 @@ keybinds clear-defaults=true {
         unbind "Ctrl h"
         unbind "Ctrl q"
 
-        // bind "Ctrl g" { SwitchToMode "locked"; }
+        bind "Ctrl g" { SwitchToMode "locked"; }
         bind "Ctrl Space" { SwitchToMode "pane"; }
         bind "Alt r" { SwitchToMode "resize"; }
         bind "Ctrl t" { SwitchToMode "tab"; }
         bind "Ctrl s" { SwitchToMode "scroll"; }
         bind "Alt o" { SwitchToMode "session"; }
         bind "Ctrl h" { SwitchToMode "move"; }
-        bind "Alt b" { SwitchToMode "tmux"; }
+        bind "Ctrl b" { SwitchToMode "tmux"; }
         bind "Alt r" { NewPane "Right"; }
         bind "Alt h" { MoveFocusOrTab "Left"; }
         bind "Alt l" { MoveFocusOrTab "Right"; }
@@ -275,7 +275,7 @@ on_force_close "quit"
 // Default: $SHELL
 //
 
-// default_shell "nu"
+default_shell "nu"
 
 // Toggle between having pane frames around the panes
 // Options:
@@ -287,7 +287,7 @@ pane_frames false
 // Choose the theme that is specified in the themes section.
 // Default: default
 //
-theme "catppuccin-frappe"
+theme "catppuccin-macchiato"
 
 // The name of the default layout to load on startup
 // Default: "default"

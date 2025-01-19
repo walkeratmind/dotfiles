@@ -36,7 +36,7 @@ matches:
     replace: "*$|$*"
   - trigger: ":-"
     replace: "-$|$-"
-  - trigger: ":md-code"
+  - trigger: ":md-code:"
     replace: |-
       ```
       $|$
@@ -128,25 +128,25 @@ matches:
           - (⁄ ⁄•⁄ω⁄•⁄ ⁄)
           - (𓌻︵𓌻)
           - (▔▀ ‿ ▔▀ )ლ ▂▂⌇
-  - trigger: ":mit-short"
+  - trigger: ":mit-short:"
     replace: "Licensed under MIT, © Rakesh Niraula {{year}}: https://rakeshniraula.com.np"
     vars:
       - name: year
         type: date
         params:
           format: "%Y"
-  - trigger: ":kr"
+  - trigger: ":kr:"
     replace: |
       Kind Regards,
       Rakesh
-  - trigger: ":wtc"
+  - trigger: ":wtc:"
     replace: "{{output}}"
     vars:
       - name: output
         type: shell
         params:
           cmd: curl -s whatthecommit.com/index.txt
-  - trigger: ":pass"
+  - trigger: ":pass:"
     replace: "{{lesspass}}"
     vars:
       - name: params
