@@ -147,3 +147,4 @@ install trippy
 install zsh-autosuggestions
 
 
+brew install fx

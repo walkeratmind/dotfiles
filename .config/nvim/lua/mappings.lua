@@ -88,7 +88,8 @@ map(
 map(
   { "n", "v" },
   "<leader>ff",
-  "<cmd>Telescope find_files find_command=rg,--ignore,--files,--sortr,accessed<CR>",
+  "<cmd>Telescope find_files find_command=fd,--type,f,--hidden,--follow,--exclude,.git node_modules<CR>",
+  -- "<cmd>Telescope find_files find_command=rg,--ignore,--files,--sortr,accessed<CR>",
   { desc = "telescope find files" }
 )
 

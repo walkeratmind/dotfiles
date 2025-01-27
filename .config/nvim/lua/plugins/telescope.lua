@@ -1,6 +1,8 @@
 return {
   {
     "nvim-telescope/telescope.nvim",
+    event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+    -- lazy = false,
     opts = function()
       return {
         defaults = {

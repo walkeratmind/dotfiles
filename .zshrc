@@ -114,6 +114,17 @@ if [[ -d ~/.shellrc.d ]]; then
   unset f
 fi
 
+# zshrc
+if [[ -d ~/.zshrc.d ]]; then
+  for f in ~/.zshrc.d/*; do
+    [ -f "$f" ] || continue
+    # echo $f # for debugging
+    source "$f"
+  done
+  unset f
+fi
+
+
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
@@ -180,3 +191,27 @@ function y() {
 	fi
 	rm -f -- "$tmp"
 }
+
+# change zellij tab name on cd
+zellij_tab_name_update() {
+  if [[ -n $ZELLIJ ]]; then
+    tab_name=''
+    if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+        tab_name+=$(basename "$(git rev-parse --show-toplevel)")/
+        # show additional path
+        # tab_name+=$(git rev-parse --show-prefix)
+        tab_name=${tab_name%/}
+    else
+        tab_name=$PWD
+            if [[ $tab_name == $HOME ]]; then
+         	tab_name="~"
+             else
+         	tab_name=${tab_name##*/}
+             fi
+    fi
+    command nohup zellij action rename-tab $tab_name >/dev/null 2>&1
+  fi
+}
+zellij_tab_name_update
+chpwd_functions+=(zellij_tab_name_update)
+
