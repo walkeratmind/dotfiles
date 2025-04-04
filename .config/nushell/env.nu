@@ -1,6 +1,23 @@
 
 $env.config.show_banner = false   # hide nushell banner
 
+let temp_dir = (
+    if $env.XDG_RUNTIME_DIR? != null { $env.XDG_RUNTIME_DIR }  # Preferred on Linux
+    else if $env.TMPDIR? != null { $env.TMPDIR }               # macOS/Linux alternative
+    else if $env.TMP? != null { $env.TMP }                     # Windows alternative
+    else { "/tmp" }                                            # Default fallback
+)
+
+# Create a subdirectory for Nushell in the temp directory
+let nushell_temp = ($temp_dir | path join "nushell")
+mkdir $nushell_temp | ignore
+
+# Set the new history file locations
+$env.HISTORY_FILE = ($temp_dir | path join "history.txt")
+$env.HISTORY_FILE_FORMAT = "sqlite"  # Use SQLite history instead of plain text
+$env.HISTORY_SQLITE_FILE = ($temp_dir | path join "history.sqlite")
+
+
 $env.config.history = {
   file_format: sqlite
   max_size: 1_000_000
