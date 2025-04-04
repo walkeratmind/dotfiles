@@ -14,35 +14,35 @@ return {
     "stevearc/dressing.nvim",
     event = "VeryLazy",
   },
-  -- {
-  --   "folke/noice.nvim",
-  --   event = { "VeryLazy" },
-  --   config = function()
-  --     require("noice").setup {
-  --       -- add any options here
-  --       routes = {
-  --         {
-  --           filter = {
-  --             event = "msg_show",
-  --             any = {
-  --               { find = "%d+L, %d+B" },
-  --               { find = "; after #%d+" },
-  --               { find = "; before #%d+" },
-  --               { find = "%d fewer lines" },
-  --               { find = "%d more lines" },
-  --             },
-  --           },
-  --           opts = { skip = true },
-  --         },
-  --       },
-  --     }
-  --   end,
-  --   dependencies = {
-  --     -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-  --     "MunifTanjim/nui.nvim",
-  --     "rcarriga/nvim-notify",
-  --   },
-  -- },
+  {
+    "folke/noice.nvim",
+    event = { "VeryLazy" },
+    config = function()
+      require("noice").setup {
+        -- add any options here
+        routes = {
+          {
+            filter = {
+              event = "msg_show",
+              any = {
+                { find = "%d+L, %d+B" },
+                { find = "; after #%d+" },
+                { find = "; before #%d+" },
+                { find = "%d fewer lines" },
+                { find = "%d more lines" },
+              },
+            },
+            opts = { skip = true },
+          },
+        },
+      }
+    end,
+    dependencies = {
+      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+      "MunifTanjim/nui.nvim",
+      "rcarriga/nvim-notify",
+    },
+  },
   {
     "folke/zen-mode.nvim",
     event = { "BufReadPost", "BufWritePost", "BufNewFile" },
@@ -283,7 +283,6 @@ return {
       }
     end,
   },
-
   {
     "christoomey/vim-tmux-navigator",
     event = { "VeryLazy" },

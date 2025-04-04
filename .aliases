@@ -11,17 +11,18 @@ alias ci='code-insiders'
 
 # ls
 # https://the.eza.website
-alias ls='eza --color=always --group-directories-first' # my preferred listing
+alias ls='eza --color=always --icons --group-directories-first' # my preferred listing
 alias lsi='eza --color=always --icons --group-directories-first' # my preferred listing
-alias l='eza -F'
+alias l='eza --color=always --icons --group-directories-first'
 alias ll='eza -lF'
 alias la='eza -aF'
 alias lla='eza -aFl'
 alias lg='eza -aFl --git'
 # alias la='eza -a --color=always --group-directories-first'  # all files and dirs
 alias ll='eza -l --color=always --group-directories-first'  # long format
-alias lt='eza -aT --color=always --group-directories-first --git-ignore' # tree listing
-alias llt='eza -TL 1 --color=always --group-directories-first --git-ignore' # tree listing
+alias lt='eza -aTL 1 --color=always --group-directories-first --git-ignore' # tree listing
+alias llt='eza -TL 2 --color=always --group-directories-first --git-ignore' # tree listing
+alias lllt='eza -aT --color=always --group-directories-first --git-ignore' # tree listing
 
 
 ## Dust

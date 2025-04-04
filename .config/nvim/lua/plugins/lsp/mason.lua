@@ -20,12 +20,16 @@ return {
         "prettier", -- prettier formatter
         "stylua", -- lua formatter
         "ruff",
+        "yamlfmt",
+        "sql-formatter",
 
         "pylint", -- python linter
         "eslint_d", -- js linter
         "luacheck", -- linter for lua
         -- "gofmt",
         -- "rustfmt",
+        "codelldb",
+        "cpptools",
       },
 
       ui = {
@@ -73,7 +77,9 @@ return {
           "golangci_lint_ls",
           "templ",
 
-          "graphql",
+          -- "sqls", -- for sql
+
+          -- "graphql",
         },
         -- auto-install configured servers (with lspconfig)
         automatic_installation = false, -- not the same as ensure_installed

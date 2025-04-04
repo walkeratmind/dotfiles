@@ -2,6 +2,8 @@
 # Original file: user/git.yml
 
 matches:
+  - trigger: ":gii"
+    replace: "git init && git add -A && git commit -m \"Initial commit\""
   - trigger: ":gcommit"
     replace: "git commit -m \"$|$\""
   - trigger: ":gbuild"

@@ -29,7 +29,7 @@ end, { desc = "File Format with conform" })
 
 map("i", "jk", "<ESC>", { desc = "Escape insert mode" })
 
-map("n", "gd", "<CMD>Lspsaga goto_definition<CR>", { desc = "Lspsaga goto definition" })
+map("n", "<leader>gd", "<CMD>Lspsaga goto_definition<CR>", { desc = "Lspsaga goto definition" })
 map("n", "<leader>k", "<CMD>Lspsaga hover_doc<CR>", { desc = "Lspsaga hover" })
 
 -- unmap nvchad keymaps
@@ -88,8 +88,9 @@ map(
 map(
   { "n", "v" },
   "<leader>ff",
-  "<cmd>Telescope find_files find_command=fd,--type,f,--hidden,--follow,--exclude,.git node_modules<CR>",
-  -- "<cmd>Telescope find_files find_command=rg,--ignore,--files,--sortr,accessed<CR>",
+  -- "<cmd>Telescope find_files find_command={'fd', '--type', 'f', '--hidden', '--follow', '--exclude', '.git', '--exclude', 'node_modules'}<CR>",
+  -- "<cmd>Telescope find_files find_command=fd,--type,f,--hidden,--follow,--exclude,.git node_modules<CR>",
+  "<cmd>Telescope find_files find_command=rg,--ignore,--files,--sortr,accessed<CR>",
   { desc = "telescope find files" }
 )
 
@@ -100,6 +101,7 @@ map(
   { desc = "Telescope File Browser" }
 )
 
+map({ "n", "v" }, "<C-p>", ":Telescope buffers<CR>", { desc = "Telescope Buffers" })
 -- map("n", "<C-m>", "<cmd>Telescope marks<cr>", { desc = "Telescope Marks" })
 
 -- Harpoon

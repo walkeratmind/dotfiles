@@ -1,10 +1,12 @@
+local on_attach = require("nvchad.configs.lspconfig").on_attach
+-- local capabilities = require("nvchad.configs.lspconfig").capabilities
+local capabilities = require("blink.cmp").get_lsp_capabilities(require("nvchad.configs.lspconfig").capabilities)
+
 return {
   {
     "neovim/nvim-lspconfig",
+    dependencies = { "saghen/blink.cmp" },
     config = function()
-      local on_attach = require("nvchad.configs.lspconfig").on_attach
-      local capabilities = require("nvchad.configs.lspconfig").capabilities
-
       -- load defaults from nvchad
       require("nvchad.configs.lspconfig").defaults()
 
@@ -46,6 +48,27 @@ return {
           },
         },
       }
+
+      lspconfig.templ.setup {
+        on_attach = on_attach,
+        capabilities = capabilities,
+        cmd = { "templ", "lsp" },
+        filetypes = { "templ" },
+      }
+
+      -- lspconfig.rust_analyzer.setup {
+      --   on_attach = on_attach,
+      --   capabilities = capabilities,
+      --   filetypes = { "rust" },
+      --   root_dir = util.root_pattern "Cargo.toml",
+      --   settings = {
+      --     ["rust-analyzer"] = {
+      --       cargo = {
+      --         allFeatures = true,
+      --       },
+      --     },
+      --   },
+      -- }
 
       lspconfig.ts_ls.setup {
         on_attach = on_attach,
@@ -100,11 +123,11 @@ return {
       }
 
       -- configure graphql language server
-      lspconfig["graphql"].setup {
-        capabilities = capabilities,
-        on_attach = on_attach,
-        filetypes = { "graphql", "gql", "svelte", "typescriptreact", "javascriptreact" },
-      }
+      -- lspconfig["graphql"].setup {
+      --   capabilities = capabilities,
+      --   on_attach = on_attach,
+      --   filetypes = { "graphql", "gql", "svelte", "typescriptreact", "javascriptreact" },
+      -- }
 
       -- configure emmet language server
       lspconfig["emmet_ls"].setup {
@@ -170,22 +193,91 @@ return {
         on_attach = on_attach,
 
         filetypes = {
+          "astro",
+          "css",
+          "graphql",
           "javascript",
           "javascriptreact",
           "json",
           "jsonc",
+          "svelte",
           "typescript",
           "typescript.tsx",
           "typescriptreact",
-          "astro",
-          "svelte",
           "vue",
-          "css",
           "yml",
           "yaml",
         },
       }
-      -- disable by default for goto definition by split , only by command
+
+      lspconfig.vale_ls.setup {
+        on_attach = on_attach,
+        capabilities = capabilities,
+        filetyypes = { "markdown", "text", "tex", "html" },
+      }
+
+      lspconfig.yamlls.setup {
+        on_attach = on_attach,
+        -- on_attach = function(client, bufnr)
+        --   client.server_capabilities.diagnosticProvider = true
+        -- end,
+        capabilities = capabilities,
+        flags = {
+          debounce_text_changes = 200,
+        },
+        settings = {
+          yaml = {
+            format = {
+              enable = true,
+              bracketSpacing = true,
+            },
+            validate = true,
+            completion = true,
+            schemaStore = {
+              -- url = "https://www.schemastore.org/api/json/catalog.json",
+              url = "",
+              enable = false,
+            },
+            schemas = {
+              -- {
+              --   name = "Taskfile config",
+              --   description = "Taskfile files",
+              --   fileMatch = {
+              --     "Taskfile.yaml",
+              --     "Taskfile.dist.yaml",
+              --     "Taskfile.yml",
+              --     "Taskfile.dist.yml",
+              --   },
+              --   url = "https://taskfile.dev/schema.json",
+              -- },
+
+              ["https://taskfile.dev/schema.json"] = {
+                "**/Taskfile.yml",
+                "**/Taskfile.yaml",
+              },
+
+              ["https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.0/schema.yaml"] = {
+                "**/openapi.{yaml,yml}",
+              },
+              ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+              --   ["../path/relative/to/file.yml"] = "/.github/workflows/*",
+              --   ["/path/from/root/of/project"] = "/.github/workflows/*",
+            },
+          },
+        },
+      }
+
+      lspconfig.sqls.setup {
+        capabilities = capabilities,
+        on_attach = on_attach,
+
+        filetypes = {
+          "sql",
+          "mysql",
+        },
+      }
+
+      -- -- disable by default for goto definition by split , only by command
       -- vim.lsp.handlers["textDocument/definition"] = goto_definition "split"
 
       local function goto_definition(split_cmd)

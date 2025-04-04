@@ -102,7 +102,6 @@ return {
       -- "gnfisher/nvim-telescope-ctags-plus",
       "benfowler/telescope-luasnip.nvim",
       "FabianWirth/search.nvim",
-      "Marskey/telescope-sg",
       {
         "nvim-telescope/telescope-fzf-native.nvim",
         build = "make",

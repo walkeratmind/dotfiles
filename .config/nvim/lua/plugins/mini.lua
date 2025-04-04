@@ -6,14 +6,36 @@ return {
     -- event = { "VeryLazy" },
     lazy = false,
     config = function()
-      require("mini.ai").setup()
+      local ai = require "mini.ai"
+      ai.setup {
+        n_lines = 120,
+        custom_textobjects = {
+          f = ai.gen_spec.function_call(), -- u for "Usage"
+          F = ai.gen_spec.function_call { name_pattern = "[%w_]" }, -- without dot in function name
+        },
+      }
       require("mini.surround").setup()
       require("mini.operators").setup()
       require("mini.pairs").setup()
       require("mini.bracketed").setup()
-      -- require("mini.files").setup()
+      require("mini.files").setup {
+        mappings = {
+          close = "<ESC>",
+          synchronize = "w",
+          go_in_plus = "<CR>",
+        },
+        options = {
+          use_as_default_explorer = false,
+        },
+      }
+
+      vim.keymap.set("n", "<leader>fp", function()
+        vim.cmd "lua MiniFiles.open()"
+      end)
+
       -- require("mini.move").setup()
       require("mini.icons").setup()
+      -- require("mini.icons").mock_nvim_web_devicons()
       require("mini.jump").setup()
     end,
   },

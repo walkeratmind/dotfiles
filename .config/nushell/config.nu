@@ -7,8 +7,8 @@ source ~/.local/share/atuin/init.nu
 # Define a function that updates the Zellij tab name
 def zellij_tab_name_update [] {
     # Only do this if running inside Zellij
-    if $env.ZELLIJ != $null {
-        let mut tab_name = ""
+    if $env.ZELLIJ != "" {
+        let tab_name = ""
 
         # Attempt to detect if we're in a Git repo
         try {
@@ -18,7 +18,7 @@ def zellij_tab_name_update [] {
             # If no error, construct the tab name from the repo root and subdirectory
             let repo_name = (git rev-parse --show-toplevel | path basename)
             let git_prefix = (git rev-parse --show-prefix | str trim)
-            let tab_name = ($repo_name + '/' + $git_prefix | str trimchars '/')
+            let tab_name = ($repo_name + '/' + $git_prefix | str trim -c '/')
         } catch {
             # If not in a Git repo, use the directory name
             let current_dir = $env.PWD
@@ -38,7 +38,7 @@ def zellij_tab_name_update [] {
 def cd [
     path?
 ] {
-    if $path == $null {
+    if $path == "" {
         builtin cd
     } else {
         builtin cd $path
@@ -48,5 +48,5 @@ def cd [
 }
 
 # Run once on shell start to set the initial tab name
-zellij_tab_name_update
+# zellij_tab_name_update
 

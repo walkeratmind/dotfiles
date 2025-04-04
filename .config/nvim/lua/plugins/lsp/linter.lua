@@ -10,18 +10,15 @@ return {
       lua = {
         "luacheck",
       },
-      yaml = {
-        "yamllint",
-        "actionlint",
-      },
       go = { "golangcilint" },
       python = { "ruff" },
-      json = { "eslint_d" },
-      javascript = { "eslint_d" },
-      typescript = { "eslint_d" },
-      javascriptreact = { "eslint_d" },
+      json = { "biomejs" },
+      javascript = { "biomejs" },
+      typescript = { "biomejs" },
+      javascriptreact = { "biomejs" },
       typescriptreact = { "biomejs" },
-      svelte = { "eslint_d" },
+      svelte = { "biomejs" },
+      markdown = { "vale" },
     }
 
     local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })

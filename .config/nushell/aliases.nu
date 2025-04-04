@@ -1,5 +1,13 @@
 
-# aliases for chezmoi 
+# ------------------------------------------------------------
+# Aliases
+# ------------------------------------------------------------
+
+# Alias for project folder navigation
+export alias plab = cd $env.HOME/project_lab
+
+
+# aliases for chezmoi
 export alias ch = chezmoi
 export alias chad = chezmoi add
 export alias chap = chezmoi apply

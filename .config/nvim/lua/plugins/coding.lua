@@ -21,6 +21,28 @@ return {
     end,
   },
   {
+    "mrcjkb/rustaceanvim",
+    version = "^5",
+    ft = { "rust" },
+    dependencies = "neovim/nvim-lspconfig",
+    config = function()
+      require "configs.rustaceanvim"
+    end,
+  },
+  {
+    "saecki/crates.nvim",
+    ft = { "toml" },
+    config = function(_, opts)
+      local crates = require "crates"
+      crates.setup(opts)
+      require("cmp").setup.buffer {
+        sources = { { name = "crates" } },
+      }
+      crates.show()
+      require("core.utils").load_mappings "crates"
+    end,
+  },
+  {
     "numToStr/Comment.nvim",
     event = { "BufReadPost", "BufWritePost", "BufNewFile" },
     keys = {
@@ -81,7 +103,7 @@ return {
         desc = "Quickfix List (Trouble)",
       },
       {
-        "<C-l>",
+        "<leader>tq",
         "<cmd>Trouble qflist toggle focus=true<cr>",
         desc = "Quickfix List (Trouble)",
       },
@@ -172,8 +194,8 @@ return {
         -- your options
         repl_enable = { "ipython" },
       }
-      vim.api.nvim_set_keymap({ "n", "v" }, "<leader>sr", "<Plug>SnipRun", { silent = true })
-      vim.api.nvim_set_keymap("n", "<leader>sf", "<Plug>SnipRunOperator", { silent = true })
+      vim.keymap.set({ "n", "v" }, "<leader>sr", ":SnipRun<CR>", { silent = true })
+      vim.keymap.set("n", "<leader>sf", ":SnipRunOperator<CR>", { silent = true })
     end,
   },
 }

@@ -193,25 +193,56 @@ function y() {
 }
 
 # change zellij tab name on cd
-zellij_tab_name_update() {
-  if [[ -n $ZELLIJ ]]; then
-    tab_name=''
-    if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
-        tab_name+=$(basename "$(git rev-parse --show-toplevel)")/
-        # show additional path
-        # tab_name+=$(git rev-parse --show-prefix)
-        tab_name=${tab_name%/}
-    else
-        tab_name=$PWD
-            if [[ $tab_name == $HOME ]]; then
-         	tab_name="~"
-             else
-         	tab_name=${tab_name##*/}
-             fi
-    fi
-    command nohup zellij action rename-tab $tab_name >/dev/null 2>&1
-  fi
-}
-zellij_tab_name_update
-chpwd_functions+=(zellij_tab_name_update)
+# zellij_tab_name_update() {
+#   if [[ -n $ZELLIJ ]]; then
+#     tab_name=''
+#     if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+#         tab_name+=$(basename "$(git rev-parse --show-toplevel)")/
+#         # show additional path
+#         # tab_name+=$(git rev-parse --show-prefix)
+#         tab_name=${tab_name%/}
+#     else
+#         tab_name=$PWD
+#             if [[ $tab_name == $HOME ]]; then
+#          	tab_name="~"
+#              else
+#          	tab_name=${tab_name##*/}
+#              fi
+#     fi
+#     command nohup zellij action rename-tab $tab_name >/dev/null 2>&1
+#   fi
+# }
 
+# zellij_tab_name_update() {
+#   if [[ -n $ZELLIJ ]]; then
+#     tab_name=''
+#     if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+#         tab_name+=$(basename "$(git rev-parse --show-toplevel)")/
+#         tab_name=${tab_name%/}
+#     else
+#         tab_name=$PWD
+#         if [[ $tab_name == $HOME ]]; then
+#             tab_name="~"
+#         else
+#             tab_name=${tab_name##*/}
+#         fi
+#     fi
+#
+#     # Limit tab name length to, say, 20 characters
+#     max_length=20
+#     if [[ ${#tab_name} -gt $max_length ]]; then
+#       tab_name="${tab_name:0:$max_length}…"
+#     fi
+#
+#     command nohup zellij action rename-tab "$tab_name" >/dev/null 2>&1
+#   fi
+# }
+#
+# if [[ -n $ZELLIJ ]]; then
+#   zellij_tab_name_update
+#   chpwd_functions+=(zellij_tab_name_update)
+# fi
+
+
+# taskfile / go
+eval "$(task --completion zsh)"

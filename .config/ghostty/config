@@ -30,6 +30,7 @@ window-padding-x = 4
 window-padding-y = 4
 # window-decoration = false
 macos-titlebar-style = tabs
+# macos-titlebar-style = hidden
 gtk-tabs-location = bottom
 shell-integration = zsh
 

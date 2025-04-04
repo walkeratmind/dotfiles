@@ -173,3 +173,9 @@ function audible {
     wget -c "http://cdl.audible.com/cgi-bin/aw_assemble_title_dynamic.aa?$(cat $1)" -O "/tmp/$1.aax"
     ffmpeg -y -activation_bytes $KEY_AUDIBLE -i "/tmp/$1.aax" -c:a copy -vn "$1.m4a"
 }
+
+function killPort() {
+  PIDS=$(lsof -ti :$1) && echo "$PIDS" | xargs kill -9 || echo "No process found on $1"
+  # PID=$(echo $(lsof -n -i4TCP:$1) | awk 'NR==1{print $11}')
+  # kill -9 $PID
+}
