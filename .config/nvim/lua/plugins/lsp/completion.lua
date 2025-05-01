@@ -82,7 +82,8 @@ return {
           --   { "kind" },
           -- },
 
-          columns = { { "kind_icon", "label", "label_description", gap = 1 }, { "kind", "source_name", gap = 2 } },
+          -- columns = { { "kind_icon", "label", "label_description", gap = 1 }, { "kind", "source_name", gap = 2 } },
+          columns = { { "kind_icon", "label", "label_description", gap = 1 }, { "kind", "source_name", gap = 1 } },
 
           components = {
             kind_icon = {

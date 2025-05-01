@@ -1,0 +1,182 @@
+{
+	"Turbofish Operator": {
+		"description": "Turbofish: `::<_>`",
+		"prefix": ":turbofish",
+		"body": ["::<$0>"]
+	},
+	"Derive Debug": {
+		"description": "#[derive(Debug)]",
+		"prefix": "derivedebug",
+		"body": ["#[derive(Debug)]"]
+	},
+	"Allow Dead Code": {
+		"description": "#[allow(dead_code)]",
+		"prefix": "deadcode",
+		"body": ["#[allow(dead_code)]"]
+	},
+	"Allow Clippy + Warnings": {
+		"description": "Global clippy and warning allow",
+		"prefix": "allowfreedom",
+		"body": ["#![allow(clippy::disallowed_names, unused_variables, dead_code)]"]
+	},
+	"Clippy Warn All": {
+		"description": "#![warn(clippy::all, clippy::pedantic)]",
+		"prefix": "clippypedantic",
+		"body": ["#![warn(clippy::all, clippy::pedantic)]"]
+	},
+	"Allow Attribute": {
+		"description": "#[allow(...)] outer attribute",
+		"prefix": "allow",
+		"body": ["#[allow($0)]"]
+	},
+	"Allow Inner Attribute": {
+		"description": "#![allow(...)] inner attribute",
+		"prefix": "allow!",
+		"body": ["#![allow($0)]"]
+	},
+	"Deny Rustc Lints": {
+		"description": "Common Rustc deny lints",
+		"prefix": "allow_rustc",
+		"body": ["#![deny($0)]"]
+	},
+	"Deny Attribute": {
+		"description": "#![deny(...)]",
+		"prefix": "deny",
+		"body": ["#![deny($0)]"]
+	},
+	"Warn Attribute": {
+		"description": "#![warn(...)]",
+		"prefix": "warn",
+		"body": ["#![warn($0)]"]
+	},
+	"No Std Attribute": {
+		"description": "#![no_std]",
+		"prefix": "no_std",
+		"body": ["#![no_std]"]
+	},
+	"No Core Attribute": {
+		"description": "#![no_core]",
+		"prefix": "no_core",
+		"body": ["#![no_core]"]
+	},
+	"Feature Attribute": {
+		"description": "#![feature(...)]",
+		"prefix": "feature",
+		"body": ["#![feature($0)]"]
+	},
+	"Macro Use Attribute": {
+		"description": "#![macro_use]",
+		"prefix": "macro_use",
+		"body": ["#![macro_use]"]
+	},
+	"Repr Attribute": {
+		"description": "#![repr(...)]",
+		"prefix": "repr",
+		"body": ["#![repr($0)]"]
+	},
+	"Cfg Attribute": {
+		"description": "#![cfg(...)]",
+		"prefix": "cfg",
+		"body": ["#![cfg($0)]"]
+	},
+	"Cfg Attr Attribute": {
+		"description": "#![cfg_attr(...)]",
+		"prefix": "cfg_attr",
+		"body": ["#![cfg_attr($0)]"]
+	},
+	"Cfg! Macro": {
+		"description": "#![cfg!(...)]",
+		"prefix": "cfg!",
+		"body": ["#![cfg!($0)]"]
+	},
+	"For Loop": {
+		"description": "for _ in _ loop",
+		"prefix": "for",
+		"body": ["for $1 in $2 {", "    $0", "}"]
+	},
+	"If Statement": {
+		"description": "if condition",
+		"prefix": "if",
+		"body": ["if $1 {", "    $0", "}"]
+	},
+	"Match Expression": {
+		"description": "match with two arms",
+		"prefix": "match",
+		"body": ["match $1 {", "    Some($2) => $3,", "    None => $4,", "}"]
+	},
+	"While Let": {
+		"description": "while let Some(...) = ...",
+		"prefix": "while-let",
+		"body": ["while let $1 = $2 {", "    $0", "}"]
+	},
+	"Struct Debug": {
+		"description": "Struct with Debug derive",
+		"prefix": "struct",
+		"body": ["#[derive(Debug)]", "struct $1 {", "    $0", "}"]
+	},
+	"Function with Return": {
+		"description": "Function with return type",
+		"prefix": "fnreturn",
+		"body": ["fn $1($2) -> $3 {", "    $4", "}"]
+	},
+	"Format Outer Args": {
+		"description": "format!(\"text {:?}\", arg)",
+		"prefix": "format_outer_args",
+		"body": ["format!(\"$1 {:?}\", $0);"]
+	},
+	"Format Inner Args": {
+		"description": "format!(\"text {arg:?}\")",
+		"prefix": "format_inner_args",
+		"body": ["format!(\"$1 {$0:?}\");"]
+	},
+	"Print Outer Args": {
+		"description": "print!(\"text {:?}\", arg)",
+		"prefix": "print_outer_args",
+		"body": ["print!(\"$1 {:?}\", $0);"]
+	},
+	"Println Inner Args": {
+		"description": "println!(\"text {arg:?}\")",
+		"prefix": "println_inner_args",
+		"body": ["println!(\"$1 {$0:?}\");"]
+	},
+	"Println Outer Args": {
+		"description": "println!(\"text {:?}\", arg)",
+		"prefix": "println_outer_args",
+		"body": ["println!(\"$1 {:?}\", $0);"]
+	},
+	"Eprintln Outer Args": {
+		"description": "eprintln!(\"text {:?}\", arg)",
+		"prefix": "eprintln_outer_args",
+		"body": ["eprintln!(\"$1 {:?}\", $0);"]
+	},
+	"Eprint Inner Args": {
+		"description": "eprint!(\"text {arg:?}\")",
+		"prefix": "eprint_inner_args",
+		"body": ["eprintln!(\"$1 {$0:?}\");"]
+	},
+	"Eprintln Inner Args": {
+		"description": "eprintln!(\"text {arg:?}\")",
+		"prefix": "eprintln_inner_args",
+		"body": ["eprintln!(\"$1 {$0:?}\");"]
+	},
+	"Unit Test Function": {
+		"description": "#[test] fn test()",
+		"prefix": "test",
+		"body": ["#[test]", "fn $1() {", "    assert!($0);", "}"]
+	},
+	"Test Module": {
+		"description": "Full #[cfg(test)] mod",
+		"prefix": "testmod",
+		"body": [
+			"#[cfg(test)]",
+			"mod $1 {",
+			"    use super::*;",
+			"",
+			"    #[test]",
+			"    fn $2() {",
+			"        assert!($0);",
+			"    }",
+			"}"
+		]
+	}
+}

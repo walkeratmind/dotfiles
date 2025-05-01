@@ -52,7 +52,7 @@ return {
       -- refer to the configuration section below
     },
     config = function()
-      vim.keymap.set("n", "<leader>zz", "<cmd>ZenMode<cr>", { silent = true })
+      -- vim.keymap.set("n", "<leader>zz", "<cmd>ZenMode<cr>", { silent = true })
       -- limelight
       -- nmap <Leader>l <Plug>(Limelight)
       -- xmap <Leader>l <Plug>(Limelight)

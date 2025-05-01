@@ -34,6 +34,7 @@ dofile(vim.g.base46_cache .. "statusline")
 
 require "nvchad.autocmds"
 require "configs.autocmds"
+require "configs.commands"
 require "configs.diagnostic"
 require "options"
 

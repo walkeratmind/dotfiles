@@ -17,30 +17,40 @@ return {
       notification = {
         wo = { wrap = true }, -- Wrap notifications
       },
-      -- zen = {
-      --   backdrop = {
-      --     transparent = true,
-      --   },
-      --   width = 120,
-      --   wo = {
-      --     number = false,
-      --     signcolumn = "no",
-      --     cursorcolumn = false,
-      --     relativenumber = false,
-      --   },
-      -- },
+      zen = {
+        enter = true,
+        fixbuf = false,
+        minimal = false,
+        width = 120,
+        height = 0,
+        backdrop = {
+          transparent = true,
+          blend = 40,
+        },
+        zindex = 40,
+        wo = {
+          -- number = false,
+          -- signcolumn = "no",
+          -- cursorcolumn = false,
+          -- relativenumber = false,
+          winhighlight = "NormalFloat:Normal",
+        },
+        w = {
+          snacks_main = true,
+        },
+      },
     },
     zen = {
-      -- toggles = {
-      --   dim = true,
-      --   git_signs = false,
-      --   mini_diff_signs = false,
-      -- },
-      -- win = { style = "zen" },
-      -- show = {
-      --   statusline = false,
-      --   tabline = false,
-      -- },
+      toggles = {
+        dim = true,
+        git_signs = false,
+        mini_diff_signs = false,
+      },
+      win = { style = "zen" },
+      show = {
+        statusline = false,
+        tabline = false,
+      },
     },
   },
   keys = {
@@ -147,6 +157,20 @@ return {
           },
         }
       end,
+    },
+    {
+      "<leader>zz",
+      function()
+        Snacks.zen()
+      end,
+      desc = "Toggle Zen Mode",
+    },
+    {
+      "<leader>Z",
+      function()
+        Snacks.zen.zoom()
+      end,
+      desc = "Toggle Zoom",
     },
   },
   init = function()

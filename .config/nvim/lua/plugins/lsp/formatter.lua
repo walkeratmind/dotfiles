@@ -24,10 +24,15 @@ return {
       templ = { "templ" },
       sql = { "sql_formatter" },
     },
-    format_after_save = {
-      lsp_format = "never",
-      async = true,
-      timeout_ms = 1001,
+    -- format_after_save = {
+    --   lsp_format = "never",
+    --   async = true,
+    --   timeout_ms = 1001,
+    -- },
+    format_on_save = {
+      -- These options will be passed to conform.format()
+      timeout_ms = 500,
+      lsp_format = "fallback",
     },
   },
   init = function()

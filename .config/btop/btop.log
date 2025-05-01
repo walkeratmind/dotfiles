@@ -1,0 +1,86 @@
+
+2025/05/01 (08:17:06) | ===> btop++ v.1.4.0
+2025/05/01 (08:17:06) | INFO: Logger set to DEBUG
+2025/05/01 (08:17:06) | DEBUG: Using locale en_US.UTF-8
+2025/05/01 (08:17:06) | INFO: Running on /dev/ttys003
+2025/05/01 (08:17:06) | DEBUG: get_sensors(): show_coretemp=1 check_temp=1
+2025/05/01 (08:17:06) | DEBUG: checking intel
+2025/05/01 (08:17:06) | DEBUG: no intel sensors found
+2025/05/01 (08:17:06) | DEBUG: Loading theme file: /Users/rakesh/.config/btop/themes/catppuccin_macchiato.theme
+2025/05/01 (08:17:10) | DEBUG: Writing new config file
+2025/05/01 (08:17:10) | INFO: Quitting! Runtime: 00:00:04
+
+2025/05/01 (08:17:30) | ===> btop++ v.1.4.0
+2025/05/01 (08:17:30) | INFO: Logger set to DEBUG
+2025/05/01 (08:17:30) | DEBUG: Using locale en_US.UTF-8
+2025/05/01 (08:17:30) | INFO: Running on /dev/ttys003
+2025/05/01 (08:17:30) | DEBUG: get_sensors(): show_coretemp=1 check_temp=1
+2025/05/01 (08:17:30) | DEBUG: checking intel
+2025/05/01 (08:17:30) | DEBUG: no intel sensors found
+2025/05/01 (08:17:30) | DEBUG: Loading theme file: /Users/rakesh/.config/btop/themes/catppuccin_macchiato.theme
+
+2025/05/01 (08:19:37) | ===> btop++ v.1.4.0
+2025/05/01 (08:19:37) | INFO: Logger set to DEBUG
+2025/05/01 (08:19:37) | DEBUG: Using locale en_US.UTF-8
+2025/05/01 (08:19:37) | INFO: Running on /dev/ttys001
+2025/05/01 (08:19:37) | DEBUG: get_sensors(): show_coretemp=1 check_temp=1
+2025/05/01 (08:19:37) | DEBUG: checking intel
+2025/05/01 (08:19:37) | DEBUG: no intel sensors found
+2025/05/01 (08:19:37) | DEBUG: Loading theme file: /Users/rakesh/.config/btop/themes/catppuccin_macchiato.theme
+2025/05/01 (08:20:03) | DEBUG: Writing new config file
+2025/05/01 (08:20:03) | INFO: Quitting! Runtime: 00:02:33
+2025/05/01 (08:20:05) | INFO: Quitting! Runtime: 00:00:28
+
+2025/05/01 (08:20:07) | ===> btop++ v.1.4.0
+2025/05/01 (08:20:07) | INFO: Logger set to DEBUG
+2025/05/01 (08:20:07) | DEBUG: Using locale en_US.UTF-8
+2025/05/01 (08:20:07) | INFO: Running on /dev/ttys001
+2025/05/01 (08:20:07) | DEBUG: get_sensors(): show_coretemp=1 check_temp=1
+2025/05/01 (08:20:07) | DEBUG: checking intel
+2025/05/01 (08:20:07) | DEBUG: no intel sensors found
+2025/05/01 (08:20:07) | DEBUG: Loading theme file: /Users/rakesh/.config/btop/themes/catppuccin_macchiato.theme
+2025/05/01 (08:24:57) | DEBUG: Writing new config file
+2025/05/01 (08:24:57) | INFO: Quitting! Runtime: 00:04:50
+
+2025/05/01 (08:24:58) | ===> btop++ v.1.4.0
+2025/05/01 (08:24:58) | INFO: Logger set to DEBUG
+2025/05/01 (08:24:58) | DEBUG: Using locale en_US.UTF-8
+2025/05/01 (08:24:58) | INFO: Running on /dev/ttys001
+2025/05/01 (08:24:58) | DEBUG: get_sensors(): show_coretemp=1 check_temp=1
+2025/05/01 (08:24:58) | DEBUG: checking intel
+2025/05/01 (08:24:58) | DEBUG: no intel sensors found
+2025/05/01 (08:24:58) | DEBUG: Loading theme file: /Users/rakesh/.config/btop/themes/catppuccin_macchiato.theme
+2025/05/01 (08:25:32) | DEBUG: Writing new config file
+2025/05/01 (08:25:32) | INFO: Quitting! Runtime: 00:00:34
+
+2025/05/01 (08:27:22) | ===> btop++ v.1.4.0
+2025/05/01 (08:27:22) | INFO: Logger set to DEBUG
+2025/05/01 (08:27:22) | DEBUG: Using locale en_US.UTF-8
+2025/05/01 (08:27:22) | INFO: Running on /dev/ttys001
+2025/05/01 (08:27:22) | DEBUG: get_sensors(): show_coretemp=1 check_temp=1
+2025/05/01 (08:27:22) | DEBUG: checking intel
+2025/05/01 (08:27:22) | DEBUG: no intel sensors found
+2025/05/01 (08:27:22) | DEBUG: Loading theme file: /Users/rakesh/.config/btop/themes/catppuccin_macchiato.theme
+2025/05/01 (08:27:35) | DEBUG: Writing new config file
+2025/05/01 (08:27:35) | INFO: Quitting! Runtime: 00:00:13
+
+2025/05/01 (08:30:50) | ===> btop++ v.1.4.0
+2025/05/01 (08:30:50) | INFO: Logger set to DEBUG
+2025/05/01 (08:30:50) | DEBUG: Using locale en_US.UTF-8
+2025/05/01 (08:30:50) | INFO: Running on /dev/ttys001
+2025/05/01 (08:30:50) | DEBUG: get_sensors(): show_coretemp=1 check_temp=1
+2025/05/01 (08:30:50) | DEBUG: checking intel
+2025/05/01 (08:30:50) | DEBUG: no intel sensors found
+2025/05/01 (08:30:50) | DEBUG: Loading theme file: /Users/rakesh/.config/btop/themes/catppuccin_macchiato.theme
+2025/05/01 (08:30:53) | INFO: Quitting! Runtime: 00:00:03
+
+2025/05/01 (08:31:34) | ===> btop++ v.1.4.0
+2025/05/01 (08:31:34) | INFO: Logger set to DEBUG
+2025/05/01 (08:31:34) | DEBUG: Using locale en_US.UTF-8
+2025/05/01 (08:31:34) | INFO: Running on /dev/ttys034
+2025/05/01 (08:31:34) | DEBUG: get_sensors(): show_coretemp=1 check_temp=1
+2025/05/01 (08:31:34) | DEBUG: checking intel
+2025/05/01 (08:31:34) | DEBUG: no intel sensors found
+2025/05/01 (08:31:34) | DEBUG: Loading theme file: /Users/rakesh/.config/btop/themes/catppuccin_macchiato.theme
+2025/05/01 (08:32:03) | DEBUG: Writing new config file
+2025/05/01 (08:32:03) | INFO: Quitting! Runtime: 00:00:29
