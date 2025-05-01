@@ -12,3 +12,4 @@ brew install font-victor-mono-nerd-font
 brew tap homebrew/cask-fonts && brew install font-maple
 
 
+brew install --cask font-dm-mono
