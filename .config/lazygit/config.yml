@@ -4,7 +4,6 @@
 services:
 "gitlab.com": "gitlab:gitlab.com"
 "github.com": "github:github.com"
-
 customCommands:
   # When navigating the commits, select a file, and press 'f' to compare it with the git difftool against the working copy.
   # doens't work with renamed file
@@ -12,8 +11,6 @@ customCommands:
   #   command: "git difftool -y {{.SelectedLocalCommit.Sha}} -- {{.SelectedCommitFile.Name}}"
   #   context: 'commitFiles'
   #   description: 'Compare (difftool) with local copy'
-
-
 
   # push to a specific remote branch
   - key: '<c-p>'
@@ -28,7 +25,7 @@ customCommands:
     command: "glab mr view -w {{.SelectedLocalBranch.UpstreamBranch}}"
     context: "localBranches"
     description: "Go to MR in gitlab"
-    stream: true
+    output: log
   # prune deleted remote branches
   - key: "<c-d>"
     command: "git remote prune {{.SelectedRemote.Name}}"
@@ -59,22 +56,19 @@ customCommands:
     command: git blame -- {{.SelectedFile.Name}}
     context: files
     description: blame file at tree
-    subprocess: yes
   - key: b
     command: git blame {{.SelectedSubCommit.Sha}} -- {{.SelectedCommitFile.Name}}
     context: commitFiles
     description: blame file at revision
-    subprocess: yes
   - key: B
     command: git blame -- {{.SelectedCommitFile.Name}}
     context: commitFiles
     description: blame file at tree
-    subprocess: yes
   - key: "-"
     context: global
     description: Show branch graph
     command: git plog # custom git alias
-    subprocess: true
+    output: terminal
   - key: "<c-a>"
     context: "global"
     description: "Save everything as WIP"
@@ -84,16 +78,13 @@ customCommands:
     description: "Reword, leaving only the first line"
     # this is really useful when I have tons of squashed temp commits and I
     # want to reduce the repetition in the commit messages
-    command:
-      "git commit --amend --no-verify --message '{{.SelectedLocalCommit.Name}}'"
-  - key:
-      # backspace does not work, tracked in
-      # https://github.com/jesseduffield/lazygit/issues/2953
-      # https://github.com/jesseduffield/lazygit/issues/3847
-      "I"
+    command: "git commit --amend --no-verify --message '{{.SelectedLocalCommit.Name}}'"
+  - key: "I"
+    # backspace does not work, tracked in
+    # https://github.com/jesseduffield/lazygit/issues/2953
+    # https://github.com/jesseduffield/lazygit/issues/3847
     context: global
     command: "git stash-keep"
-
 keybinding:
   universal:
     edit: e
@@ -103,7 +94,6 @@ keybinding:
     commitChanges: c # using the interactive commit dialog
     commitChangesWithEditor: C # using neovim
     toggleTreeView: f
-
 os:
   # I usually use lazygit embedded in nvim. For this, I use
   # https://github.com/willothy/flatten.nvim to simplify the setup without the
@@ -115,15 +105,10 @@ os:
 
   # Create pull request command opens a URL with incorrect escaping #3064
   # https://github.com/jesseduffield/lazygit/issues/3064
-  openLink:
-    open -n "$(echo {{link}} | sed 's/%3E/>/g' | sed 's/%2F/\//g' | sed
-    s/%27/\'/g )"
+  openLink: open -n "$(echo {{link}} | sed 's/%3E/>/g' | sed 's/%2F/\//g' | sed s/%27/\'/g )"
   # openLink: open "$(echo "{{link}}" | sed 's/%2F/\//g')"
-
 promptToReturnFromSubprocess: false
-
 notARepository: "quit"
-
 # https://github.com/catppuccin/lazygit/blob/main/themes-mergable/macchiato/pink.yml
 gui:
   commitHashLength: 0
@@ -131,12 +116,10 @@ gui:
   scrollHeight: 10
   # If true, increase the height of the focused side window; creating an accordion effect.
   expandFocusedSidePanel: true
-
   # The weight of the expanded side panel, relative to the other panels. 2 means
   # twice as tall as the other panels. Only relevant if `expandFocusedSidePanel` is true.
   expandedSidePanelWeight: 2
   mainPanelSplitMode: vertical
-
   # How the window is split when in half screen mode (i.e. after hitting '+' once).
   # Possible values:
   # - 'left': split the window horizontally (side panel on the left, main view on the right)
@@ -174,23 +157,18 @@ gui:
   # One of: '2' | '3' | empty string (default)
   # If empty, do not show icons.
   nerdFontsVersion: "3"
-
   # How things are filtered when typing '/'.
   # One of 'substring' (default) | 'fuzzy'
   filterMode: substring
   # Status panel view.
   # One of 'dashboard' (default) | 'allBranchesLog'
   statusPanelView: dashboard
-
   # If true, jump to the Files panel after popping a stash
   switchToFilesAfterStashPop: true
-
   # If true, jump to the Files panel after applying a stash
   switchToFilesAfterStashApply: true
-
   # If true, when using the panel jump keys (default 1 through 5) and target panel is already active, go to next tab instead
   switchTabsWithPanelJumpKeys: true
-
 git:
   parseEmoji: true
   paging:

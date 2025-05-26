@@ -15,7 +15,7 @@ after-login-command = []
 after-startup-command = []
 
 # Start AeroSpace at login
-start-at-login = false
+start-at-login = true
 
 # Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
 enable-normalization-flatten-containers = true
@@ -65,6 +65,8 @@ outer.right =      8
 # 'main' binding mode must be always presented
 [mode.main.binding]
 
+  cmd-h = [] # Disable "hide application"
+  cmd-alt-h = [] # Disable "hide others"
 # All possible keys:
 # - Letters.        a, b, c, ..., z
 # - Numbers.        0, 1, 2, ..., 9
@@ -99,6 +101,12 @@ alt-shift-h = 'move left'
 alt-shift-j = 'move down'
 alt-shift-k = 'move up'
 alt-shift-l = 'move right'
+
+
+alt-shift-left = ['join-with left', 'mode main']
+alt-shift-down = ['join-with down', 'mode main']
+alt-shift-up = ['join-with up', 'mode main']
+alt-shift-right = ['join-with right', 'mode main']
 
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
@@ -150,6 +158,9 @@ alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
 alt-shift-semicolon = 'mode service'
 
+alt-shift-minus = 'resize smart -50'
+alt-shift-equal = 'resize smart +50'
+
 alt-shift-r = 'mode resize'
 
 alt-g = '''exec-and-forget osascript -e '
@@ -195,6 +206,8 @@ alt-shift-j = ['join-with down', 'mode main']
 alt-shift-k = ['join-with up', 'mode main']
 alt-shift-l = ['join-with right', 'mode main']
 
+# find app id using command: aerospace list-apps
+
 [[on-window-detected]]
 if.app-id = 'com.github.wez.wezterm'
 run = "move-node-to-workspace T"
@@ -218,6 +231,13 @@ run = "move-node-to-workspace N"
 [[on-window-detected]]
 if.app-id = 'company.thebrowser.Browser'
 run = "move-node-to-workspace B"
+
+[[on-window-detected]]
+if.app-id = 'app.zen-browser.zen'
+run= [
+  "layout floating",
+  "move-node-to-workspace B"
+]
 
 
 [[on-window-detected]]

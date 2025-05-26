@@ -58,3 +58,4 @@ brew install koekeishiya/formulae/yabai
 brew install koekeishiya/formulae/skhd
 
 install pika
+brew install --cask lyricsx

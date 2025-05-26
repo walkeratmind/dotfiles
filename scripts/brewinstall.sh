@@ -148,3 +148,5 @@ install zsh-autosuggestions
 
 
 brew install fx
+brew install carapace
+
