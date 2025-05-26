@@ -100,7 +100,7 @@ keybinds clear-defaults=true {
     resize {
         bind "Ctrl g" { SwitchToMode "locked"; }
         bind "Ctrl p" { SwitchToMode "pane"; }
-        bind "Ctrl t" { SwitchToMode "tab";
+        bind "Ctrl t" { SwitchToMode "tab"; }
         bind "Ctrl n" "Enter" "Space" "Esc" { SwitchToMode "normal"; }
         bind "Ctrl s" { SwitchToMode "scroll"; }
         bind "Ctrl o" { SwitchToMode "session"; }
@@ -343,11 +343,15 @@ copy_command "pbcopy"                     // osx
 // Default: $EDITOR or $VISUAL
 //
 scrollback_editor "nvim"
+
+// When attaching to an existing session with other users,
+// should the session be mirrored (true)
 // or should each user have their own cursor (false)
 // Default: false
 //
 // mirror_session true
 
+session_serialization false
 // The folder in which Zellij will look for layouts
 //
 // layout_dir /path/to/my/layout_dir

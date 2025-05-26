@@ -22,24 +22,24 @@ local config = {
     brightness = 1.0,
   },
 
-  color_scheme = "Catppuccin Mocha", -- Mocha or Macchiato, Frappe, Latte
+  color_scheme = "Catppuccin Macchiato", -- Mocha or Macchiato, Frappe, Latte
   -- default_prog = tmux, -- run tmux on start, or there's key bind below as Ctrl-cmd-s
   default_prog = {
-    -- "/opt/homebrew/bin/nu",
+    "/opt/homebrew/bin/nu",
     -- "-l",
     -- "-c",
     -- "zellij -l welcome --config-dir ~/.config/yazelix/zellij options --layout-dir ~/.config/yazelix/zellij/layouts",
     -- "zellij -l welcome options --default-shell nu",
     -- "zellij --default-shell nu",
     -- zellij as default
-    "zellij",
+    -- "zellij",
   },
 
   -- window config
 
   window_decorations = "RESIZE",
   hide_tab_bar_if_only_one_tab = true,
-  window_background_opacity = 0.97,
+  window_background_opacity = 0.90,
   adjust_window_size_when_changing_font_size = false,
 
   default_workspace = "main",
