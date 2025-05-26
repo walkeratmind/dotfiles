@@ -1,0 +1,27 @@
+
+# ignore temp file
+*~
+*/~
+
+
+.config/espanso/match/package/**
+.config/espanso/match/packages/**
+.config/bat/themes
+
+history.txt
+
+*.zip
+*.tar.gz
+
+.DS_Store
+
+plugin
+custom
+spell
+ftplugin
+syntax
+coc-settings.json
+.luarc.json
+lazy-lock.json
+after
+

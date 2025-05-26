@@ -1,0 +1,18 @@
+
+[data]
+name = "rakesh"
+email = ""
+
+[git]
+autoCommit = true
+autoPush = true
+
+[sourceVCS]
+defaultFileAttr = "0644"
+defaultDirAttr  = "0755"
+
+[source]
+prefix = "."  # Use `.` instead of `dot_`
+
+[source.destination]
+".config/*" = ".config/{{ .Target }}"

@@ -1,0 +1,305 @@
+
+matches:
+  # love quotes
+  - trigger: ">ql:"
+    replace: "{{result}}"
+    vars:
+      - name: result
+        type: random
+        params:
+          choices:
+            - |
+              “But soft! What light through yonder window breaks? It is the east, and Juliet is the sun.” - William Shakespeare, Romeo and Juliet (1597)
+            - |
+              “But my body was like a harp and her words and gestures were like fingers running upon the wires.” - James Joyce, Dubliners (1914)
+            - |
+              “He’s more myself than I am. Whatever our souls are made of, his and mine are the same.” - Emily Brontë, Wuthering Heights (1847)
+            - |
+              “But soft! What light through yonder window breaks? It is the east, and Juliet is the sun.” - William Shakespeare, Romeo and Juliet (1597)
+            - |
+              “But my body was like a harp and her words and gestures were like fingers running upon the wires.” - James Joyce, Dubliners (1914)
+            - |
+              “He’s more myself than I am. Whatever our souls are made of, his and mine are the same.” - Emily Brontë, Wuthering Heights (1847)
+            - |
+              “I’ll hold you in my heart, until I can hold you in my arms.” - J. M. Barrie, Peter Pan (1904), illustrated by Steve Hutton
+            - |
+              "One girl is worth more than twenty boys." - J. M. Barrie, Peter Pan Mini Classic (1904 origin)
+            - |
+              “There is nothing I would not do for those who are really my friends. I have no notion of loving people by halves, it is not my nature.” - Jane Austen, Northanger Abbey (1817)
+            - |
+              “We’re all a little weird. And life is a little weird. And when we find someone whose weirdness is compatible with ours, we join up with them and fall into mutually satisfying weirdness—and call it love—true love.” - Robert Fulghum, True Love (1998)
+            - |
+              “He knew she was there by the joy and terror that took possession of his heart [...] Everything was lit up by her. She was the smile that brightened everything around.” - Leo Tolstoy, Anna Karenina (1877)
+            - |
+              “Nobody gave you to me. Nobody said that’s the one for you. I picked you out. Wrong time, yep, and doing wrong by my wife. But the picking out, the choosing. Don’t ever think I fell for you, or fell over you. I didn’t fall in love, I rose in it. I saw you and made up my mind. My mind. And I made up my mind to follow you too.” - Toni Morrison, Jazz (1992)
+            - |
+              “It was his first experience with this kind of love and it nearly killed him.” - John Steinbeck, East of Eden (1952)
+            - |
+              “I wanted to know that he would be okay if I died. I wanted to not be a grenade, to not be a malevolent force in the lives of people I loved.” - John Green, The Fault in Our Stars (2012)
+            - |
+              “As he read, I fell in love the way you fall asleep: slowly, and then all at once.” - John Green, The Fault in Our Stars (2012)
+            - |
+              “I love you without knowing how, or when, or from where. I love you simply, without problems or pride: I love you in this way because I do not know any other way of loving but this, in which there is no I or you, so intimate that your hand upon my chest is my hand, so intimate that when I fall asleep your eyes close.”
+              ― Pablo Neruda, 100 Love Sonnets
+            - |
+              “It doesn’t interest me what you do for a living. I want to know what you ache for, and if you dare to dream of meeting your heart’s longing.
+              It doesn’t interest me how old you are. I want to know if you will risk looking like a fool for love, for your dream, for the adventure of being alive.
+              It doesn’t interest me what planets are squaring your moon. I want to know if you have touched the center of your own sorrow, if you have been opened by life’s betrayals or have become shriveled and closed from fear of further pain!I want to know if you can sit with pain, mine or your own, without moving to hide it or fade it, or fix it.
+              I want to know if you can be with joy, mine or your own, if you can dance with wildness and let the ecstasy fill you to the tips of your fingers and toes without cautioning us to be careful, to be realistic, to remember the limitations of being human.
+              It doesn’t interest me if the story you are telling me is true. I want to know if you can disappoint another to be true to yourself; if you can bear the accusation of betrayal and not betray your own soul; if you can be faithless and therefore trustworthy.
+              I want to know if you can see beauty even when it’s not pretty, every day,and if you can source your own life from its presence.
+              I want to know if you can live with failure, yours and mine, and still stand on the edge of the lake and shout to the silver of the full moon, “Yes!”
+              It doesn’t interest me to know where you live or how much money you have. I want to know if you can get up, after the night of grief and despair, weary and bruised to the bone, and do what needs to be done to feed the children.
+              It doesn’t interest me who you know or how you came to be here. I want to know if you will stand in the center of the fire with me and not shrink back.
+              It doesn’t interest me where or what or with whom you have studied. I want to know what sustains you, from the inside, when all else falls away.
+              I want to know if you can be alone with yourself and if you truly like the company you keep in the empty moments.”
+              ― Oriah Mountain Dreamer, The Invitation
+
+
+  # time
+  - trigger: ">qt:"
+    replace: "{{result}}"
+    vars:
+      - name: result
+        type: random
+        params:
+          choices:
+            - |
+              “It sounds plausible enough tonight, but wait until tomorrow. Wait for the common sense of the morning.” – H.G. Wells, The Time Machine
+            - |
+              “She had waited all her life for something, and it had killed her when it found her.” – Zora Neale Hurston, Their Eyes Were Watching God
+            - |
+              “Clocks slay time… time is dead as long as it is being clicked off by little wheels; only when the clock stops does time come to life.” – William Faulkner, The Sound And The Fury
+            - |
+              “He told us we should always pray to God- talk to Him and all- wherever we were. He told us to think of Jesus as our buddy and all. He said he talked to Jesus all the time. Even when he was driving his car.” – J.D. Salinger, The Catcher in the Rye
+            - |
+              “Time is the longest distance between two places.” – Tennessee Williams, The Glass Menagerie
+            - |
+              “They always say time changes things, but you actually have to change them yourself.” – Andy Warhol, The Philosophy of Andy Warhol
+            - |
+              “The past is never dead. It’s not even past.” – William Faulkner, Requiem for a Nun
+            - |
+              “The timeless in you is aware of life’s timelessness. And knows that yesterday is but today’s memory and tomorrow is today’s dream.” – Khalil Gibran, The Prophet
+            - |
+              “Those who make the worst use of their time are the first to complain of its brevity.” – Jean de La Bruyère, Les Caractères
+            - |
+              “The strongest of all warriors are these two — Time and Patience.” – Leo Tolstoy, War and Peace
+            - |
+              “As if you could kill time without injuring eternity.” – Henry David Thoreau, Walden
+            - |
+              “Three o’clock is always too late or too early for anything you want to do.” – Jean-Paul Sartre, Nausea
+
+  # inspirational
+  - trigger: ">qi:"
+    replace: "{{result}}"
+    vars:
+      - name: result
+        type: random
+        params:
+          choices:
+            - |
+              “Beware; for I am fearless, and therefore powerful.” – Mary Shelley, Frankenstein
+            - |
+              “I assign myself no rank or any limit, and such an attitude is very much against the trend of the times. But my world has become one of infinite possibilities.” – Ralph Ellison, Invisible Man
+            - |
+              “To the well-organized mind, death is but the next great adventure.” – J.K. Rowling, Harry Potter and the Sorcerer’s Stone
+            - |
+              “And, when you want something, all the universe conspires in helping you to achieve it.” – Paulo Coelho, The Alchemist
+            - |
+              “It is a wise man’s duty to save himself for to-morrow, and not risk everything on one day.” – Miguel de Cervantes Saavedra, Don Quixote
+            - |
+              “Beauty was not simply something to behold; it was something one could do.” – Toni Morrison, The Bluest Eye
+            - |
+              “You can’t stay in your corner of the Forest waiting for others to come to you. You have to go to them sometimes.” – A.A. Milne, Winnie-the-Pooh
+            - |
+              “It is only goodness which gives extras, and so I say again that we have much to hope from the flowers.” – Arthur Conan Doyle, The Naval Treaty
+            - |
+              “The mind is its own place, and in itself can make a heaven of hell, a hell of heaven.” – John Milton, Paradise Lost
+            - |
+              “When we love, we always strive to become better than we are. When we strive to become better than we are, everything around us becomes better too.” – Paulo Coelho, The Alchemist
+            - |
+              “The thing is – fear can’t hurt you any more than a dream.” – William Golding, Lord of the Flies
+            - |
+              “War is peace. Freedom is slavery. Ignorance is strength.” – George Orwell, 1984
+            - |
+              “We are all in the gutter, but some of us are looking at the stars.” – Oscar Wilde, Lady Windermere's Fan
+            - |
+              “It is never too late to be what you might have been.” – George Eliot
+
+
+  # philosophy
+  - trigger: ">qp:"
+    replace: "{{result}}"
+    vars:
+      - name: result
+        type: random
+        params:
+          choices:
+            - |
+              “All animals are equal, but some animals are more equal than others.” – George Orwell, Animal Farm
+            - |
+              “I know not all that may be coming, but be it what it will, I’ll go to it laughing.” – Herman Melville, Moby Dick
+            - |
+              “I don’t like work–no man does–but I like what is in the work–the chance to find yourself. Your own reality–for yourself not for others–what no other man can ever know. They can only see the mere show, and never can tell what it really means.” – Joseph Conrad, Heart of Darkness
+            - |
+              “I’ve found that there is always some beauty left — in nature, sunshine, freedom, in yourself; these can all help you.” – Anne Frank, The Diary of a Young Girl
+            - |
+              “Nowadays people know the price of everything and the value of nothing.” – Oscar Wilde, The Picture Of Dorian Gray
+            - |
+              “I care for myself. The more solitary, the more friendless, the more unsustained I am, the more I will respect myself.” – Charlotte Brontë, Jane Eyre
+            - |
+              “The only people for me are the mad ones, the ones who are mad to live, mad to talk, mad to be saved, desirous of everything at the same time, the ones who never yawn or say a commonplace thing, but burn, burn, burn like fabulous yellow roman candles exploding like spiders across the stars.” – Jack Kerouac, On The Road
+            - |
+              “I did not care what it was all about. All I wanted to know was how to live in it. Maybe if you found out how to live in it you learned from that what it was all about.” – Ernest Hemingway, The Sun Also Rises
+            - |
+              “There is one thing, Emma, which a man can always do if he chooses, and that is his duty; not by maneuvering and finessing, but by vigour and resolution.” – Jane Austen, Emma
+            - |
+              “You are a wonderful creation. You know more than you think you know, just as you know less than you want to know.” – Oscar Wilde, The Picture Of Dorian Gray
+            - |
+              “Without music, life would be a mistake.” – Friedrich Nietzsche, Twilight of the Idols
+            - |
+              “Simplicity, patience, compassion. These three are your greatest treasures. Simple in actions and thoughts, you return to the source of being. Patient with both friends and enemies, you accord with the way things are. Compassionate toward yourself, you reconcile all beings in the world.” – Lao Tzu, Tao Te Ching
+            - |
+              “The reasonable man adapts himself to the world: the unreasonable one persists in trying to adapt the world to himself. Therefore all progress depends on the unreasonable man.” – George Bernard Shaw, Man and Superman
+            - |
+              “Those who know do not speak. Those who speak do not know.” – Lao Tzu, Tao Te Ching
+            - |
+              “Grown-ups never understand anything by themselves, and it is tiresome for children to be always and forever explaining things to them.” – Antoine de Saint-Exupéry, The Little Prince
+            - |
+              “Well, I must endure the presence of a few caterpillars if I wish to become acquainted with the butterflies.” – Antoine de Saint-Exupéry, The Little Prince
+            - |
+              “The true man wants two things: danger and play. For that reason he wants woman, as the most dangerous plaything.” ― Freidrich Neitzsche
+            - |
+              “If anyone tells you that a certain person speaks ill of you, do not make excuses about what is said of you but answer, "He was ignorant of my other faults, else he would not have mentioned these alone.” ― Epictetus
+            - |
+              “The opposite of love is not hate, it's indifference. The opposite of art is not ugliness, it's indifference. The opposite of faith is not heresy, it's indifference. And the opposite of life is not death, it's indifference.” ― Elie Wiesel
+            - |
+              “You talk when you cease to be at peace with your thoughts.” ― Kahlil Gibran, The Prophet
+            - |
+              “I shiver, thinking how easy it is to be totally wrong about people-to see one tiny part of them and confuse it for the whole, to see the cause and think it's the effect or vice versa” ― Lauren Oliver, Before I Fall
+            - |
+              “When another blames you or hates you, or people voice similar criticisms, go to their souls, penetrate inside and see what sort of people they are. You will realize that there is no need to be racked with anxiety that they should hold any particular opinion about you.” ― Marcus Aurelius, Meditations
+
+  # wisdom
+  - trigger: ">qw:"
+    replace: "{{result}}"
+    vars:
+      - name: result
+        type: random
+        params:
+          choices:
+            - |
+              “No thief, however skillful, can rob one of knowledge, and that is why knowledge is the best and safest treasure to acquire.” – L. Frank Baum, The Lost Princess of Oz
+            - |
+              “Wisdom cannot be imparted. Wisdom that a wise man attempts to impart always sounds like foolishness to someone else … Knowledge can be communicated, but not wisdom. One can find it, live it, do wonders through it, but one cannot communicate and teach it.” – Hermann Hesse, Siddhartha
+            - |
+              “Learning does not make one learned: there are those who have knowledge and those who have understanding. The first requires memory and the second philosophy.” – Alexandre Dumas, The Count of Monte Cristo
+            - |
+              “It was better to know the worst than to wonder.” – Margaret Mitchell, Gone with the Wind
+            - |
+              “Remember my friend, that knowledge is stronger than memory, and we should not trust the weaker.” – Bram Stoker, Dracula
+            - |
+              “Because there are three classes of intellects: one which comprehends by itself; another which appreciates what others comprehend; and a third which neither comprehends by itself nor by the showing of others; the first is the most excellent, the second is good, the third is useless.” – Niccolò Machiavelli, The Prince
+            - |
+              “No man can reveal to you aught but that which already lies half asleep in the dawning of your knowledge. The teacher who walks in the shadow of the temple, among his followers, gives not of his wisdom but rather of his faith and his lovingness. If he is indeed wise he does not bid you enter the house of his wisdom, but rather leads you to the threshold of your own mind.” – Khalil Gibran, The Prophet
+            - |
+              “That is just the way with some people. They get down on a thing when they don’t know nothing about it.” – Mark Twain, The Adventures of Huckleberry Finn
+            - |
+              “To learn is not to know; there are the learners and the learned. Memory makes the one, philosophy the others.” – Alexandre Dumas, The Count of Monte Cristo
+            - |
+              “A baby has brains, but it doesn’t know much. Experience is the only thing that brings knowledge, and the longer you are on earth the more experience you are sure to get.” – L. Frank Baum, The Wonderful Wizard of Oz
+            - |
+              “Integrity without knowledge is weak and useless, and knowledge without integrity is dangerous and dreadful.” – Samuel Johnson, The History of Rasselas, Prince of Abissinia
+            - |
+              “There is no such uncertainty as a sure thing.” – Robert Burns, Collected Poems of Robert Burns
+            - |
+              “I have always thirsted for knowledge, I have always been full of questions.” – Hermann Hesse, Siddhartha
+            - |
+              “I had given up some youth for knowledge, but my gain was more valuable than the loss.” – Maya Angelou, I Know Why the Caged Bird Sings
+
+
+  # truth
+  - trigger: ">qtr:"
+    replace: "{{result}}"
+    vars:
+      - name: result
+        type: random
+        params:
+          choices:
+            - |
+              “The truth is rarely pure and never simple.” – Oscar Wilde, The Importance of Being Earnest
+            - |
+              “The truth. Dumbledore sighed. It is a beautiful and terrible thing, and should therefore be treated with great caution.” – J.K. Rowling, Harry Potter and the Sorcerer’s Stone
+            - |
+              “The truth will set you free, but first it will piss you off.” – Joe Klaas, Twelve Steps to Happiness
+            - |
+              “Truth is stranger than fiction, but it is because Fiction is obliged to stick to possibilities; Truth isn’t.” – Mark Twain, Following the Equator: A Journey Around the World
+            - |
+              “Don’t let politeness interfere with truth.” – Jean Webster, Daddy-Long-Legs / Dear Enemy
+            - |
+              “Rather than love, than money, than fame, give me truth.” – Henry David Thoreau, Walden
+            - |
+              “There’s more beauty in truth, even if it is dreadful beauty.” – John Steinbeck, East of Eden
+            - |
+              “If someone is able to show me that what I think or do is not right, I will happily change, for I seek the truth, by which no one was ever truly harmed. It is the person who continues in his self-deception and ignorance who is harmed.” – Marcus Aurelius, Meditations
+            - |
+              “Everything we hear is an opinion, not a fact. Everything we see is a perspective, not the truth.” – Marcus Aurelius, Meditations
+
+  # life
+  - trigger: ">qli:"
+    replace: "{{result}}"
+    vars:
+      - name: result
+        type: random
+        params:
+          choices:
+            - |
+              “The loneliest moment in someone’s life is when they are watching their whole world fall apart, and all they can do is stare blankly.” – F. Scott Fitzgerald, The Great Gatsby
+            - |
+              “It’s much better to do good in a way that no one knows anything about it.” – Leo Tolstoy, Anna Karenina
+            - |
+              “You never really understand a person until you consider things from his point of view… Until you climb inside of his skin and walk around in it.” – Harper Lee, To Kill a Mockingbird
+            - |
+              “The mark of the immature man is that he wants to die nobly for a cause, while the mark of the mature man is that he wants to live humbly for one.” – J.D. Salinger, Catcher in the Rye
+            - |
+              “The growing good of the world is partly dependent on unhistoric acts; and that things are not so ill with you and me as they might have been is half owing to the number who lived faithfully a hidden life, and rest in unvisited tombs.” – George Eliot, Middlemarch
+            - |
+              “We need never be ashamed of our tears.” – Charles Dickens, Great Expectations
+            - |
+              “He who has felt the deepest grief is best able to experience supreme happiness. Live, then, and be happy, beloved children of my heart, and never forget, that until the day God will deign to reveal the future to man, all human wisdom is contained in these two words, ‘Wait and Hope.’” – Alexandre Dumas, The Count of Monte Cristo
+            - |
+              “No man, for any considerable period, can wear one face to himself and another to the multitude, without finally getting bewildered as to which may be the true.” – Nathaniel Hawthorne, The Scarlet Letter
+            - |
+              “I wished to know the meaning of things. I am the meaning. I wished to find a warrant for being. I need no warrant for being, and no word of sanction upon my being. I am the warrant and the sanction.” – Ayn Rand, Anthem
+            - |
+              “Be good, be young, be true! Evil is nothing but vanity, let us have the pride of good, and above all let us never despair.” – Alexandre Dumas fils, The Lady of the Camellias
+            - |
+              “Deep in the human unconscious is a pervasive need for a logical universe that makes sense. But the real universe is always one step beyond logic.” – Frank Herbert, Dune
+            - |
+              “Truly wealth, which men spend all their lives in acquiring, is a valueless thing at the last.” – H. Rider Haggard, King Solomon’s Mines
+            - |
+              “Anyone who ever gave you confidence, you owe them a lot.” – Truman Capote, Breakfast At Tiffany’s
+            - |
+              “It matters not what someone is born, but what they grow to be.” – J.K. Rowling, Harry Potter and the Goblet of Fire
+            - |
+              “Terror made me cruel; and finding it useless to attempt shaking the creature off, I pulled its wrist on to the broken pane, and rubbed it to and fro till the blood ran down and soaked the bedclothes.” – Emily Brontë, Wuthering Heights
+            - |
+              “Maybe ever’ body in the whole damn world is scared of each other.” – John Steinbeck, Of Mice And Men
+            - |
+              “I remembered everything. I remembered the cadavers and Doreen and the story of the fig tree and Marco’s diamond and the sailor on the Common and Doctor Gordon’s wall-eyed nurse and the broken thermometers and the Negro with his two kinds of beans and the twenty pounds I gained on insulin and the rock that bulged between sky and sea like a gray skull. Maybe forgetfulness, like a kind snow, would numb and cover them. But they were part of me. They were my landscape.” – Sylvia Plath, The Bell Jar
+            - |
+              “She generally gave herself very good advice, (though she very seldom followed it).” – Lewis Carroll, Alice’s Adventures in Wonderland & Through the Looking-Glass
+            - |
+              “Back into the chamber turning, all my soul within me burning.” – Edgar Allan Poe, The Raven
+            - |
+              “I wish I could care what you do or where you go but I can’t… My dear, I don’t give a damn.” – Margaret Mitchell, Gone With the Wind
+            - |
+              “One day I will find the right words, and they all will be simple.” – Jack Kerouac, The Dharma Bums
+            - |
+              “There are years that ask questions and years that answer.” – Zora Neale Hurston, Their Eyes Were Watching God
+            - |
+              “I declare after all there is no enjoyment like reading! How much sooner one tires of any thing than of a book! — When I have a house of my own, I shall be miserable if I have not an excellent library.” – Jane Austen, Pride and Prejudice
+            - |
+              “There is no beginning, no middle, no end, no suspense, no moral, no causes, no effects. What we love in our books are the depths of many marvelous moments seen all at one time.” – Kurt Vonnegut Jr., Slaughterhouse-Five
+            - |
+              “A classic is a successful book that has survived the reaction of the next period or generation. Then it’s safe, like a style in architecture or furniture. It’s acquired a picturesque dignity to take the place of its fashion.” – F. Scott Fitzgerald, The Beautiful and Damned
