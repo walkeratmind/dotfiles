@@ -52,6 +52,34 @@
     # With stat for interactive use
     stat = !git diff --stat $(git merge-base HEAD "$BASE")
 
+    # with fzf logs
+    fzf = log --oneline --color=always | fzf --ansi --preview 'git show --color=always {1}'
+
+    # Interactive commit browser with fzf
+    flog = "!f() { \
+        git log --graph --color=always --oneline --decorate --all \"$@\" | \
+        fzf --ansi --no-sort --reverse --multi --tiebreak=index \
+            --preview \"echo {} | grep -o '[a-f0-9]\\{7,40\\}' | head -1 | xargs -I % git show --color=always % --stat\" \
+            --preview-window=\"right:50%\" \
+            --bind \"enter:execute(echo {} | grep -o '[a-f0-9]\\{7,40\\}' | head -1 | xargs -I % git show %)\" \
+            --bind \"ctrl-d:execute(echo {} | grep -o '[a-f0-9]\\{7,40\\}' | head -1 | xargs -I % git diff %^..%)\" \
+            --bind \"ctrl-f:execute(echo {} | grep -o '[a-f0-9]\\{7,40\\}' | head -1 | xargs -I % git show --name-only %)\" \
+            --bind \"ctrl-y:execute-silent(echo {} | grep -o '[a-f0-9]\\{7,40\\}' | head -1 | pbcopy)\" \
+            --header \"ENTER: show | CTRL-D: diff | CTRL-F: files | CTRL-Y: copy hash\"; \
+    }; f"
+    
+    # Search commits by message
+    fsearch = "!f() { \
+        git log --color=always --format=\"%C(auto)%h %C(green)%ad %C(auto)%s %C(blue)%an\" --date=short --grep=\"$1\" | \
+        fzf --ansi --preview \"echo {} | cut -d' ' -f1 | xargs git show --color=always\"; \
+    }; f"
+    
+    # Interactive branch selector
+    fbranch = "!f() { \
+        git branch -a --color=always | grep -v '/HEAD\\s' | \
+        fzf --ansi --preview \"git log --oneline --graph --date=short --color=always --pretty='format:%C(auto)%cd %h%d %s' {1} | head -20\" | \
+        sed 's/^..//' | sed 's#remotes/origin/##'; \
+    }; f"
     # Put heatmap on your path:
     # https://github.com/jez/git-heatmap/blob/master/git-heatmap
     heatmap = git-heatmap

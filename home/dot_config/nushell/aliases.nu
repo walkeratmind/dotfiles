@@ -10,6 +10,12 @@ export alias plab = cd $env.HOME/project_lab
 # Essentials
 alias lg = lazygit
 
+# zellij session list/switcher
+alias ss = zf session-quick
+alias sn = zf session-new
+alias sk = zf session-kill
+alias sl = zf session-list
+
 
 # aliases for chezmoi
 export alias ch = chezmoi
