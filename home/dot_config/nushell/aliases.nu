@@ -7,6 +7,10 @@
 export alias plab = cd $env.HOME/project_lab
 
 
+# Essentials
+alias lg = lazygit
+
+
 # aliases for chezmoi
 export alias ch = chezmoi
 export alias chad = chezmoi add
@@ -30,3 +34,5 @@ export alias bnl = bat --number --line-range
 export alias bp = bat --plain
 export alias bpl = bat --plain --line-range
 export alias bl = bat --line-range
+
+
