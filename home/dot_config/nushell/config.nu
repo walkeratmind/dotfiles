@@ -4,46 +4,35 @@ use '~/.cache/starship/init.nu'
 source ~/.local/share/atuin/init.nu
 
 
-# Define a function that updates the Zellij tab name
+# Define a function that updates the Zellij tab name only if inside a Git repo
 def zellij_tab_name_update [] {
     # Only do this if running inside Zellij
     if $env.ZELLIJ != "" {
-        let tab_name = ""
-
-        # Attempt to detect if we're in a Git repo
+        # Try to detect if we're in a Git repo
         try {
-            # This succeeds if we are in a Git repository
             git rev-parse --is-inside-work-tree | ignore
 
             # If no error, construct the tab name from the repo root and subdirectory
             let repo_name = (git rev-parse --show-toplevel | path basename)
             let git_prefix = (git rev-parse --show-prefix | str trim)
             let tab_name = ($repo_name + '/' + $git_prefix | str trim -c '/')
-        } catch {
-            # If not in a Git repo, use the directory name
-            let current_dir = $env.PWD
-            if $current_dir == $env.HOME {
-                let tab_name = "~"
-            } else {
-                let tab_name = ($current_dir | path basename)
-            }
-        }
 
-        # Rename the Zellij tab (ignore any output)
-        zellij action rename-tab $tab_name | ignore
+            # Rename the Zellij tab (ignore any output)
+            zellij action rename-tab $tab_name | ignore
+        } catch {
+            # Not in a Git repo, do nothing (don't update tab name)
+        }
     }
 }
 
 # Override the built-in `cd` command so the tab name updates automatically
-def cd [
-    path?
-] {
+def cd [path?] {
     if $path == "" {
-        builtin cd
+        ^cd
     } else {
-        builtin cd $path
+        ^cd $path
     }
-    # After changing directories, update the Zellij tab name
+    # After changing directories, update the Zellij tab name only if in Git repo
     zellij_tab_name_update
 }
 

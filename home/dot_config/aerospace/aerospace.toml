@@ -120,6 +120,7 @@ alt-7 = 'workspace 7'
 alt-8 = 'workspace 8'
 alt-9 = 'workspace 9'
 alt-b = 'workspace B'
+alt-c = 'workspace C'
 alt-e = 'workspace E'
 alt-i = 'workspace I'
 alt-m = 'workspace M'
@@ -139,6 +140,7 @@ alt-shift-7 = 'move-node-to-workspace 7'
 alt-shift-8 = 'move-node-to-workspace 8'
 alt-shift-9 = 'move-node-to-workspace 9'
 alt-shift-b = 'move-node-to-workspace B'
+alt-shift-c = 'move-node-to-workspace C'
 alt-shift-e = 'move-node-to-workspace E'
 alt-shift-i = 'move-node-to-workspace I'
 alt-shift-m = 'move-node-to-workspace M'
@@ -188,6 +190,7 @@ end if'
 7 = ['secondary', 'main']
 8 = ['secondary', 'main']
 9 = ['secondary', 'main']
+C = 'built-in'
 M = 'built-in'
 T = 'built-in'
 
