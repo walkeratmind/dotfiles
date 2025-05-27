@@ -1,6 +1,6 @@
 local map = vim.keymap.set
 
-require "nvchad.mappings"
+require("nvchad.mappings")
 
 map("n", ";", ":", { desc = "CMD enter command mode" })
 
@@ -10,27 +10,29 @@ map("n", ";", ":", { desc = "CMD enter command mode" })
 -- map("v", "<A-k>", "<cmd>move-2<cr>gv=gv", { desc = "Move lines up" })
 
 map(
-  "n",
-  "<leader>qc",
-  ":cclose | call setqflist([], 'r')<CR>",
-  { desc = "Clear loclist", noremap = true, silent = true }
+	"n",
+	"<leader>qc",
+	":cclose | call setqflist([], 'r')<CR>",
+	{ desc = "Clear loclist", noremap = true, silent = true }
 )
 
 map(
-  "n",
-  "<leader>ql",
-  ":lclose | call setloclist(0, [], 'r')<CR>",
-  { desc = "Clear qflist", noremap = true, silent = true }
+	"n",
+	"<leader>ql",
+	":lclose | call setloclist(0, [], 'r')<CR>",
+	{ desc = "Clear qflist", noremap = true, silent = true }
 )
 
 map("n", "<leader>fm", function()
-  require("conform").format()
+	require("conform").format()
 end, { desc = "File Format with conform" })
 
 map("i", "jk", "<ESC>", { desc = "Escape insert mode" })
 
 map("n", "<leader>gd", "<CMD>Lspsaga goto_definition<CR>", { desc = "Lspsaga goto definition" })
 map("n", "<leader>k", "<CMD>Lspsaga hover_doc<CR>", { desc = "Lspsaga hover" })
+
+map("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "nvimtree toggle window" })
 
 -- unmap nvchad keymaps
 map("n", "<leader>h", "<Nop>")
@@ -55,17 +57,17 @@ map("n", "<C-k>", "<cmd><C-U>TmuxNavigateUp<cr>", { desc = "Switch Window up" })
 -- dap keymaps
 map("n", "<leader>db", "<cmd> DapToggleBreakpoint <cr>", { desc = "Toggle Debugger Breakpoint" })
 map("n", "<leader>dus", function()
-  local widgets = require "dap.ui.widgets"
-  local sidebar = widgets.sidebar(widgets.scopes)
-  sidebar.open()
+	local widgets = require("dap.ui.widgets")
+	local sidebar = widgets.sidebar(widgets.scopes)
+	sidebar.open()
 end, { desc = "Open debugging sidebar" })
 
 -- Golang keymaps
 map("n", "<leader>dgr", function()
-  require("dap-go").debug_test()
+	require("dap-go").debug_test()
 end, { desc = "Debug go test" })
 map("n", "<leader>dgl", function()
-  require("dap-go").debug_last()
+	require("dap-go").debug_last()
 end, { desc = "Debug Last Go Test" })
 
 map("n", "<leader>gsj", "<cmd> GoTagAdd json <cr>", { desc = "Add json struct tags" })
@@ -73,52 +75,52 @@ map("n", "<leader>gsy", "<cmd> DapToggleBreakpoint <cr>", { desc = "Add yaml str
 
 map("n", "<leader>pj", "<CMD>Portal jumplist backward<CR>", { desc = "󱡁 Portal Jumplist" })
 map("n", "<leader>ph", function()
-  require("portal.builtin").harpoon.tunnel()
+	require("portal.builtin").harpoon.tunnel()
 end, { desc = "󱡁 Portal Harpoon" })
 
 -- telescope keymaps
 map("n", "<leader>fi", "<cmd>Telescope help_tags<cr>", { desc = "Telescope help tags" })
 map("n", "<leader>fk", "<cmd>Telescope keymaps<cr>", { desc = "Telescope Keymaps" })
 map(
-  "n",
-  "<leader>fw",
-  "<cmd>Telescope live_grep grep_command=rg,--ignore<CR>",
-  { desc = "telescope live grep (includes hidden)" }
+	"n",
+	"<leader>fw",
+	"<cmd>Telescope live_grep grep_command=rg,--ignore<CR>",
+	{ desc = "telescope live grep (includes hidden)" }
 )
 map(
-  { "n", "v" },
-  "<leader>ff",
-  -- "<cmd>Telescope find_files find_command={'fd', '--type', 'f', '--hidden', '--follow', '--exclude', '.git', '--exclude', 'node_modules'}<CR>",
-  -- "<cmd>Telescope find_files find_command=fd,--type,f,--hidden,--follow,--exclude,.git node_modules<CR>",
-  "<cmd>Telescope find_files find_command=rg,--ignore,--files,--sortr,accessed<CR>",
-  { desc = "telescope find files" }
+	{ "n", "v" },
+	"<leader>ff",
+	-- "<cmd>Telescope find_files find_command={'fd', '--type', 'f', '--hidden', '--follow', '--exclude', '.git', '--exclude', 'node_modules'}<CR>",
+	-- "<cmd>Telescope find_files find_command=fd,--type,f,--hidden,--follow,--exclude,.git node_modules<CR>",
+	"<cmd>Telescope find_files find_command=rg,--ignore,--files,--sortr,accessed<CR>",
+	{ desc = "telescope find files" }
 )
 
 map(
-  { "n", "v" },
-  "<leader>fb",
-  ":Telescope file_browser path=%:p:h select_buffer=true<CR>",
-  { desc = "Telescope File Browser" }
+	{ "n", "v" },
+	"<leader>fb",
+	":Telescope file_browser path=%:p:h select_buffer=true<CR>",
+	{ desc = "Telescope File Browser" }
 )
 
 map({ "n", "v" }, "<C-p>", ":Telescope buffers<CR>", { desc = "Telescope Buffers" })
 -- map("n", "<C-m>", "<cmd>Telescope marks<cr>", { desc = "Telescope Marks" })
 
 -- Harpoon
-local harpoon = require "harpoon"
+local harpoon = require("harpoon")
 -- Toggle previous & next buffers stored within Harpoon list
 map("n", "<C-h>", function()
-  harpoon:list():prev()
+	harpoon:list():prev()
 end, { desc = "Harpoon Previous" })
 map("n", "<C-l>", function()
-  harpoon:list():next()
+	harpoon:list():next()
 end, { desc = "Harpooon Next" })
 
 -- Refactoring
-require("telescope").load_extension "refactoring"
+require("telescope").load_extension("refactoring")
 map("n", "<leader>rf", function()
-  require("telescope").extensions.refactoring.refactors()
+	require("telescope").extensions.refactoring.refactors()
 end, { desc = "Telescope Refactoring" })
 map("n", "<leader>rr", function()
-  require("refactoring").select_refactor()
+	require("refactoring").select_refactor()
 end, { desc = "Toggle Refactoring" })
