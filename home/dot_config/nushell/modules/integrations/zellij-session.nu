@@ -1,16 +1,16 @@
 # Zellij Session Manager for Nushell
 # Author: walkeratmind
 # Created: 2025-05-27
-# Updated: 2025-05-27 14:43:40
+# Updated: 2025-05-28 05:58:45
 # Description: Dedicated zellij session management with FZF integration
 
 # Module metadata
 export const SESSION_MANAGER_INFO = {
     name: "zellij-session-manager"
-    version: "2.4.1"
+    version: "2.4.2"
     author: "walkeratmind"
     created: "2025-05-27"
-    updated: "2025-05-27 14:43:40"
+    updated: "2025-05-28 05:58:45"
     description: "Zellij session management with FZF integration"
     dependencies: ["fzf", "zellij"]
     optional_deps: ["bat"]
@@ -26,32 +26,53 @@ export const SESSION_CONFIG = {
     cleanup_days: 7
 }
 
-# Multiplexer detection
-export def "multiplexer detect" [] {
-    if ($env.ZELLIJ? != null) {
-        "zellij"
-    } else if ($env.TMUX? != null) {
-        "tmux"
-    } else {
-        "none"
+use session-utils.nu *
+
+# Get sessions list with proper parsing
+def "get-sessions" [mux: string] {
+    match $mux {
+        "zellij" => {
+            let raw_output = (^zellij list-sessions --no-formatting | complete)
+            
+            if $raw_output.exit_code != 0 {
+                return []
+            }
+            
+            $raw_output.stdout 
+            | lines 
+            | each {|line| parse-session-line $line "zellij"}
+            | compact
+            | where {|session| not ($session.name | str contains "EXITED")}
+        }
+        "tmux" => {
+            let sessions_raw = (^tmux list-sessions -F "#{session_name}:#{session_attached}:#{session_created}" 2>/dev/null | complete)
+            
+            if $sessions_raw.exit_code != 0 {
+                return []
+            }
+            
+            $sessions_raw.stdout
+            | lines
+            | each {|line| 
+                let parts = ($line | split column ":")
+                if ($parts | length) >= 3 {
+                    let attached = ($parts | get column1) == "1"
+                    {
+                        name: ($parts | get column0)
+                        created: ($parts | get column2)
+                        status: (if $attached { "attached" } else { "detached" })
+                        is_current: $attached
+                        indicator: (if $attached { "🟢" } else { "⚪" })
+                    }
+                } else { null }
+            }
+            | compact
+        }
+        _ => { [] }
     }
 }
 
-export def "multiplexer is-active" [] {
-    (multiplexer detect) != "none"
-}
-
-# Tool detection
-export def "tool exists" [name: string] {
-    not (which $name | is-empty)
-}
-
-# Strip ANSI codes from text
-def "strip-ansi" [text: string] {
-    $text | str replace -a '\x1b\[[0-9;]*[mK]' '' | str replace -a '\x1b\[' ''
-}
-
-# Get session creation time for cleanup functionality - FIXED
+# Get session creation time for cleanup functionality
 def "get-session-age" [session_name: string] {
     let mux = (multiplexer detect)
     
@@ -106,7 +127,7 @@ def "get-session-age" [session_name: string] {
     }
 }
 
-# FIXED: Zellij execution helper with corrected append syntax
+# Zellij execution helper with corrected append syntax
 def "exec-zellij" [
     command: string
     --floating(-f)
@@ -117,25 +138,19 @@ def "exec-zellij" [
     mut args = ["run"]
     
     if ($name | is-not-empty) { 
-        $args = ($args | append "--name")
-        $args = ($args | append $name)
+        $args = ($args | append ["--name", $name])
     }
     if $floating { 
-        $args = ($args | append "--floating")
-        # FIXED: Append arguments one at a time
-        $args = ($args | append "--width")
-        $args = ($args | append "100")
-        $args = ($args | append "--height")
-        $args = ($args | append "30")
+        $args = ($args | append ["--floating", "--width", "100", "--height", "30"])
     }
-    if $in_place { $args = ($args | append "--in-place") }
-    if not $keep { $args = ($args | append "--close-on-exit") }
+    if $in_place { 
+        $args = ($args | append "--in-place") 
+    }
+    if not $keep { 
+        $args = ($args | append "--close-on-exit") 
+    }
     
-    # FIXED: Append multiple arguments correctly
-    $args = ($args | append "--")
-    $args = ($args | append "bash")
-    $args = ($args | append "-c")
-    $args = ($args | append $command)
+    $args = ($args | append ["--", "bash", "-c", $command])
     
     ^zellij ...$args
 }
@@ -149,12 +164,9 @@ def "exec-tmux" [
     mut args = ["new-window"]
     
     if ($name | is-not-empty) { 
-        $args = ($args | append "-n")
-        $args = ($args | append $name)
+        $args = ($args | append ["-n", $name])
     }
-    $args = ($args | append "bash")
-    $args = ($args | append "-c")
-    $args = ($args | append $command)
+    $args = ($args | append ["bash", "-c", $command])
     
     ^tmux ...$args
 }
@@ -269,7 +281,7 @@ export def "zs switch" [
                 "--padding=1"
                 $"--preview-window=right:($SESSION_CONFIG.preview_size):wrap"
                 "--prompt='🖥️  Select Zellij Session: '"
-                "--header='Enter: Switch │ Ctrl-C: Cancel │ Ctrl-N: New Session' | Ctrl-d: Delete Session under Cursor"
+                "--header='Enter: Switch │ Ctrl-C: Cancel │ Ctrl-N: New Session │ Ctrl-D: Delete'"
                 "--bind='ctrl-n:execute(echo __CREATE_NEW__)'"
                 "--bind='ctrl-d:execute(echo __DELETE__)'"
                 $preview_cmd
@@ -285,7 +297,7 @@ export def "zs switch" [
                     $"#!/bin/bash\n($fzf_cmd)" | save $script_file
                     chmod +x $script_file
                     
-                    # FIXED: Use exec-zellij with corrected syntax
+                    # Use exec-zellij with corrected syntax
                     if $use_large {
                         exec-zellij $"bash ($script_file)" --floating --name "session-switcher"
                     } else {
@@ -315,13 +327,13 @@ export def "zs switch" [
                 let session_name = ($result | str replace '^[🟢⚪]\s+' '' | split column " │ " | get column1.0 | str trim)
                 print $"💀 Removing session: ($session_name)"
                 ^zellij action kill-session $session_name
-      } else if ($result | is-not-empty) {
+            } else if ($result | is-not-empty) {
                 let session_name = ($result | str replace '^[🟢⚪]\s+' '' | split column " │ " | get column1.0 | str trim)
                 print $"🔄 Switching to session: ($session_name)"
                 
                 if (multiplexer is-active) {
                     # Use the correct zellij session switch command
-                    ^zellij action go-to-tab-name $session_name
+                    ^zellij action switch-session $session_name
                 } else {
                     ^zellij attach $session_name
                 }
@@ -410,64 +422,62 @@ export def "zs new" [name?: string] {
     }
 }
 
-
 export def "zs kill" [
     --floating(-f)         # Run in floating pane
 ] {
     let mux = (multiplexer detect)
+    let sessions = (get-sessions $mux)
     
-    match $mux {
-        "zellij" => {
-            let sessions = (^zellij list-sessions --no-formatting | lines | each {|line|
-                let clean = (strip-ansi $line | str trim)
-                if not ($clean | str contains "EXITED") and ($clean | str length) > 0 {
-                    ($clean | str replace '\s.*' '')
-                } else { null }
-            } | compact)
-            
-            if ($sessions | is-empty) {
-                print "❌ No sessions to kill"
-                return
-            }
-            
-            let temp_file = $"/tmp/zellij_kill_(random chars -l 8).txt"
-            $sessions | save $temp_file
-            
-            let fzf_cmd = $"cat ($temp_file) | fzf --prompt='💀 Kill Session: ' --multi --header='Space: Select │ Enter: Confirm │ Ctrl-C: Cancel'"
-            let result = (bash -c $fzf_cmd | lines)
+    if ($sessions | is-empty) {
+        print "❌ No sessions to kill"
+        return
+    }
+    
+    let session_names = ($sessions | get name)
+    let temp_file = $"/tmp/kill_sessions_(random chars -l 8).txt"
+    $session_names | save $temp_file
+    
+    let fzf_opts = [
+        $"--height=($SESSION_CONFIG.session_height)"
+        "--layout=reverse"
+        "--border=rounded"
+        "--margin=2%"
+        "--padding=1"
+        "--prompt='💀 Kill Session: '"
+        "--header='Space: Select │ Enter: Confirm │ Ctrl-C: Cancel'"
+        "--multi"
+    ] | str join " "
+    
+    let fzf_cmd = $"cat ($temp_file) | fzf ($fzf_opts)"
+    
+    let result = if $floating {
+        if (multiplexer is-active) {
+            let script_file = $"/tmp/kill_session_script_(random chars -l 8).sh"
+            $"#!/bin/bash\n($fzf_cmd)" | save $script_file
+            chmod +x $script_file
+            exec-zellij $"bash ($script_file)" --floating --name "kill-sessions"
+            rm -f $script_file $temp_file
+            return
+        } else {
+            let result = (bash -c $fzf_cmd)
             rm -f $temp_file
-            
-            if ($result | is-not-empty) {
-                for session in $result {
-                    print $"💀 Killing session: ($session)"
-                    ^zellij kill-session $session
-                }
-            }
+            $result
         }
-        "tmux" => {
-            let sessions = (^tmux list-sessions -F "#{session_name}" | lines)
-            
-            if ($sessions | is-empty) {
-                print "❌ No sessions to kill"
-                return
+    } else {
+        let result = (bash -c $fzf_cmd)
+        rm -f $temp_file
+        $result
+    }
+    
+    if ($result | is-not-empty) {
+        let selected_sessions = ($result | lines)
+        for session in $selected_sessions {
+            print $"💀 Killing session: ($session)"
+            match $mux {
+                "zellij" => { ^zellij kill-session $session }
+                "tmux" => { ^tmux kill-session -t $session }
+                _ => { print "❌ Cannot kill session: unsupported multiplexer" }
             }
-            
-            let temp_file = $"/tmp/tmux_kill_(random chars -l 8).txt"
-            $sessions | save $temp_file
-            
-            let fzf_cmd = $"cat ($temp_file) | fzf --prompt='💀 Kill Session: ' --multi --header='Space: Select │ Enter: Confirm │ Ctrl-C: Cancel'"
-            let result = (bash -c $fzf_cmd | lines)
-            rm -f $temp_file
-            
-            if ($result | is-not-empty) {
-                for session in $result {
-                    print $"💀 Killing session: ($session)"
-                    ^tmux kill-session -t $session
-                }
-            }
-        }
-        _ => {
-            print "❌ No terminal multiplexer detected"
         }
     }
 }
@@ -479,165 +489,78 @@ export def "zs clean" [
     --force(-f)            # Skip confirmation
 ] {
     let mux = (multiplexer detect)
+    let sessions = (get-sessions $mux)
+
+    let old_sessions = ($sessions | each {|session|
+        let age = (get-session-age $session.name)
+        if $age >= $days {
+            $session | insert age_days $age
+        } else { null }
+    } | compact)
     
-    match $mux {
-        "zellij" => {
-            let sessions = (^zellij list-sessions --no-formatting | lines | each {|line|
-                let clean = (strip-ansi $line | str trim)
-                if not ($clean | str contains "EXITED") and ($clean | str length) > 0 {
-                    let session_name = ($clean | str replace '\s.*' '')
-                    let age = (get-session-age $session_name)
-                    
-                    if $age >= $days {
-                        {
-                            name: $session_name
-                            age_days: $age
-                            should_clean: true
-                        }
-                    } else {
-                        {
-                            name: $session_name
-                            age_days: $age
-                            should_clean: false
-                        }
-                    }
-                } else { null }
-            } | compact | where should_clean)
-            
-            if ($sessions | is-empty) {
-                print $"✅ No zellij sessions older than ($days) days found"
-                return
-            }
-            
-            print $"🧹 Found ($sessions | length) sessions older than ($days) days:"
-            $sessions | select name age_days | table
-            
-            if $dry_run {
-                print "🔍 Dry run - no sessions were actually cleaned"
-                return
-            }
-            
-            let confirm = if $force { 
-                "y" 
-            } else { 
-                input "Are you sure you want to clean these sessions? (y/N): "
-            }
-            
-            if ($confirm | str downcase) == "y" {
-                for session in $sessions {
-                    print $"🧹 Cleaning session: ($session.name) (($session.age_days) )days old"
-                    ^zellij kill-session $session.name
-                }
-                print $"✅ Cleaned ($sessions | length) sessions"
-            } else {
-                print "❌ Cleanup cancelled"
+    if ($old_sessions | is-empty) {
+        print $"✅ No ($mux) sessions older than ($days) days found"
+        return
+    }
+    
+    print $"🧹 Found ($old_sessions | length) sessions older than ($days) days:"
+    $old_sessions | select name age_days | table
+    
+    if $dry_run {
+        print "🔍 Dry run - no sessions were actually cleaned"
+        return
+    }
+    
+    let confirm = if $force { 
+        "y" 
+    } else { 
+        input "Are you sure you want to clean these sessions? (y/N): "
+    }
+    
+    if ($confirm | str downcase) == "y" {
+        for session in $old_sessions {
+            print $"🧹 Cleaning session: ($session.name) ($session.age_days) days old"
+            match $mux {
+                "zellij" => { ^zellij kill-session $session.name }
+                "tmux" => { ^tmux kill-session -t $session.name }
+                _ => { print "❌ Cannot clean session: unsupported multiplexer" }
             }
         }
-        "tmux" => {
-            # TMux has better timestamp support
-            let sessions_raw = (^tmux list-sessions -F "#{session_name}:#{session_created}" | lines)
-            
-            let current_time = (date now | format date "%s" | into int)
-            let threshold_seconds = ($days * 86400)
-            
-            let old_sessions = ($sessions_raw | each {|line|
-                let parts = ($line | split column ":")
-                let session_name = ($parts | get column1)
-                let created_timestamp = ($parts | get column2 | into int)
-                let age_seconds = ($current_time - $created_timestamp)
-                let age_days = ($age_seconds / 86400)
-                
-                if $age_days >= $days {
-                    {
-                        name: $session_name
-                        age_days: ($age_days | math floor)
-                        should_clean: true
-                    }
-                } else {
-                    null
-                }
-            } | compact)
-            
-            if ($old_sessions | is-empty) {
-                print $"✅ No tmux sessions older than ($days) days found"
-                return
-            }
-            
-            print $"🧹 Found ($old_sessions | length) sessions older than ($days) days:"
-            $old_sessions | select name age_days | table
-            
-            if $dry_run {
-                print "🔍 Dry run - no sessions were actually cleaned"
-                return
-            }
-            
-            let confirm = if $force { 
-                "y" 
-            } else { 
-                input $"Are you sure you want to clean these sessions? (y/N): "
-            }
-            
-            if ($confirm | str downcase) == "y" {
-                for session in $old_sessions {
-                    print $"🧹 Cleaning session: ($session.name)"
-                    ^tmux kill-session -t $session.name
-                }
-                print $"✅ Cleaned ($old_sessions | length) sessions"
-            } else {
-                print "❌ Cleanup cancelled"
-            }
-        }
-        _ => {
-            print "❌ No terminal multiplexer detected"
-        }
+        print $"✅ Cleaned ($old_sessions | length) sessions"
+    } else {
+        print "❌ Cleanup cancelled"
     }
 }
 
 # Session status overview
 export def "zs status" [] {
     let mux = (multiplexer detect)
+    let sessions = (get-sessions $mux)
     
-    match $mux {
-        "zellij" => {
-            print "🖥️  Zellij Session Status"
-            print "========================"
-            
-            let raw_output = (^zellij list-sessions --no-formatting | complete)
-            if $raw_output.exit_code == 0 {
-                let sessions = ($raw_output.stdout | lines | each {|line|
-                    let clean = (strip-ansi $line | str trim)
-                    if ($clean | str length) > 0 and not ($clean | str contains "EXITED") {
-                        $clean
-                    } else { null }
-                } | compact)
-                
-                print $"📊 Total active sessions: ($sessions | length)"
-                for session in $sessions {
-                    print $"  • ($session)"
-                }
-            } else {
-                print "❌ Failed to get session information"
-            }
-        }
-        "tmux" => {
-            print "🖥️  TMux Session Status"
-            print "======================"
-            
-            let sessions = (^tmux list-sessions 2>/dev/null | complete)
-            if $sessions.exit_code == 0 {
-                let session_lines = ($sessions.stdout | lines)
-                print $"📊 Total active sessions: ($session_lines | length)"
-                for session in $session_lines {
-                    print $"  • ($session)"
-                }
-            } else {
-                print "❌ No tmux sessions or tmux not running"
-            }
-        }
-        _ => {
-            print "❌ No terminal multiplexer detected"
-            print "💡 Install zellij or tmux for session management"
-        }
+    print $"🖥️  ($mux | str capitalize) Session Status"
+    print "========================"
+    
+    if ($sessions | is-empty) {
+        print $"❌ No ($mux) sessions found"
+        return
+    }
+    
+    print $"📊 Total active sessions: ($sessions | length)"
+    for session in $sessions {
+        let status_text = if $session.is_current { " (current)" } else { "" }
+        print $"  ($session.indicator) ($session.name)($status_text)"
     }
 }
 
+# List all sessions in table format
+export def "zs list" [] {
+    let mux = (multiplexer detect)
+    let sessions = (get-sessions $mux)
+    
+    if ($sessions | is-empty) {
+        print $"❌ No ($mux) sessions found"
+        return
+    }
+    
+    $sessions | select name created status is_current
+}

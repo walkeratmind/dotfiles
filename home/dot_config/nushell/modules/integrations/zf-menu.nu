@@ -18,7 +18,6 @@ export def "zf menu" [
         "🖥️  session       - Manage multiplexer sessions"
         "🆕 session-new   - Create new session"
         "💀 session-kill  - Kill existing sessions"
-        "📋 session-list  - List all sessions"
         "🧹 session-clean - Clean old sessions (7+ days)"
         "📊 status        - Session status overview"
         "🔄 processes     - Browse running processes"
@@ -62,7 +61,6 @@ export def "zf menu" [
             "session" => { zs switch --floating=$floating --large }
             "session-new" => { zs new }
             "session-kill" => { zs kill --floating=$floating }
-            "session-list" => { zs list }
             "session-clean" => { 
                 let days = (input "Days threshold (default 7): ")
                 let threshold = if ($days | str length) > 0 { ($days | into int) } else { 7 }

@@ -190,9 +190,9 @@ end if'
 7 = ['secondary', 'main']
 8 = ['secondary', 'main']
 9 = ['secondary', 'main']
-C = 'built-in'
-M = 'built-in'
-T = 'built-in'
+C = ['secondary', 'main']
+M = ['secondary', 'main']
+T = ['secondary', 'main']
 
 
 [mode.resize.binding]
