@@ -173,241 +173,212 @@ def "exec-tmux" [
 
 # Enhanced session switcher with proper zellij commands
 export def "zs switch" [
-    --floating(-f)         # Run in floating pane (default: true for better UX)
-    --large(-l)            # Use large floating pane
-    --preview(-p)          # Show session preview (default: true)
-    --create(-c): string   # Create new session with name
+    --floating(-f)            # Run in floating pane
+    --large(-l)               # Use large floating pane  
+    --preview(-p)             # Show session preview
+    --create(-c): string      # Create new session with name
 ] {
-    let use_floating = $floating != false  # Default to floating unless explicitly disabled
-    let use_preview = $preview != false    # Default to preview unless explicitly disabled
-    let use_large = $large or $use_floating  # Large pane if floating or explicitly requested
+    # Set defaults based on flag presence
+    let use_floating = $floating or ($floating == null and true)  # Default to true
+    let use_large = $large or false
+    let use_preview = $preview or ($preview == null and true)     # Default to true
     
     # Handle session creation
     if ($create | is-not-empty) {
-        let mux = (multiplexer detect)
-        match $mux {
-            "zellij" => {
-                print $"🆕 Creating new zellij session: ($create)"
-                ^zellij --session $create
-                return
-            }
-            "tmux" => {
-                print $"🆕 Creating new tmux session: ($create)"
-                ^tmux new-session -d -s $create
-                ^tmux attach-session -t $create
-                return
-            }
-            _ => {
-                print "❌ No terminal multiplexer detected"
-                return
-            }
-        }
+        print $"🆕 Creating new zellij session: ($create)"
+        ^zellij --session $create
+        return
     }
     
-    let mux = (multiplexer detect)
+    # Get zellij sessions
+    let raw_output = (^zellij list-sessions --no-formatting | complete)
     
-    match $mux {
-        "zellij" => {
-            # Get session information with better formatting
-            let raw_output = (^zellij list-sessions --no-formatting | complete)
-            
-            if $raw_output.exit_code != 0 {
-                print "❌ Failed to get zellij sessions"
-                return
-            }
-            
-            # Parse session information more comprehensively
-            let sessions_info = ($raw_output.stdout 
-                | lines 
-                | each { |line|
-                    let clean_line = (strip-ansi $line | str trim)
-                    if ($clean_line | str length) == 0 or ($clean_line | str contains "EXITED") {
-                        null
-                    } else {
-                        # Extract session name and metadata
-                        let parts = ($clean_line | parse -r '^([^\s]+)\s+\[Created\s+([^\]]+)\]\s*(.*)?$')
-                        if ($parts | length) > 0 {
-                            let session_data = ($parts | first)
-                            let is_current = ($session_data.capture2? | default "" | str contains "current")
-                            let status_indicator = if $is_current { "🟢" } else { "⚪" }
-                            {
-                                name: $session_data.capture0
-                                created: $session_data.capture1
-                                status: ($session_data.capture2? | default "")
-                                is_current: $is_current
-                                display: $"($status_indicator) ($session_data.capture0) │ Created ($session_data.capture1)"
-                            }
-                        } else {
-                            # Fallback parsing for simple format
-                            let name = ($clean_line | str replace '\s.*' '')
-                            if ($name | str length) > 0 {
-                                {
-                                    name: $name
-                                    created: "unknown"
-                                    status: ""
-                                    is_current: false
-                                    display: $"⚪ ($name)"
-                                }
-                            } else {
-                                null
-                            }
-                        }
+    if $raw_output.exit_code != 0 {
+        print "❌ Failed to get zellij sessions"
+        return
+    }
+    
+    # Parse sessions - handle both formats (with and without [Created] info)
+    let sessions = ($raw_output.stdout 
+        | lines 
+        | each { |line|
+            let clean_line = ($line | str trim)
+            if ($clean_line | str length) == 0 or ($clean_line | str contains "EXITED") {
+                null
+            } else {
+                # Try to parse with [Created] format first
+                let created_match = ($clean_line | parse -r '^([^\s]+)\s+\[Created\s+([^\]]+)\]\s*(.*)?$')
+                if ($created_match | length) > 0 {
+                    let session_data = ($created_match | first)
+                    let is_current = ($session_data.capture2? | default "" | str contains "current")
+                    {
+                        name: $session_data.capture0
+                        created: $session_data.capture1
+                        is_current: $is_current
                     }
-                } 
-                | compact
-            )
-            
-            if ($sessions_info | is-empty) {
-                print "❌ No active zellij sessions found"
-                print "💡 Use 'zs new <name>' to create a new session"
-                return
-            }
-            
-            # Create enhanced display with preview
-            let display_list = ($sessions_info | each {|s| $s.display})
-            let temp_file = $"/tmp/zellij_sessions_(random chars -l 8).txt"
-            $display_list | save $temp_file
-            
-            # Build fzf command with enhanced options
-            let preview_cmd = if $use_preview {
-                "--preview 'echo \"Session Details:\"; echo \"Name: {2}\"; echo \"Created: {4} {5} {6}\"; echo \"Status: Current session\" | head -10'"
-            } else { "" }
-            
-            let fzf_opts = [
-                $"--height=($SESSION_CONFIG.session_height)"
-                "--layout=reverse"
-                "--border=rounded"
-                "--margin=2%"
-                "--padding=1"
-                $"--preview-window=right:($SESSION_CONFIG.preview_size):wrap"
-                "--prompt='🖥️  Select Zellij Session: '"
-                "--header='Enter: Switch │ Ctrl-C: Cancel │ Ctrl-N: New Session │ Ctrl-D: Delete'"
-                "--bind='ctrl-n:execute(echo __CREATE_NEW__)'"
-                "--bind='ctrl-d:execute(echo __DELETE__)'"
-                $preview_cmd
-            ] | where {|x| $x != ""} | str join " "
-            
-            let fzf_cmd = $"cat ($temp_file) | fzf ($fzf_opts)"
-            
-            # Execute with proper zellij floating pane syntax
-            let result = if $use_floating {
-                if (multiplexer is-active) {
-                    # Create a temporary script for complex fzf execution
-                    let script_file = $"/tmp/zellij_session_script_(random chars -l 8).sh"
-                    $"#!/bin/bash\n($fzf_cmd)" | save $script_file
-                    chmod +x $script_file
-                    
-                    # Use exec-zellij with corrected syntax
-                    if $use_large {
-                        exec-zellij $"bash ($script_file)" --floating --name "session-switcher"
-                    } else {
-                        exec-zellij $"bash ($script_file)" --floating --name "session-switcher"
-                    }
-                    rm -f $script_file $temp_file
-                    return
                 } else {
-                    let result = (bash -c $fzf_cmd)
-                    rm -f $temp_file
-                    $result
+                    # Fallback to simple session name parsing
+                    let name_match = ($clean_line | parse -r '^([^\s]+)')
+                    if ($name_match | length) > 0 {
+                        let session_name = ($name_match | first | get capture0)
+                        {
+                            name: $session_name
+                            created: "unknown"
+                            is_current: false
+                        }
+                    } else {
+                        null
+                    }
+                }
+            }
+        } 
+        | compact
+    )
+    
+    if ($sessions | length) == 0 {
+        print "❌ No active zellij sessions found"
+        print "💡 Use 'zs switch --create <name>' to create a new session"
+        return
+    }
+    
+    # Create display list for fzf
+    let display_list = ($sessions | each {|session|
+        let indicator = if $session.is_current { "🟢" } else { "⚪" }
+        let created_info = if $session.created != "unknown" { $" | Created ($session.created)" } else { "" }
+        $"($indicator) ($session.name)($created_info)"
+    })
+    
+    # Save to temp file
+    let temp_file = $"($env.XDG_CACHE_HOME)/zellij_sessions_(random chars -l 8).txt"
+    $display_list | save $temp_file
+    
+    # Create the fzf script with proper bash syntax
+    let script_file = $"($env.XDG_CACHE_HOME)/zellij_fzf_(random chars -l 8).sh"
+    
+    # Build script content as proper bash commands
+    let script_lines = [
+        "#!/bin/bash"
+        "set -e"
+        ""
+        $"SESSIONS_FILE='($temp_file)'"
+        ""
+        "if [[ ! -f \"$SESSIONS_FILE\" ]]; then"
+        "    echo 'Error: Sessions file not found'"
+        "    exit 1"
+        "fi"
+        ""
+        "# Run fzf with proper bash syntax"
+        "cat \"$SESSIONS_FILE\" | fzf \\"
+        $"    --height=($SESSION_CONFIG.session_height) \\"
+        "    --layout=reverse \\"
+        "    --border=rounded \\"
+        "    --margin=2% \\"
+        "    --padding=1 \\"
+        "    --prompt='Select Session: ' \\"
+        "    --header='Enter: Switch, Ctrl-C: Cancel, Ctrl-N: New, Ctrl-D: Delete' \\"
+        "    --bind='ctrl-n:execute(echo __CREATE_NEW__)' \\"
+        "    --bind='ctrl-d:execute(echo __DELETE__)'"
+    ]
+    
+    # Add preview if enabled
+    let final_script_lines = if $use_preview {
+        $script_lines ++ [
+            $"    --preview-window=right:($SESSION_CONFIG.preview_size):wrap \\"
+            "    --preview='echo \"Session: {}\"; echo \"Status: Active\"; echo \"Type: Zellij\"'"
+        ]
+    } else {
+        $script_lines
+    }
+    
+    # Join all lines and remove trailing backslash from last line
+    let script_content = ($final_script_lines | str join "\n" | str replace '\\\n$' '\n')
+    
+    $script_content | save $script_file
+    chmod +x $script_file
+    
+    # Execute fzf
+    let result = if $use_floating and (which zellij | length) > 0 {
+        # Try to run in floating pane if we're in zellij
+        try {
+            let width = if $use_large { "120" } else { "100" }
+            let height = if $use_large { "40" } else { "30" }
+            
+            ^zellij run --floating --width $width --height $height --close-on-exit -- bash $script_file | str trim
+        } catch {
+            # Fallback to regular execution
+            bash $script_file | str trim
+        }
+    } else {
+        bash $script_file | str trim
+    }
+    
+    # Cleanup
+    rm -f $script_file $temp_file
+    
+    # Handle the result
+    if ($result | str contains "__CREATE_NEW__") {
+        print "🆕 Creating new session..."
+        let new_name = (input "Enter session name: ")
+        if ($new_name | str length) > 0 {
+            ^zellij --session $new_name
+        }
+    } else if ($result | str contains "__DELETE__") {
+        # Extract session name from result
+        let session_name = ($result | str replace '^[🟢⚪]\s+' '' | str replace ' \|.*$' '' | str trim)
+        if ($session_name | str length) > 0 {
+            print $"💀 Removing session: ($session_name)"
+            try {
+                ^zellij delete-session $session_name
+                print $"✅ Session ($session_name) killed successfully"
+            } catch {
+                print $"❌ Failed to kill session: ($session_name)"
+            }
+        }
+    } else if ($result | is-not-empty) {
+        # Extract session name from result
+        let session_name = ($result | str replace '^[🟢⚪]\s+' '' | str replace ' \|.*$' '' | str trim)
+        
+        if ($session_name | str length) > 0 {
+            print $"🔄 Switching to session: ($session_name)"
+            
+            # Check if we're currently in a zellij session
+            let in_zellij = ($env.ZELLIJ? | default "" | str length) > 0
+            
+            if $in_zellij {
+                # Try different zellij actions for switching sessions
+                try {
+                    ^zellij action switch-session $session_name
+                    print $"✅ Switched to session: ($session_name)"
+                } catch {
+                    try {
+                        ^zellij action go-to-tab-name $session_name
+                        print $"✅ Switched to tab: ($session_name)"
+                    } catch {
+                        print $"❌ Failed to switch to session: ($session_name)"
+                        print "💡 Try manually: zellij attach ($session_name)"
+                    }
                 }
             } else {
-                let result = (bash -c $fzf_cmd)
-                rm -f $temp_file
-                $result
-            }
-            
-            # Handle special commands and session switching
-            if ($result | str contains "__CREATE_NEW__") {
-                print "🆕 Creating new session..."
-                let new_name = (input "Enter session name: ")
-                if ($new_name | str length) > 0 {
-                    zs new $new_name
-                }
-            } else if ($result | str contains "__DELETE__") {
-                let session_name = ($result | str replace '^[🟢⚪]\s+' '' | split column " │ " | get column1.0 | str trim)
-                print $"💀 Removing session: ($session_name)"
-                ^zellij action kill-session $session_name
-            } else if ($result | is-not-empty) {
-                let session_name = ($result | str replace '^[🟢⚪]\s+' '' | split column " │ " | get column1.0 | str trim)
-                print $"🔄 Switching to session: ($session_name)"
-                
-                if (multiplexer is-active) {
-                    # Use the correct zellij session switch command
-                    ^zellij action switch-session $session_name
-                } else {
+                # Not in zellij, so attach to the session
+                try {
                     ^zellij attach $session_name
+                    print $"✅ Attached to session: ($session_name)"
+                } catch {
+                    print $"❌ Failed to attach to session: ($session_name)"
                 }
             }
-        }
-        "tmux" => {
-            # Enhanced TMux session management
-            let sessions_raw = (^tmux list-sessions -F "#{session_name}:#{session_created}:#{session_attached}" | lines)
-            
-            if ($sessions_raw | is-empty) {
-                print "❌ No tmux sessions available"
-                print "💡 Use 'zs new <name>' to create a new session"
-                return
-            }
-            
-            let sessions_info = ($sessions_raw | each {|line|
-                let parts = ($line | split column ":")
-                let attached = if ($parts | get column3) == "1" { "🟢 (attached)" } else { "⚪" }
-                {
-                    name: ($parts | get column1)
-                    created: ($parts | get column2)
-                    attached: $attached
-                    display: $"($attached) ($parts.column1) │ Created ($parts.column2)"
-                }
-            })
-            
-            let display_list = ($sessions_info | each {|s| $s.display})
-            let temp_file = $"/tmp/tmux_sessions_(random chars -l 8).txt"
-            $display_list | save $temp_file
-            
-            let preview_cmd = if $use_preview {
-                "--preview 'tmux list-windows -t {2} 2>/dev/null || echo \"Session details unavailable\"'"
-            } else { "" }
-            
-            let fzf_opts = [
-                $"--height=($SESSION_CONFIG.session_height)"
-                "--layout=reverse"
-                "--border=rounded"
-                "--margin=2%"
-                "--padding=1"
-                $"--preview-window=right:($SESSION_CONFIG.preview_size):wrap"
-                "--prompt='🖥️  Select TMux Session: '"
-                "--header='Enter: Switch │ Ctrl-C: Cancel'"
-                $preview_cmd
-            ] | where {|x| $x != ""} | str join " "
-            
-            let fzf_cmd = $"cat ($temp_file) | fzf ($fzf_opts)"
-            let result = (bash -c $fzf_cmd)
-            rm -f $temp_file
-            
-            if ($result | is-not-empty) {
-                let session_name = ($result | str replace '^[🟢⚪]\s+' '' | split column " │ " | get column1.0 | str trim)
-                print $"🔄 Switching to session: ($session_name)"
-                
-                if (multiplexer is-active) {
-                    ^tmux switch-client -t $session_name
-                } else {
-                    ^tmux attach-session -t $session_name
-                }
-            }
-        }
-        _ => {
-            print "❌ No terminal multiplexer detected"
-            print "💡 Consider installing zellij or tmux for session management"
+        } else {
+            print "❌ Could not extract session name from selection"
         }
     }
 }
 
-# Quick session switcher (optimized for keyboard shortcut)
+# Quick session switcher for keybinding
 export def "zs quick" [] {
     zs switch --floating --large --preview
 }
 
-# Session management commands
+# Create new session
 export def "zs new" [name?: string] {
     let session_name = if ($name | is-empty) {
         input "Enter session name: "
@@ -422,9 +393,12 @@ export def "zs new" [name?: string] {
     }
 }
 
+
 export def "zs kill" [
-    --floating(-f)         # Run in floating pane
+    --floating(-f)            # Run in floating pane
 ] {
+    let use_floating = $floating or false  # Default to false for kill command
+    
     let mux = (multiplexer detect)
     let sessions = (get-sessions $mux)
     
@@ -434,7 +408,7 @@ export def "zs kill" [
     }
     
     let session_names = ($sessions | get name)
-    let temp_file = $"/tmp/kill_sessions_(random chars -l 8).txt"
+    let temp_file = $"($env.XDG_CACHE_HOME)/kill_sessions_(random chars -l 8).txt"
     $session_names | save $temp_file
     
     let fzf_opts = [
@@ -450,14 +424,23 @@ export def "zs kill" [
     
     let fzf_cmd = $"cat ($temp_file) | fzf ($fzf_opts)"
     
-    let result = if $floating {
+    let result = if $use_floating {
         if (multiplexer is-active) {
-            let script_file = $"/tmp/kill_session_script_(random chars -l 8).sh"
+            let script_file = $"($env.XDG_CACHE_HOME)/kill_session_script_(random chars -l 8).sh"
             $"#!/bin/bash\n($fzf_cmd)" | save $script_file
             chmod +x $script_file
-            exec-zellij $"bash ($script_file)" --floating --name "kill-sessions"
+            
+            let zellij_result = (
+                ^zellij run --floating 
+                --width "100" 
+                --height "30" 
+                --close-on-exit 
+                -- bash $script_file 
+                | str trim
+            )
+            
             rm -f $script_file $temp_file
-            return
+            $zellij_result
         } else {
             let result = (bash -c $fzf_cmd)
             rm -f $temp_file
@@ -472,15 +455,30 @@ export def "zs kill" [
     if ($result | is-not-empty) {
         let selected_sessions = ($result | lines)
         for session in $selected_sessions {
-            print $"💀 Killing session: ($session)"
+            print $"💀 Removing session: ($session)"
             match $mux {
-                "zellij" => { ^zellij kill-session $session }
-                "tmux" => { ^tmux kill-session -t $session }
+                "zellij" => { 
+                    try {
+                        ^zellij delete-session $session
+                        print $"✅ Session ($session) killed successfully"
+                    } catch {
+                        print $"❌ Failed to kill session: ($session)"
+                    }
+                }
+                "tmux" => { 
+                    try {
+                        ^tmux kill-session -t $session
+                        print $"✅ Session ($session) killed successfully"
+                    } catch {
+                        print $"❌ Failed to kill session: ($session)"
+                    }
+                }
                 _ => { print "❌ Cannot kill session: unsupported multiplexer" }
             }
         }
     }
 }
+
 
 # Session cleanup for sessions older than specified days
 export def "zs clean" [
@@ -521,7 +519,7 @@ export def "zs clean" [
         for session in $old_sessions {
             print $"🧹 Cleaning session: ($session.name) ($session.age_days) days old"
             match $mux {
-                "zellij" => { ^zellij kill-session $session.name }
+                "zellij" => { ^zellij delete-session $session.name }
                 "tmux" => { ^tmux kill-session -t $session.name }
                 _ => { print "❌ Cannot clean session: unsupported multiplexer" }
             }
