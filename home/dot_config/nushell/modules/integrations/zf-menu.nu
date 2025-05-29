@@ -58,17 +58,17 @@ export def "zf menu" [
             "dirs" => { zf dirs --floating=$floating --preview }
             
             # Session management (from zellij-session-manager.nu)
-            "session" => { zs switch --floating=$floating --large }
-            "session-new" => { zs new }
-            "session-kill" => { zs kill --floating=$floating }
+            "session" => { sm switch --floating=$floating --large }
+            "session-new" => { sm new }
+            "session-kill" => { sm kill --floating=$floating }
             "session-clean" => { 
                 let days = (input "Days threshold (default 7): ")
                 let threshold = if ($days | str length) > 0 { ($days | into int) } else { 7 }
-                zs clean --days $threshold
+                sm clean --days $threshold
             }
-            "status" => { zs status }
+            "status" => { sm status }
             
-            # Utilities (from fzf-utils.nu)
+            # Uticities (from fzf-utils.nu)
             "processes" => { zf processes --floating=$floating }
             "git-branches" => { zf git-branches --floating=$floating }
             "history" => { zf history --floating=$floating }
@@ -91,11 +91,11 @@ export def "zf menu" [
 }
 
 # Quick access aliases for convenience
-export alias ss = zs quick           # Quick session switcher  
-export alias sn = zs new             # New session
-export alias sk = zs kill            # Kill session
-export alias sl = zs list            # List sessions
-export alias sc = zs clean           # Clean sessions
+export alias ss = sm switch           # Quick session switcher  
+export alias sn = sm new             # New session
+export alias sk = sm kill            # Kill session
+export alias sl = sm list            # List sessions
+export alias sc = sm clean           # Clean sessions
 export alias ff = zf files           # File finder
 export alias dd = zf dirs            # Directory finder
 export alias pp = zf processes       # Process finder
@@ -111,11 +111,11 @@ export def "zf setup-shortcuts" [] {
     print "use path/to/zf-menu.nu *"
     print ""
     print "Quick aliases:"
-    print "ss = zs quick      # Quick session switcher"
-    print "sn = zs new        # New session"
-    print "sk = zs kill       # Kill session"
-    print "sl = zs list       # List sessions"
-    print "sc = zs clean      # Clean sessions"
+    print "ss = sm quick      # Quick session switcher"
+    print "sn = sm new        # New session"
+    print "sk = sm kill       # Kill session"
+    print "sl = sm list       # List sessions"
+    print "sc = sm clean      # Clean sessions"
     print "ff = zf files      # File finder"
     print "dd = zf dirs       # Directory finder"
     print "pp = zf processes  # Process finder"
@@ -130,8 +130,8 @@ export def "zf setup-shortcuts" [] {
     print "bind \"Ctrl m\" { Run \"nu\" \"-c\" \"mm\"; }"
     print ""
     print "🧹 Session cleanup examples:"
-    print "zs clean                    # Clean sessions older than 7 days"
-    print "zs clean --days 14          # Clean sessions older than 14 days"
-    print "zs clean --dry-run          # See what would be cleaned"
-    print "zs clean --force            # Clean without confirmation"
+    print "sm clean                    # Clean sessions older than 7 days"
+    print "sm clean --days 14          # Clean sessions older than 14 days"
+    print "sm clean --dry-run          # See what would be cleaned"
+    print "sm clean --force            # Clean without confirmation"
 }

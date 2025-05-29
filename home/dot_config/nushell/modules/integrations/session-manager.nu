@@ -1,16 +1,16 @@
 # Session Manager for Nushell (Zellij & TMux)
 # Author: walkeratmind
 # Created: 2025-05-27
-# Updated: 2025-05-29 07:18:21
+# Updated: 2025-05-29 07:46:25
 # Description: Universal session management with FZF integration for both Zellij and TMux
 
 # Module metadata
 export const SESSION_MANAGER_INFO = {
     name: "session-manager"
-    version: "3.1.0"
+    version: "3.1.2"
     author: "walkeratmind"
     created: "2025-05-27"
-    updated: "2025-05-29 07:18:21"
+    updated: "2025-05-29 07:46:25"
     description: "Universal session management with FZF integration for Zellij and TMux"
     dependencies: ["fzf"]
     optional_deps: ["bat", "zellij", "tmux"]
@@ -51,11 +51,17 @@ def "get-sessions" [mux: string] {
     }
 }
 
-# Zellij session retrieval
+# Zellij session retrieval - fixed shell redirection
 def "get-zellij-sessions" [] {
-    let result = (^zellij list-sessions --no-formatting 2>/dev/null | complete)
+    let result = (^zellij list-sessions --no-formatting | complete)
     
-    if $result.exit_code != 0 { return [] }
+    if $result.exit_code != 0 { 
+        return [] 
+    }
+    
+    if ($result.stdout | str trim | str length) == 0 {
+        return []
+    }
     
     $result.stdout 
     | lines 
@@ -64,73 +70,170 @@ def "get-zellij-sessions" [] {
     | where {|session| not ($session.name | str contains "EXITED")}
 }
 
-# TMux session retrieval
+# TMux session retrieval - fixed command
 def "get-tmux-sessions" [] {
-    let result = (^tmux list-sessions -F "#{session_name}:#{session_attached}:#{session_created}:#{session_windows}" 2>/dev/null | complete)
+    let result = (^tmux list-sessions | complete)
     
-    if $result.exit_code != 0 { return [] }
+    if $result.exit_code != 0 { 
+        return [] 
+    }
+    
+    if ($result.stdout | str trim | str length) == 0 {
+        return []
+    }
+    
+    # Parse standard tmux output format: "name: N windows (created date)"
+    $result.stdout
+    | lines
+    | where {|line| ($line | str trim | str length) > 0}
+    | each {|line| parse-tmux-session-standard $line}
+    | compact
+}
+
+# Enhanced tmux session retrieval with custom format
+def "get-tmux-sessions-detailed" [] {
+    let result = (bash -c "tmux list-sessions -F '#{session_name}:#{session_attached}:#{session_created}:#{session_windows}'" | complete)
+    
+    if $result.exit_code != 0 { 
+        return [] 
+    }
+    
+    if ($result.stdout | str trim | str length) == 0 {
+        return []
+    }
     
     $result.stdout
     | lines
+    | where {|line| ($line | str trim | str length) > 0}
     | each {|line| parse-tmux-session $line}
     | compact
 }
 
-# Parse Zellij session line
+# Fixed Zellij session parsing
 def "parse-zellij-session" [line: string] {
     let clean_line = ($line | str trim)
-    if ($clean_line | str length) == 0 or ($clean_line | str contains "EXITED") {
+    if ($clean_line | str length) == 0 {
         return null
     }
     
-    # Try parsing with [Created] format first
-    let created_match = ($clean_line | parse -r '^([^\s]+)\s+\[Created\s+([^\]]+)\]\s*(.*)?$')
-    if ($created_match | length) > 0 {
-        let session_data = ($created_match | first)
-        let is_current = ($session_data.capture2? | default "" | str contains "current")
-        {
-            name: $session_data.capture0
-            created: $session_data.capture1
-            is_current: $is_current
-            status: (if $is_current { "current" } else { "detached" })
-            indicator: (if $is_current { "🟢" } else { "⚪" })
+    # Skip EXITED sessions
+    if ($clean_line | str contains "EXITED") {
+        return null
+    }
+    
+    # Handle various Zellij output formats
+    # Try to extract session name first (everything before space or bracket)
+    let name_parts = ($clean_line | parse -r '^([^\s\[]+)')
+    if ($name_parts | length) == 0 {
+        return null
+    }
+    
+    let session_name = ($name_parts | first | get capture0)
+    let is_current = ($clean_line | str contains "(current)")
+    
+    # Try to extract creation time
+    let created = if ($clean_line | str contains "[Created") {
+        let created_parts = ($clean_line | parse -r '\[Created\s+([^\]]+)\]')
+        if ($created_parts | length) > 0 {
+            ($created_parts | first | get capture0)
+        } else {
+            "unknown"
         }
     } else {
-        # Fallback to simple session name parsing
-        let name_match = ($clean_line | parse -r '^([^\s]+)')
-        if ($name_match | length) > 0 {
-            let session_name = ($name_match | first | get capture0)
-            let is_current = ($clean_line | str contains "(current)")
-            {
-                name: $session_name
-                created: "unknown"
-                is_current: $is_current
-                status: (if $is_current { "current" } else { "detached" })
-                indicator: (if $is_current { "🟢" } else { "⚪" })
-            }
-        } else {
-            null
-        }
+        "unknown"
+    }
+    
+    {
+        name: $session_name
+        created: $created
+        is_current: $is_current
+        status: (if $is_current { "current" } else { "detached" })
+        indicator: (if $is_current { "🟢" } else { "⚪" })
     }
 }
 
-# Parse TMux session line
-def "parse-tmux-session" [line: string] {
-    let parts = ($line | split column ":")
-    if ($parts | length) < 2 { return null }
+# Parse standard TMux session output: "name: N windows (created date) (attached)"
+def "parse-tmux-session-standard" [line: string] {
+    let clean_line = ($line | str trim)
+    if ($clean_line | str length) == 0 {
+        return null
+    }
     
-    let attached = ($parts | get column1) == "1"
+    # Standard tmux format: "session_name: 1 windows (created Thu May 29 07:30:00 2025) (attached)"
+    let name_match = ($clean_line | parse -r '^([^:]+)')
+    if ($name_match | length) == 0 {
+        return null
+    }
+    
+    let session_name = ($name_match | first | get capture0 | str trim)
+    let is_attached = ($clean_line | str contains "(attached)")
+    
+    # Extract window count
+    let windows = if ($clean_line | str contains " windows") {
+        let windows_match = ($clean_line | parse -r '(\d+)\s+windows?')
+        if ($windows_match | length) > 0 {
+            ($windows_match | first | get capture0)
+        } else {
+            "1"
+        }
+    } else {
+        "1"
+    }
+    
+    # Extract creation date (rough approximation)
+    let created = if ($clean_line | str contains "(created") {
+        let created_match = ($clean_line | parse -r '\(created\s+([^)]+)\)')
+        if ($created_match | length) > 0 {
+            ($created_match | first | get capture0)
+        } else {
+            "unknown"
+        }
+    } else {
+        "unknown"
+    }
+    
     {
-        name: ($parts | get column0)
-        created: ($parts | get column2? | default "unknown")
-        windows: ($parts | get column3? | default "1")
+        name: $session_name
+        created: $created
+        windows: $windows
+        status: (if $is_attached { "attached" } else { "detached" })
+        is_current: $is_attached
+        indicator: (if $is_attached { "🟢" } else { "⚪" })
+    }
+}
+
+# Fixed TMux session parsing for custom format - using simple split
+def "parse-tmux-session" [line: string] {
+    let clean_line = ($line | str trim)
+    if ($clean_line | str length) == 0 {
+        return null
+    }
+    
+    # Split by colon - TMux format: name:attached:created:windows
+    let parts = ($clean_line | split column ":")
+    
+    if ($parts | length) < 2 {
+        return null
+    }
+    
+    let name = ($parts | get column0)
+    let attached_str = ($parts | get column1)
+    let created = if ($parts | length) >= 3 { ($parts | get column2) } else { "unknown" }
+    let windows = if ($parts | length) >= 4 { ($parts | get column3) } else { "1" }
+    
+    let attached = ($attached_str == "1")
+    
+    {
+        name: $name
+        created: $created
+        windows: $windows
         status: (if $attached { "attached" } else { "detached" })
         is_current: $attached
         indicator: (if $attached { "🟢" } else { "⚪" })
     }
 }
 
-# Session age calculation
+# Enhanced session age calculation
 def "get-session-age" [session_name: string, mux: string] {
     match $mux {
         "zellij" => { get-zellij-session-age $session_name }
@@ -139,43 +242,139 @@ def "get-session-age" [session_name: string, mux: string] {
     }
 }
 
+# Fixed Zellij session age calculation
 def "get-zellij-session-age" [session_name: string] {
-    let result = (^zellij list-sessions --no-formatting 2>/dev/null | complete)
+    let result = (^zellij list-sessions --no-formatting | complete)
     if $result.exit_code != 0 { return 0 }
     
     let session_lines = ($result.stdout | lines | where {|line| 
-        let clean = (strip-ansi $line)
+        let clean = ($line | str trim)
         ($clean | str starts-with $session_name)
     })
     
     if ($session_lines | length) == 0 { return 0 }
     
-    let clean_line = (strip-ansi ($session_lines | first))
+    let clean_line = ($session_lines | first | str trim)
+    
+    # Look for time patterns in Zellij output
     if ($clean_line | str contains "day") {
-        let days_match = ($clean_line | parse -r '(\d+)\s*day')
-        if ($days_match | length) > 0 {
-            ($days_match | first | get capture0 | into int)
+        let days_matches = ($clean_line | parse -r '(\d+)\s*days?')
+        if ($days_matches | length) > 0 {
+            ($days_matches | first | get capture0 | into int)
         } else { 0 }
-    } else { 0 }
+    } else if ($clean_line | str contains "h") {
+        0  # Less than a day
+    } else if ($clean_line | str contains "m") {
+        0  # Less than an hour
+    } else {
+        0  # Very recent
+    }
 }
 
+# Fixed TMux session age calculation
 def "get-tmux-session-age" [session_name: string] {
-    let result = (^tmux list-sessions -F "#{session_name}:#{session_created}" 2>/dev/null | complete)
+    let result = (bash -c $"tmux list-sessions -F '#{session_name}:#{session_created}'" | complete)
     if $result.exit_code != 0 { return 0 }
     
     let sessions = ($result.stdout | lines | where {|line| 
-        ($line | str starts-with $session_name)
+        let clean = ($line | str trim)
+        ($clean | str starts-with $session_name)
     })
     
     if ($sessions | length) == 0 { return 0 }
     
     try {
-        let created_timestamp = ($sessions | first | split column ":" | get column2 | into int)
+        let session_line = ($sessions | first)
+        let parts = ($session_line | split column ":")
+        if ($parts | length) < 2 { return 0 }
+        
+        let created_timestamp = ($parts | get column1 | into int)
         let current_timestamp = (date now | format date "%s" | into int)
         let age_seconds = ($current_timestamp - $created_timestamp)
-        ($age_seconds / 86400)
+        ($age_seconds / 86400)  # Convert to days
     } catch {
         0
+    }
+}
+
+# Fixed test functions
+export def "sm debug-zellij" [] {
+    print "=== Debugging Zellij Sessions ==="
+    let result = (^zellij list-sessions --no-formatting | complete)
+    print $"Exit code: ($result.exit_code)"
+    print $"Stdout: '($result.stdout)'"
+    print $"Stderr: '($result.stderr)'"
+    
+    if $result.exit_code == 0 and ($result.stdout | str trim | str length) > 0 {
+        print "\n=== Raw Lines ==="
+        $result.stdout | lines | enumerate | each {|item| 
+            print $"Line ($item.index): '($item.item)'"
+        }
+        
+        print "\n=== Parsing Results ==="
+        let sessions = (get-zellij-sessions)
+        print $"Found ($sessions | length) sessions:"
+        if ($sessions | length) > 0 {
+            $sessions | table
+        }
+    } else {
+        print "No sessions found or command failed"
+    }
+}
+
+export def "sm debug-tmux" [] {
+    print "=== Debugging TMux Sessions (Standard) ==="
+    let result = (^tmux list-sessions | complete)
+    print $"Exit code: ($result.exit_code)"
+    print $"Stdout: '($result.stdout)'"
+    print $"Stderr: '($result.stderr)'"
+    
+    if $result.exit_code == 0 and ($result.stdout | str trim | str length) > 0 {
+        print "\n=== Raw Lines ==="
+        $result.stdout | lines | enumerate | each {|item| 
+            print $"Line ($item.index): '($item.item)'"
+        }
+        
+        print "\n=== Parsing Results ==="
+        let sessions = (get-tmux-sessions)
+        print $"Found ($sessions | length) sessions:"
+        if ($sessions | length) > 0 {
+            $sessions | table
+        }
+    } else {
+        print "No sessions found or command failed"
+        
+        # Try detailed format
+        print "\n=== Trying Detailed Format ==="
+        let detailed_result = (bash -c "tmux list-sessions -F '#{session_name}:#{session_attached}:#{session_created}:#{session_windows}'" | complete)
+        print $"Detailed Exit code: ($detailed_result.exit_code)"
+        print $"Detailed Stdout: '($detailed_result.stdout)'"
+        print $"Detailed Stderr: '($detailed_result.stderr)'"
+        
+        if $detailed_result.exit_code == 0 and ($detailed_result.stdout | str trim | str length) > 0 {
+            let detailed_sessions = (get-tmux-sessions-detailed)
+            print $"Found ($detailed_sessions | length) detailed sessions:"
+            if ($detailed_sessions | length) > 0 {
+                $detailed_sessions | table
+            }
+        }
+    }
+}
+
+export def "sm debug-mux" [] {
+    let current = (multiplexer detect)
+    print $"Current multiplexer: ($current)"
+    print $"Zellij available: (tool exists 'zellij')"
+    print $"TMux available: (tool exists 'tmux')"
+    
+    if (tool exists "zellij") {
+        print "\n"
+        sm debug-zellij
+    }
+    
+    if (tool exists "tmux") {
+        print "\n"
+        sm debug-tmux
     }
 }
 
@@ -236,8 +435,6 @@ def "switch-tmux-session" [name: string] {
         try {
             ^tmux attach-session -t $name
             print $"✅ Attached to session: ($name)"
-        } catch {
-            print $"❌ Failed to attach to session: ($name)"
         }
     }
 }
@@ -604,4 +801,4 @@ export def "sm info" [] {
 }
 
 # Backward compatibility
-# export alias "zs" = sm
+export alias "zs" = sm
