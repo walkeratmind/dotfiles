@@ -546,11 +546,12 @@ def "execute-fzf" [
 
 # Extract session name from FZF result
 def "extract-session-name" [result: string] {
-    $result 
-    | str replace '^[🟢⚪]\s+' '' 
-    | str replace ' \|.*$' '' 
-    | str replace ' \│.*$' '' 
-    | str trim
+    # First remove the emoji indicator
+    let without_emoji = ($result | str replace -r '^[🟢⚪]\s+' '')
+    
+    # Split by │ and take the first part, then trim
+    let parts = ($without_emoji | split column "│")
+    ($parts | first | get column1 | str trim)
 }
 
 # Main commands
