@@ -22,5 +22,6 @@ use modules/integrations/zf-menu.nu *
 use modules/integrations/zellij-session.nu *
 # use fzf.nu *
 use modules/integrations/fzf-utils.nu *
+use modules/integrations/session-manager.nu *
 
 
