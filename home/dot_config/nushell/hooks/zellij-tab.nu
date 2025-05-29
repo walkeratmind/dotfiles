@@ -1,7 +1,7 @@
 
 
 def update_zellij_tab [] {
-    if $env.ZELLIJ != "" {
+    if ($env | get -i ZELLIJ | default "" | is-not-empty) {
         let current_dir = (pwd)
         
         # Check if we're in a git repo using a more reliable method

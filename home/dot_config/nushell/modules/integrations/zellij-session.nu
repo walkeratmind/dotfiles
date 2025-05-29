@@ -328,7 +328,7 @@ export def "zs switch" [
         if ($session_name | str length) > 0 {
             print $"💀 Removing session: ($session_name)"
             try {
-                ^zellij delete-session $session_name
+                ^zellij kill-session $session_name
                 print $"✅ Session ($session_name) killed successfully"
             } catch {
                 print $"❌ Failed to kill session: ($session_name)"
@@ -459,7 +459,7 @@ export def "zs kill" [
             match $mux {
                 "zellij" => { 
                     try {
-                        ^zellij delete-session $session
+                        ^zellij kill-session $session
                         print $"✅ Session ($session) killed successfully"
                     } catch {
                         print $"❌ Failed to kill session: ($session)"
@@ -519,7 +519,7 @@ export def "zs clean" [
         for session in $old_sessions {
             print $"🧹 Cleaning session: ($session.name) ($session.age_days) days old"
             match $mux {
-                "zellij" => { ^zellij delete-session $session.name }
+                "zellij" => { ^zellij kill-session $session.name }
                 "tmux" => { ^tmux kill-session -t $session.name }
                 _ => { print "❌ Cannot clean session: unsupported multiplexer" }
             }
