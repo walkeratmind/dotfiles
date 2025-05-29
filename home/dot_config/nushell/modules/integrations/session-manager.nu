@@ -298,85 +298,85 @@ def "get-tmux-session-age" [session_name: string] {
 }
 
 # Fixed test functions
-export def "sm debug-zellij" [] {
-    print "=== Debugging Zellij Sessions ==="
-    let result = (^zellij list-sessions --no-formatting | complete)
-    print $"Exit code: ($result.exit_code)"
-    print $"Stdout: '($result.stdout)'"
-    print $"Stderr: '($result.stderr)'"
-    
-    if $result.exit_code == 0 and ($result.stdout | str trim | str length) > 0 {
-        print "\n=== Raw Lines ==="
-        $result.stdout | lines | enumerate | each {|item| 
-            print $"Line ($item.index): '($item.item)'"
-        }
-        
-        print "\n=== Parsing Results ==="
-        let sessions = (get-zellij-sessions)
-        print $"Found ($sessions | length) sessions:"
-        if ($sessions | length) > 0 {
-            $sessions | table
-        }
-    } else {
-        print "No sessions found or command failed"
-    }
-}
+# export def "sm debug-zellij" [] {
+#     print "=== Debugging Zellij Sessions ==="
+#     let result = (^zellij list-sessions --no-formatting | complete)
+#     print $"Exit code: ($result.exit_code)"
+#     print $"Stdout: '($result.stdout)'"
+#     print $"Stderr: '($result.stderr)'"
+#     
+#     if $result.exit_code == 0 and ($result.stdout | str trim | str length) > 0 {
+#         print "\n=== Raw Lines ==="
+#         $result.stdout | lines | enumerate | each {|item| 
+#             print $"Line ($item.index): '($item.item)'"
+#         }
+#         
+#         print "\n=== Parsing Results ==="
+#         let sessions = (get-zellij-sessions)
+#         print $"Found ($sessions | length) sessions:"
+#         if ($sessions | length) > 0 {
+#             $sessions | table
+#         }
+#     } else {
+#         print "No sessions found or command failed"
+#     }
+# }
 
-export def "sm debug-tmux" [] {
-    print "=== Debugging TMux Sessions (Standard) ==="
-    let result = (^tmux list-sessions | complete)
-    print $"Exit code: ($result.exit_code)"
-    print $"Stdout: '($result.stdout)'"
-    print $"Stderr: '($result.stderr)'"
-    
-    if $result.exit_code == 0 and ($result.stdout | str trim | str length) > 0 {
-        print "\n=== Raw Lines ==="
-        $result.stdout | lines | enumerate | each {|item| 
-            print $"Line ($item.index): '($item.item)'"
-        }
-        
-        print "\n=== Parsing Results ==="
-        let sessions = (get-tmux-sessions)
-        print $"Found ($sessions | length) sessions:"
-        if ($sessions | length) > 0 {
-            $sessions | table
-        }
-    } else {
-        print "No sessions found or command failed"
-        
-        # Try detailed format
-        print "\n=== Trying Detailed Format ==="
-        let detailed_result = (bash -c "tmux list-sessions -F '#{session_name}:#{session_attached}:#{session_created}:#{session_windows}'" | complete)
-        print $"Detailed Exit code: ($detailed_result.exit_code)"
-        print $"Detailed Stdout: '($detailed_result.stdout)'"
-        print $"Detailed Stderr: '($detailed_result.stderr)'"
-        
-        if $detailed_result.exit_code == 0 and ($detailed_result.stdout | str trim | str length) > 0 {
-            let detailed_sessions = (get-tmux-sessions-detailed)
-            print $"Found ($detailed_sessions | length) detailed sessions:"
-            if ($detailed_sessions | length) > 0 {
-                $detailed_sessions | table
-            }
-        }
-    }
-}
+# export def "sm debug-tmux" [] {
+#     print "=== Debugging TMux Sessions (Standard) ==="
+#     let result = (^tmux list-sessions | complete)
+#     print $"Exit code: ($result.exit_code)"
+#     print $"Stdout: '($result.stdout)'"
+#     print $"Stderr: '($result.stderr)'"
+#     
+#     if $result.exit_code == 0 and ($result.stdout | str trim | str length) > 0 {
+#         print "\n=== Raw Lines ==="
+#         $result.stdout | lines | enumerate | each {|item| 
+#             print $"Line ($item.index): '($item.item)'"
+#         }
+#         
+#         print "\n=== Parsing Results ==="
+#         let sessions = (get-tmux-sessions)
+#         print $"Found ($sessions | length) sessions:"
+#         if ($sessions | length) > 0 {
+#             $sessions | table
+#         }
+#     } else {
+#         print "No sessions found or command failed"
+#         
+#         # Try detailed format
+#         print "\n=== Trying Detailed Format ==="
+#         let detailed_result = (bash -c "tmux list-sessions -F '#{session_name}:#{session_attached}:#{session_created}:#{session_windows}'" | complete)
+#         print $"Detailed Exit code: ($detailed_result.exit_code)"
+#         print $"Detailed Stdout: '($detailed_result.stdout)'"
+#         print $"Detailed Stderr: '($detailed_result.stderr)'"
+#         
+#         if $detailed_result.exit_code == 0 and ($detailed_result.stdout | str trim | str length) > 0 {
+#             let detailed_sessions = (get-tmux-sessions-detailed)
+#             print $"Found ($detailed_sessions | length) detailed sessions:"
+#             if ($detailed_sessions | length) > 0 {
+#                 $detailed_sessions | table
+#             }
+#         }
+#     }
+# }
 
-export def "sm debug-mux" [] {
-    let current = (multiplexer detect)
-    print $"Current multiplexer: ($current)"
-    print $"Zellij available: (tool exists 'zellij')"
-    print $"TMux available: (tool exists 'tmux')"
-    
-    if (tool exists "zellij") {
-        print "\n"
-        sm debug-zellij
-    }
-    
-    if (tool exists "tmux") {
-        print "\n"
-        sm debug-tmux
-    }
-}
+# export def "sm debug-mux" [] {
+#     let current = (multiplexer detect)
+#     print $"Current multiplexer: ($current)"
+#     print $"Zellij available: (tool exists 'zellij')"
+#     print $"TMux available: (tool exists 'tmux')"
+#     
+#     if (tool exists "zellij") {
+#         print "\n"
+#         sm debug-zellij
+#     }
+#     
+#     if (tool exists "tmux") {
+#         print "\n"
+#         sm debug-tmux
+#     }
+# }
 
 # Session operations
 def "create-session" [name: string, mux: string] {
@@ -556,6 +556,8 @@ def "extract-session-name" [result: string] {
 
 # Main commands
 export def "sm switch" [
+    session_name?: string     # optinoal session name to switch
+    --session(-s): string     # Alt flag for session name
     --floating(-f)            # Run in floating pane
     --large(-l)               # Use large floating pane  
     --preview(-p)             # Show session preview
@@ -573,6 +575,36 @@ export def "sm switch" [
     if ($create | is-not-empty) {
         create-session $create $mux
         return
+    }
+
+    # determine if session is provided for switch
+    # prioritize for flag over positional 
+    let target_session = if ($session | is-not-empty) {
+      $session
+    } else if ($session_name | is-not-empty) {
+      $session_name
+    } else {
+      null
+    }
+
+    # if there's sesion name switch to it , skipping fzf sessions list
+    if ($target_session | is-not-empty) {
+      # let sessions = (get-sessions $mux)
+      # let session_exists = ($sessions | where name == $target_session | length) > 0
+      # if ($session_exists) {
+      #   switch-session $target_session $mux
+      # } else {
+      #       print $"❌ Session '($target_session)' not found in ($mux)"
+      #       print $"💡 Available sessions:"
+      #       if ($sessions | length) > 0 {
+      #           $sessions | select name status | table
+      #       } else {
+      #           print "   No sessions available"
+      #       }
+      #       print $"💡 Use 'sm new ($target_session)' to create it"
+      # }
+      switch-session $target_session $mux
+      return
     }
     
     let sessions = (get-sessions $mux)
@@ -632,6 +664,8 @@ export def "sm new" [name?: string, --multiplexer(-m): string] {
     
     if ($session_name | str length) > 0 {
         create-session $session_name $mux
+        
+        switch-session $session_name $mux
     } else {
         print "❌ Session name cannot be empty"
     }
@@ -801,5 +835,3 @@ export def "sm info" [] {
     }
 }
 
-# Backward compatibility
-export alias "zs" = sm

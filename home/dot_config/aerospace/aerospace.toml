@@ -294,3 +294,7 @@ run = "move-node-to-workspace M"
 if.app-id = 'com.apple.Music'
 run = "move-node-to-workspace M"
 
+[[on-window-detected]]
+if.app-id = 'com.expressvpn.ExpressVPN'
+run = ['layout floating', 'move-node-to-workspace 5']
+
