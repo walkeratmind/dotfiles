@@ -28,274 +28,72 @@ export const SESSION_CONFIG = {
 
 use session-utils.nu *
 
-# Core functionality - DRY principle
-def "detect-multiplexer" [--preferred: string] {
-    let current = (multiplexer detect)
+# FZF execution with floating support
+export def "execute-fzf" [
+    display_list: list<string>
+    mux: string
+    use_floating: bool = false
+    use_large: bool = false
+    use_preview: bool = true
+] {
+    # Create temp file
+    let temp_file = $"($env.XDG_CACHE_HOME)/sessions_(random chars -l 8).txt"
+    $display_list | save $temp_file
     
-    if $current != "none" { return $current }
+    # Build FZF command
+    let fzf_lines = [
+        "#!/bin/bash"
+        "set -e"
+        $"cat ($temp_file) | fzf \\"
+        $"    --height=($SESSION_CONFIG.session_height) \\"
+        "    --layout=reverse \\"
+        "    --border=rounded \\"
+        "    --margin=2% \\"
+        "    --padding=1 \\"
+        $"    --prompt='Select ($mux | str capitalize) Session: ' \\"
+        "    --header='Enter: Switch │ Ctrl-N: New │ Ctrl-D: Delete │ Ctrl-C: Cancel' \\"
+        "    --bind='ctrl-n:execute(echo __CREATE_NEW__)' \\"
+        "    --bind='ctrl-d:execute(echo __DELETE__)'"
+    ]
     
-    if ($preferred | is-not-empty) and (tool exists $preferred) {
-        return $preferred
-    }
+    let final_lines = if $use_preview {
+        $fzf_lines ++ [
+            $"    --preview-window=right:($SESSION_CONFIG.preview_size):wrap \\"
+            $"    --preview='echo \"Session: {}\"; echo \"Multiplexer: ($mux)\"; echo \"Status: Active\"'"
+        ]
+    } else { $fzf_lines }
     
-    # Prefer zellij over tmux if both available
-    if (tool exists "zellij") { "zellij" } else if (tool exists "tmux") { "tmux" } else { "none" }
-}
-
-# Unified session retrieval - single source of truth
-def "get-sessions" [mux: string] {
-    match $mux {
-        "zellij" => { get-zellij-sessions }
-        "tmux" => { get-tmux-sessions }
-        _ => { [] }
-    }
-}
-
-# Zellij session retrieval - fixed shell redirection
-def "get-zellij-sessions" [] {
-    let result = (^zellij list-sessions --no-formatting | complete)
+    let script_file = $"($env.XDG_CACHE_HOME)/fzf_script_(random chars -l 8).sh"
+    ($final_lines | str join "\n" | str replace '\\\n$' '\n') | save $script_file
+    chmod +x $script_file
     
-    if $result.exit_code != 0 { 
-        return [] 
-    }
-    
-    if ($result.stdout | str trim | str length) == 0 {
-        return []
-    }
-    
-    $result.stdout 
-    | lines 
-    | each {|line| parse-zellij-session $line}
-    | compact
-    | where {|session| not ($session.name | str contains "EXITED")}
-}
-
-# TMux session retrieval - fixed command
-def "get-tmux-sessions" [] {
-    let result = (^tmux list-sessions | complete)
-    
-    if $result.exit_code != 0 { 
-        return [] 
-    }
-    
-    if ($result.stdout | str trim | str length) == 0 {
-        return []
-    }
-    
-    # Parse standard tmux output format: "name: N windows (created date)"
-    $result.stdout
-    | lines
-    | where {|line| ($line | str trim | str length) > 0}
-    | each {|line| parse-tmux-session-standard $line}
-    | compact
-}
-
-# Enhanced tmux session retrieval with custom format
-def "get-tmux-sessions-detailed" [] {
-    let result = (bash -c "tmux list-sessions -F '#{session_name}:#{session_attached}:#{session_created}:#{session_windows}'" | complete)
-    
-    if $result.exit_code != 0 { 
-        return [] 
-    }
-    
-    if ($result.stdout | str trim | str length) == 0 {
-        return []
-    }
-    
-    $result.stdout
-    | lines
-    | where {|line| ($line | str trim | str length) > 0}
-    | each {|line| parse-tmux-session $line}
-    | compact
-}
-
-# Fixed Zellij session parsing
-def "parse-zellij-session" [line: string] {
-    let clean_line = ($line | str trim)
-    if ($clean_line | str length) == 0 {
-        return null
-    }
-    
-    # Skip EXITED sessions
-    if ($clean_line | str contains "EXITED") {
-        return null
-    }
-    
-    # Handle various Zellij output formats
-    # Try to extract session name first (everything before space or bracket)
-    let name_parts = ($clean_line | parse -r '^([^\s\[]+)')
-    if ($name_parts | length) == 0 {
-        return null
-    }
-    
-    let session_name = ($name_parts | first | get capture0)
-    let is_current = ($clean_line | str contains "(current)")
-    
-    # Try to extract creation time
-    let created = if ($clean_line | str contains "[Created") {
-        let created_parts = ($clean_line | parse -r '\[Created\s+([^\]]+)\]')
-        if ($created_parts | length) > 0 {
-            ($created_parts | first | get capture0)
-        } else {
-            "unknown"
+    # Execute FZF
+    let result = if $use_floating and (multiplexer is-active) {
+        try {
+            let width = if $use_large { "120" } else { "100" }
+            let height = if $use_large { "40" } else { "30" }
+            
+            match $mux {
+                "zellij" => {
+                    ^zellij run --floating --width $width --height $height --close-on-exit -- bash $script_file | str trim
+                }
+                "tmux" => {
+                    ^tmux display-popup -w $width -h $height -E "bash $script_file" | str trim
+                }
+                _ => { bash $script_file | str trim }
+            }
+        } catch {
+            bash $script_file | str trim
         }
     } else {
-        "unknown"
+        bash $script_file | str trim
     }
     
-    {
-        name: $session_name
-        created: $created
-        is_current: $is_current
-        status: (if $is_current { "current" } else { "detached" })
-        indicator: (if $is_current { "🟢" } else { "⚪" })
-    }
+    # Cleanup
+    cleanup-files [$script_file, $temp_file]
+    $result
 }
 
-# Parse standard TMux session output: "name: N windows (created date) (attached)"
-def "parse-tmux-session-standard" [line: string] {
-    let clean_line = ($line | str trim)
-    if ($clean_line | str length) == 0 {
-        return null
-    }
-    
-    # Standard tmux format: "session_name: 1 windows (created Thu May 29 07:30:00 2025) (attached)"
-    let name_match = ($clean_line | parse -r '^([^:]+)')
-    if ($name_match | length) == 0 {
-        return null
-    }
-    
-    let session_name = ($name_match | first | get capture0 | str trim)
-    let is_attached = ($clean_line | str contains "(attached)")
-    
-    # Extract window count
-    let windows = if ($clean_line | str contains " windows") {
-        let windows_match = ($clean_line | parse -r '(\d+)\s+windows?')
-        if ($windows_match | length) > 0 {
-            ($windows_match | first | get capture0)
-        } else {
-            "1"
-        }
-    } else {
-        "1"
-    }
-    
-    # Extract creation date (rough approximation)
-    let created = if ($clean_line | str contains "(created") {
-        let created_match = ($clean_line | parse -r '\(created\s+([^)]+)\)')
-        if ($created_match | length) > 0 {
-            ($created_match | first | get capture0)
-        } else {
-            "unknown"
-        }
-    } else {
-        "unknown"
-    }
-    
-    {
-        name: $session_name
-        created: $created
-        windows: $windows
-        status: (if $is_attached { "attached" } else { "detached" })
-        is_current: $is_attached
-        indicator: (if $is_attached { "🟢" } else { "⚪" })
-    }
-}
-
-# Fixed TMux session parsing for custom format - using simple split
-def "parse-tmux-session" [line: string] {
-    let clean_line = ($line | str trim)
-    if ($clean_line | str length) == 0 {
-        return null
-    }
-    
-    # Split by colon - TMux format: name:attached:created:windows
-    let parts = ($clean_line | split column ":")
-    
-    if ($parts | length) < 2 {
-        return null
-    }
-    
-    let name = ($parts | get column0)
-    let attached_str = ($parts | get column1)
-    let created = if ($parts | length) >= 3 { ($parts | get column2) } else { "unknown" }
-    let windows = if ($parts | length) >= 4 { ($parts | get column3) } else { "1" }
-    
-    let attached = ($attached_str == "1")
-    
-    {
-        name: $name
-        created: $created
-        windows: $windows
-        status: (if $attached { "attached" } else { "detached" })
-        is_current: $attached
-        indicator: (if $attached { "🟢" } else { "⚪" })
-    }
-}
-
-# Enhanced session age calculation
-def "get-session-age" [session_name: string, mux: string] {
-    match $mux {
-        "zellij" => { get-zellij-session-age $session_name }
-        "tmux" => { get-tmux-session-age $session_name }
-        _ => { 0 }
-    }
-}
-
-# Fixed Zellij session age calculation
-def "get-zellij-session-age" [session_name: string] {
-    let result = (^zellij list-sessions --no-formatting | complete)
-    if $result.exit_code != 0 { return 0 }
-    
-    let session_lines = ($result.stdout | lines | where {|line| 
-        let clean = ($line | str trim)
-        ($clean | str starts-with $session_name)
-    })
-    
-    if ($session_lines | length) == 0 { return 0 }
-    
-    let clean_line = ($session_lines | first | str trim)
-    
-    # Look for time patterns in Zellij output
-    if ($clean_line | str contains "day") {
-        let days_matches = ($clean_line | parse -r '(\d+)\s*days?')
-        if ($days_matches | length) > 0 {
-            ($days_matches | first | get capture0 | into int)
-        } else { 0 }
-    } else if ($clean_line | str contains "h") {
-        0  # Less than a day
-    } else if ($clean_line | str contains "m") {
-        0  # Less than an hour
-    } else {
-        0  # Very recent
-    }
-}
-
-# Fixed TMux session age calculation
-def "get-tmux-session-age" [session_name: string] {
-    let result = (bash -c $"tmux list-sessions -F '#{session_name}:#{session_created}'" | complete)
-    if $result.exit_code != 0 { return 0 }
-    
-    let sessions = ($result.stdout | lines | where {|line| 
-        let clean = ($line | str trim)
-        ($clean | str starts-with $session_name)
-    })
-    
-    if ($sessions | length) == 0 { return 0 }
-    
-    try {
-        let session_line = ($sessions | first)
-        let parts = ($session_line | split column ":")
-        if ($parts | length) < 2 { return 0 }
-        
-        let created_timestamp = ($parts | get column1 | into int)
-        let current_timestamp = (date now | format date "%s" | into int)
-        let age_seconds = ($current_timestamp - $created_timestamp)
-        ($age_seconds / 86400)  # Convert to days
-    } catch {
-        0
-    }
-}
 
 # Fixed test functions
 # export def "sm debug-zellij" [] {
@@ -378,181 +176,6 @@ def "get-tmux-session-age" [session_name: string] {
 #     }
 # }
 
-# Session operations
-def "create-session" [name: string, mux: string] {
-    print $"🆕 Creating new ($mux) session: ($name)"
-    match $mux {
-        "zellij" => { ^zellij --session $name }
-        "tmux" => { 
-            ^tmux new-session -d -s $name
-            ^tmux attach-session -t $name
-        }
-        _ => { print "❌ Unsupported multiplexer" }
-    }
-}
-
-def "switch-session" [name: string, mux: string] {
-    print $"🔄 Switching to ($mux) session: ($name)"
-    match $mux {
-        "zellij" => { switch-zellij-session $name }
-        "tmux" => { switch-tmux-session $name }
-        _ => { print "❌ Unsupported multiplexer" }
-    }
-}
-
-def "switch-zellij-session" [name: string] {
-    let in_zellij = ($env.ZELLIJ? | default "" | str length) > 0
-    
-    if $in_zellij {
-        try {
-            ^zellij action switch-session $name
-            print $"✅ Switched to session: ($name)"
-        } catch {
-            print $"❌ Failed to switch to session: ($name)"
-            print "💡 Try manually: zellij attach ($name)"
-        }
-    } else {
-        try {
-            ^zellij attach $name
-            print $"✅ Attached to session: ($name)"
-        } catch {
-            print $"❌ Failed to attach to session: ($name)"
-        }
-    }
-}
-
-def "switch-tmux-session" [name: string] {
-    let in_tmux = ($env.TMUX? | default "" | str length) > 0
-    
-    if $in_tmux {
-        try {
-            ^tmux switch-client -t $name
-            print $"✅ Switched to session: ($name)"
-        } catch {
-            print $"❌ Failed to switch to session: ($name)"
-        }
-    } else {
-        try {
-            ^tmux attach-session -t $name
-            print $"✅ Attached to session: ($name)"
-        }
-    }
-}
-
-def "kill-session" [name: string, mux: string] {
-    match $mux {
-        "zellij" => { 
-            try {
-                ^zellij kill-session $name
-                print $"✅ Session ($name) killed successfully"
-            } catch {
-                print $"❌ Failed to kill session: ($name)"
-            }
-        }
-        "tmux" => { 
-            try {
-                ^tmux kill-session -t $name
-                print $"✅ Session ($name) killed successfully"
-            } catch {
-                print $"❌ Failed to kill session: ($name)"
-            }
-        }
-        _ => { print "❌ Unsupported multiplexer" }
-    }
-}
-
-# Display formatting
-def "format-session-display" [session: record, mux: string] {
-    let base = $"($session.indicator) ($session.name)"
-    match $mux {
-        "zellij" => {
-            if $session.created != "unknown" {
-                $"($base) | Created ($session.created)"
-            } else { $base }
-        }
-        "tmux" => {
-            let windows_info = if ($session.windows? != null) { $" │ Windows: ($session.windows)" } else { "" }
-            $"($base)($windows_info) │ Created: ($session.created)"
-        }
-        _ => { $base }
-    }
-}
-
-# FZF execution with floating support
-def "execute-fzf" [
-    display_list: list<string>
-    mux: string
-    use_floating: bool = false
-    use_large: bool = false
-    use_preview: bool = true
-] {
-    # Create temp file
-    let temp_file = $"($env.XDG_CACHE_HOME)/sessions_(random chars -l 8).txt"
-    $display_list | save $temp_file
-    
-    # Build FZF command
-    let fzf_lines = [
-        "#!/bin/bash"
-        "set -e"
-        $"cat ($temp_file) | fzf \\"
-        $"    --height=($SESSION_CONFIG.session_height) \\"
-        "    --layout=reverse \\"
-        "    --border=rounded \\"
-        "    --margin=2% \\"
-        "    --padding=1 \\"
-        $"    --prompt='Select ($mux | str capitalize) Session: ' \\"
-        "    --header='Enter: Switch │ Ctrl-N: New │ Ctrl-D: Delete │ Ctrl-C: Cancel' \\"
-        "    --bind='ctrl-n:execute(echo __CREATE_NEW__)' \\"
-        "    --bind='ctrl-d:execute(echo __DELETE__)'"
-    ]
-    
-    let final_lines = if $use_preview {
-        $fzf_lines ++ [
-            $"    --preview-window=right:($SESSION_CONFIG.preview_size):wrap \\"
-            $"    --preview='echo \"Session: {}\"; echo \"Multiplexer: ($mux)\"; echo \"Status: Active\"'"
-        ]
-    } else { $fzf_lines }
-    
-    let script_file = $"($env.XDG_CACHE_HOME)/fzf_script_(random chars -l 8).sh"
-    ($final_lines | str join "\n" | str replace '\\\n$' '\n') | save $script_file
-    chmod +x $script_file
-    
-    # Execute FZF
-    let result = if $use_floating and (multiplexer is-active) {
-        try {
-            let width = if $use_large { "120" } else { "100" }
-            let height = if $use_large { "40" } else { "30" }
-            
-            match $mux {
-                "zellij" => {
-                    ^zellij run --floating --width $width --height $height --close-on-exit -- bash $script_file | str trim
-                }
-                "tmux" => {
-                    ^tmux display-popup -w $width -h $height -E "bash $script_file" | str trim
-                }
-                _ => { bash $script_file | str trim }
-            }
-        } catch {
-            bash $script_file | str trim
-        }
-    } else {
-        bash $script_file | str trim
-    }
-    
-    # Cleanup
-    cleanup-files [$script_file, $temp_file]
-    $result
-}
-
-# Extract session name from FZF result
-def "extract-session-name" [result: string] {
-    # First remove the emoji indicator
-    let without_emoji = ($result | str replace -r '^[🟢⚪]\s+' '')
-    
-    # Split by │ and take the first part, then trim
-    let parts = ($without_emoji | split column "│")
-    ($parts | first | get column1 | str trim)
-}
 
 # Main commands
 export def "sm switch" [
@@ -571,9 +194,10 @@ export def "sm switch" [
         return
     }
     
-    # Handle session creation
+    # Handle session creation and switch
     if ($create | is-not-empty) {
         create-session $create $mux
+        switch-session $create $mux
         return
     }
 

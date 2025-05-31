@@ -1,0 +1,99 @@
+# ------------------------------------------------------------
+# - Title: .ENV
+# - Author: Rakesh Niraula
+# - Date: 2020-08-17 11:03:31
+# ------------------------------------------------------------
+
+# ------------------------------------------------------------
+# Exports path here for both zsh and bash
+# ------------------------------------------------------------
+
+# Config Path
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CACHE_HOME="$HOME/.cache"
+
+
+export CARGO_HOME="$XDG_DATA_HOME/cargo"
+export GOPATH=$XDG_DATA_HOME/go
+export RUSTUP_HOME=$XDG_CONFIG_HOME/rustup
+
+
+# Rust Path
+export PATH="$PATH:$HOME/.cargo/bin"
+
+# Manage python environments
+export VENVPATH="$XDG_DATA_HOME/pyenv"
+
+# Flutter Env
+export FVM_CACHE_PATH=$XDG_DATA_HOME/fvm
+export PATH="$PATH:$FVM_CACHE_PATH/default/bin"
+
+export PATH="$PATH:$HOME/development_tools"
+
+export PATH="$PATH:$HOME/.emacs.d/bin"
+# alias for project folder
+alias plab="cd $HOME/project_lab"
+
+# ANDROID SDK setup
+
+export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
+export PATH=$PATH:$ANDROID_SDK_ROOT/tools
+export PATH=$PATH:$ANDROID_SDK_ROOT/bin
+
+export PATH="$PATH:$ANDROID_SDK_ROOT/platform-tools"
+
+# androidStudioToolboxBase=${HOME}/Library/Application\ Support/JetBrains/Toolbox/apps/AndroidStudio/ch-0
+# androidStudioToolboxVersion="$(ls ${androidStudioToolboxBase})"
+# export CAPACITOR_ANDROID_STUDIO_PATH="${androidStudioToolboxBase}/${androidStudioToolboxVersion}/Android Studio.app"
+# export CAPACITOR_ANDROID_STUDIO_PATH="${HOME}/Library/Application Support/JetBrains/Toolbox/apps/AndroidStudio/ch-0/212.5712.43.2112.8609683/Android Studio.app"
+
+# =====================================================
+
+# ------------------------------------------------------------
+# COMMON FUNCTIONS AND OTHER RC FILES
+# ------------------------------------------------------------
+
+# Show contents of dir after action
+function cd() {
+  builtin cd "$1"
+  ls
+}
+
+# Markdown link check in a folder, recursive
+function mlc() {
+  find $1 -name \*.md -exec markdown-link-check -p {} \;
+}
+
+# Does Vim makes developers life better?
+export EDITOR=hx
+export VISUAL=hx
+
+# Go
+export PATH=$PATH:/usr/local/bin:/usr/local/go/bin:~/.local/bin:$GOPATH/bin
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm
+
+export PATH="$HOME/.yarn/bin:$PATH"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+# Added by Amplify CLI binary installer
+export PATH="$HOME/.amplify/bin:$PATH"
+
+export RIPGREP_CONFIG_PATH=$HOME/.config/.ripgreprc
+
+# lazydocker podman support
+# export DOCKER_HOST=unix://$(podman machine inspect --format '{{.ConnectionInfo.PodmanSocket.Path}}')
+
+# ignore using volta for now for the sake of fnm
+# export VOLTA_HOME=$HOME/.volta
+# export PATH=$PATH:$VOLTA_HOME/bin
+eval "$(fnm env --use-on-cd)"
+
+export PATH="$PATH":"$HOME/.pub-cache/bin"

@@ -71,7 +71,8 @@ export-env { load-env {
     _JAVA_OPTIONS: $"-Djava.util.prefs.userRoot=($env.XDG_CONFIG_HOME | path join java)"
     _Z_DATA: ($env.XDG_DATA_HOME | path join "z")
     RIPGREP_CONFIG_PATH: ($env.XDG_CONFIG_HOME | path join ".ripgreprc")
-    VENVPATH: ($env.HOME + "/development_tools/pyenv")
+    VENVPATH: ($env.XDG_DATA_HOME | path join "pyenv")
+    FVM_CACHE_PATH: ($env.XDG_DATA_HOME | path join "fvm")
 }}
 
 mkdir ~/.cache/starship
