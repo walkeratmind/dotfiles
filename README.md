@@ -1,166 +1,198 @@
 <div align="center">
   <h1>🏠 Dotfiles</h1>
   <p>Personal dotfiles and system configuration managed with <a href="https://chezmoi.io">chezmoi</a></p>
+  <img src='https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black' alt='linux'>
+  <img src='https://img.shields.io/badge/macOS-000000?style=for-the-badge&logo=apple&logoColor=white' alt='macos'>
+  <img src='https://img.shields.io/badge/chezmoi-5C9FEE?style=for-the-badge&logo=git&logoColor=white' alt='chezmoi'>
+  <img src='https://img.shields.io/badge/shell_script-%23121011.svg?style=for-the-badge&logo=gnu-bash&logoColor=white' alt='shell-script'>
+  <img src='https://img.shields.io/badge/NeoVim-%2357A143.svg?&style=for-the-badge&logo=neovim&logoColor=white' alt='neovim'>
 </div>
 
-## 📁 What's Inside
+## 🚀 Features
 
-This repository contains my personal dotfiles and system configuration for macOS, featuring:
+- **Chezmoi-powered** with secret management and machine-specific overrides
+- **External Neovim configs** - Multiple Neovim setups from separate repository
+- **Automated setup scripts** - Complete system bootstrapping for macOS
+- **Brew/Apt duality** - supports both Homebrew and Apt packages
+- **Universal symlinks** where needed (via Chezmoi templates)
 
-- **Shell Configuration**: Zsh with custom profiles and configurations
-- **Development Tools**: Git, tmux, curl, and IDE configurations
-- **Neovim Setup**: External repository management with multiple configurations
-- **Automated Scripts**: System setup, app installation, and configuration scripts
+## 🌟 macOS-Specific Features
 
-## 🗂️ Structure
+- **Automated Homebrew setup** via `brewinstall.sh`
+- **System preferences configuration** via `macconfig.sh`
+- **Application installation and setup** via `macapps.sh`
+- **Font management** for development environments
+- **Bat syntax highlighting** with custom themes
 
-```
-.
-├── chezmoi.toml              # Chezmoi configuration
-├── .chezmoiexternal.toml     # External repository management
-├── .chezmoiignore            # Files to exclude from home directory
-├── home/                     # Dotfiles (will be moved to root)
-│   ├── dot_config/           # ~/.config/ directory
-│   ├── dot_curlrc            # ~/.curlrc
-│   ├── dot_env               # ~/.env
-│   ├── dot_gitconfig         # ~/.gitconfig
-│   ├── dot_gitmessage        # ~/.gitmessage
-│   ├── dot_ideavimrc         # ~/.ideavimrc
-│   ├── dot_shellrc.d/        # ~/.shellrc.d/
-│   ├── dot_tmux.conf         # ~/.tmux.conf
-│   ├── dot_zprofile          # ~/.zprofile
-│   ├── dot_zshrc             # ~/.zshrc
-│   └── dot_zshrc.d/          # ~/.zshrc.d/
-└── scripts/                  # Setup and configuration scripts
-    ├── bat-theme.sh          # Bat theme configuration
-    ├── brewinstall.sh        # Homebrew package installation
-    ├── fontinstall.sh        # Font installation
-    ├── macapps.sh            # macOS applications setup
-    ├── macconfig.sh          # macOS system configuration
-    ├── setup.sh              # Main setup script
-    ├── extras/               # Additional utilities
-    └── programs/             # Program-specific configurations
+## 🛠️ Tooling Stack
+
+```mermaid
+graph TD
+    A[Chezmoi] --> B[Linux Configs]
+    A --> C[macOS Configs]
+    A --> F[External Repos]
+    B --> D[APT Packages]
+    C --> E[Homebrew Scripts]
+    F --> G[Neovim Main]
+    F --> H[Neovim LazyVim]
+    A --> I[Shared Configs]
+    I --> J[Zsh/Shell]
+    I --> L[Development Tools]
 ```
 
-## 🚀 Quick Start
+## File Structure 📂 (Chezmoi-managed)
+
+```bash
+~/.local/share/chezmoi/
+├── .chezmoiexternal.toml    # External repository management
+├── .chezmoiignore          # Files to exclude from home
+├── chezmoi.toml            # Configuration matrix
+├── home/                   # Dotfiles source (to be moved to root)
+│   ├── dot_config/         # ~/.config/ - Application configs
+│   ├── dot_curlrc          # ~/.curlrc - curl configuration
+│   ├── dot_env             # ~/.env - Environment variables
+│   ├── dot_gitconfig       # ~/.gitconfig - Git configuration
+│   ├── dot_gitmessage      # ~/.gitmessage - Git commit template
+│   ├── dot_ideavimrc       # ~/.ideavimrc - IntelliJ Vim plugin
+│   ├── dot_shellrc.d/      # ~/.shellrc.d/ - Shell modules
+│   ├── dot_tmux.conf       # ~/.tmux.conf - tmux configuration
+│   ├── dot_zprofile        # ~/.zprofile - Zsh profile
+│   ├── dot_zshrc           # ~/.zshrc - Zsh configuration
+│   └── dot_zshrc.d/        # ~/.zshrc.d/ - Zsh modules
+└── scripts/                # Setup and maintenance scripts
+    ├── setup.sh            # Main setup orchestrator
+    ├── brewinstall.sh      # Homebrew packages installation
+    ├── macconfig.sh        # macOS system preferences
+    ├── macapps.sh          # macOS applications setup
+    ├── fontinstall.sh      # Programming fonts installation
+    ├── bat-theme.sh        # Bat syntax highlighting
+    ├── extras/             # Additional utilities
+    └── programs/           # Program-specific configurations
+```
+
+## 🎯 External Configurations
+
+### Neovim Setup
+
+Managed via `.chezmoiexternal.toml` from [walkeratmind/nvim](https://github.com/walkeratmind/nvim):
+
+- **Main Config**: `~/.config/nvim` - Personal Neovim setup
+- **LazyVim Config**: `~/.config/nvim-lazy` - LazyVim distribution
+
+```bash
+# Switch between configurations
+nvim                          # Main config
+NVIM_APPNAME=nvim-lazy nvim   # LazyVim config
+```
+
+## ⚡ Setup
 
 ### Prerequisites
 
-- macOS
-- [Homebrew](https://brew.sh/) installed
-- Git configured with your credentials
-
-### Installation
-
-1. **Install chezmoi:**
-   ```bash
-   brew install chezmoi
-   ```
-
-2. **Initialize with this repository:**
-   ```bash
-   chezmoi init --apply walkeratmind/dotfiles
-   ```
-
-3. **Run setup scripts (optional):**
-   ```bash
-   # Install Homebrew packages
-   ~/.local/share/chezmoi/scripts/brewinstall.sh
-   
-   # Configure macOS settings
-   ~/.local/share/chezmoi/scripts/macconfig.sh
-   
-   # Install fonts
-   ~/.local/share/chezmoi/scripts/fontinstall.sh
-   
-   # Install macOS applications
-   ~/.local/share/chezmoi/scripts/macapps.sh
-   ```
-
-## ⚙️ Neovim Configuration
-
-This setup includes external Neovim configurations managed externally using [.chezmoiexternal](.chezmoiexternal.toml):
-
-- **Main Config**: `~/.config/nvim` - Primary Neovim setup
-- **LazyVim Config**: `~/.config/nvim-lazy` - LazyVim distribution setup
-
-The configurations are pulled from my separate [nvim-config repository](https://github.com/walkeratmind/nvim) using chezmoi's external feature.
-
-### Switching Between Neovim Configs
-
 ```bash
-# Use main config
-nvim
-
-# Use LazyVim config
-NVIM_APPNAME=nvim-lazy nvim
+# Install Chezmoi
+sh -c "$(curl -fsLS get.chezmoi.io)"
 ```
 
-## 🔄 Daily Usage
+### Bootstrap (Both Platforms)
 
-### Update dotfiles
 ```bash
-chezmoi update
+# Initialize and apply dotfiles
+chezmoi init --apply walkeratmind/dotfiles
+
+# This will automatically:
+# ✅ Install dotfiles to home directory
+# ✅ Pull external Neovim configurations
+# ✅ Exclude project files (README, scripts) from home
 ```
 
-### Update external repositories (including Neovim configs)
+### Platform-Specific Setup
+
+**macOS Complete Setup:**
+
 ```bash
-chezmoi apply --refresh-externals
-# or shorter:
+# Navigate to chezmoi source
+cd ~/.local/share/chezmoi
+
+# Run automated setup
+./scripts/setup.sh              # Main orchestrator
+./scripts/brewinstall.sh        # Install Homebrew packages
+./scripts/macconfig.sh          # Configure macOS preferences
+./scripts/macapps.sh            # Install macOS applications
+./scripts/fontinstall.sh        # Install programming fonts
+./scripts/bat-theme.sh          # Configure bat theme
+```
+
+**Linux:**
+
+```bash
+# Manual package installation based on your distro
+# Configurations will work cross-platform
+```
+
+## 🔧 Maintenance
+
+| Task | Command |
+|------|---------|
+| Add new config | `chezmoi add ~/.config/foo` |
+| Edit managed file | `chezmoi edit ~/.zshrc` |
+| Sync changes | `chezmoi apply` |
+| Update externals | `chezmoi apply --refresh-externals` |
+| Diff changes | `chezmoi diff` |
+| Check status | `chezmoi status` |
+
+### External Repository Updates
+
+```bash
+# Update Neovim configs (respects refreshPeriod)
+chezmoi apply
+
+# Force update external repos (ignores refreshPeriod)
 chezmoi -R apply
 ```
 
-### Edit configuration
-```bash
-# Edit a dotfile
-chezmoi edit ~/.zshrc
+## 🛠️ Configuration Highlights
 
-# Add a new dotfile
-chezmoi add ~/.new-config-file
-```
+### Shell Environment
 
-### Check what would change
-```bash
-chezmoi diff
-```
+#### Nushell
 
-## 🛠️ Scripts
+- **Nushell** with custom aliases
+- helper commands like `sm` for session manager for bother `zellij` and `tmux`
+- commands: `pm` for project navigation and switch similar to tmux-sesionizer using fzf. Inspired from [zellij-sessionizer](https://github.com/silicakes/zellij-sessionizer/tree/main)
+   - you can check `dot_config/nushell/integrations/project-manager.nu` and modify/add paths for your projects directory.
 
-| Script | Description |
-|--------|-------------|
-| `setup.sh` | Main setup script for new system |
-| `brewinstall.sh` | Install Homebrew packages and casks |
-| `macconfig.sh` | Configure macOS system preferences |
-| `fontinstall.sh` | Install programming fonts |
-| `macapps.sh` | Install and configure macOS applications |
-| `bat-theme.sh` | Configure bat syntax highlighting theme |
+#### ZSH
 
-## 📝 Customization
+- **Zsh** with modular configuration (`dot_zshrc.d/`)
+- **Shell modules** in `dot_shellrc.d/` for cross-shell compatibility
+- **Environment management** via `dot_env` and `dot_zprofile`
 
-1. **Fork this repository**
-2. **Update personal information** in `chezmoi.toml`
-3. **Modify configurations** to match your preferences
-4. **Update external repositories** in `.chezmoiexternal.toml`
-5. **Customize scripts** in the `scripts/` directory
+### Development Tools
 
-## 🔗 External Dependencies
+- **Git** with custom config and commit templates
+- **tmux** for terminal multiplexing
+- **curl** with personalized settings
+- **IntelliJ IDEA Vim** plugin configuration
 
-- [Neovim Configuration](https://github.com/walkeratmind/nvim-config) - Separate repository for Neovim setup
-- [Homebrew](https://brew.sh/) - Package manager for macOS
-- [Oh My Zsh](https://ohmyz.sh/) - Zsh framework (if used)
+### External Dependencies
 
-## 📄 License
+- **Neovim configurations** from separate repository
+- **Cross-platform compatibility** maintained through Chezmoi templates
+- **Automated updates** with configurable refresh periods
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+## 📚 References
 
-## 🙏 Acknowledgments
+> With gratitude to these inspirations:
 
-- [chezmoi](https://chezmoi.io) for excellent dotfiles management
-- [LazyVim](https://lazyvim.org) for the amazing Neovim distribution
-- The open-source community for inspiration and tools
+- [victoriadrake](https://github.com/victoriadrake/dotfiles) - Cross-platform approach
+- [tomnomnom](https://github.com/tomnomnom/dotfiles) - Minimalist philosophy
+- [rhoit](https://github.com/rhoit/my-config) - Modular configurations
+- [Chezmoi Documentation](https://www.chezmoi.io/user-guide/command-overview/) - External repository management
 
 ---
 
 <div align="center">
   <p>⭐ Star this repo if you find it helpful!</p>
+  <p><strong>Ready for both Linux tinkering and macOS productivity</strong> 🚀</p>
 </div>
