@@ -42,4 +42,12 @@ export alias bp = bat --plain
 export alias bpl = bat --plain --line-range
 export alias bl = bat --line-range
 
+# Neovim variants
+export alias lv = with-env { NVIM_APPNAME: "nvim-lazy" } { nvim }
+
+# export def nv [...paths] {
+#     let config = (input list -p "Select Neovim config:" ["lazy", "kickstart", "nvchad", "astrovim", "lunarvim"])
+#     with-env { NVIM_APPNAME: $"nvim-($config)" } { nvim ...$paths }
+# }
+
 

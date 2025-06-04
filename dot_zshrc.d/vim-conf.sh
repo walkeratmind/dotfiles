@@ -2,8 +2,7 @@
 
 
 alias v='nvim' # default Neovim config
-alias nvim-lazy='NVIM_APPNAME=nvim-lazy nvim' # LazyVim
-# alias vc='NVIM_APPNAME=nvim-nvchad nvim' # NvChad
+alias lv='NVIM_APPNAME=nvim-lazy nvim' # LazyVim
 alias nvim-kick='NVIM_APPNAME=nvim-kickstart nvim' # Kickstart
 alias nvim-astro='NVIM_APPNAME=nvim-astrovim nvim' # AstroVim
 

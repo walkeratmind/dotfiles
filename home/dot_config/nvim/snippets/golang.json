@@ -1,7 +1,0 @@
-{
-	"If error Statement": {
-		"description": "if error statement",
-		"prefix": "iferr",
-		"body": ["if err != nil {", "    $0", "}"]
-	}
-}

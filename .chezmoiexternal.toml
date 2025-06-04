@@ -1,0 +1,16 @@
+
+# Main nvim config 
+[".config/nvim"]
+    type = "git-repo"
+    url = "https://github.com/walkeratmind/nvim.git"
+    refreshPeriod = "12h"
+
+# LazyVim branch config to ~/.config/nvim-lazy
+[".config/nvim-lazy"]
+    type = "git-repo"
+    url = "https://github.com/walkeratmind/nvim.git"
+    refreshPeriod = "12h"
+    [".config/nvim-lazy".clone]
+        args = ["--branch", "lazyvim", "--single-branch"]
+    [".config/nvim-lazy".pull]
+        args = ["--ff-only"]

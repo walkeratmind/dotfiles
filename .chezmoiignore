@@ -1,3 +1,27 @@
+# Chezmoi configuration files
+chezmoi.toml
+.chezmoiexternal.toml
+
+# Documentation and scripts
+README.md
+scripts/
+scripts/**
+
+# Git and project files
+.git/
+.git/**
+.gitignore
+.gitmodules
+
+# Chezmoi ignore file itself
+.chezmoiignore
+
+# Any other project-specific files you don't want in home
+LICENSE
+CHANGELOG.md
+docs/
+docs/**
+
 .DS_Store
 *.sqlite
 *.log
