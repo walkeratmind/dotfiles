@@ -158,8 +158,8 @@ chezmoi -R apply
 #### Nushell
 
 - **Nushell** with custom aliases
-- helper commands like `sm` for session manager for bother `zellij` and `tmux`
-- commands: `pm` for project navigation and switch similar to tmux-sesionizer using fzf. Inspired from [zellij-sessionizer](https://github.com/silicakes/zellij-sessionizer/tree/main)
+- command: `sm` for session manager for both `zellij` and `tmux`
+- command: `pm` for project navigation and switch similar to tmux-sesionizer using fzf. Inspired from [zellij-sessionizer](https://github.com/silicakes/zellij-sessionizer/tree/main)
    - you can check `dot_config/nushell/integrations/project-manager.nu` and modify/add paths for your projects directory.
 
 #### ZSH
