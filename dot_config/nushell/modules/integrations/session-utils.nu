@@ -369,7 +369,7 @@ export def "get-zellij-sessions" [] {
     | lines 
     | each {|line| parse-zellij-session $line}
     | compact
-    | where {|session| not ($session.name | str contains "EXITED")}
+    # | where {|session| not ($session.name | str contains "EXITED")}
 }
 
 # TMux session retrieval - fixed command
