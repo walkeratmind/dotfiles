@@ -5,8 +5,7 @@ function install {
 
   if [ $? -ne 0 ]; then
     echo "Installing: ${1}..."
-    brew install $1
-    echo "----------------------------"
+    brew install $1 echo "----------------------------"
   else
     echo "Already installed: ${1}"
     echo "----------------------------"

@@ -298,3 +298,8 @@ run = "move-node-to-workspace M"
 if.app-id = 'com.expressvpn.ExpressVPN'
 run = ['layout floating', 'move-node-to-workspace 5']
 
+
+# window borders
+after-startup-command = [
+  'exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0'
+]

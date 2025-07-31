@@ -73,7 +73,7 @@ keybind = super+ctrl+l=resize_split:right,10
 keybind = super+ctrl+j=resize_split:down,10
 keybind = super+ctrl+k=resize_split:up,10
 
-keybind = global:super+shift+e=toggle_quick_terminal
+keybind = global:super+ctrl+e=toggle_quick_terminal
 
 # clear whole line
 keybind = cmd+backspace=text:\x15
