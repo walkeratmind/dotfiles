@@ -50,6 +50,7 @@ export def "zr dev" [...args: string] {
         "go run ."
         "python main.py"
         "node index.js"
+        "bun dev"
     ]
     
     if ($args | is-empty) {
@@ -57,11 +58,13 @@ export def "zr dev" [...args: string] {
         let cmd = if ("package.json" | path exists) {
             if ("pnpm-lock.yaml" | path exists) { "pnpm run dev" }
             else if ("yarn.lock" | path exists) { "yarn dev" }
+            else if ("bun.lock" | path exists) { "bun dev" }
             else { "pnpm run dev" }
         } else if ("Cargo.toml" | path exists) {
             "cargo run"
         } else if ("go.mod" | path exists) {
             "go run ."
+
         } else {
             print "No recognized project type found"
             return
